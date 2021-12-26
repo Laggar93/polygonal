@@ -4,14 +4,18 @@ from django.shortcuts import render
 from .service import get_order_params
 
 
+
 def category_view(request, category_slug):
     query_param = request.GET.get('sort')
     category_check = get_object_or_404(category, slug=category_slug)
+
     items = item.objects.filter(
         category__category__slug=category_slug).prefetch_related(
         'category').order_by('name')
+
     if not items:
         return render(request, 'no_items.html')
+
     if query_param and query_param != None:
         param = get_order_params(query_param)
         if param:
@@ -32,12 +36,15 @@ def category_view(request, category_slug):
 
     return render(request, 'catalog.html', context=context)
 
+
+
 def first_category_for_url(request):
 
     active_category = category.objects.all().first()
     path = active_category.slug
 
     return redirect(category_view, category_slug=path)
+
 
 
 def subcategory_view(request, category_slug, subcategory_slug):
@@ -49,8 +56,10 @@ def subcategory_view(request, category_slug, subcategory_slug):
     items = item.objects.filter(category__category__slug=category_slug,
                                 category__slug=subcategory_slug[0]).order_by(
         'name')
+
     if not items:
         return render(request, 'no_items.html', )
+
     if query_param:
         param = get_order_params(query_param)
         if param:
@@ -68,23 +77,11 @@ def subcategory_view(request, category_slug, subcategory_slug):
         'subcategories': subcategories,
         'items': items,
         'active_category': active_category,
-        # 'category_check': category_check,
-        # 'subcategory_check': subcategory_check
+
     }
 
     return render(request, 'catalog.html', context=context)
 
 
-# def page_not_found_view(request, exception):
+# def handler404(request, exception):
 #     return render(request, '404.html', status=404)
-
-# def handler404_view(request, category_slug):
-#     category_check = get_object_or_404(category, slug=category_slug)
-#     context = {
-#         'category_check': category_check
-#     }
-#     return render(request, '404.html', context)
-
-
-def handler404(request, exception):
-    return render(request, '404.html', status=404)
