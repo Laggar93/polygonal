@@ -1,5 +1,5 @@
 from modeltranslation.translator import translator, TranslationOptions
-from .models import Category, SubCategory, item, item_terms, item_files, discount, coupon
+from .models import category, subcategory, item, item_terms, item_files, discount, coupon
 
 class CategoryTranslationOptions(TranslationOptions):
     fields = ('is_active', 'keywords', 'description', 'title', 'name', 'figure_size_heading', 'paper_size_heading', 'color_heading', 'difficulty_heading', 'time_heading', 'paper_amount_heading', 'connected_items_heading', 'bottom_heading', 'delivery_heading', 'other_models_heading')
@@ -22,8 +22,8 @@ class DiscountTranslationOptions(TranslationOptions):
 class CouponTranslationOptions(TranslationOptions):
     fields = ('is_active', 'name', 'usage', 'type', 'amount', 'starts', 'ends')
 
-translator.register(Category, CategoryTranslationOptions)
-translator.register(SubCategory, SubcategoryTranslationOptions)
+translator.register(category, CategoryTranslationOptions)
+translator.register(subcategory, SubcategoryTranslationOptions)
 translator.register(item, ItemTranslationOptions)
 translator.register(item_terms, ItemTermsTranslationOptions)
 translator.register(item_files, ItemFilesTranslationOptions)

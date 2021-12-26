@@ -7569,7 +7569,8 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     -ms-flex-wrap: wrap;
     flex-wrap: wrap;
     margin-left: -12px;
-    margin-right: -12px
+    margin-right: -12px;
+
 }
 
 .c-filter__row > * {
@@ -7621,7 +7622,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 @media (min-width: 1024px) {
     .c-filter__products {
-        margin-bottom: 32px
+        margin-bottom: 20px
     }
 }
 
@@ -7793,8 +7794,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 @media (min-width: 1280px) {
     .tabs-list__item {
-        padding-top: 11px;
-        padding-bottom: 11px
+        padding: 0;
     }
 }
 
@@ -7813,29 +7813,31 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     border-color: #006ec8
 }
 
-.tabs-list__item:active  {
+.tabs-list__item:active {
     color: #fff;
     background-color: #0058a0;
     border-color: #0058a0
 }
+
 /*.tabs-list__item:active {*/
 /*    color: #fff;*/
 /*}*/
 .tabs-list__item--active .tab-list__a {
-    color: #fff!important;
+    color: #fff !important;
 }
 
 .tabs-list__item:hover .tab-list__a {
-    color: #fff!important;
+    color: #fff !important;
 }
 
 .tab-list__a {
     color: #0058a0;
+    padding: 11px 16px;
+    display: block;
 }
 
 .tab-list__a:active,
-.tab-list__a:hover
- {
+.tab-list__a:hover {
     color: #fff;
 }
 
@@ -7848,6 +7850,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 .tabs-list__item:active {
     color: #fff;
 }
+
 .tabs-content {
     display: none
 }
@@ -7898,7 +7901,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     color: #323232;
 }
 
-.filter-list__item a{
+.filter-list__item a {
     color: inherit;
 }
 

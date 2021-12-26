@@ -61,7 +61,7 @@ def resize_img(f1, f2, fs):
     )
 
 
-class Category(models.Model):
+class category(models.Model):
     order = models.IntegerField('Порядок показа')
     is_active = models.BooleanField('Показывать на сайте', default=True)
     keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)
@@ -121,10 +121,10 @@ class Category(models.Model):
 
 
 
-class SubCategory(models.Model):
+class subcategory(models.Model):
     order = models.IntegerField('Порядок показа')
     is_active = models.BooleanField('Показывать на сайте', default=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE,
+    category = models.ForeignKey(category, on_delete=models.CASCADE,
                                  verbose_name='Категория', related_name='in_category')
     keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)
     description = models.CharField('Описание', max_length=1000, blank=True)
@@ -167,7 +167,7 @@ class item(models.Model):
                             help_text='URL генерируется автоматически из названия раздела, но может быть задан вручную',
                             unique=True)
     name = models.CharField('Название', max_length=500)
-    category = models.ForeignKey(SubCategory, on_delete=models.CASCADE,
+    category = models.ForeignKey(subcategory, on_delete=models.CASCADE,
                                  verbose_name='Категория')
     main_photo_xxl2 = ResizedImageField('Основное изображение',
                                         size=[2400, 1800],
@@ -367,7 +367,7 @@ class item_files(models.Model):
 
 
 class discount(models.Model):
-    subcategory = models.ManyToManyField(SubCategory, blank=True,
+    subcategory = models.ManyToManyField(subcategory, blank=True,
                                          verbose_name="Категории")
     item = models.ManyToManyField(item, blank=True, verbose_name="Товары")
     is_active = models.BooleanField('Активная', default=True)
@@ -387,7 +387,7 @@ class discount(models.Model):
 
 
 class coupon(models.Model):
-    subcategory = models.ManyToManyField(SubCategory, blank=True,
+    subcategory = models.ManyToManyField(subcategory, blank=True,
                                          verbose_name="Категории")
     item = models.ManyToManyField(item, blank=True, verbose_name="Товары")
     is_active = models.BooleanField('Активная', default=True)

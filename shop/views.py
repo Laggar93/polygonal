@@ -1,68 +1,90 @@
-from django.shortcuts import get_object_or_404
-from .models import Category, SubCategory, item
+from django.shortcuts import get_object_or_404, redirect
+from .models import category, subcategory, item
 from django.shortcuts import render
 from .service import get_order_params
 
 
-def category_view(request, category_slug, *args, **kwargs):
+def category_view(request, category_slug):
     query_param = request.GET.get('sort')
-    is_category = Category.objects.filter(slug=category_slug).exists()
-    if is_category:
-        items = item.objects.filter(
-            category__category__slug=category_slug).prefetch_related(
-            'category').order_by('name')
-        if query_param and query_param != None:
-            param = get_order_params(query_param)
-            if param:
-                items = item.objects.filter(
-                    category__category__slug=category_slug).prefetch_related(
-                    'category').order_by(param)
+    category_check = get_object_or_404(category, slug=category_slug)
+    items = item.objects.filter(
+        category__category__slug=category_slug).prefetch_related(
+        'category').order_by('name')
+    if not items:
+        return render(request, 'no_items.html')
+    if query_param and query_param != None:
+        param = get_order_params(query_param)
+        if param:
+            items = item.objects.filter(
+                category__category__slug=category_slug).prefetch_related(
+                'category').order_by(param)
 
-        categories = Category.objects.all()
-        subcategories = SubCategory.objects.filter(category__slug=category_slug)
-        active_category = Category.objects.filter(slug=category_slug).first()
+    categories = category.objects.all()
+    subcategories = subcategory.objects.filter(category__slug=category_slug)
+    active_category = category.objects.filter(slug=category_slug).first()
 
-        context = {
-            'categories': categories,
-            'subcategories': subcategories,
-            'items': items,
-            'active_category': active_category
-        }
+    context = {
+        'categories': categories,
+        'subcategories': subcategories,
+        'items': items,
+        'active_category': active_category,
+    }
 
-        return render(request, 'catalog.html', context=context)
-    return render(request, '404.html')
+    return render(request, 'catalog.html', context=context)
+
+def first_category_for_url(request):
+
+    active_category = category.objects.all().first()
+    path = active_category.slug
+
+    return redirect(category_view, category_slug=path)
 
 
 def subcategory_view(request, category_slug, subcategory_slug):
     query_param = request.GET.get('sort')
-    is_instance = Category.objects.filter(
-        in_category__slug=subcategory_slug).exists()
-    if is_instance:
-        items = item.objects.filter(category__category__slug=category_slug,
-                                    category__slug=subcategory_slug).order_by(
-            'name')
-        if query_param:
-            param = get_order_params(query_param)
-            if param:
-                items = item.objects.filter(
-                    category__category__slug=category_slug,
-                    category__slug=subcategory_slug).order_by(
-                    param)
+    subcategory_slug = subcategory_slug.split(' ')
+    category_check = get_object_or_404(category, slug=category_slug)
+    subcategory_check = get_object_or_404(subcategory, slug=subcategory_slug[0], category=category_check)
 
-        category = Category.objects.all()
-        subcategory = SubCategory.objects.filter(category__slug=category_slug)
+    items = item.objects.filter(category__category__slug=category_slug,
+                                category__slug=subcategory_slug[0]).order_by(
+        'name')
+    if not items:
+        return render(request, 'no_items.html', )
+    if query_param:
+        param = get_order_params(query_param)
+        if param:
+            items = item.objects.filter(
+                category__category__slug=category_slug,
+                category__slug=subcategory_slug).order_by(
+                param)
 
-        active_category = Category.objects.filter(slug=category_slug).first()
+    categories = category.objects.all()
+    subcategories = subcategory.objects.filter(category__slug=category_slug)
+    active_category = category.objects.filter(slug=category_slug).first()
 
-        context = {
-            'categories': category,
-            'subcategories': subcategory,
-            'items': items,
-            'active_category': active_category
-        }
+    context = {
+        'categories': categories,
+        'subcategories': subcategories,
+        'items': items,
+        'active_category': active_category,
+        # 'category_check': category_check,
+        # 'subcategory_check': subcategory_check
+    }
 
-        return render(request, 'catalog.html', context=context)
-
-    return render(request, '404.html')
+    return render(request, 'catalog.html', context=context)
 
 
+# def page_not_found_view(request, exception):
+#     return render(request, '404.html', status=404)
+
+# def handler404_view(request, category_slug):
+#     category_check = get_object_or_404(category, slug=category_slug)
+#     context = {
+#         'category_check': category_check
+#     }
+#     return render(request, '404.html', context)
+
+
+def handler404(request, exception):
+    return render(request, '404.html', status=404)

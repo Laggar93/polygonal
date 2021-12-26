@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Category, SubCategory, item, item_photos, item_terms, item_files, discount, coupon
+from .models import category, subcategory, item, item_photos, item_terms, item_files, discount, coupon
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from django.contrib.auth.models import User, Group
 import string
@@ -63,9 +63,9 @@ class item_admin(SortableAdminMixin, TranslationAdmin):
         return fields
 
 admin.site.register(item, item_admin)
-admin.site.register(Category, category_admin)
+admin.site.register(category, category_admin)
 
-admin.site.register(SubCategory, subcategory_admin)
+admin.site.register(subcategory, subcategory_admin)
 admin.site.register(discount, discount_admin)
 admin.site.register(coupon, coupon_admin)
 admin.site.unregister([User, Group])

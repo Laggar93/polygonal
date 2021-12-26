@@ -1,12 +1,7 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load price_space %}
 {% block content %}
-    <style>
-        .c-filter__products {
-            margin-bottom: 20px;
-        }
-
-    </style>
     <main class="page__main">
         <h1 class="visuallyhidden">Каталог</h1>
         <section class="section section--top" style="padding-top: 38px">
@@ -20,9 +15,10 @@
                                         <div class="tabs__select">
 
                                             <select class="tabs-select form-select c-filter__tabs-select js-form-select js-tabs-select-trigger"
-                                            onchange="onSelect2(this)">
+                                                    onchange="onSelect2(this)">
                                                 {% for i in categories %}
-                                                    <option value="{{ forloop.counter }}" data-href="{{ i.get_absolute_url }}">
+                                                    <option value="{{ forloop.counter }}"
+                                                            data-href="{{ i.get_absolute_url }}">
                                                         {{ i.name }}
                                                     </option>
                                                 {% endfor %}
@@ -44,8 +40,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="c-filter__row"
-                                 style="padding-top: -10px">
+                            <div class="c-filter__row">
                                 <div class="c-filter__types">
                                     <ul class="filter-list">
                                         <li class="filter-list__item
@@ -123,8 +118,12 @@
                                                                 <div class="price price--c-card">
                                                                     {#																	<div class="price__value price__value--old">2700<span class="price__unit">&nbsp;₽</span></div>#}
                                                                     <div class="price__value">
-                                                                        {{ item.price_rub|floatformat:0 }}<span
+                                                                        {{ item.price_rub|price_space }}<span
                                                                             class="price__unit">&nbsp;₽</span>
+                                                                    </div>
+                                                                    <div class="price__value">
+                                                                        {{ item.difficulty }}<span
+                                                                            class="price__unit"> Diff</span>
                                                                     </div>
                                                                 </div>
                                                                 <div class="c-card__buttons">
@@ -209,7 +208,7 @@
             document.location.href = `${targetUrl}?sort=${queryOption}`
         }
 
-         $('.c-filter__products .js-form-select option').each(function (i, obj) {
+        $('.c-filter__products .js-form-select option').each(function (i, obj) {
             if ($(obj).attr('data-href') === window.location.pathname) {
                 $(obj).attr('selected', true)
             }
