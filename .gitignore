@@ -1,0 +1,10 @@
+venv/
+.nova/
+.idea
+__pycache__/
+config.py
+.DS_Store
+*.htaccess
+*.wsgi
+venv
+
