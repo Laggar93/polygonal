@@ -1,6 +1,6 @@
-from pathlib import Path
 import os
-
+from pathlib import Path
+from . import config
 """
 Django settings for polygonal_paper project.
 
@@ -13,11 +13,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from pathlib import Path
-from . import config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -29,7 +26,6 @@ SECRET_KEY = config.key
 DEBUG = config.debug
 
 ALLOWED_HOSTS = config.hosts
-
 
 # Application definition
 

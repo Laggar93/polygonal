@@ -4,21 +4,6 @@ from django.shortcuts import render
 from .service import get_order_params
 
 
-def item_view(request, category_slug, subcategory_slug, item_slug):
-    subcategory_item = SubCategory.objects.filter(slug=subcategory_slug).first()
-    get_object_or_404(item, slug=item_slug, category=subcategory_item)
-    content = {
-        'category_slug': category_slug,
-        'subcategory_slug': subcategory_slug,
-        'item_slug': item_slug
-    }
-    return render(request, 'catalog-item.html', content)
-
-
-def order_view(request):
-    pass
-
-
 def category_view(request, category_slug, *args, **kwargs):
     query_param = request.GET.get('sort')
     is_category = Category.objects.filter(slug=category_slug).exists()
@@ -79,3 +64,5 @@ def subcategory_view(request, category_slug, subcategory_slug):
         return render(request, 'catalog.html', context=context)
 
     return render(request, '404.html')
+
+
