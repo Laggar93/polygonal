@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-# from .views import handler404
+from .views import handler404
 
 urlpatterns = [
     path('shop/<str:category_slug>/<str:subcategory_slug>/', views.subcategory_view, name='subcategory_view'),
@@ -10,4 +10,4 @@ urlpatterns = [
 ]
 
 
-# handler404 = handler404
+handler404 = handler404

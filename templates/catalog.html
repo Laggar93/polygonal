@@ -94,19 +94,12 @@
                                                         <a class="c-card__img-wrap"
                                                            href="catalog-item.html">
                                                             <div class="c-card__img-ratio">
+                                                                {% if item.main_photo_xxl2.url %}
                                                                 <picture>
-                                                                    <source media="(min-width: 2560px)"
-                                                                            srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
-                                                                    {% if item.main_photo_xxl2.url %}
-                                                                        <img class="c-card__img"
-                                                                             src="{{ item.main_photo_xxl2.url }}">
-                                                                    {% endif %}
-                                                                    srcset="{{ item.main_photo_xs2.url }}
-                                                                    2x"
-                                                                    width="728"
-                                                                    height="546"
-                                                                    alt="">
-                                                                </picture>
+																	<source media="(min-width: 2560px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
+																	<img class="c-card__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="728" height="546" alt="">
+																</picture>
+                                                                {% endif %}
                                                             </div>
                                                         </a>
                                                         <div class="c-card__content">

@@ -7,7 +7,7 @@ from .service import get_order_params
 
 def category_view(request, category_slug):
     query_param = request.GET.get('sort')
-    category_check = get_object_or_404(category, slug=category_slug)
+    get_object_or_404(category, slug=category_slug)
 
     items = item.objects.filter(
         category__category__slug=category_slug).prefetch_related(
@@ -50,8 +50,8 @@ def first_category_for_url(request):
 def subcategory_view(request, category_slug, subcategory_slug):
     query_param = request.GET.get('sort')
     subcategory_slug = subcategory_slug.split(' ')
-    category_check = get_object_or_404(category, slug=category_slug)
-    subcategory_check = get_object_or_404(subcategory, slug=subcategory_slug[0], category=category_check)
+    get_object_or_404(category, slug=category_slug)
+    get_object_or_404(subcategory, slug=subcategory_slug[0], category=category.objects.filter(slug=category_slug).first())
 
     items = item.objects.filter(category__category__slug=category_slug,
                                 category__slug=subcategory_slug[0]).order_by(
@@ -83,5 +83,5 @@ def subcategory_view(request, category_slug, subcategory_slug):
     return render(request, 'catalog.html', context=context)
 
 
-# def handler404(request, exception):
-#     return render(request, '404.html', status=404)
+def handler404(request, exception):
+    return render(request, '404.html', status=404)
