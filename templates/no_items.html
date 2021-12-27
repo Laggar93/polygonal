@@ -1,6 +1,89 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <h1 class="not-found__title" style="padding-left: 60px; margin-top: 48px; font-size: 70px">Товары не найдены :(</h1>
-    <p style="padding-left: 60px; font-size: 20px">К сожалению, в данном разделе товары не найдены.</p>
+    <div class="c-filter__row">
+        <div class="c-filter__products">
+            <div class="tabs js-tabs">
+                <div class="tabs__select">
+
+                    <select class="tabs-select form-select c-filter__tabs-select js-form-select js-tabs-select-trigger"
+                            onchange="onSelect2(this)">
+                        {% for i in categories %}
+                            <option value="{{ forloop.counter }}"
+                                    data-href="{{ i.get_absolute_url }}">
+                                {{ i.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+
+                </div>
+                <div class="tabs__list">
+                    <ul class="tabs-list c-filter__tabs-list"
+                        style="padding-top: 38px;padding-left: 60px">
+                        {% for category in categories %}
+                            {% if category.is_active %}
+                                <li class="tabs-list__item js-tabs-trigger">
+                                    <a href="{% url 'category_view' category.slug %}"
+                                       class="tab-list__a">{{ category.name }}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="c-filter__row">
+        <div class="c-filter__types">
+            <ul class="filter-list">
+                <li class="filter-list__item
+                {% if request.path == active_category.get_absolute_url %}
+                    filter-list__item--active
+                       {% endif %}" style="padding-left: 60px">
+                    <a href="{{ active_category.get_absolute_url }}">
+                        Все </a>
+                </li>
+                {% for i in subcategories %}
+                    <li class="filter-list__item
+                       {% if request.path == i.get_absolute_url %}
+                        filter-list__item--active
+                         {% endif %}">
+                        <a href="{{ i.get_absolute_url }}">{{ i.name }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+    </div>
+
+    <p style="padding-left: 60px; font-size: 20px; margin-top: 25px">К
+        сожалению, в данном разделе
+        товары не найдены.</p>
+{% endblock %}
+{% block scripts %}
+    <script>
+        $(document).ready(function () {
+            $('.tabs-list__item [href]').each(function () {
+                {#console.log((window.location.pathname.indexOf($(this).attr('href'))))#}
+                if ((window.location.pathname.indexOf($(this).attr('href'))) > -1) {
+                    $(this).addClass('active');
+                    $(this).parent().addClass('tabs-list__item--active');
+                }
+            });
+        })
+    </script>
+    <script>
+        $('.js-form-select option').each(function (i, obj) {
+            if ($(obj).val() === window.location.search.split('=')[1]) {
+                $(obj).attr('selected', true)
+            }
+        })
+
+        $('.c-filter__products .js-form-select option').each(function (i, obj) {
+            if ($(obj).attr('data-href') === window.location.pathname) {
+                $(obj).attr('selected', true)
+            }
+        })
+
+    </script>
 {% endblock %}
