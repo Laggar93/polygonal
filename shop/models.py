@@ -235,6 +235,10 @@ class item(models.Model):
         self.__original_main_photo_xxl2 = self.main_photo_xxl2
         self.__original_bottom_photo_xxl2 = self.bottom_photo_xxl2
 
+    def get_absolute_url(self):
+        return reverse('catalog_item', kwargs={'category_slug':self.category.category.slug,
+                                               'subcategory_slug': self.category.slug, 'item_slug': self.slug})
+
     def __str__(self):
         return str(self.category) + ': ' + str(self.name)
 

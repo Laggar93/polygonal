@@ -97,5 +97,10 @@ def subcategory_view(request, category_slug, subcategory_slug):
     return render(request, 'catalog.html', context=context)
 
 
+def catalog_item(request, category_slug, subcategory_slug, item_slug):
+    items = item.objects.filter(slug=item_slug)
+    return render(request, 'catalog-item.html', {'items': items})
+
+
 def handler404(request, exception):
     return render(request, '404.html', status=404)
