@@ -200,7 +200,7 @@ class item(models.Model):
     connected_items = models.ManyToManyField('self', blank=True,
                                              verbose_name='Связанные товары')
     bottom_photo_xxl2 = ResizedImageField('Картинка для нижнего блока',
-                                          size=[2400, 1800],
+                                          size=[3200, 2400],
                                           crop=['middle', 'center'],
                                           upload_to=get_file_path, quality=80,
                                           help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.',
@@ -292,7 +292,7 @@ class item(models.Model):
 class item_photos(models.Model):
     item = models.ForeignKey(item, on_delete=models.CASCADE)
     order = models.IntegerField('Порядок показа')
-    main_photo_xxl2 = ResizedImageField('Картинка', size=[2400, 1800],
+    main_photo_xxl2 = ResizedImageField('Картинка', size=[3200, 2400],
                                         crop=['middle', 'center'],
                                         upload_to=get_file_path, quality=80,
                                         help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.')
