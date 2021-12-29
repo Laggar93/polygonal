@@ -12,6 +12,7 @@
 									<div class="c-filter__row">
 										<div class="c-filter__products">
 											<div class="tabs js-tabs">
+
 												<div class="tabs__select">
 													<select class="tabs-select form-select c-filter__tabs-select js-form-select" onchange="if (this.value) window.location.href=this.value">
 														{% for i in categories %}
@@ -22,9 +23,8 @@
 												<div class="tabs__list">
 													<ul class="tabs-list c-filter__tabs-list">
                                                         {% for category in categories %}
-
 														<li class="tabs-list__item tabs-list__item
-														{% if request.path == category.get_absolute_url %}
+														{% if active_category.name == category.name %}
 														tabs-list__item--active {% endif %}" data-tab="tab-1" data-url="{{ request.path }}" >
 															<a class="tabs-list__link" href="{% url 'category_view' category.slug %}">{{ category.name }}</a>
 														</li>
@@ -54,7 +54,7 @@
 										</div>
 										<div class="c-filter__price">
 											<select class="tabs-select form-select form-select--size_small js-form-select" onchange="if (this.value) window.location.href=this.value" id="order_by">
-												<option value="asc">Цена по возрастанию</option>
+												<option value="?sort=asc" {% if '?sort=asc' in request.path %}selected{% endif %}>Цена по возрастанию</option>
 												<option value="desc">Цена по убыванию</option>
                                                 <option value="popular">По популярности</option>
 												<option value="alphabet" selected>По алфавиту</option>
