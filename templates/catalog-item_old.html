@@ -8,7 +8,7 @@
 							<div class="breadcrumbs__col">
 								<ul class="breadcrumbs-list">
 									<li class="breadcrumbs-list__item">
-										<a class="breadcrumbs-list__link"></a>
+										<a class="breadcrumbs-list__link" href="catalog.html">Магазин</a>
 									</li>
 									<li class="breadcrumbs-list__item">
                                         {% for item in items %}
@@ -23,11 +23,11 @@
 				<section class="section section--fluid section--no-padding">
 					<div class="section__container">
 						<div class="section__row">
-                            {% for item in items %}
 							<div class="section__header">
+                                {% for item in items %}
 								<h1 class="main-title">{{ item.name }}</h1>
+                                {% endfor %}
 							</div>
-                            {% endfor %}
 						</div>
 					</div>
 					<div class="catalog-item">
@@ -43,91 +43,7 @@
 													<a class="g-slider__img-wrap" href="{{ item.main_photo_xxl2.url }}" data-fancybox="gallery">
 														<div class="g-slider__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
-															</picture>
-														</div>
-													</a>
-                                                {% endif %}
-												</div>
-                                                {% endfor %}
-                                            {% for item in items %}
-												<div class="g-slider__item swiper-slide">
-                                                {% if item.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ item.main_photo_xxl2.url }}" data-fancybox="gallery">
-														<div class="g-slider__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
-															</picture>
-														</div>
-													</a>
-                                                {% endif %}
-												</div>
-                                                {% endfor %}
-                                            {% for item in items %}
-												<div class="g-slider__item swiper-slide">
-                                                {% if item.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ item.main_photo_xxl2.url }}" data-fancybox="gallery">
-														<div class="g-slider__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
-															</picture>
-														</div>
-													</a>
-                                                {% endif %}
-												</div>
-                                                {% endfor %}
-                                            {% for item in items %}
-												<div class="g-slider__item swiper-slide">
-                                                {% if item.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ item.main_photo_xxl2.url }}" data-fancybox="gallery">
-														<div class="g-slider__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
-															</picture>
-														</div>
-													</a>
-                                                {% endif %}
-												</div>
-                                                {% endfor %}
-                                            {% for item in items %}
-												<div class="g-slider__item swiper-slide">
-                                                {% if item.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ item.main_photo_xxl2.url }}" data-fancybox="gallery">
-														<div class="g-slider__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
-															</picture>
-														</div>
-													</a>
-                                                {% endif %}
-												</div>
-                                                {% endfor %}
-                                            {% for item in items %}
-												<div class="g-slider__item swiper-slide">
-                                                {% if item.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ item.main_photo_xxl2.url }}" data-fancybox="gallery">
-														<div class="g-slider__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
-															</picture>
-														</div>
-													</a>
-                                                {% endif %}
-												</div>
-                                                {% endfor %}
-                                            {% for item in items %}
-												<div class="g-slider__item swiper-slide">
-                                                {% if item.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ item.main_photo_xxl2.url }}" data-fancybox="gallery">
-														<div class="g-slider__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
+																<source media="(min-width: 2560px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
 																<img class="g-slider__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
 															</picture>
 														</div>
@@ -152,60 +68,6 @@
 													</div>
                                                     {% endfor %}
 												</div>
-                                            <div class="g-slider-thumbs__item swiper-slide">
-                                                    {% for item in items %}
-													<div class="g-slider-thumbs__img-wrap">
-														<picture>
-															<img class="g-slider-thumbs__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
-														</picture>
-													</div>
-                                                    {% endfor %}
-												</div>
-                                            <div class="g-slider-thumbs__item swiper-slide">
-                                                    {% for item in items %}
-													<div class="g-slider-thumbs__img-wrap">
-														<picture>
-															<img class="g-slider-thumbs__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
-														</picture>
-													</div>
-                                                    {% endfor %}
-												</div>
-                                            <div class="g-slider-thumbs__item swiper-slide">
-                                                    {% for item in items %}
-													<div class="g-slider-thumbs__img-wrap">
-														<picture>
-															<img class="g-slider-thumbs__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
-														</picture>
-													</div>
-                                                    {% endfor %}
-												</div>
-                                            <div class="g-slider-thumbs__item swiper-slide">
-                                                    {% for item in items %}
-													<div class="g-slider-thumbs__img-wrap">
-														<picture>
-															<img class="g-slider-thumbs__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
-														</picture>
-													</div>
-                                                    {% endfor %}
-												</div>
-                                            <div class="g-slider-thumbs__item swiper-slide">
-                                                    {% for item in items %}
-													<div class="g-slider-thumbs__img-wrap">
-														<picture>
-															<img class="g-slider-thumbs__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
-														</picture>
-													</div>
-                                                    {% endfor %}
-												</div>
-                                            <div class="g-slider-thumbs__item swiper-slide">
-                                                    {% for item in items %}
-													<div class="g-slider-thumbs__img-wrap">
-														<picture>
-															<img class="g-slider-thumbs__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
-														</picture>
-													</div>
-                                                    {% endfor %}
-												</div>
 
 											</div>
 										</div>
@@ -216,42 +78,45 @@
 									</a>
 								</div>
 								<div class="catalog-item__description">
+                                    {% for item in items %}
 									<div class="catalog-item__props">
-                                        {% for item in items %}
 										<ul class="prop-list">
+                                            {% if item.figure_size %}
 											<li class="prop-list__item">
 												<div class="prop-list__prop">Размер фигуры</div>
 												<div class="prop-list__value">{{ item.figure_size }}&nbsp;см</div>
 											</li>
+                                            {% endif %}
+                                        {% if item.color %}
+											<li class="prop-list__item">
+												<div class="prop-list__prop">Цвет</div>
+												<div class="prop-list__value">{{ item.color }}</div>
+											</li>
+                                        {% endif %}
+                                        {% if item.difficulty %}
 											<li class="prop-list__item">
 												<div class="prop-list__prop">Сложность</div>
 												<div class="prop-list__value">{{ item.difficulty }}</div>
 											</li>
-                                            <li class="prop-list__item">
-												<div class="prop-list__prop">Время сборки</div>
-												<div class="prop-list__value">{{ item.time }} часов</div>
-											</li>
-                                            <li class="prop-list__item">
-												<div class="prop-list__prop">Количество листов</div>
-												<div class="prop-list__value">{{ item.paper_amount }}</div>
-											</li>
+                                        {% endif %}
 										</ul>
-                                        {% endfor %}
 									</div>
+                                    {% endfor %}
 									<div class="catalog-item__content style-content style-content--small">
-										<p>Файлы в&nbsp;комплекте</p>
-										{% for item in items %}
-                                        {{ item.about|safe }}
+                                    <p>Файлы в&nbsp;комплекте</p>
+                                        {% for item in items %}
+                                            {{ item.about|safe }}
                                         {% endfor %}
+{#
 									</div>
 									<div class="catalog-item__purchase">
 										<div class="catalog-item__price">
+                                            {% for item in items %}
 											<div class="price price--catalog-item">
 												<div class="price__value price__value--old">2&nbsp;100<span class="price__unit">&nbsp;₽</span></div>
-                                                {% for item in items %}
 												<div class="price__value">{{ item.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span></div>
-                                                {% endfor %}
 											</div>
+                                            {% endfor %}
 										</div>
 										<!--todo: Если товар в корзине, добавляем класс-модификатор btn--active у кнопки -->
 										<button class="catalog-item__btn btn btn--buy" type="button">
@@ -306,14 +171,16 @@
 										<div class="guide__photo">
 											<div class="guide__img-wrap">
 												<div class="guide__img-ratio">
+                                                    {% for item in items %}
 													<picture>
-														<source media="(min-width: 1700px)" srcset="img/product-card-img--big-01--xxl.jpg 1x, img/product-card-img--big-01--xxl@2x.jpg 2x">
-														<img class="guide__img" src="img/product-card-img--big-01--xs.jpg" srcset="img/product-card-img--big-01--xs@2x.jpg 2x"  width="768" height="576" loading="lazy" alt="">
+														<source media="(min-width: 2560px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
+														<img class="guide__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x"  width="768" height="576" loading="lazy" alt="">
 													</picture>
+                                                    {% endfor %}
 												</div>
 											</div>
 											<div class="guide__download">
-												<a class="download-link" href="img/docs/document-01.pdf" download="Модель головы волка">
+												<a class="download-link" href="{% static 'img/docs/document-01.pdf' %}" download="Модель головы волка">
 													<span class="download-link__title">Пример инструкции для сборки</span>
 													<span class="download-link__tip">
 													<span class="download-link__tip-unit">pdf</span>,&nbsp;<span>15 Мб</span>
@@ -331,7 +198,7 @@
 												<li class="step-list__item">Приклеить медальон из&nbsp;картона в&nbsp;основание модели</li>
 											</ol>
 											<div class="guide__download guide__download--mobile">
-												<a class="download-link" href="img/docs/document-01.pdf" download="Модель головы волка">
+												<a class="download-link" href="{% static 'img/docs/document-01.pdf' %}" download="Модель головы волка">
 													<span class="download-link__title">Пример инструкции для сборки</span>
 													<span class="download-link__tip">
 													<span class="download-link__tip-unit">pdf</span>,&nbsp;<span>15 Мб</span>
@@ -401,8 +268,8 @@
 													<a class="c-card__img-wrap" href="catalog-item.html">
 														<div class="c-card__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
+																<source media="(min-width: 2560px)" srcset="{% static 'img/product-card-img-01--xxl.jpg' %} 1x, {% static 'img/product-card-img-01--xxl@2x.jpg' %} 2x">
+																<img class="c-card__img" src="{% static 'img/product-card-img-01--xs.jpg' %}" srcset="{% static 'img/product-card-img-01--xs@2x.jpg' %} 2x" width="728" height="546" alt="">
 															</picture>
 														</div>
 													</a>
@@ -424,19 +291,17 @@
 																	</div>
 																	<span class="btn-count__title">Сравнить</span>
 																</button>
-																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
-																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
-																			</svg>
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
-																			</svg>
-																		</span>
-																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
-																			<span class="btn-count__title">В корзине</span>
-																		</span>
+																<!--todo: Если товар в корзине, добавляем класс-модификатор btn-count--active у кнопки -->
+																<button class="btn-count btn-count--buy btn-count--card" type="button">
+																	<div class="btn-count__icon-wrap">
+																		<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
+																			<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
+																		</svg>
+																		<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
+																			<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
+																		</svg>
+																	</div>
+																	<span class="btn-count__title">В корзину</span>
 																</button>
 															</div>
 														</div>
@@ -448,8 +313,8 @@
 													<a class="c-card__img-wrap" href="catalog-item.html">
 														<div class="c-card__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
+																<source media="(min-width: 2560px)" srcset="{% static 'img/product-card-img-01--xxl.jpg' %} 1x, {% static 'img/product-card-img-01--xxl@2x.jpg' %} 2x">
+																<img class="c-card__img" src="{% static 'img/product-card-img-01--xs.jpg' %}" srcset="{% static 'img/product-card-img-01--xs@2x.jpg' %} 2x" width="728" height="546" alt="">
 															</picture>
 														</div>
 													</a>
@@ -470,19 +335,16 @@
 																	</div>
 																	<span class="btn-count__title">Сравнить</span>
 																</button>
-																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
-																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
-																			</svg>
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
-																			</svg>
-																		</span>
-																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
-																			<span class="btn-count__title">В корзине</span>
-																		</span>
+																<button class="btn-count btn-count--buy btn-count--card" type="button">
+																	<div class="btn-count__icon-wrap">
+																		<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
+																			<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
+																		</svg>
+																		<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
+																			<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
+																		</svg>
+																	</div>
+																	<span class="btn-count__title">В корзину</span>
 																</button>
 															</div>
 														</div>
@@ -494,8 +356,8 @@
 													<a class="c-card__img-wrap" href="catalog-item.html">
 														<div class="c-card__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
+																<source media="(min-width: 2560px)" srcset="{% static 'img/product-card-img-01--xxl.jpg' %} 1x, {% static 'img/product-card-img-01--xxl@2x.jpg' %} 2x">
+																<img class="c-card__img" src="{% static 'img/product-card-img-01--xs.jpg' %}" srcset="{% static 'img/product-card-img-01--xs@2x.jpg' %} 2x" width="728" height="546" alt="">
 															</picture>
 														</div>
 													</a>
@@ -517,65 +379,17 @@
 																	</div>
 																	<span class="btn-count__title">Сравнить</span>
 																</button>
-																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
-																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
-																			</svg>
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
-																			</svg>
-																		</span>
-																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
-																			<span class="btn-count__title">В корзине</span>
-																		</span>
-																</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="catalog-slider__item swiper-slide">
-												<div class="c-card c-card--model">
-													<a class="c-card__img-wrap" href="catalog-item.html">
-														<div class="c-card__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
-															</picture>
-														</div>
-													</a>
-													<div class="c-card__content">
-														<h3 class="c-card__title">
-															<a class="c-card__title-link" href="catalog-item.html">Набор для склейки ежа</a>
-														</h3>
-														<div class="c-card__footer">
-															<div class="price price--c-card">
-																<div class="price__value">1&nbsp;700<span class="price__unit">&nbsp;₽</span></div>
-															</div>
-															<div class="c-card__buttons">
-																<button class="btn-count btn-count--short btn-count--card" type="button">
+																<!--todo: Если товар в корзине, добавляем класс-модификатор btn-count--active у кнопки -->
+																<button class="btn-count btn-count--buy btn-count--card" type="button">
 																	<div class="btn-count__icon-wrap">
-																		<svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
-																			<use xlink:href="img/sprite.svg#icon-compare"></use>
+																		<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
+																			<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
+																		</svg>
+																		<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
+																			<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
 																		</svg>
 																	</div>
-																	<span class="btn-count__title">Сравнить</span>
-																</button>
-																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
-																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
-																			</svg>
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
-																			</svg>
-																		</span>
-																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
-																			<span class="btn-count__title">В корзине</span>
-																		</span>
+																	<span class="btn-count__title">В корзину</span>
 																</button>
 															</div>
 														</div>
@@ -587,8 +401,8 @@
 													<a class="c-card__img-wrap" href="catalog-item.html">
 														<div class="c-card__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
+																<source media="(min-width: 2560px)" srcset="{% static 'img/product-card-img-01--xxl.jpg' %} 1x, {% static 'img/product-card-img-01--xxl@2x.jpg' %} 2x">
+																<img class="c-card__img" src="{% static 'img/product-card-img-01--xs.jpg' %}" srcset="{% static 'img/product-card-img-01--xs@2x.jpg' %} 2x" width="728" height="546" alt="">
 															</picture>
 														</div>
 													</a>
@@ -610,65 +424,17 @@
 																	</div>
 																	<span class="btn-count__title">Сравнить</span>
 																</button>
-																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
-																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
-																			</svg>
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
-																			</svg>
-																		</span>
-																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
-																			<span class="btn-count__title">В корзине</span>
-																		</span>
-																</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="catalog-slider__item swiper-slide">
-												<div class="c-card c-card--model">
-													<a class="c-card__img-wrap" href="catalog-item.html">
-														<div class="c-card__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
-															</picture>
-														</div>
-													</a>
-													<div class="c-card__content">
-														<h3 class="c-card__title">
-															<a class="c-card__title-link" href="catalog-item.html">Набор для склейки ежа</a>
-														</h3>
-														<div class="c-card__footer">
-															<div class="price price--c-card">
-																<div class="price__value">1&nbsp;700<span class="price__unit">&nbsp;₽</span></div>
-															</div>
-															<div class="c-card__buttons">
-																<button class="btn-count btn-count--short btn-count--card" type="button">
+																<!--todo: Если товар в корзине, добавляем класс-модификатор btn-count--active у кнопки -->
+																<button class="btn-count btn-count--buy btn-count--card" type="button">
 																	<div class="btn-count__icon-wrap">
-																		<svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
-																			<use xlink:href="img/sprite.svg#icon-compare"></use>
+																		<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
+																			<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
+																		</svg>
+																		<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
+																			<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
 																		</svg>
 																	</div>
-																	<span class="btn-count__title">Сравнить</span>
-																</button>
-																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
-																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
-																			</svg>
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
-																			</svg>
-																		</span>
-																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
-																			<span class="btn-count__title">В корзине</span>
-																		</span>
+																	<span class="btn-count__title">В корзину</span>
 																</button>
 															</div>
 														</div>
@@ -680,8 +446,8 @@
 													<a class="c-card__img-wrap" href="catalog-item.html">
 														<div class="c-card__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
+																<source media="(min-width: 2560px)" srcset="{% static 'img/product-card-img-01--xxl.jpg' %} 1x, {% static 'img/product-card-img-01--xxl@2x.jpg' %} 2x">
+																<img class="c-card__img" src="{% static 'img/product-card-img-01--xs.jpg' %}" srcset="{% static 'img/product-card-img-01--xs@2x.jpg' %} 2x" width="728" height="546" alt="">
 															</picture>
 														</div>
 													</a>
@@ -703,19 +469,17 @@
 																	</div>
 																	<span class="btn-count__title">Сравнить</span>
 																</button>
-																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
-																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
-																			</svg>
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
-																			</svg>
-																		</span>
-																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
-																			<span class="btn-count__title">В корзине</span>
-																		</span>
+																<!--todo: Если товар в корзине, добавляем класс-модификатор btn-count--active у кнопки -->
+																<button class="btn-count btn-count--buy btn-count--card" type="button">
+																	<div class="btn-count__icon-wrap">
+																		<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
+																			<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
+																		</svg>
+																		<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
+																			<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
+																		</svg>
+																	</div>
+																	<span class="btn-count__title">В корзину</span>
 																</button>
 															</div>
 														</div>
@@ -727,20 +491,21 @@
 													<a class="c-card__img-wrap" href="catalog-item.html">
 														<div class="c-card__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
+																<source media="(min-width: 2560px)" srcset="{% static 'img/product-card-img-01--xxl.jpg' %} 1x, {% static 'img/product-card-img-01--xxl@2x.jpg' %} 2x">
+																<img class="c-card__img" src="{% static 'img/product-card-img-01--xs.jpg' %}" srcset="{% static 'img/product-card-img-01--xs@2x.jpg' %} 2x" width="728" height="546" alt="">
 															</picture>
 														</div>
 													</a>
 													<div class="c-card__content">
 														<h3 class="c-card__title">
-															<a class="c-card__title-link" href="catalog-item.html">Набор для склейки ежа</a>
+															<a class="c-card__title-link" href="catalog-item.html">Набор для склейки кролика&nbsp;L (белый)</a>
 														</h3>
 														<div class="c-card__footer">
 															<div class="price price--c-card">
 																<div class="price__value">1&nbsp;700<span class="price__unit">&nbsp;₽</span></div>
 															</div>
 															<div class="c-card__buttons">
+																<!--todo: Если товар в сравнении, добавляем класс-модификатор btn-count--active у кнопки -->
 																<button class="btn-count btn-count--short btn-count--card" type="button">
 																	<div class="btn-count__icon-wrap">
 																		<svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
@@ -749,19 +514,62 @@
 																	</div>
 																	<span class="btn-count__title">Сравнить</span>
 																</button>
-																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
-																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
-																			</svg>
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
-																			</svg>
-																		</span>
-																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
-																			<span class="btn-count__title">В корзине</span>
-																		</span>
+																<!--todo: Если товар в корзине, добавляем класс-модификатор btn-count--active у кнопки -->
+																<button class="btn-count btn-count--buy btn-count--card" type="button">
+																	<div class="btn-count__icon-wrap">
+																		<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
+																			<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
+																		</svg>
+																		<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
+																			<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
+																		</svg>
+																	</div>
+																	<span class="btn-count__title">В корзину</span>
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div class="catalog-slider__item swiper-slide">
+												<div class="c-card c-card--model">
+													<a class="c-card__img-wrap" href="catalog-item.html">
+														<div class="c-card__img-ratio">
+															<picture>
+																<source media="(min-width: 2560px)" srcset="{% static 'img/product-card-img-01--xxl.jpg' %} 1x, {% static 'img/product-card-img-01--xxl@2x.jpg' %} 2x">
+																<img class="c-card__img" src="{% static 'img/product-card-img-01--xs.jpg' %}" srcset="{% static 'img/product-card-img-01--xs@2x.jpg' %} 2x" width="728" height="546" alt="">
+															</picture>
+														</div>
+													</a>
+													<div class="c-card__content">
+														<h3 class="c-card__title">
+															<a class="c-card__title-link" href="catalog-item.html">Набор для склейки кролика&nbsp;L (белый)</a>
+														</h3>
+														<div class="c-card__footer">
+															<div class="price price--c-card">
+																<div class="price__value">1&nbsp;700<span class="price__unit">&nbsp;₽</span></div>
+															</div>
+															<div class="c-card__buttons">
+																<!--todo: Если товар в сравнении, добавляем класс-модификатор btn-count--active у кнопки -->
+																<button class="btn-count btn-count--short btn-count--card" type="button">
+																	<div class="btn-count__icon-wrap">
+																		<svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
+																			<use xlink:href="img/sprite.svg#icon-compare"></use>
+																		</svg>
+																	</div>
+																	<span class="btn-count__title">Сравнить</span>
+																</button>
+																<!--todo: Если товар в корзине, добавляем класс-модификатор btn-count--active у кнопки -->
+																<button class="btn-count btn-count--buy btn-count--card" type="button">
+																	<div class="btn-count__icon-wrap">
+																		<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
+																			<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
+																		</svg>
+																		<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
+																			<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
+																		</svg>
+																	</div>
+																	<span class="btn-count__title">В корзину</span>
 																</button>
 															</div>
 														</div>
@@ -777,5 +585,4 @@
 					</div>
 				</section>
 			</main>
-		</div>
-	{% endblock %}
+{% endblock %}
