@@ -61,6 +61,9 @@ def resize_img(f1, f2, fs):
     )
 
 
+class shop_page(models.Model):
+    all = models.CharField('Заголовок ссылки всех товаров', max_length=200, blank=True)
+
 class category(models.Model):
     order = models.IntegerField('Порядок показа')
     is_active = models.BooleanField('Показывать на сайте', default=True)
