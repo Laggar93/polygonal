@@ -6,4 +6,3 @@ config.py
 .DS_Store
 *.htaccess
 *.wsgi
-venv
