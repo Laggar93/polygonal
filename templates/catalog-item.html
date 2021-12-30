@@ -8,12 +8,10 @@
 							<div class="breadcrumbs__col">
 								<ul class="breadcrumbs-list">
 									<li class="breadcrumbs-list__item">
-										<a class="breadcrumbs-list__link"></a>
+										<a class="breadcrumbs-list__link" href="{{ items.category.category.get_absolute_url }}">{{ items.category.category.name }}</a>
 									</li>
 									<li class="breadcrumbs-list__item">
-                                        {% for item in items %}
-										<a class="breadcrumbs-list__link">{{ item.category }}</a>
-                                        {% endfor %}
+                                        <a class="breadcrumbs-list__link" href="{{ items.category.get_absolute_url }}">{{ items.category.name }}</a>
 									</li>
 								</ul>
 							</div>
@@ -23,11 +21,9 @@
 				<section class="section section--fluid section--no-padding">
 					<div class="section__container">
 						<div class="section__row">
-                            {% for item in items %}
 							<div class="section__header">
-								<h1 class="main-title">{{ item.name }}</h1>
+								<h1 class="main-title">{{ items.name }}</h1>
 							</div>
-                            {% endfor %}
 						</div>
 					</div>
 					<div class="catalog-item">
@@ -37,104 +33,90 @@
 									<div class="slider-wrapper slider-wrapper--gallery">
 										<div class="g-slider swiper-container js-g-slider">
 											<div class="g-slider__wrapper swiper-wrapper">
-                                                {% for item in items %}
 												<div class="g-slider__item swiper-slide">
-                                                {% if item.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ item.main_photo_xxl2.url }}" data-fancybox="gallery">
+                                                {% if items.main_photo_xxl2.url %}
+													<a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
 														<div class="g-slider__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
+																<source media="(min-width: 1700px)" srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
+																<img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
 															</picture>
 														</div>
 													</a>
                                                 {% endif %}
 												</div>
-                                                {% endfor %}
-                                            {% for item in items %}
 												<div class="g-slider__item swiper-slide">
-                                                {% if item.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ item.main_photo_xxl2.url }}" data-fancybox="gallery">
+                                                {% if items.main_photo_xxl2.url %}
+													<a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
 														<div class="g-slider__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
+																<source media="(min-width: 1700px)" srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
+																<img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
 															</picture>
 														</div>
 													</a>
                                                 {% endif %}
 												</div>
-                                                {% endfor %}
-                                            {% for item in items %}
 												<div class="g-slider__item swiper-slide">
-                                                {% if item.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ item.main_photo_xxl2.url }}" data-fancybox="gallery">
+                                                {% if items.main_photo_xxl2.url %}
+													<a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
 														<div class="g-slider__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
+																<source media="(min-width: 1700px)" srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
+																<img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
 															</picture>
 														</div>
 													</a>
                                                 {% endif %}
 												</div>
-                                                {% endfor %}
-                                            {% for item in items %}
 												<div class="g-slider__item swiper-slide">
-                                                {% if item.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ item.main_photo_xxl2.url }}" data-fancybox="gallery">
+                                                {% if items.main_photo_xxl2.url %}
+													<a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
 														<div class="g-slider__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
+																<source media="(min-width: 1700px)" srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
+																<img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
 															</picture>
 														</div>
 													</a>
                                                 {% endif %}
 												</div>
-                                                {% endfor %}
-                                            {% for item in items %}
 												<div class="g-slider__item swiper-slide">
-                                                {% if item.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ item.main_photo_xxl2.url }}" data-fancybox="gallery">
+                                                {% if items.main_photo_xxl2.url %}
+													<a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
 														<div class="g-slider__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
+																<source media="(min-width: 1700px)" srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
+																<img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
 															</picture>
 														</div>
 													</a>
                                                 {% endif %}
 												</div>
-                                                {% endfor %}
-                                            {% for item in items %}
 												<div class="g-slider__item swiper-slide">
-                                                {% if item.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ item.main_photo_xxl2.url }}" data-fancybox="gallery">
+                                                {% if items.main_photo_xxl2.url %}
+													<a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
 														<div class="g-slider__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
+																<source media="(min-width: 1700px)" srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
+																<img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
 															</picture>
 														</div>
 													</a>
                                                 {% endif %}
 												</div>
-                                                {% endfor %}
-                                            {% for item in items %}
 												<div class="g-slider__item swiper-slide">
-                                                {% if item.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ item.main_photo_xxl2.url }}" data-fancybox="gallery">
+                                                {% if items.main_photo_xxl2.url %}
+													<a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
 														<div class="g-slider__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
+																<source media="(min-width: 1700px)" srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
+																<img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
 															</picture>
 														</div>
 													</a>
                                                 {% endif %}
 												</div>
-                                                {% endfor %}
 
 											</div>
 											<div class="g-slider__btn-prev swiper-button-prev js-g-slider-btn-prev"></div>
@@ -144,67 +126,53 @@
 										<div class="g-slider-thumbs swiper-container js-g-slider-thumbs">
 											<div class="g-slider-thumbs__wrapper swiper-wrapper">
 												<div class="g-slider-thumbs__item swiper-slide">
-                                                    {% for item in items %}
 													<div class="g-slider-thumbs__img-wrap">
 														<picture>
-															<img class="g-slider-thumbs__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
+															<img class="g-slider-thumbs__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
 														</picture>
 													</div>
-                                                    {% endfor %}
 												</div>
                                             <div class="g-slider-thumbs__item swiper-slide">
-                                                    {% for item in items %}
 													<div class="g-slider-thumbs__img-wrap">
 														<picture>
-															<img class="g-slider-thumbs__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
+															<img class="g-slider-thumbs__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
 														</picture>
 													</div>
-                                                    {% endfor %}
 												</div>
                                             <div class="g-slider-thumbs__item swiper-slide">
-                                                    {% for item in items %}
 													<div class="g-slider-thumbs__img-wrap">
 														<picture>
-															<img class="g-slider-thumbs__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
+															<img class="g-slider-thumbs__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
 														</picture>
 													</div>
-                                                    {% endfor %}
 												</div>
                                             <div class="g-slider-thumbs__item swiper-slide">
-                                                    {% for item in items %}
 													<div class="g-slider-thumbs__img-wrap">
 														<picture>
-															<img class="g-slider-thumbs__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
+															<img class="g-slider-thumbs__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
 														</picture>
 													</div>
-                                                    {% endfor %}
 												</div>
                                             <div class="g-slider-thumbs__item swiper-slide">
-                                                    {% for item in items %}
 													<div class="g-slider-thumbs__img-wrap">
 														<picture>
-															<img class="g-slider-thumbs__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
+															<img class="g-slider-thumbs__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
 														</picture>
 													</div>
-                                                    {% endfor %}
 												</div>
                                             <div class="g-slider-thumbs__item swiper-slide">
-                                                    {% for item in items %}
 													<div class="g-slider-thumbs__img-wrap">
 														<picture>
-															<img class="g-slider-thumbs__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
+															<img class="g-slider-thumbs__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
 														</picture>
 													</div>
-                                                    {% endfor %}
 												</div>
                                             <div class="g-slider-thumbs__item swiper-slide">
-                                                    {% for item in items %}
 													<div class="g-slider-thumbs__img-wrap">
 														<picture>
-															<img class="g-slider-thumbs__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
+															<img class="g-slider-thumbs__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
 														</picture>
 													</div>
-                                                    {% endfor %}
 												</div>
 
 											</div>
@@ -217,40 +185,34 @@
 								</div>
 								<div class="catalog-item__description">
 									<div class="catalog-item__props">
-                                        {% for item in items %}
 										<ul class="prop-list">
 											<li class="prop-list__item">
 												<div class="prop-list__prop">Размер фигуры</div>
-												<div class="prop-list__value">{{ item.figure_size }}&nbsp;см</div>
+												<div class="prop-list__value">{{ items.figure_size }}&nbsp;см</div>
 											</li>
 											<li class="prop-list__item">
 												<div class="prop-list__prop">Сложность</div>
-												<div class="prop-list__value">{{ item.difficulty }}</div>
+												<div class="prop-list__value">{{ items.difficulty }}</div>
 											</li>
                                             <li class="prop-list__item">
 												<div class="prop-list__prop">Время сборки</div>
-												<div class="prop-list__value">{{ item.time }} часов</div>
+												<div class="prop-list__value">{{ items.time }} часов</div>
 											</li>
                                             <li class="prop-list__item">
 												<div class="prop-list__prop">Количество листов</div>
-												<div class="prop-list__value">{{ item.paper_amount }}</div>
+												<div class="prop-list__value">{{ items.paper_amount }}</div>
 											</li>
 										</ul>
-                                        {% endfor %}
 									</div>
 									<div class="catalog-item__content style-content style-content--small">
 										<p>Файлы в&nbsp;комплекте</p>
-										{% for item in items %}
-                                        {{ item.about|safe }}
-                                        {% endfor %}
+                                        {{ items.about|safe }}
 									</div>
 									<div class="catalog-item__purchase">
 										<div class="catalog-item__price">
 											<div class="price price--catalog-item">
 												<div class="price__value price__value--old">2&nbsp;100<span class="price__unit">&nbsp;₽</span></div>
-                                                {% for item in items %}
-												<div class="price__value">{{ item.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span></div>
-                                                {% endfor %}
+												<div class="price__value">{{ items.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span></div>
 											</div>
 										</div>
 										<!--todo: Если товар в корзине, добавляем класс-модификатор btn--active у кнопки -->

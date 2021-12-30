@@ -79,13 +79,12 @@ def subcategory_view(request, category_slug, subcategory_slug):
         if param:
             items = item.objects.filter(
                 category__category__slug=category_slug,
-                category__slug=subcategory_slug).order_by(
+                category__slug__in=subcategory_slug).order_by(
                 param)
 
     categories = category.objects.all()
     subcategories = subcategory.objects.filter(category__slug=category_slug)
     active_category = category.objects.filter(slug=category_slug).first()
-
     context = {
         'categories': categories,
         'subcategories': subcategories,
@@ -97,13 +96,11 @@ def subcategory_view(request, category_slug, subcategory_slug):
     return render(request, 'catalog.html', context=context)
 
 
-def catalog_item(request, category_slug, subcategory_slug, item_slug):
-    items = item.objects.filter(slug=item_slug)
-    print(items)
+def catalog_item(request, item_slug):
+    get_object_or_404(item, slug=item_slug)
     items = item.objects.filter(slug=item_slug).first()
-    print(items)
     context = {
-        'items': items
+        'items': items,
     }
     return render(request, 'catalog-item.html', context=context)
 
