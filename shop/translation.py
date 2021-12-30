@@ -23,7 +23,7 @@ class CouponTranslationOptions(TranslationOptions):
     fields = ('is_active', 'name', 'usage', 'type', 'amount', 'starts', 'ends')
 
 class ShopPageTranslationOptions(TranslationOptions):
-    fields = ('all',)
+    fields = ('all', 'no_items', 'increase', 'decrease', 'popular', 'alphabet', 'difficult', 'cart')
 
 translator.register(category, CategoryTranslationOptions)
 translator.register(subcategory, SubcategoryTranslationOptions)

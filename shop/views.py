@@ -81,6 +81,7 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
     items = item.objects.filter(slug=item_slug).first()
     context = {
         'items': items,
+        'shop_page': shop_page.objects.first(),
     }
     return render(request, 'catalog_item.html', context=context)
 

@@ -63,6 +63,14 @@ def resize_img(f1, f2, fs):
 
 class shop_page(models.Model):
     all = models.CharField('Заголовок ссылки всех товаров', max_length=200, blank=True)
+    no_items = models.CharField('Товары не найдены', max_length=255, blank=True)
+    increase = models.CharField('Цена по возрастанию', max_length=255, blank=True)
+    decrease = models.CharField('Цена по убыванию', max_length=255, blank=True)
+    popular = models.CharField('По популярности', max_length=255, blank=True)
+    alphabet = models.CharField('По алфавиту', max_length=255, blank=True)
+    difficult = models.CharField('По сложности', max_length=255, blank=True)
+    cart = models.CharField('В корзину', max_length=255, blank=True)
+
 
 class category(models.Model):
     order = models.IntegerField('Порядок показа')
