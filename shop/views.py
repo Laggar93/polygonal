@@ -79,9 +79,11 @@ def subcategory_view(request, category_slug, subcategory_slug):
 def catalog_item(request, category_slug, subcategory_slug, item_slug):
     get_object_or_404(item, slug=item_slug)
     items = item.objects.filter(slug=item_slug).first()
+    related_items = item.objects.filter(category__slug=subcategory_slug).exclude(slug=item_slug)[:6]
     context = {
         'items': items,
         'shop_page': shop_page.objects.first(),
+        'related_items': related_items
     }
     return render(request, 'catalog_item.html', context=context)
 

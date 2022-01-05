@@ -186,26 +186,39 @@
 								<div class="catalog-item__description">
 									<div class="catalog-item__props">
 										<ul class="prop-list">
+                                            {% if items.figure_size %}
 											<li class="prop-list__item">
 												<div class="prop-list__prop">Размер фигуры</div>
 												<div class="prop-list__value">{{ items.figure_size }}&nbsp;см</div>
 											</li>
+                                            {% endif %}
+                                        {% if items.color %}
+											<li class="prop-list__item">
+												<div class="prop-list__prop">Цвет</div>
+												<div class="prop-list__value">{{ items.color }}&nbsp;см</div>
+											</li>
+                                            {% endif %}
+                                        {% if items.difficulty %}
 											<li class="prop-list__item">
 												<div class="prop-list__prop">Сложность</div>
 												<div class="prop-list__value">{{ items.difficulty }}</div>
 											</li>
+                                        {% endif %}
+                                        {% if items.time %}
                                             <li class="prop-list__item">
 												<div class="prop-list__prop">Время сборки</div>
 												<div class="prop-list__value">{{ items.time }} часов</div>
 											</li>
+                                        {% endif %}
+                                        {% if items.paper_amount %}
                                             <li class="prop-list__item">
 												<div class="prop-list__prop">Количество листов</div>
 												<div class="prop-list__value">{{ items.paper_amount }}</div>
 											</li>
+                                        {% endif %}
 										</ul>
 									</div>
 									<div class="catalog-item__content style-content style-content--small">
-										<p>Файлы в&nbsp;комплекте</p>
                                         {{ items.about|safe }}
 									</div>
 									<div class="catalog-item__purchase">
@@ -268,15 +281,17 @@
 										<div class="guide__photo">
 											<div class="guide__img-wrap">
 												<div class="guide__img-ratio">
+                                                    {% if items.bottom_photo_xxl2 %}
 													<picture>
-														<source media="(min-width: 1700px)" srcset="img/product-card-img--big-01--xxl.jpg 1x, img/product-card-img--big-01--xxl@2x.jpg 2x">
-														<img class="guide__img" src="img/product-card-img--big-01--xs.jpg" srcset="img/product-card-img--big-01--xs@2x.jpg 2x"  width="768" height="576" loading="lazy" alt="">
+														<source media="(min-width: 1700px)" srcset="{{ items.bottom_photo_xxl.url }} 1x, {{ items.bottom_photo_xxl2.url }} 2x">
+														<img class="guide__img" src="{{ items.bottom_photo_xs.url }}" srcset="{{ items.bottom_photo_xs2.url }} 2x"  width="768" height="576" loading="lazy" alt="">
 													</picture>
+                                                    {% endif %}
 												</div>
 											</div>
 											<div class="guide__download">
-												<a class="download-link" href="img/docs/document-01.pdf" download="Модель головы волка">
-													<span class="download-link__title">Пример инструкции для сборки</span>
+												<a class="download-link" href="{{ items.bottom_link.url }}" download="{{ items.bottom_link_title }}">
+													<span class="download-link__title">{{ items.bottom_link_title }}</span>
 													<span class="download-link__tip">
 													<span class="download-link__tip-unit">pdf</span>,&nbsp;<span>15 Мб</span>
 												</span>
@@ -285,16 +300,13 @@
 										</div>
 										<div class="guide__list">
 											<ol class="step-list">
-												<li class="step-list__item">Распечатать чертеж (размер готовой фигуры А4&nbsp;как А3)</li>
-												<li class="step-list__item">Вырезать по&nbsp;сплошной линии</li>
-												<li class="step-list__item">Надрезать с&nbsp;лицевой стороны по&nbsp;пунктирным линиям</li>
-												<li class="step-list__item">Согнуть по&nbsp;пунктирным линиям</li>
-												<li class="step-list__item">Склеить по&nbsp;номерам</li>
-												<li class="step-list__item">Приклеить медальон из&nbsp;картона в&nbsp;основание модели</li>
+												{{ items.bottom_list|safe }}
 											</ol>
+
+
 											<div class="guide__download guide__download--mobile">
-												<a class="download-link" href="img/docs/document-01.pdf" download="Модель головы волка">
-													<span class="download-link__title">Пример инструкции для сборки</span>
+												<a class="download-link" href="{% if items.bottom_link %} {{ items.bottom_link.url }} {% endif %}" download="{% if items.bottom_link_title %} {{ items.bottom_link_title }} {% endif %}">
+													<span class="download-link__title">{% if items.bottom_link_title %} {{ items.bottom_link_title }} {% endif %}</span>
 													<span class="download-link__tip">
 													<span class="download-link__tip-unit">pdf</span>,&nbsp;<span>15 Мб</span>
 												</span>
@@ -303,10 +315,8 @@
 										</div>
 										<div class="guide__content">
 											<div class="guide__text content">
-												<p>Мы&nbsp;знаем как можно сделать полигональную фигуру из&nbsp;бумаги и&nbsp;при этом чудесно провести время.</p>
-												<p>Мы&nbsp;подобрали лучшие материалы и&nbsp;включили в&nbsp;состав наборов всё необходимое для создания скульптуры. Чертежи и&nbsp;инструкции подготовлены так, чтобы собрать модель смог любой взрослый человек. Тем не&nbsp;менее, для сборки потребуется вся ваша внимательность и&nbsp;аккуратность!</p>
-												<p>Если базовый цвет модели не&nbsp;подходит для вашего интерьера, мы&nbsp;готовы подобрать цвет по&nbsp;вашим пожеланиям, просто свяжитесь с&nbsp;нами по&nbsp;E-mail.</p>
-												<p>Вес набора: 0.68&nbsp;кг. Габариты набора (см): 54*37*4. Произведено в&nbsp;России: Екатеринбург, ул. Пушкина, д. 9а, оф.&nbsp;407. Срок годности: 1&nbsp;год.</p>
+												<p>{{ items.bottom_text|safe }}</p>
+
 											</div>
 										</div>
 									</div>
@@ -358,23 +368,25 @@
 									<div class="catalog-slider__btn-next swiper-button-next swiper-button-next--theme_gray js-catalog-slider-btn-next"></div>
 									<div class="catalog-slider catalog-slider--model swiper-container js-catalog-slider">
 										<div class="catalog-slider__wrapper swiper-wrapper">
+                                            {% for i in related_items %}
 											<div class="catalog-slider__item swiper-slide">
 												<div class="c-card c-card--model">
-													<a class="c-card__img-wrap" href="catalog-item.html">
+													<a class="c-card__img-wrap" href="{{ i.get_absolute_url }}">
 														<div class="c-card__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
+																<source media="(min-width: 1700px)" srcset="{% if i.main_photo_xxl %} {{ i.main_photo_xxl.url }} {% endif %} 1x, {{ i.main_photo_xxl2 }} 2x">
+																<img class="c-card__img" src="{% if i.main_photo_xs %}{{ i.main_photo_xs.url }} {% endif %}" srcset="{% if i.main_photo_xs2 %}{{ i.main_photo_xs2.url }} {% endif %}2x" width="728" height="546" alt="">
 															</picture>
+
 														</div>
 													</a>
 													<div class="c-card__content">
 														<h3 class="c-card__title">
-															<a class="c-card__title-link" href="catalog-item.html">Набор для склейки кролика&nbsp;L (белый)</a>
+															<a class="c-card__title-link" href="{{ i.get_absolute_url }}">{{ i.name }}</a>
 														</h3>
 														<div class="c-card__footer">
 															<div class="price price--c-card">
-																<div class="price__value">1&nbsp;700<span class="price__unit">&nbsp;₽</span></div>
+																<div class="price__value">{{ i.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span></div>
 															</div>
 															<div class="c-card__buttons">
 																<!--todo: Если товар в сравнении, добавляем класс-модификатор btn-count--active у кнопки -->
@@ -389,10 +401,10 @@
 																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
 																		<span class="btn-count__icon-wrap">
 																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
+																				<use xlink:href="{% static 'img/sprite.svg' %}#icon-btn-cart"></use>
 																			</svg>
 																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
+																				<use xlink:href="{% static 'img/sprite.svg' %}#icon-btn-cart-check"></use>
 																			</svg>
 																		</span>
 																	<span class="btn-count__title-wrap">
@@ -405,331 +417,8 @@
 													</div>
 												</div>
 											</div>
-											<div class="catalog-slider__item swiper-slide">
-												<div class="c-card c-card--model">
-													<a class="c-card__img-wrap" href="catalog-item.html">
-														<div class="c-card__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
-															</picture>
-														</div>
-													</a>
-													<div class="c-card__content">
-														<h3 class="c-card__title">
-															<a class="c-card__title-link" href="catalog-item.html">Набор для склейки ежа</a>
-														</h3>
-														<div class="c-card__footer">
-															<div class="price price--c-card">
-																<div class="price__value">1&nbsp;700<span class="price__unit">&nbsp;₽</span></div>
-															</div>
-															<div class="c-card__buttons">
-																<button class="btn-count btn-count--short btn-count--card" type="button">
-																	<div class="btn-count__icon-wrap">
-																		<svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
-																			<use xlink:href="img/sprite.svg#icon-compare"></use>
-																		</svg>
-																	</div>
-																	<span class="btn-count__title">Сравнить</span>
-																</button>
-																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
-																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
-																			</svg>
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
-																			</svg>
-																		</span>
-																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
-																			<span class="btn-count__title">В корзине</span>
-																		</span>
-																</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="catalog-slider__item swiper-slide">
-												<div class="c-card c-card--model">
-													<a class="c-card__img-wrap" href="catalog-item.html">
-														<div class="c-card__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
-															</picture>
-														</div>
-													</a>
-													<div class="c-card__content">
-														<h3 class="c-card__title">
-															<a class="c-card__title-link" href="catalog-item.html">Набор для склейки кролика&nbsp;L (белый)</a>
-														</h3>
-														<div class="c-card__footer">
-															<div class="price price--c-card">
-																<div class="price__value">1&nbsp;700<span class="price__unit">&nbsp;₽</span></div>
-															</div>
-															<div class="c-card__buttons">
-																<!--todo: Если товар в сравнении, добавляем класс-модификатор btn-count--active у кнопки -->
-																<button class="btn-count btn-count--short btn-count--card" type="button">
-																	<div class="btn-count__icon-wrap">
-																		<svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
-																			<use xlink:href="img/sprite.svg#icon-compare"></use>
-																		</svg>
-																	</div>
-																	<span class="btn-count__title">Сравнить</span>
-																</button>
-																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
-																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
-																			</svg>
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
-																			</svg>
-																		</span>
-																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
-																			<span class="btn-count__title">В корзине</span>
-																		</span>
-																</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="catalog-slider__item swiper-slide">
-												<div class="c-card c-card--model">
-													<a class="c-card__img-wrap" href="catalog-item.html">
-														<div class="c-card__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
-															</picture>
-														</div>
-													</a>
-													<div class="c-card__content">
-														<h3 class="c-card__title">
-															<a class="c-card__title-link" href="catalog-item.html">Набор для склейки ежа</a>
-														</h3>
-														<div class="c-card__footer">
-															<div class="price price--c-card">
-																<div class="price__value">1&nbsp;700<span class="price__unit">&nbsp;₽</span></div>
-															</div>
-															<div class="c-card__buttons">
-																<button class="btn-count btn-count--short btn-count--card" type="button">
-																	<div class="btn-count__icon-wrap">
-																		<svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
-																			<use xlink:href="img/sprite.svg#icon-compare"></use>
-																		</svg>
-																	</div>
-																	<span class="btn-count__title">Сравнить</span>
-																</button>
-																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
-																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
-																			</svg>
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
-																			</svg>
-																		</span>
-																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
-																			<span class="btn-count__title">В корзине</span>
-																		</span>
-																</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="catalog-slider__item swiper-slide">
-												<div class="c-card c-card--model">
-													<a class="c-card__img-wrap" href="catalog-item.html">
-														<div class="c-card__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
-															</picture>
-														</div>
-													</a>
-													<div class="c-card__content">
-														<h3 class="c-card__title">
-															<a class="c-card__title-link" href="catalog-item.html">Набор для склейки кролика&nbsp;L (белый)</a>
-														</h3>
-														<div class="c-card__footer">
-															<div class="price price--c-card">
-																<div class="price__value">1&nbsp;700<span class="price__unit">&nbsp;₽</span></div>
-															</div>
-															<div class="c-card__buttons">
-																<!--todo: Если товар в сравнении, добавляем класс-модификатор btn-count--active у кнопки -->
-																<button class="btn-count btn-count--short btn-count--card" type="button">
-																	<div class="btn-count__icon-wrap">
-																		<svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
-																			<use xlink:href="img/sprite.svg#icon-compare"></use>
-																		</svg>
-																	</div>
-																	<span class="btn-count__title">Сравнить</span>
-																</button>
-																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
-																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
-																			</svg>
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
-																			</svg>
-																		</span>
-																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
-																			<span class="btn-count__title">В корзине</span>
-																		</span>
-																</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="catalog-slider__item swiper-slide">
-												<div class="c-card c-card--model">
-													<a class="c-card__img-wrap" href="catalog-item.html">
-														<div class="c-card__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
-															</picture>
-														</div>
-													</a>
-													<div class="c-card__content">
-														<h3 class="c-card__title">
-															<a class="c-card__title-link" href="catalog-item.html">Набор для склейки ежа</a>
-														</h3>
-														<div class="c-card__footer">
-															<div class="price price--c-card">
-																<div class="price__value">1&nbsp;700<span class="price__unit">&nbsp;₽</span></div>
-															</div>
-															<div class="c-card__buttons">
-																<button class="btn-count btn-count--short btn-count--card" type="button">
-																	<div class="btn-count__icon-wrap">
-																		<svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
-																			<use xlink:href="img/sprite.svg#icon-compare"></use>
-																		</svg>
-																	</div>
-																	<span class="btn-count__title">Сравнить</span>
-																</button>
-																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
-																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
-																			</svg>
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
-																			</svg>
-																		</span>
-																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
-																			<span class="btn-count__title">В корзине</span>
-																		</span>
-																</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="catalog-slider__item swiper-slide">
-												<div class="c-card c-card--model">
-													<a class="c-card__img-wrap" href="catalog-item.html">
-														<div class="c-card__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
-															</picture>
-														</div>
-													</a>
-													<div class="c-card__content">
-														<h3 class="c-card__title">
-															<a class="c-card__title-link" href="catalog-item.html">Набор для склейки кролика&nbsp;L (белый)</a>
-														</h3>
-														<div class="c-card__footer">
-															<div class="price price--c-card">
-																<div class="price__value">1&nbsp;700<span class="price__unit">&nbsp;₽</span></div>
-															</div>
-															<div class="c-card__buttons">
-																<!--todo: Если товар в сравнении, добавляем класс-модификатор btn-count--active у кнопки -->
-																<button class="btn-count btn-count--short btn-count--card" type="button">
-																	<div class="btn-count__icon-wrap">
-																		<svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
-																			<use xlink:href="img/sprite.svg#icon-compare"></use>
-																		</svg>
-																	</div>
-																	<span class="btn-count__title">Сравнить</span>
-																</button>
-																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
-																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
-																			</svg>
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
-																			</svg>
-																		</span>
-																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
-																			<span class="btn-count__title">В корзине</span>
-																		</span>
-																</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-											<div class="catalog-slider__item swiper-slide">
-												<div class="c-card c-card--model">
-													<a class="c-card__img-wrap" href="catalog-item.html">
-														<div class="c-card__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="img/product-card-img-01--xxl.jpg 1x, img/product-card-img-01--xxl@2x.jpg 2x">
-																<img class="c-card__img" src="img/product-card-img-01--xs.jpg" srcset="img/product-card-img-01--xs@2x.jpg 2x" width="728" height="546" alt="">
-															</picture>
-														</div>
-													</a>
-													<div class="c-card__content">
-														<h3 class="c-card__title">
-															<a class="c-card__title-link" href="catalog-item.html">Набор для склейки ежа</a>
-														</h3>
-														<div class="c-card__footer">
-															<div class="price price--c-card">
-																<div class="price__value">1&nbsp;700<span class="price__unit">&nbsp;₽</span></div>
-															</div>
-															<div class="c-card__buttons">
-																<button class="btn-count btn-count--short btn-count--card" type="button">
-																	<div class="btn-count__icon-wrap">
-																		<svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
-																			<use xlink:href="img/sprite.svg#icon-compare"></use>
-																		</svg>
-																	</div>
-																	<span class="btn-count__title">Сравнить</span>
-																</button>
-																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
-																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
-																			</svg>
-																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
-																				<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
-																			</svg>
-																		</span>
-																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
-																			<span class="btn-count__title">В корзине</span>
-																		</span>
-																</button>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
+                                            {% endfor %}
+
 										</div>
 										<div class="catalog-slider__pagination swiper-pagination js-catalog-slider-pagination"></div>
 									</div>
