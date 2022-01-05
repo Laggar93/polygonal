@@ -81,7 +81,7 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
     get_object_or_404(item, slug=item_slug) # проверка категории и подкатегории
     items = item.objects.filter(slug=item_slug).first() # проверка категории и подкатегории
     related_items = item.objects.filter(category__slug=subcategory_slug).exclude(slug=item_slug)[:6]
-    related_categories = items.connected_items
+    related_categories = items.connected_items.all
     context = {
         'items': items,
         'shop_page': shop_page.objects.first(),
