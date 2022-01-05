@@ -57,66 +57,7 @@
 													</a>
                                                 {% endif %}
 												</div>
-												<div class="g-slider__item swiper-slide">
-                                                {% if items.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
-														<div class="g-slider__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
-															</picture>
-														</div>
-													</a>
-                                                {% endif %}
-												</div>
-												<div class="g-slider__item swiper-slide">
-                                                {% if items.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
-														<div class="g-slider__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
-															</picture>
-														</div>
-													</a>
-                                                {% endif %}
-												</div>
-												<div class="g-slider__item swiper-slide">
-                                                {% if items.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
-														<div class="g-slider__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
-															</picture>
-														</div>
-													</a>
-                                                {% endif %}
-												</div>
-												<div class="g-slider__item swiper-slide">
-                                                {% if items.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
-														<div class="g-slider__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
-															</picture>
-														</div>
-													</a>
-                                                {% endif %}
-												</div>
-												<div class="g-slider__item swiper-slide">
-                                                {% if items.main_photo_xxl2.url %}
-													<a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
-														<div class="g-slider__img-ratio">
-															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
-															</picture>
-														</div>
-													</a>
-                                                {% endif %}
-												</div>
+												
 
 											</div>
 											<div class="g-slider__btn-prev swiper-button-prev js-g-slider-btn-prev"></div>
@@ -253,9 +194,11 @@
 									<div class="catalog-item__addon">
 										<div class="catalog-item__addon-title">Этот товар в&nbsp;других форматах:</div>
 										<ul class="l-list">
+											{% for value in related_categories.items %}
 											<li class="l-list__item">
 												<a class="l-list__link" href="javascript:void(0);">чертежи для бумаги</a>
 											</li>
+											{% endfor %}
 											<li class="l-list__item">
 												<a class="l-list__link" href="javascript:void(0);">готовые фигуры</a>
 											</li>
