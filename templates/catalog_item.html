@@ -233,7 +233,7 @@
 												<a class="download-link" href="{% if items.bottom_link %} {{ items.bottom_link.url }} {% endif %}" download="{% if items.bottom_link_title %} {{ items.bottom_link_title }} {% endif %}">
 													<span class="download-link__title">{% if items.bottom_link_title %} {{ items.bottom_link_title }} {% endif %}</span>
 													<span class="download-link__tip">
-													<span class="download-link__tip-unit">pdf</span>,&nbsp;<span>15 {{ shop_page.megabyte }}</span>
+													<span class="download-link__tip-unit">{{ items.bottom_link.url|filesizeformat }}</span>,&nbsp;<span>{{ items.bottom_link.size }} {{ shop_page.megabyte }}</span>
 												</span>
 												</a>
 											</div>
