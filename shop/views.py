@@ -8,21 +8,22 @@ from .service import get_order_params
 def category_view(request, category_slug):
     query_param = request.GET.get('sort')
     get_object_or_404(category, slug=category_slug)
+    active_category = category.objects.filter(slug=category_slug).first()
 
     items = item.objects.filter(
-        category__category__slug=category_slug).prefetch_related(
+        category__category=active_category).prefetch_related(
         'category').order_by('name')
 
     if query_param:
         param = get_order_params(query_param)
         if param:
             items = item.objects.filter(
-                category__category__slug=category_slug).prefetch_related(
+                category__category=active_category).prefetch_related(
                 'category').order_by(param)
 
     categories = category.objects.all()
-    subcategories = subcategory.objects.filter(category__slug=category_slug)
-    active_category = category.objects.filter(slug=category_slug).first()
+    subcategories = subcategory.objects.filter(category=active_category)
+    
 
     context = {
         'categories': categories,
@@ -45,26 +46,25 @@ def first_category_for_url(request):
 
 def subcategory_view(request, category_slug, subcategory_slug):
     query_param = request.GET.get('sort')
-    get_object_or_404(category, slug=category_slug)
-    get_object_or_404(subcategory, slug=subcategory_slug,
-                      category=category.objects.filter(
-                          slug=category_slug).first())
+    active_category = category.objects.filter(slug=category_slug).first()
+    active_subcategory = subcategory.objects.filter(slug=subcategory_slug, category=active_category).first()
 
-    items = item.objects.filter(category__category__slug=category_slug,
-                                category__slug=subcategory_slug).order_by(
+    get_object_or_404(subcategory, slug=subcategory_slug,
+                      category=active_category)
+
+    items = item.objects.filter(category=active_subcategory).order_by(
         'name')
 
     if query_param:
         param = get_order_params(query_param)
         if param:
             items = item.objects.filter(
-                category__category__slug=category_slug,
-                category__slug__in=subcategory_slug).order_by(
+                category=active_subcategory).order_by(
                 param)
 
     categories = category.objects.all()
-    subcategories = subcategory.objects.filter(category__slug=category_slug)
-    active_category = category.objects.filter(slug=category_slug).first()
+    subcategories = subcategory.objects.filter(category=active_category)
+
     context = {
         'categories': categories,
         'subcategories': subcategories,
