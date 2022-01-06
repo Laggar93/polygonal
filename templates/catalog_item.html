@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load price_space %}
 {% block content %}
 			<main class="page__main">
 				<div class="breadcrumbs">
@@ -233,7 +234,7 @@
 												<a class="download-link" href="{% if items.bottom_link %} {{ items.bottom_link.url }} {% endif %}" download="{% if items.bottom_link_title %} {{ items.bottom_link_title }} {% endif %}">
 													<span class="download-link__title">{% if items.bottom_link_title %} {{ items.bottom_link_title }} {% endif %}</span>
 													<span class="download-link__tip">
-													<span class="download-link__tip-unit">{{ items.bottom_link.url|filesizeformat }}</span>,&nbsp;<span>{{ items.bottom_link.size }} {{ shop_page.megabyte }}</span>
+													<span class="download-link__tip-unit">{{ items.bottom_link.file.name }}</span>,&nbsp;<span>{{ items.bottom_link.file.size|filesizeformat }} {{ shop_page.megabyte }}</span>
 												</span>
 												</a>
 											</div>
