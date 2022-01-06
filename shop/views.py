@@ -1,6 +1,6 @@
 from django.db.models.fields import related
 from django.shortcuts import get_object_or_404, redirect
-from .models import category, subcategory, item, shop_page
+from .models import category, subcategory, item, shop_page, item_terms
 from django.shortcuts import render
 from .service import get_order_params
 
@@ -78,15 +78,21 @@ def subcategory_view(request, category_slug, subcategory_slug):
 
 
 def catalog_item(request, category_slug, subcategory_slug, item_slug):
-    get_object_or_404(item, slug=item_slug) # проверка категории и подкатегории
-    items = item.objects.filter(slug=item_slug).first() # проверка категории и подкатегории
+    get_object_or_404(category, slug=category_slug)
+    get_object_or_404(subcategory, slug=subcategory_slug,
+                      category=category.objects.filter(
+                          slug=category_slug).first())
+    get_object_or_404(item, slug=item_slug)
+    items = item.objects.filter(slug=item_slug).first()
+    delivery_info = item_terms.objects.filter(item__slug=item_slug)
     related_items = item.objects.filter(category__slug=subcategory_slug).exclude(slug=item_slug)[:6]
-    related_categories = items.connected_items.all
+    related_categories = items.connected_items.all()
     context = {
         'items': items,
         'shop_page': shop_page.objects.first(),
         'related_items': related_items,
         'related_categories': related_categories,
+        'delivery_info': delivery_info,
     }
     return render(request, 'catalog_item.html', context=context)
 

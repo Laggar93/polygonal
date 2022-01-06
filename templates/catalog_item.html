@@ -119,9 +119,10 @@
 											</div>
 										</div>
 									</div>
-									<a class="video-link" href="javascript:void(0);">
+
+									<a class="video-link" href="{% if items.video_link %}{{ items.video_link }}{% endif %}">
 										<div class="video-link__icon"></div>
-										<span class="video-link__title">Видеоурок по&nbsp;сборке фигуры в&nbsp;такой технике</span>
+										<span class="video-link__title">{{ items.video_title }}</span>
 									</a>
 								</div>
 								<div class="catalog-item__description">
@@ -129,31 +130,31 @@
 										<ul class="prop-list">
                                             {% if items.figure_size %}
 											<li class="prop-list__item">
-												<div class="prop-list__prop">Размер фигуры</div>
-												<div class="prop-list__value">{{ items.figure_size }}&nbsp;см</div>
+												<div class="prop-list__prop">{{ shop_page.figure_size }}</div>
+												<div class="prop-list__value">{{ items.figure_size }}</div>
 											</li>
                                             {% endif %}
                                         {% if items.color %}
 											<li class="prop-list__item">
 												<div class="prop-list__prop">Цвет</div>
-												<div class="prop-list__value">{{ items.color }}&nbsp;см</div>
+												<div class="prop-list__value">{{ items.color }}</div>
 											</li>
                                             {% endif %}
                                         {% if items.difficulty %}
 											<li class="prop-list__item">
-												<div class="prop-list__prop">Сложность</div>
+												<div class="prop-list__prop">{{ shop_page.complexity }}</div>
 												<div class="prop-list__value">{{ items.difficulty }}</div>
 											</li>
                                         {% endif %}
                                         {% if items.time %}
                                             <li class="prop-list__item">
-												<div class="prop-list__prop">Время сборки</div>
-												<div class="prop-list__value">{{ items.time }} часов</div>
+												<div class="prop-list__prop">{{ shop_page.assembly_time }}</div>
+												<div class="prop-list__value">{{ items.time }}</div>
 											</li>
                                         {% endif %}
                                         {% if items.paper_amount %}
                                             <li class="prop-list__item">
-												<div class="prop-list__prop">Количество листов</div>
+												<div class="prop-list__prop">{{ shop_page.number }}</div>
 												<div class="prop-list__value">{{ items.paper_amount }}</div>
 											</li>
                                         {% endif %}
@@ -167,44 +168,40 @@
 											<div class="price price--catalog-item">
 												<div class="price__value price__value--old">2&nbsp;100<span class="price__unit">&nbsp;₽</span></div>
 												<div class="price__value">{{ items.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span></div>
+												<div class="price__value">{{ items.price_usd }}<span class="price__unit">&nbsp;$</span></div>
 											</div>
 										</div>
 										<!--todo: Если товар в корзине, добавляем класс-модификатор btn--active у кнопки -->
 										<button class="catalog-item__btn btn btn--buy" type="button">
 											<svg class="btn__icon" viewBox="0 0 22 19" width="22" height="19">
-												<use xlink:href="img/sprite.svg#icon-btn-cart"></use>
+												<use xlink:href="{% static 'img/sprite.svg' %}#icon-btn-cart"></use>
 											</svg>
 											<svg class="btn__icon" viewBox="0 0 22 19" width="22" height="19">
-												<use xlink:href="img/sprite.svg#icon-btn-cart-check"></use>
+												<use xlink:href="{% static 'img/sprite.svg' %}#icon-btn-cart-check"></use>
 											</svg>
-											<span class="btn__title">В корзину</span>
+											<span class="btn__title">{{ shop_page.cart }}</span>
 										</button>
 										<div class="catalog-item__compare">
 											<!--todo: Если товар в сравнении, добавляем класс-модификатор btn-count--active у кнопки -->
 											<button class="btn-count btn-count--card" type="button">
 												<div class="btn-count__icon-wrap">
 													<svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
-														<use xlink:href="img/sprite.svg#icon-compare"></use>
+														<use xlink:href="{% static 'img/sprite.svg' %}#icon-compare"></use>
 													</svg>
 												</div>
-												<span class="btn-count__title">Сравнить</span>
+												<span class="btn-count__title">{{ shop_page.compare }}</span>
 											</button>
 										</div>
 									</div>
 									<div class="catalog-item__addon">
-										<div class="catalog-item__addon-title">Этот товар в&nbsp;других форматах:</div>
+										<div class="catalog-item__addon-title">{{ shop_page.another_items }}:</div>
 										<ul class="l-list">
-											{% for value in related_categories.items %}
+											{% for value in related_categories %}
 											<li class="l-list__item">
-												<a class="l-list__link" href="javascript:void(0);">чертежи для бумаги</a>
+												<a class="l-list__link" href="{{ value.get_absolute_url }}">{{ value.category.category.name }}</a>
 											</li>
 											{% endfor %}
-											<li class="l-list__item">
-												<a class="l-list__link" href="javascript:void(0);">готовые фигуры</a>
-											</li>
-											<li class="l-list__item">
-												<a class="l-list__link" href="javascript:void(0);">Чертежи для металла</a>
-											</li>
+
 										</ul>
 									</div>
 								</div>
@@ -219,7 +216,7 @@
 								<div class="guide">
 									<div class="guide__row">
 										<div class="guide__header">
-											<h2 class="section-title section-title--theme_blue">Что с этим делать</h2>
+											<h2 class="section-title section-title--theme_blue">{{ shop_page.to_do }}</h2>
 										</div>
 										<div class="guide__photo">
 											<div class="guide__img-wrap">
@@ -233,10 +230,10 @@
 												</div>
 											</div>
 											<div class="guide__download">
-												<a class="download-link" href="{{ items.bottom_link.url }}" download="{{ items.bottom_link_title }}">
-													<span class="download-link__title">{{ items.bottom_link_title }}</span>
+												<a class="download-link" href="{% if items.bottom_link %} {{ items.bottom_link.url }} {% endif %}" download="{% if items.bottom_link_title %} {{ items.bottom_link_title }} {% endif %}">
+													<span class="download-link__title">{% if items.bottom_link_title %} {{ items.bottom_link_title }} {% endif %}</span>
 													<span class="download-link__tip">
-													<span class="download-link__tip-unit">pdf</span>,&nbsp;<span>15 Мб</span>
+													<span class="download-link__tip-unit">pdf</span>,&nbsp;<span>15 {{ shop_page.megabyte }}</span>
 												</span>
 												</a>
 											</div>
@@ -251,7 +248,7 @@
 												<a class="download-link" href="{% if items.bottom_link %} {{ items.bottom_link.url }} {% endif %}" download="{% if items.bottom_link_title %} {{ items.bottom_link_title }} {% endif %}">
 													<span class="download-link__title">{% if items.bottom_link_title %} {{ items.bottom_link_title }} {% endif %}</span>
 													<span class="download-link__tip">
-													<span class="download-link__tip-unit">pdf</span>,&nbsp;<span>15 Мб</span>
+													<span class="download-link__tip-unit">pdf</span>,&nbsp;<span>15 {{ shop_page.megabyte }}</span>
 												</span>
 												</a>
 											</div>
@@ -276,22 +273,20 @@
 									<div class="promo__row">
 										<div class="promo__col">
 											<div class="promo__header">
-												<h2 class="section-title">Доставка и оплата</h2>
+												<h2 class="section-title">{{ shop_page.delivery }}</h2>
 											</div>
 											<div class="promo__content">
+
 												<ul class="promo-list">
+                                                    {% for i in delivery_info %}
 													<li class="promo-list__item text-content text-content--small">
-														<p>Отправляем посылки Почтой России, СДЭК, DPD и&nbsp;Boxberry. По&nbsp;Екатеринбургу&nbsp;&mdash; бесплатно.</p>
+														<p>{{ i.text }}</p>
 													</li>
-													<li class="promo-list__item text-content text-content--small">
-														<p>Оплата банковской картой, наличными или через PayPal. Заранее или при получении.</p>
-													</li>
-													<li class="promo-list__item text-content text-content--small">
-														<p>Можно купить в&nbsp;магазинах городов: Екатеринбург, Москва, Санкт-Петербург, Череповец, Комсомольск-на-Амуре, Трехгорный</p>
-													</li>
+                                                    {% endfor %}
 												</ul>
+
 												<div class="promo__link-wrap">
-													<a class="promo__link" href="delivery.html">Подробнее</a>
+													<a class="promo__link" href="delivery.html">{{ shop_page.see_more }}...</a>
 												</div>
 											</div>
 										</div>
@@ -305,7 +300,7 @@
 					<div class="section__container">
 						<div class="section__row">
 							<div class="section__col">
-								<h2 class="section-title section-title--theme_blue">Другие модели</h2>
+								<h2 class="section-title section-title--theme_blue">{{ shop_page.another_models }}</h2>
 								<div class="slider-wrapper">
 									<div class="catalog-slider__btn-prev swiper-button-prev swiper-button-prev--theme_gray js-catalog-slider-btn-prev"></div>
 									<div class="catalog-slider__btn-next swiper-button-next swiper-button-next--theme_gray js-catalog-slider-btn-next"></div>
@@ -336,10 +331,10 @@
 																<button class="btn-count btn-count--short btn-count--card" type="button">
 																	<div class="btn-count__icon-wrap">
 																		<svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
-																			<use xlink:href="img/sprite.svg#icon-compare"></use>
+																			<use xlink:href="{% static 'img/sprite.svg' %}#icon-compare"></use>
 																		</svg>
 																	</div>
-																	<span class="btn-count__title">Сравнить</span>
+																	<span class="btn-count__title">{{ shop_page.compare }}</span>
 																</button>
 																<button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
 																		<span class="btn-count__icon-wrap">
@@ -351,7 +346,7 @@
 																			</svg>
 																		</span>
 																	<span class="btn-count__title-wrap">
-																			<span class="btn-count__title">В корзину</span>
+																			<span class="btn-count__title">{{ shop_page.cart }}</span>
 																			<span class="btn-count__title">В корзине</span>
 																		</span>
 																</button>

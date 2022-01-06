@@ -39,6 +39,8 @@
           crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'libs/swiper/swiper.min.css' %}">
     <link rel="stylesheet" href="{% static 'libs/select2/select2.min.css' %}">
+    <link rel="stylesheet" href="{% static 'libs/fancybox/jquery.fancybox.min.css' %}">
+
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
@@ -418,7 +420,7 @@
                                             <svg class="btn-count__icon"
                                                  viewBox="0 0 32 25" width="32"
                                                  height="25">
-                                                <use xlink:href="img/sprite.svg#icon-cart"></use>
+                                                <use xlink:href="{% static 'img/sprite.svg' %}#icon-cart"></use>
                                             </svg>
                                             <div class="btn-count__counter">2
                                             </div>
@@ -434,7 +436,7 @@
                                             <svg class="btn-count__icon"
                                                  viewBox="0 0 32 25" width="32"
                                                  height="25">
-                                                <use xlink:href="img/sprite.svg#icon-compare"></use>
+                                                <use xlink:href="{% static 'img/sprite.svg' %}#icon-compare"></use>
                                             </svg>
                                             <div class="btn-count__counter">3
                                             </div>
@@ -739,6 +741,7 @@
 <script src="{% static 'libs/swiper/swiper.min.js' %}"></script>
 <script src="{% static 'libs/select2/select2.full.min.js' %}"></script>
 <script src="{% static 'libs/body-scroll-lock/bodyScrollLock.min.js' %}"></script>
+<script src="{% static 'libs/fancybox/jquery.fancybox.min.js' %}"></script>
 <script src="{% static 'js/script.js' %}"></script>
 {% block scripts %}{% endblock %}
 </body>

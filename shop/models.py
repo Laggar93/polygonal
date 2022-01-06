@@ -70,6 +70,24 @@ class shop_page(models.Model):
     alphabet = models.CharField('По алфавиту', max_length=255, blank=True)
     difficult = models.CharField('По сложности', max_length=255, blank=True)
     cart = models.CharField('В корзину', max_length=255, blank=True)
+    compare = models.CharField('Сравнить', max_length=255, blank=True)
+    figure_size = models.CharField('Размер фигуры', max_length=255, blank=True)
+    complexity = models.CharField('Сложность', max_length=255, blank=True)
+    assembly_time = models.CharField('Время сборки', max_length=255, blank=True)
+    number = models.CharField('Количество листов', max_length=255, blank=True)
+    another_items = models.CharField('Этот товар в других форматах', max_length=255, blank=True)
+    to_do = models.CharField('Что с этим делать', max_length=255, blank=True)
+    megabyte = models.CharField('Мегабайт документа', max_length=255, blank=True)
+    delivery = models.CharField('Доставка и оплата', max_length=255, blank=True)
+    another_models = models.CharField('Другие модели', max_length=255, blank=True)
+    see_more = models.CharField('Подробнее', max_length=255, blank=True)
+
+    class Meta:
+        verbose_name = 'Статический перевод'
+        verbose_name_plural = 'Статические переводы'
+
+    def __str__(self):
+        return str(self.all)
 
 
 class category(models.Model):
