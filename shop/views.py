@@ -82,9 +82,9 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
     get_object_or_404(subcategory, slug=subcategory_slug,
                       category=category.objects.filter(
                           slug=category_slug).first())
-    get_object_or_404(item, slug=item_slug)
-    items = item.objects.filter(slug=item_slug).first()
-    delivery_info = item_terms.objects.filter(item__slug=item_slug)
+    get_object_or_404(item, slug=item_slug) # сделать одну проверку сразу на все
+    items = item.objects.filter(slug=item_slug).first() # проверка на категорию + подкатегорию + слаг
+    delivery_info = item_terms.objects.filter(item=items)
     related_items = item.objects.filter(category__slug=subcategory_slug).exclude(slug=item_slug)[:6]
     related_categories = items.connected_items.all()
     context = {
