@@ -1,6 +1,6 @@
 from django.db.models.fields import related
 from django.shortcuts import get_object_or_404, redirect
-from .models import category, subcategory, item, shop_page, item_terms
+from .models import category, subcategory, item, shop_page, item_terms, item_photos
 from django.shortcuts import render
 from .service import get_order_params
 
@@ -90,12 +90,14 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
     delivery_info = item_terms.objects.filter(item=items)
     related_items = item.objects.filter(category__slug=subcategory_slug).exclude(slug=item_slug)[:6]
     related_categories = items.connected_items.all()
+    items_photos = item_photos.objects.filter(item=items)
     context = {
         'items': items,
         'shop_page': shop_page.objects.first(),
         'related_items': related_items,
         'related_categories': related_categories,
         'delivery_info': delivery_info,
+        'items_photos': items_photos,
     }
     return render(request, 'catalog_item.html', context=context)
 

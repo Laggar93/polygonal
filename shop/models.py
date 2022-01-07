@@ -187,7 +187,7 @@ class subcategory(models.Model):
 
 class item(models.Model):
     order = models.IntegerField('Порядок показа')
-    views = models.FloatField('Количество просмотров товара', null=True,
+    views = models.IntegerField('Количество просмотров товара', null=True,
                               blank=True)
     is_active = models.BooleanField('Показывать на сайте', default=True)
     keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)

@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load price_space %}
+{% load count_views %}
 {% block content %}
+			{{ items|count_views:items.views }}
 			<main class="page__main">
 				<div class="breadcrumbs">
 					<div class="breadcrumbs__container">
@@ -34,8 +36,8 @@
 									<div class="slider-wrapper slider-wrapper--gallery">
 										<div class="g-slider swiper-container js-g-slider">
 											<div class="g-slider__wrapper swiper-wrapper">
-												<div class="g-slider__item swiper-slide">
                                                 {% if items.main_photo_xxl2.url %}
+												<div class="g-slider__item swiper-slide">
 													<a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
 														<div class="g-slider__img-ratio">
 															<picture>
@@ -44,10 +46,10 @@
 															</picture>
 														</div>
 													</a>
-                                                {% endif %}
 												</div>
+												{% endif %}
+												<!-- здесь циклом выводим фото из второй модели item_photos
 												<div class="g-slider__item swiper-slide">
-                                                {% if items.main_photo_xxl2.url %}
 													<a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
 														<div class="g-slider__img-ratio">
 															<picture>
@@ -56,10 +58,8 @@
 															</picture>
 														</div>
 													</a>
-                                                {% endif %}
 												</div>
-												
-
+												-->
 											</div>
 											<div class="g-slider__btn-prev swiper-button-prev js-g-slider-btn-prev"></div>
 											<div class="g-slider__btn-next swiper-button-next js-g-slider-btn-next"></div>
@@ -67,8 +67,7 @@
 										</div>
 										<div class="g-slider-thumbs swiper-container js-g-slider-thumbs">
 											<div class="g-slider-thumbs__wrapper swiper-wrapper">
-{#                                                {% if items.main_photo_xs and items.main_photo_xs2 %}#}
-
+												{% if items.main_photo_xxl2.url %}
 												<div class="g-slider-thumbs__item swiper-slide">
 													<div class="g-slider-thumbs__img-wrap">
 														<picture>
@@ -76,50 +75,16 @@
 														</picture>
 													</div>
 												</div>
-{#                                                {% endif %}#}
-                                            <div class="g-slider-thumbs__item swiper-slide">
+												{% endif %}
+												<!-- здесь циклом выводим фото из второй модели item_photos
+                                            	<div class="g-slider-thumbs__item swiper-slide">
 													<div class="g-slider-thumbs__img-wrap">
 														<picture>
 															<img class="g-slider-thumbs__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
 														</picture>
 													</div>
 												</div>
-                                            <div class="g-slider-thumbs__item swiper-slide">
-													<div class="g-slider-thumbs__img-wrap">
-														<picture>
-															<img class="g-slider-thumbs__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
-														</picture>
-													</div>
-												</div>
-                                            <div class="g-slider-thumbs__item swiper-slide">
-													<div class="g-slider-thumbs__img-wrap">
-														<picture>
-															<img class="g-slider-thumbs__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
-														</picture>
-													</div>
-												</div>
-                                            <div class="g-slider-thumbs__item swiper-slide">
-													<div class="g-slider-thumbs__img-wrap">
-														<picture>
-															<img class="g-slider-thumbs__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
-														</picture>
-													</div>
-												</div>
-                                            <div class="g-slider-thumbs__item swiper-slide">
-													<div class="g-slider-thumbs__img-wrap">
-														<picture>
-															<img class="g-slider-thumbs__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
-														</picture>
-													</div>
-												</div>
-                                            <div class="g-slider-thumbs__item swiper-slide">
-													<div class="g-slider-thumbs__img-wrap">
-														<picture>
-															<img class="g-slider-thumbs__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
-														</picture>
-													</div>
-												</div>
-
+												-->
 											</div>
 										</div>
 									</div>
@@ -236,21 +201,18 @@
 											</div>
                                         {% if items.bottom_link %}
 											<div class="guide__download">
-												<a class="download-link" href=" {{ items.bottom_link.url }} " download="{{ items.bottom_link_title }}">
+												<a class="download-link" href="{{ items.bottom_link.url }}" download="{{ items.bottom_link_title }}">
 													<span class="download-link__title"> {{ items.bottom_link_title }}</span>
 													<span class="download-link__tip">
-													<span class="download-link__tip-unit">{{ items.bottom_link|extension }}</span>,&nbsp;<span>{{ items.bottom_link.size|sizify }} "size"</span>
+													<span class="download-link__tip-unit">{{ items.bottom_link|extension }}</span>,&nbsp;<span>{{ items.bottom_link.size|sizify:shop_page.megabyte }}</span>
 												</span>
 												</a>
 											</div>
                                         {% endif %}
 										</div>
 										<div class="guide__list">
-											<ol class="step-list">
-												{% autoescape off %} {{ items.bottom_list }} {% endautoescape %}
-											</ol>
-
-                                           {% if items.bottom_link %}
+											{% autoescape off %} {{ items.bottom_list }} {% endautoescape %}
+                                            {% if items.bottom_link %}
 											<div class="guide__download guide__download--mobile">
 												<a class="download-link" href="{{ items.bottom_link.url }}" download="{{ items.bottom_link_title }}">
 													<span class="download-link__title">{{ items.bottom_link_title }}</span>
@@ -263,7 +225,7 @@
 										</div>
 										<div class="guide__content">
 											<div class="guide__text content">
-												<p>{% autoescape off %} {{ items.bottom_text }} {% endautoescape %}</p>
+												{% autoescape off %} {{ items.bottom_text }} {% endautoescape %}
 
 											</div>
 										</div>
@@ -315,6 +277,7 @@
 									<div class="catalog-slider catalog-slider--model swiper-container js-catalog-slider">
 										<div class="catalog-slider__wrapper swiper-wrapper">
                                             {% for i in related_items %}
+											<!-- добавить проверку фото -->
 											<div class="catalog-slider__item swiper-slide">
 												<div class="c-card c-card--model">
 													<a class="c-card__img-wrap" href="{{ i.get_absolute_url }}">
