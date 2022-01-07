@@ -67,6 +67,8 @@
 										</div>
 										<div class="g-slider-thumbs swiper-container js-g-slider-thumbs">
 											<div class="g-slider-thumbs__wrapper swiper-wrapper">
+{#                                                {% if items.main_photo_xs and items.main_photo_xs2 %}#}
+
 												<div class="g-slider-thumbs__item swiper-slide">
 													<div class="g-slider-thumbs__img-wrap">
 														<picture>
@@ -74,6 +76,7 @@
 														</picture>
 													</div>
 												</div>
+{#                                                {% endif %}#}
                                             <div class="g-slider-thumbs__item swiper-slide">
 													<div class="g-slider-thumbs__img-wrap">
 														<picture>
@@ -120,11 +123,12 @@
 											</div>
 										</div>
 									</div>
-
-									<a class="video-link" href="{% if items.video_link %}{{ items.video_link }}{% endif %}">
+                                    {% if items.video_link %}
+									<a class="video-link" href="{{ items.video_link }}" target="_blank">
 										<div class="video-link__icon"></div>
 										<span class="video-link__title">{{ items.video_title }}</span>
 									</a>
+                                {% endif %}
 								</div>
 								<div class="catalog-item__description">
 									<div class="catalog-item__props">
@@ -137,7 +141,7 @@
                                             {% endif %}
                                         {% if items.color %}
 											<li class="prop-list__item">
-												<div class="prop-list__prop">Цвет</div>
+												<div class="prop-list__prop">{{ shop_page.color }}</div>
 												<div class="prop-list__value">{{ items.color }}</div>
 											</li>
                                             {% endif %}
@@ -162,7 +166,7 @@
 										</ul>
 									</div>
 									<div class="catalog-item__content style-content style-content--small">
-                                        {{ items.about|safe }}
+                                        {% autoescape off %} {{ items.about }} {% endautoescape %}
 									</div>
 									<div class="catalog-item__purchase">
 										<div class="catalog-item__price">
@@ -230,33 +234,36 @@
                                                     {% endif %}
 												</div>
 											</div>
+                                        {% if items.bottom_link %}
 											<div class="guide__download">
-												<a class="download-link" href="{% if items.bottom_link %} {{ items.bottom_link.url }} {% endif %}" download="{% if items.bottom_link_title %} {{ items.bottom_link_title }} {% endif %}">
-													<span class="download-link__title">{% if items.bottom_link_title %} {{ items.bottom_link_title }} {% endif %}</span>
+												<a class="download-link" href=" {{ items.bottom_link.url }} " download="{{ items.bottom_link_title }}">
+													<span class="download-link__title"> {{ items.bottom_link_title }}</span>
 													<span class="download-link__tip">
-													<span class="download-link__tip-unit">{{ items.bottom_link.file.name }}</span>,&nbsp;<span>{{ items.bottom_link.file.size|filesizeformat }} {{ shop_page.megabyte }}</span>
+													<span class="download-link__tip-unit">{{ items.bottom_link|extension }}</span>,&nbsp;<span>{{ items.bottom_link.size|sizify }} "size"</span>
 												</span>
 												</a>
 											</div>
+                                        {% endif %}
 										</div>
 										<div class="guide__list">
 											<ol class="step-list">
-												{{ items.bottom_list|safe }}
+												{% autoescape off %} {{ items.bottom_list }} {% endautoescape %}
 											</ol>
 
-
+                                           {% if items.bottom_link %}
 											<div class="guide__download guide__download--mobile">
-												<a class="download-link" href="{% if items.bottom_link %} {{ items.bottom_link.url }} {% endif %}" download="{% if items.bottom_link_title %} {{ items.bottom_link_title }} {% endif %}">
-													<span class="download-link__title">{% if items.bottom_link_title %} {{ items.bottom_link_title }} {% endif %}</span>
+												<a class="download-link" href="{{ items.bottom_link.url }}" download="{{ items.bottom_link_title }}">
+													<span class="download-link__title">{{ items.bottom_link_title }}</span>
 													<span class="download-link__tip">
 													<span class="download-link__tip-unit">pdf</span>,&nbsp;<span>15 {{ shop_page.megabyte }}</span>
 												</span>
 												</a>
 											</div>
+                                            {% endif %}
 										</div>
 										<div class="guide__content">
 											<div class="guide__text content">
-												<p>{{ items.bottom_text|safe }}</p>
+												<p>{% autoescape off %} {{ items.bottom_text }} {% endautoescape %}</p>
 
 											</div>
 										</div>
@@ -287,7 +294,7 @@
 												</ul>
 
 												<div class="promo__link-wrap">
-													<a class="promo__link" href="delivery.html">{{ shop_page.see_more }}...</a>
+													<a class="promo__link" href="delivery.html">{{ shop_page.see_more }}</a>
 												</div>
 											</div>
 										</div>
@@ -348,7 +355,7 @@
 																		</span>
 																	<span class="btn-count__title-wrap">
 																			<span class="btn-count__title">{{ shop_page.cart }}</span>
-																			<span class="btn-count__title">В корзине</span>
+																			<span class="btn-count__title">{{ shop_page.adding_cart }}</span>
 																		</span>
 																</button>
 															</div>

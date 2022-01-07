@@ -78,6 +78,9 @@ def subcategory_view(request, category_slug, subcategory_slug):
 
 
 def catalog_item(request, category_slug, subcategory_slug, item_slug):
+    # active_category = category.objects.filter(slug=category_slug).first()
+    # active_subcategory = subcategory.objects.filter(slug=subcategory_slug,
+    #                                                 category=active_category).first()
     get_object_or_404(category, slug=category_slug)
     get_object_or_404(subcategory, slug=subcategory_slug,
                       category=category.objects.filter(

@@ -70,7 +70,10 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
             'builtins': [
-                'shop.templatetags.price_space'
+                'shop.templatetags.price_space',
+                'shop.templatetags.sizify',
+                'shop.templatetags.extension',
+
             ]
         },
     },
