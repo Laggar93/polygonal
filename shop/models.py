@@ -431,8 +431,8 @@ class discount(models.Model):
     type = models.CharField('Тип', choices=[('1', 'Процент'), ('2', 'Валюта')],
                             max_length=100, blank=True)
     amount = models.FloatField('Величина скидки', blank=True, null=True)
-    starts = models.DateTimeField('Начало действия', blank=True, null=True)
-    ends = models.DateTimeField('Окончание действия', blank=True, null=True)
+    starts = models.DateField('Начало действия', blank=True, null=True)
+    ends = models.DateField('Окончание действия', blank=True, null=True)
 
     def __str__(self):
         return self.name

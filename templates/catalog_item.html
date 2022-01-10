@@ -2,9 +2,7 @@
 {% load static %}
 {% load price_space %}
 {% load dollar_tag %}
-{% load count_views %}
 {% block content %}
-    <span>{{ counter }}</span>
 			<main class="page__main">
 				<div class="breadcrumbs">
 					<div class="breadcrumbs__container">
@@ -187,17 +185,17 @@
 						</div>
 					</div>
 				</section>
+				
+				{% if items.bottom_list %}
 				<section class="section">
 					<div class="section__container">
 						<div class="section__row">
 							<div class="section__col">
 								<div class="guide">
 									<div class="guide__row">
-                                    {% if items.bottom_list %}
 										<div class="guide__header">
 											<h2 class="section-title section-title--theme_blue">{{ shop_page.to_do }}</h2>
 										</div>
-                                    {% endif %}
 										<div class="guide__photo">
 											<div class="guide__img-wrap">
 												<div class="guide__img-ratio">
@@ -245,6 +243,8 @@
 						</div>
 					</div>
 				</section>
+				
+				{% endif %}
 				<section class="section">
 					<div class="section__container">
 						<div class="section__row">

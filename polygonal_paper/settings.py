@@ -73,7 +73,6 @@ TEMPLATES = [
                 'shop.templatetags.price_space',
                 'shop.templatetags.sizify',
                 'shop.templatetags.extension',
-                'shop.templatetags.count_views',
                 'shop.templatetags.dollar_tag'
             ]
         },

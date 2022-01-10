@@ -19,6 +19,13 @@ def dublicate(modeladmin, request, queryset):
 
 
 class discount_admin(TranslationAdmin):
+    list_display = ('name', 'items')
+    def items(self, request, obj=None):
+        output = []
+        for item in request.item.all():
+            output.append(item)
+        return output
+    items.short_description = 'Товары'
     save_as = True
     save_on_top = True
 
@@ -63,7 +70,7 @@ class item_admin(SortableAdminMixin, TranslationAdmin):
     search_fields = ['name']
     list_display = ('name', 'category', 'is_active', 'difficulty', 'views')
     inlines = [item_photos_admin, item_terms_admin, item_files_admin]
-    readonly_fields = ('display_main_image', 'display_bottom_image', 'views')
+    readonly_fields = ('display_main_image', 'display_bottom_image')
     exclude = (
     'main_photo_popup', 'main_photo_xs2', 'main_photo_xxl', 'main_photo_xs',
     'bottom_photo_xs2', 'bottom_photo_xxl', 'bottom_photo_xs')

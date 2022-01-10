@@ -85,35 +85,18 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
                                                     category=active_category).first()
     get_object_or_404(item, slug=item_slug,
                       category=active_subcategory)
-    items = item.objects.filter(slug=item_slug).first()
+    items = item.objects.filter(slug=item_slug, category=active_subcategory).first()
 
-    # counter = item.objects.filter(slug=item_slug).update(views=F("views") + 1)
-    # counter = item.objects.filter(slug=item_slug).first()
-
-
-    # counter = 0
-    # counter.views = F('views') + 1
-    # counter.save()
-
-
-    # counter = item.objects.get(views=item.views)
-    # counter.views = F("views") + 1
-    # counter.save()
-
-
-    counter = item.objects.filter(slug=item_slug, category=active_subcategory)
-    counter = request.session.get('counter', 0)
-    request.session['counter'] = counter+1
-
+    item.objects.filter(slug=item_slug, category=active_subcategory).update(views=F("views") + 1)
 
     delivery_info = item_terms.objects.filter(item=items)
     related_items = item.objects.filter(
         category__slug=subcategory_slug).exclude(slug=item_slug)[:6]
     related_categories = items.connected_items.all()
     items_photos = item_photos.objects.filter(item=items)
+
     context = {
         'items': items,
-        'counter': counter,
         'active_category': active_category,
         'active_subcategory': active_subcategory,
         'shop_page': shop_page.objects.first(),
