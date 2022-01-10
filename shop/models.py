@@ -28,37 +28,32 @@ def get_file_path(instance, filename):
 
 
 def resize_img(f1, f2, fs):
-    f1 = f2
-    image1 = f1
-    img1 = Image.open(image1)
-    new_img1 = img1.convert('RGB')
-    img_width = new_img1.size[0]
-    img_height = new_img1.size[1]
-    img_ratio = img_width / img_height
-    size_ratio = fs[0] / fs[1]
-    if img_ratio < size_ratio:
-        resized_new_img1 = new_img1.resize(
-            (fs[0], int(fs[0] * img_height / img_width)), Image.ANTIALIAS)
-        box = (
-        0, (resized_new_img1.size[1] - fs[1]) / 2, resized_new_img1.size[0],
-        (resized_new_img1.size[1] + fs[1]) / 2)
-        resized_new_img1 = resized_new_img1.crop(box)
-    elif img_ratio > size_ratio:
-        resized_new_img1 = new_img1.resize(
-            (int(fs[1] * img_width / img_height), img_height), Image.ANTIALIAS)
-        box = ((resized_new_img1.size[0] - fs[0]) / 2, 0,
-               (resized_new_img1.size[0] + fs[0]) / 2, resized_new_img1.size[1])
-        resized_new_img1 = resized_new_img1.crop(box)
-    else:
-        resized_new_img1 = new_img1.resize((fs[0], fs[1]), Image.ANTIALIAS)
-    filestream1 = BytesIO()
-    resized_new_img1.save(filestream1, 'JPEG', quality=80)
-    filestream1.seek(0)
-    name1 = f"{f1.name}"
-    return InMemoryUploadedFile(
-        filestream1, 'ImageField', name1, 'jpeg/image',
-        sys.getsizeof(filestream1), None
-    )
+	f1 = f2
+	image1 = f1
+	img1 = Image.open(image1)
+	new_img1 = img1.convert('RGB')
+	ratio_current = new_img1.size[1] / new_img1.size[0]
+	ratio_new = fs[1] / fs[0]
+	if ratio_current <= ratio_new:
+		new_width = (fs[1] * new_img1.size[0]) / new_img1.size[1]
+		new_height = fs[1]
+		resized_new_img1 = new_img1.resize((int(new_width), int(new_height)), Image.ANTIALIAS)
+		box = ((resized_new_img1.size[0] - fs[0])/2, 0, resized_new_img1.size[0] - (resized_new_img1.size[0] - fs[0]) / 2, resized_new_img1.size[1])
+		resized_new_img1 = resized_new_img1.crop(box)
+	else:
+		new_width = fs[0]
+		new_height = (new_img1.size[1] * fs[0]) / new_img1.size[0]
+		resized_new_img1 = new_img1.resize((int(new_width), int(new_height)), Image.ANTIALIAS)
+		box = (0, (resized_new_img1.size[1] - fs[1])/2, 0, resized_new_img1.size[1] - (resized_new_img1.size[1] - fs[1]) / 2)
+		resized_new_img1 = resized_new_img1.crop(box)
+	filestream1 = BytesIO()
+	resized_new_img1.save(filestream1, 'JPEG', quality=80)
+	filestream1.seek(0)
+	name1 = f"{f1.name}"
+	return InMemoryUploadedFile(
+		filestream1, 'ImageField', name1, 'jpeg/image',
+		sys.getsizeof(filestream1), None
+	)
 
 
 class shop_page(models.Model):
@@ -217,6 +212,10 @@ class item(models.Model):
                                        null=True)
     main_photo_xs = models.ImageField(upload_to=get_file_path, blank=True,
                                       null=True)
+    main_photo_thumb_xs2 = models.ImageField(upload_to=get_file_path, blank=True,
+                                       null=True)
+    main_photo_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True,
+                                      null=True)
     video_title = models.CharField('Заголовок видео-ссылки под слайдером',
                                    max_length=500, blank=True)
     video_link = models.CharField('Ссылка на видео под слайдером',
@@ -295,6 +294,10 @@ class item(models.Model):
                                              self.main_photo_xxl2, [1200, 900])
             self.main_photo_xs = resize_img(self.main_photo_xs,
                                             self.main_photo_xxl2, [768, 576])
+            self.main_photo_thumb_xs2 = resize_img(self.main_photo_thumb_xs2,
+                                             self.main_photo_xxl2, [288, 288])
+            self.main_photo_thumb_xs = resize_img(self.main_photo_thumb_xs,
+                                            self.main_photo_xxl2, [144, 144])
         if self.bottom_photo_xxl2 != self.__original_bottom_photo_xxl2:
             self.bottom_photo_xs2 = resize_img(self.bottom_photo_xs2,
                                                self.bottom_photo_xxl2,
@@ -325,22 +328,6 @@ class item(models.Model):
     display_bottom_image.short_description = 'Предпросмотр изображения нижнего блока'
 
 
-# class itemcountviews(models.Model):
-#     # привязка к пользователю (сессии пользователя)
-#     sesId = models.CharField(max_length=150, db_index=True)
-#     # привязка к посту
-#     itemId = models.ForeignKey(item, blank=True, null=True, default=None,
-#                                on_delete=models.CASCADE)
-#
-#     class Meta:
-#         verbose_name = 'Счётчик просмотров'
-#         verbose_name_plural = 'Счётчик просмотров'
-#
-#     def __str__(self):
-#         return '{}'.format(self.sesId)
-
-
-
 class item_photos(models.Model):
     item = models.ForeignKey(item, on_delete=models.CASCADE)
     order = models.IntegerField('Порядок показа')
@@ -355,6 +342,10 @@ class item_photos(models.Model):
     main_photo_xxl = models.ImageField(upload_to=get_file_path, blank=True,
                                        null=True)
     main_photo_xs = models.ImageField(upload_to=get_file_path, blank=True,
+                                      null=True)
+    main_photo_thumb_xs2 = models.ImageField(upload_to=get_file_path, blank=True,
+                                       null=True)
+    main_photo_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True,
                                       null=True)
     __original_main_photo_xxl2 = None
 
@@ -382,6 +373,10 @@ class item_photos(models.Model):
                                              self.main_photo_xxl2, [1200, 900])
             self.main_photo_xs = resize_img(self.main_photo_xs,
                                             self.main_photo_xxl2, [768, 576])
+            self.main_photo_thumb_xs2 = resize_img(self.main_photo_thumb_xs2,
+                                             self.main_photo_xxl2, [288, 288])
+            self.main_photo_thumb_xs = resize_img(self.main_photo_thumb_xs,
+                                            self.main_photo_xxl2, [144, 144])
         super().save(*args, **kwargs)
 
     @cached_property

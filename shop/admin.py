@@ -53,7 +53,7 @@ class item_photos_admin(SortableInlineAdminMixin, admin.StackedInline):
     exclude = ('image_800',)
     readonly_fields = ('display_image',)
     exclude = (
-    'main_photo_popup', 'main_photo_xs2', 'main_photo_xxl', 'main_photo_xs')
+    'main_photo_popup', 'main_photo_xs2', 'main_photo_xxl', 'main_photo_xs', 'main_photo_thumb_xs2', 'main_photo_thumb_xs')
 
 
 class subcategory_admin(SortableAdminMixin, TranslationAdmin):
@@ -73,7 +73,7 @@ class item_admin(SortableAdminMixin, TranslationAdmin):
     readonly_fields = ('display_main_image', 'display_bottom_image')
     exclude = (
     'main_photo_popup', 'main_photo_xs2', 'main_photo_xxl', 'main_photo_xs',
-    'bottom_photo_xs2', 'bottom_photo_xxl', 'bottom_photo_xs')
+    'bottom_photo_xs2', 'bottom_photo_xxl', 'bottom_photo_xs', 'main_photo_thumb_xs2', 'main_photo_thumb_xs')
     save_on_top = True
     save_as = True
     ordering = ('order',)
