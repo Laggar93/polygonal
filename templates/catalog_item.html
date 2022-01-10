@@ -3,7 +3,7 @@
 {% load price_space %}
 {% load count_views %}
 {% block content %}
-			{{ items|count_views:items.views }}
+    <h1>{{ counter }}</h1>
 			<main class="page__main">
 				<div class="breadcrumbs">
 					<div class="breadcrumbs__container">
@@ -48,22 +48,19 @@
 													</a>
 												</div>
 												{% endif %}
-												<!-- здесь циклом выводим фото из второй модели item_photos
+                                            {% for i in items_photos %}
 												<div class="g-slider__item swiper-slide">
-													<a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
+													<a class="g-slider__img-wrap" href="{{ i.main_photo_xxl2.url }}" data-fancybox="gallery">
 														<div class="g-slider__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
-																<img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
+																<source media="(min-width: 1700px)" srcset="{{ i.main_photo_xxl.url }} 1x, {{ i.main_photo_xxl2.url }} 2x">
+																<img class="g-slider__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
 															</picture>
 														</div>
 													</a>
 												</div>
-												-->
+                                            {% endfor %}
 											</div>
-											<div class="g-slider__btn-prev swiper-button-prev js-g-slider-btn-prev"></div>
-											<div class="g-slider__btn-next swiper-button-next js-g-slider-btn-next"></div>
-											<div class="g-slider__pagination swiper-pagination js-g-slider-pagination"></div>
 										</div>
 										<div class="g-slider-thumbs swiper-container js-g-slider-thumbs">
 											<div class="g-slider-thumbs__wrapper swiper-wrapper">
@@ -76,15 +73,15 @@
 													</div>
 												</div>
 												{% endif %}
-												<!-- здесь циклом выводим фото из второй модели item_photos
+                                            {% for i in items_photos %}
                                             	<div class="g-slider-thumbs__item swiper-slide">
 													<div class="g-slider-thumbs__img-wrap">
 														<picture>
-															<img class="g-slider-thumbs__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
+															<img class="g-slider-thumbs__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2.url }} 2x" width="144" height="144" alt="">
 														</picture>
 													</div>
 												</div>
-												-->
+                                            {% endfor %}
 											</div>
 										</div>
 									</div>
@@ -217,7 +214,7 @@
 												<a class="download-link" href="{{ items.bottom_link.url }}" download="{{ items.bottom_link_title }}">
 													<span class="download-link__title">{{ items.bottom_link_title }}</span>
 													<span class="download-link__tip">
-													<span class="download-link__tip-unit">pdf</span>,&nbsp;<span>15 {{ shop_page.megabyte }}</span>
+													<span class="download-link__tip-unit">{{ items.bottom_link|extension }}</span>,&nbsp;<span>{{ items.bottom_link.size|sizify:shop_page.megabyte }}</span>
 												</span>
 												</a>
 											</div>
@@ -249,9 +246,11 @@
 
 												<ul class="promo-list">
                                                     {% for i in delivery_info %}
+                                                        {% if i.text %}
 													<li class="promo-list__item text-content text-content--small">
 														<p>{{ i.text }}</p>
 													</li>
+                                                        {% endif %}
                                                     {% endfor %}
 												</ul>
 
@@ -277,17 +276,17 @@
 									<div class="catalog-slider catalog-slider--model swiper-container js-catalog-slider">
 										<div class="catalog-slider__wrapper swiper-wrapper">
                                             {% for i in related_items %}
-											<!-- добавить проверку фото -->
 											<div class="catalog-slider__item swiper-slide">
 												<div class="c-card c-card--model">
 													<a class="c-card__img-wrap" href="{{ i.get_absolute_url }}">
+                                                    {% if i.main_photo_xxl %}
 														<div class="c-card__img-ratio">
 															<picture>
-																<source media="(min-width: 1700px)" srcset="{% if i.main_photo_xxl %} {{ i.main_photo_xxl.url }} {% endif %} 1x, {{ i.main_photo_xxl2 }} 2x">
-																<img class="c-card__img" src="{% if i.main_photo_xs %}{{ i.main_photo_xs.url }} {% endif %}" srcset="{% if i.main_photo_xs2 %}{{ i.main_photo_xs2.url }} {% endif %}2x" width="728" height="546" alt="">
+																<source media="(min-width: 1700px)" srcset="{{ i.main_photo_xxl.url }} 1x, {{ i.main_photo_xxl2 }} 2x">
+																<img class="c-card__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2.url }} 2x" width="728" height="546" alt="">
 															</picture>
-
 														</div>
+                                                    {% endif %}
 													</a>
 													<div class="c-card__content">
 														<h3 class="c-card__title">

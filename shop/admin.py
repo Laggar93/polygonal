@@ -61,7 +61,7 @@ class category_admin(SortableAdminMixin, TranslationAdmin):
 
 class item_admin(SortableAdminMixin, TranslationAdmin):
     search_fields = ['name']
-    list_display = ('name', 'category', 'is_active', 'difficulty',)
+    list_display = ('name', 'category', 'is_active', 'difficulty', 'views')
     inlines = [item_photos_admin, item_terms_admin, item_files_admin]
     readonly_fields = ('display_main_image', 'display_bottom_image', 'views')
     exclude = (

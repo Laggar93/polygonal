@@ -1,26 +1,28 @@
 {% extends 'base.html' %}
 {% block content %}
-		<!-- нет открывающей дивки -->
-		<!-- добаить переводы -->
-			<main class="page__main">
-				<section class="section section--fluid section--top">
-					<div class="section__container">
-						<div class="section__row">
-							<div class="section__col">
-								<div class="not-found">
-									<div class="not-found__row">
-										<div class="not-found__col">
-											<h1 class="not-found__title">404</h1>
-											<div class="not-found__text">
-												<p>Страница не найдена, попробуйте <a href="{% url 'first_category_for_url' %}">начать сначала</a>.</p>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-			</main>
-		</div>
+
+    <div>
+        <main class="page__main">
+            <section class="section section--fluid section--top">
+                <div class="section__container">
+                    <div class="section__row">
+                        <div class="section__col">
+                            <div class="not-found">
+                                <div class="not-found__row">
+                                    <div class="not-found__col">
+                                        <h1 class="not-found__title">404</h1>
+                                        <div class="not-found__text">
+                                            <p>{{ shop_pages.page_not_found }},
+                                                <a href="{% url 'first_category_for_url' %}">{{ shop_pages.new_start }}</a>.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
 {% endblock %}

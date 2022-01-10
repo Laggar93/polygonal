@@ -26,7 +26,7 @@ class ShopPageTranslationOptions(TranslationOptions):
     fields = ('all', 'no_items', 'increase', 'decrease', 'popular', 'alphabet', 'difficult', 'cart',
               'compare', 'figure_size', 'complexity', 'assembly_time', 'number',
               'another_items', 'to_do', 'megabyte', 'delivery', 'another_models', 'see_more',
-              'adding_cart', 'color')
+              'adding_cart', 'color', 'page_not_found', 'new_start')
 
 translator.register(category, CategoryTranslationOptions)
 translator.register(subcategory, SubcategoryTranslationOptions)

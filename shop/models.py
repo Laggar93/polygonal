@@ -83,6 +83,9 @@ class shop_page(models.Model):
     delivery = models.CharField('Доставка и оплата', max_length=255, blank=True)
     another_models = models.CharField('Другие модели', max_length=255, blank=True)
     see_more = models.CharField('Подробнее', max_length=255, blank=True)
+    page_not_found = models.CharField('Страница не найдена', max_length=255, blank=True)
+    new_start = models.CharField('Начать сначала', max_length=255, blank=True)
+
 
     class Meta:
         verbose_name = 'Статический перевод'
@@ -188,7 +191,7 @@ class subcategory(models.Model):
 class item(models.Model):
     order = models.IntegerField('Порядок показа')
     views = models.IntegerField('Количество просмотров товара', null=True,
-                              blank=True)
+                              blank=True, default=0)
     is_active = models.BooleanField('Показывать на сайте', default=True)
     keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)
     description = models.CharField('Описание', max_length=1000, blank=True)
@@ -261,6 +264,7 @@ class item(models.Model):
     __original_main_photo_xxl2 = None
     __original_bottom_photo_xxl2 = None
 
+
     def __init__(self, *args, **kwargs):
         super(item, self).__init__(*args, **kwargs)
         self.__original_main_photo_xxl2 = self.main_photo_xxl2
@@ -318,6 +322,22 @@ class item(models.Model):
                            img=self.bottom_photo_xxl2.url)
 
     display_bottom_image.short_description = 'Предпросмотр изображения нижнего блока'
+
+
+# class itemcountviews(models.Model):
+#     # привязка к пользователю (сессии пользователя)
+#     sesId = models.CharField(max_length=150, db_index=True)
+#     # привязка к посту
+#     itemId = models.ForeignKey(item, blank=True, null=True, default=None,
+#                                on_delete=models.CASCADE)
+#
+#     class Meta:
+#         verbose_name = 'Счётчик просмотров'
+#         verbose_name_plural = 'Счётчик просмотров'
+#
+#     def __str__(self):
+#         return '{}'.format(self.sesId)
+
 
 
 class item_photos(models.Model):
