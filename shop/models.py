@@ -77,6 +77,7 @@ class shop_page(models.Model):
     complexity = models.CharField('Сложность', max_length=255, blank=True)
     assembly_time = models.CharField('Время сборки', max_length=255, blank=True)
     number = models.CharField('Количество листов', max_length=255, blank=True)
+    number_size = models.CharField('Размер листа', max_length=255, blank=True)
     another_items = models.CharField('Этот товар в других форматах', max_length=255, blank=True)
     to_do = models.CharField('Что с этим делать', max_length=255, blank=True)
     megabyte = models.CharField('Мегабайт документа', max_length=255, blank=True)

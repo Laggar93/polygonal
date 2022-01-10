@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% load price_space %}
+{% load dollar_tag %}
 {% load count_views %}
 {% block content %}
-    <h1>{{ counter }}</h1>
+    <span>{{ counter }}</span>
 			<main class="page__main">
 				<div class="breadcrumbs">
 					<div class="breadcrumbs__container">
@@ -125,6 +126,12 @@
 												<div class="prop-list__value">{{ items.paper_amount }}</div>
 											</li>
                                         {% endif %}
+                                        {% if items.paper_size %}
+                                            <li class="prop-list__item">
+												<div class="prop-list__prop">{{ shop_page.number_size }}</div>
+												<div class="prop-list__value">{{ items.paper_size }}</div>
+											</li>
+                                        {% endif %}
 										</ul>
 									</div>
 									<div class="catalog-item__content style-content style-content--small">
@@ -135,7 +142,9 @@
 											<div class="price price--catalog-item">
 												<div class="price__value price__value--old">2&nbsp;100<span class="price__unit">&nbsp;₽</span></div>
 												<div class="price__value">{{ items.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span></div>
-												<div class="price__value">{{ items.price_usd }}<span class="price__unit">&nbsp;$</span></div>
+                                                {% if items.price_usd %}
+												<div class="price__value">{{ items.price_usd|dollar_tag }}<span class="price__unit">&nbsp;$</span></div>
+                                                {% endif %}
 											</div>
 										</div>
 										<!--todo: Если товар в корзине, добавляем класс-модификатор btn--active у кнопки -->
@@ -161,6 +170,7 @@
 										</div>
 									</div>
 									<div class="catalog-item__addon">
+                                    {% if related_categories %}
 										<div class="catalog-item__addon-title">{{ shop_page.another_items }}:</div>
 										<ul class="l-list">
 											{% for value in related_categories %}
@@ -170,6 +180,7 @@
 											{% endfor %}
 
 										</ul>
+                                    {% endif %}
 									</div>
 								</div>
 							</div>
@@ -182,9 +193,11 @@
 							<div class="section__col">
 								<div class="guide">
 									<div class="guide__row">
+                                    {% if items.bottom_list %}
 										<div class="guide__header">
 											<h2 class="section-title section-title--theme_blue">{{ shop_page.to_do }}</h2>
 										</div>
+                                    {% endif %}
 										<div class="guide__photo">
 											<div class="guide__img-wrap">
 												<div class="guide__img-ratio">

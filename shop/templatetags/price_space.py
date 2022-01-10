@@ -14,4 +14,3 @@ def price_space(value):
 
         return my_value
 
-
