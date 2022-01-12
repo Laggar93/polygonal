@@ -141,7 +141,7 @@
 									<div class="catalog-item__purchase">
 										<div class="catalog-item__price">
 											<div class="price price--catalog-item">
-                                            {% if discount is not None %}
+                                            {% if discount %}
                                                 {% if items.price_rub %}
 												<div class="price__value price__value--old">{{ items.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span></div>
 												<div class="price__value">{{ discount.0 }}<span class="price__unit">&nbsp;₽</span></div>
@@ -157,7 +157,8 @@
 												<div class="price__value price__value--old">{{ items.price_eur|dollar_tag }}<span class="price__unit">&nbsp;€</span></div>
                                                     <div class="price__value">{{ discount.2 }}<span class="price__unit">&nbsp;€</span></div>
                                                 {% endif %}
-                                                {% else %}
+
+                                            {% else %}
                                                 <div class="price__value">{{ items.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span></div>
                                                 <div class="price__value">{{ items.price_usd|dollar_tag }}<span class="price__unit">&nbsp;$</span></div>
                                                 <div class="price__value">{{ items.price_eur|dollar_tag }}<span class="price__unit">&nbsp;€</span></div>
