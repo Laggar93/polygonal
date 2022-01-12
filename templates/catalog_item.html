@@ -3,6 +3,9 @@
 {% load price_space %}
 {% load dollar_tag %}
 {% block content %}
+   {{ items.views }}
+    <br>
+   {{ comm }}
 			<main class="page__main">
 				<div class="breadcrumbs">
 					<div class="breadcrumbs__container">
@@ -67,7 +70,7 @@
 												<div class="g-slider-thumbs__item swiper-slide">
 													<div class="g-slider-thumbs__img-wrap">
 														<picture>
-															<img class="g-slider-thumbs__img" src="{{ items.main_photo_thumb_xs.url }}" srcset="{{ items.main_photo_thumb_xs2.url }} 2x" width="144" height="144" alt="">
+															<img class="g-slider-thumbs__img" src="{% if items.main_photo_thumb_xs %}{{ items.main_photo_thumb_xs.url }}{% endif %}" srcset="{% if items.main_photo_thumb_xs2 %}{{ items.main_photo_thumb_xs2.url }}{% endif %} 2x" width="144" height="144" alt="">
 														</picture>
 													</div>
 												</div>
@@ -76,7 +79,7 @@
                                             	<div class="g-slider-thumbs__item swiper-slide">
 													<div class="g-slider-thumbs__img-wrap">
 														<picture>
-															<img class="g-slider-thumbs__img" src="{{ i.main_photo_thumb_xs.url }}" srcset="{{ i.main_photo_thumb_xs2.url }} 2x" width="144" height="144" alt="">
+															<img class="g-slider-thumbs__img" src="{% if i.main_photo_thumb_xs %}{{ i.main_photo_thumb_xs.url }}{% endif %}" srcset="{% if i.main_photo_thumb_xs2 %}{{ i.main_photo_thumb_xs2.url }} {% endif %} 2x" width="144" height="144" alt="">
 														</picture>
 													</div>
 												</div>
@@ -138,11 +141,28 @@
 									<div class="catalog-item__purchase">
 										<div class="catalog-item__price">
 											<div class="price price--catalog-item">
-												<div class="price__value price__value--old">2&nbsp;100<span class="price__unit">&nbsp;₽</span></div>
-												<div class="price__value">{{ items.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span></div>
+                                            {% if discount is not None %}
+                                                {% if items.price_rub %}
+												<div class="price__value price__value--old">{{ items.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span></div>
+												<div class="price__value">{{ discount.0 }}<span class="price__unit">&nbsp;₽</span></div>
+                                                    {% endif %}
+
                                                 {% if items.price_usd %}
-												<div class="price__value">{{ items.price_usd|dollar_tag }}<span class="price__unit">&nbsp;$</span></div>
+												<div class="price__value price__value--old">{{ items.price_usd|dollar_tag }}<span class="price__unit">&nbsp;$</span></div>
+                                                    <div class="price__value">{{ discount.1 }}<span class="price__unit">&nbsp;$</span></div>
+
                                                 {% endif %}
+
+                                                {% if items.price_eur %}
+												<div class="price__value price__value--old">{{ items.price_eur|dollar_tag }}<span class="price__unit">&nbsp;€</span></div>
+                                                    <div class="price__value">{{ discount.2 }}<span class="price__unit">&nbsp;€</span></div>
+                                                {% endif %}
+                                                {% else %}
+                                                <div class="price__value">{{ items.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span></div>
+                                                <div class="price__value">{{ items.price_usd|dollar_tag }}<span class="price__unit">&nbsp;$</span></div>
+                                                <div class="price__value">{{ items.price_eur|dollar_tag }}<span class="price__unit">&nbsp;€</span></div>
+
+                                            {% endif %}
 											</div>
 										</div>
 										<!--todo: Если товар в корзине, добавляем класс-модификатор btn--active у кнопки -->

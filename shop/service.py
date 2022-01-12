@@ -3,7 +3,7 @@ def get_order_params(item: str) -> str:
         "alphabet": 'name',
         "asc": 'price_rub',
         "desc": '-price_rub',
-        "popular": '',#todo спросить у тимлида,
+        "popular": '-views',
         "difficult": 'difficulty'
     }
     return data.get(item)

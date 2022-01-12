@@ -8,6 +8,8 @@ from django.utils.html import format_html
 from django.utils.functional import cached_property
 from django_resized import ResizedImageField
 from PIL import Image
+from datetime import datetime
+from django.utils import timezone
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from io import BytesIO
 from django.urls import reverse
@@ -28,38 +30,47 @@ def get_file_path(instance, filename):
 
 
 def resize_img(f1, f2, fs):
-	f1 = f2
-	image1 = f1
-	img1 = Image.open(image1)
-	new_img1 = img1.convert('RGB')
-	ratio_current = new_img1.size[1] / new_img1.size[0]
-	ratio_new = fs[1] / fs[0]
-	if ratio_current <= ratio_new:
-		new_width = (fs[1] * new_img1.size[0]) / new_img1.size[1]
-		new_height = fs[1]
-		resized_new_img1 = new_img1.resize((int(new_width), int(new_height)), Image.ANTIALIAS)
-		box = ((resized_new_img1.size[0] - fs[0])/2, 0, resized_new_img1.size[0] - (resized_new_img1.size[0] - fs[0]) / 2, resized_new_img1.size[1])
-		resized_new_img1 = resized_new_img1.crop(box)
-	else:
-		new_width = fs[0]
-		new_height = (new_img1.size[1] * fs[0]) / new_img1.size[0]
-		resized_new_img1 = new_img1.resize((int(new_width), int(new_height)), Image.ANTIALIAS)
-		box = (0, (resized_new_img1.size[1] - fs[1])/2, 0, resized_new_img1.size[1] - (resized_new_img1.size[1] - fs[1]) / 2)
-		resized_new_img1 = resized_new_img1.crop(box)
-	filestream1 = BytesIO()
-	resized_new_img1.save(filestream1, 'JPEG', quality=80)
-	filestream1.seek(0)
-	name1 = f"{f1.name}"
-	return InMemoryUploadedFile(
-		filestream1, 'ImageField', name1, 'jpeg/image',
-		sys.getsizeof(filestream1), None
-	)
+    f1 = f2
+    image1 = f1
+    img1 = Image.open(image1)
+    new_img1 = img1.convert('RGB')
+    ratio_current = new_img1.size[1] / new_img1.size[0]
+    ratio_new = fs[1] / fs[0]
+    if ratio_current <= ratio_new:
+        new_width = (fs[1] * new_img1.size[0]) / new_img1.size[1]
+        new_height = fs[1]
+        resized_new_img1 = new_img1.resize((int(new_width), int(new_height)),
+                                           Image.ANTIALIAS)
+        box = ((resized_new_img1.size[0] - fs[0]) / 2, 0,
+               resized_new_img1.size[0] - (
+                       resized_new_img1.size[0] - fs[0]) / 2,
+               resized_new_img1.size[1])
+        resized_new_img1 = resized_new_img1.crop(box)
+    else:
+        new_width = fs[0]
+        new_height = (new_img1.size[1] * fs[0]) / new_img1.size[0]
+        resized_new_img1 = new_img1.resize((int(new_width), int(new_height)),
+                                           Image.ANTIALIAS)
+        box = (0, (resized_new_img1.size[1] - fs[1]) / 2, 0,
+               resized_new_img1.size[1] - (
+                       resized_new_img1.size[1] - fs[1]) / 2)
+        resized_new_img1 = resized_new_img1.crop(box)
+    filestream1 = BytesIO()
+    resized_new_img1.save(filestream1, 'JPEG', quality=80)
+    filestream1.seek(0)
+    name1 = f"{f1.name}"
+    return InMemoryUploadedFile(
+        filestream1, 'ImageField', name1, 'jpeg/image',
+        sys.getsizeof(filestream1), None
+    )
 
 
 class shop_page(models.Model):
-    all = models.CharField('Заголовок ссылки всех товаров', max_length=200, blank=True)
+    all = models.CharField('Заголовок ссылки всех товаров', max_length=200,
+                           blank=True)
     no_items = models.CharField('Товары не найдены', max_length=255, blank=True)
-    increase = models.CharField('Цена по возрастанию', max_length=255, blank=True)
+    increase = models.CharField('Цена по возрастанию', max_length=255,
+                                blank=True)
     decrease = models.CharField('Цена по убыванию', max_length=255, blank=True)
     popular = models.CharField('По популярности', max_length=255, blank=True)
     alphabet = models.CharField('По алфавиту', max_length=255, blank=True)
@@ -73,15 +84,18 @@ class shop_page(models.Model):
     assembly_time = models.CharField('Время сборки', max_length=255, blank=True)
     number = models.CharField('Количество листов', max_length=255, blank=True)
     number_size = models.CharField('Размер листа', max_length=255, blank=True)
-    another_items = models.CharField('Этот товар в других форматах', max_length=255, blank=True)
+    another_items = models.CharField('Этот товар в других форматах',
+                                     max_length=255, blank=True)
     to_do = models.CharField('Что с этим делать', max_length=255, blank=True)
-    megabyte = models.CharField('Мегабайт документа', max_length=255, blank=True)
+    megabyte = models.CharField('Мегабайт документа', max_length=255,
+                                blank=True)
     delivery = models.CharField('Доставка и оплата', max_length=255, blank=True)
-    another_models = models.CharField('Другие модели', max_length=255, blank=True)
+    another_models = models.CharField('Другие модели', max_length=255,
+                                      blank=True)
     see_more = models.CharField('Подробнее', max_length=255, blank=True)
-    page_not_found = models.CharField('Страница не найдена', max_length=255, blank=True)
+    page_not_found = models.CharField('Страница не найдена', max_length=255,
+                                      blank=True)
     new_start = models.CharField('Начать сначала', max_length=255, blank=True)
-
 
     class Meta:
         verbose_name = 'Статический перевод'
@@ -146,16 +160,15 @@ class category(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('category_view', kwargs={'category_slug':self.slug})
-
-
+        return reverse('category_view', kwargs={'category_slug': self.slug})
 
 
 class subcategory(models.Model):
     order = models.IntegerField('Порядок показа')
     is_active = models.BooleanField('Показывать на сайте', default=True)
     category = models.ForeignKey(category, on_delete=models.CASCADE,
-                                 verbose_name='Категория', related_name='in_category')
+                                 verbose_name='Категория',
+                                 related_name='in_category')
     keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)
     description = models.CharField('Описание', max_length=1000, blank=True)
     title = models.CharField('Заголовок', max_length=500)
@@ -181,13 +194,15 @@ class subcategory(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('subcategory_view', kwargs={'category_slug':self.category.slug, 'subcategory_slug': self.slug})
+        return reverse('subcategory_view',
+                       kwargs={'category_slug': self.category.slug,
+                               'subcategory_slug': self.slug})
 
 
 class item(models.Model):
     order = models.IntegerField('Порядок показа')
     views = models.IntegerField('Количество просмотров товара', null=True,
-                              blank=True, default=0)
+                                blank=True, default=0)
     is_active = models.BooleanField('Показывать на сайте', default=True)
     keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)
     description = models.CharField('Описание', max_length=1000, blank=True)
@@ -212,10 +227,11 @@ class item(models.Model):
                                        null=True)
     main_photo_xs = models.ImageField(upload_to=get_file_path, blank=True,
                                       null=True)
-    main_photo_thumb_xs2 = models.ImageField(upload_to=get_file_path, blank=True,
-                                       null=True)
+    main_photo_thumb_xs2 = models.ImageField(upload_to=get_file_path,
+                                             blank=True,
+                                             null=True)
     main_photo_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True,
-                                      null=True)
+                                            null=True)
     video_title = models.CharField('Заголовок видео-ссылки под слайдером',
                                    max_length=500, blank=True)
     video_link = models.CharField('Ссылка на видео под слайдером',
@@ -263,7 +279,7 @@ class item(models.Model):
     height = models.FloatField('Высота, мм', null=True, blank=True)
     __original_main_photo_xxl2 = None
     __original_bottom_photo_xxl2 = None
-
+    print(price_usd)
 
     def __init__(self, *args, **kwargs):
         super(item, self).__init__(*args, **kwargs)
@@ -271,8 +287,10 @@ class item(models.Model):
         self.__original_bottom_photo_xxl2 = self.bottom_photo_xxl2
 
     def get_absolute_url(self):
-        return reverse('catalog_item', kwargs={'category_slug':self.category.category.slug,
-                                               'subcategory_slug': self.category.slug, 'item_slug': self.slug})
+        return reverse('catalog_item',
+                       kwargs={'category_slug': self.category.category.slug,
+                               'subcategory_slug': self.category.slug,
+                               'item_slug': self.slug})
 
     def __str__(self):
         return str(self.category) + ': ' + str(self.name)
@@ -295,9 +313,11 @@ class item(models.Model):
             self.main_photo_xs = resize_img(self.main_photo_xs,
                                             self.main_photo_xxl2, [768, 576])
             self.main_photo_thumb_xs2 = resize_img(self.main_photo_thumb_xs2,
-                                             self.main_photo_xxl2, [288, 288])
+                                                   self.main_photo_xxl2,
+                                                   [288, 288])
             self.main_photo_thumb_xs = resize_img(self.main_photo_thumb_xs,
-                                            self.main_photo_xxl2, [144, 144])
+                                                  self.main_photo_xxl2,
+                                                  [144, 144])
         if self.bottom_photo_xxl2 != self.__original_bottom_photo_xxl2:
             self.bottom_photo_xs2 = resize_img(self.bottom_photo_xs2,
                                                self.bottom_photo_xxl2,
@@ -343,10 +363,11 @@ class item_photos(models.Model):
                                        null=True)
     main_photo_xs = models.ImageField(upload_to=get_file_path, blank=True,
                                       null=True)
-    main_photo_thumb_xs2 = models.ImageField(upload_to=get_file_path, blank=True,
-                                       null=True)
+    main_photo_thumb_xs2 = models.ImageField(upload_to=get_file_path,
+                                             blank=True,
+                                             null=True)
     main_photo_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True,
-                                      null=True)
+                                            null=True)
     __original_main_photo_xxl2 = None
 
     def __init__(self, *args, **kwargs):
@@ -374,9 +395,11 @@ class item_photos(models.Model):
             self.main_photo_xs = resize_img(self.main_photo_xs,
                                             self.main_photo_xxl2, [768, 576])
             self.main_photo_thumb_xs2 = resize_img(self.main_photo_thumb_xs2,
-                                             self.main_photo_xxl2, [288, 288])
+                                                   self.main_photo_xxl2,
+                                                   [288, 288])
             self.main_photo_thumb_xs = resize_img(self.main_photo_thumb_xs,
-                                            self.main_photo_xxl2, [144, 144])
+                                                  self.main_photo_xxl2,
+                                                  [144, 144])
         super().save(*args, **kwargs)
 
     @cached_property
@@ -425,7 +448,9 @@ class discount(models.Model):
     name = models.CharField('Название скидки', max_length=500)
     type = models.CharField('Тип', choices=[('1', 'Процент'), ('2', 'Валюта')],
                             max_length=100, blank=True)
-    amount = models.FloatField('Величина скидки', blank=True, null=True)
+    amount_ru = models.FloatField('Величина скидки рубля', blank=True, null=True)
+    amount_usd = models.FloatField('Величина скидки доллара', blank=True, null=True)
+    amount_eur = models.FloatField('Величина скидки евро', blank=True, null=True)
     starts = models.DateField('Начало действия', blank=True, null=True)
     ends = models.DateField('Окончание действия', blank=True, null=True)
 
@@ -435,6 +460,36 @@ class discount(models.Model):
     class Meta:
         verbose_name = 'материал'
         verbose_name_plural = 'Скидки'
+
+    def get_currency_price(self):
+        item = self.item.first()
+        right_now = timezone.now().date()
+        if self.starts <= right_now <= self.ends:
+            results = [None, None, None]
+            if self.type == '2':
+                if item.price_rub:
+                    ruble_price = item.price_rub - self.amount_ru
+                    print(ruble_price)
+                    results[0] = ruble_price
+                if item.price_usd:
+                    dollar_price = item.price_usd - self.amount_usd
+                    print(dollar_price)
+                    results[1] = dollar_price
+                if item.price_eur:
+                    euro_price = item.price_eur - self.amount_eur
+                    print(euro_price)
+                    results[2] = euro_price
+
+                return results
+        else:
+            if item.price_rub:
+                item.price_rub = item.price_rub
+            if item.price_usd:
+                item.price_usd = item.price_usd
+            if item.price_eur:
+                item.price_eur = item.price_eur
+
+
 
 
 class coupon(models.Model):

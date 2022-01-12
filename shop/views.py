@@ -1,9 +1,11 @@
+from datetime import datetime
+
 from django.db.models.fields import related
 from django.shortcuts import get_object_or_404, redirect
 from .models import category, subcategory, item, shop_page, item_terms, \
-    item_photos
+    item_photos, discount
 from django.shortcuts import render
-from django.db.models import F
+from django.db.models import F, Avg
 from .service import get_order_params
 
 
@@ -94,9 +96,14 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
         category__slug=subcategory_slug).exclude(slug=item_slug)[:6]
     related_categories = items.connected_items.all()
     items_photos = item_photos.objects.filter(item=items)
+    item_discounts = discount.objects.filter(item=items, subcategory=active_subcategory).first()
+    # a = item_discounts.item.first()
+
+    # item_discounts.get_currency_price()
 
     context = {
         'items': items,
+        'discount': item_discounts.get_currency_price(),
         'active_category': active_category,
         'active_subcategory': active_subcategory,
         'shop_page': shop_page.objects.first(),
@@ -104,6 +111,7 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
         'related_categories': related_categories,
         'delivery_info': delivery_info,
         'items_photos': items_photos,
+        'item_discounts': item_discounts
     }
     return render(request, 'catalog_item.html', context=context)
 

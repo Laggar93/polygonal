@@ -17,10 +17,10 @@ class ItemFilesTranslationOptions(TranslationOptions):
     fields = ('file',)
 
 class DiscountTranslationOptions(TranslationOptions):
-    fields = ('is_active', 'name', 'type', 'amount', 'starts', 'ends')
+    fields = ('is_active', 'name', 'type', 'starts', 'ends')
 
 class CouponTranslationOptions(TranslationOptions):
-    fields = ('is_active', 'name', 'usage', 'type', 'amount', 'starts', 'ends')
+    fields = ('is_active', 'name', 'usage', 'type',  'starts', 'ends')
 
 class ShopPageTranslationOptions(TranslationOptions):
     fields = ('all', 'no_items', 'increase', 'decrease', 'popular', 'alphabet', 'difficult', 'cart',
