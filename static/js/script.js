@@ -265,6 +265,16 @@ $(document).ready(function () {
 			}
 		}
 	
+		if ($this.hasClass('form-select--switch')) {
+			$customSelectOptions = {
+				placeholder: $placeholder,
+				containerCssClass: 'custom-select custom-select--switch',
+				dropdownCssClass: 'custom-dropdown custom-dropdown--switch',
+				minimumResultsForSearch: Infinity,
+				width: '100%'
+			}
+		}
+	
 		$this.select2($customSelectOptions);
 	});
 	

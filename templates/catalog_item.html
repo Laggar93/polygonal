@@ -5,9 +5,7 @@
 {% load price_space %}
 {% load dollar_tag %}
 {% block content %}
-    {{ items.views }}
-    <br>
-    {{ comm }}
+<h1>{{ currency }}</h1>
     <main class="page__main">
         <div class="breadcrumbs">
             <div class="breadcrumbs__container">
@@ -181,48 +179,41 @@
                                 <div class="catalog-item__price">
                                     <div class="price price--catalog-item">
                                         {% if discount %}
-                                            {% if items.price_rub and LANGUAGE_CODE == 'ru'%}
+                                            {% if currency == 'rub' %}
                                                 <div class="price__value price__value--old">{{ items.price_rub|price_space }}<span
                                                         class="price__unit">&nbsp;₽</span>
                                                 </div>
-                                                <div class="price__value">{{ discount.0 }}<span
+                                            {% else %}
+                                                <div class="price__value">{{ discount.0|unlocalize }}<span
                                                         class="price__unit">&nbsp;₽</span>
                                                 </div>
-
-                                            {% elif items.price_usd and LANGUAGE_CODE == 'en' %}
                                                 <div class="price__value price__value--old">{{ items.price_usd|dollar_tag|unlocalize }}<span
                                                         class="price__unit">&nbsp;$</span>
                                                 </div>
-                                                <div class="price__value">{{ discount.1 }}<span
+                                                <div class="price__value">{{ discount.1|unlocalize }}<span
                                                         class="price__unit">&nbsp;$</span>
                                                 </div>
-
-                                            {% elif items.price_eur and LANGUAGE_CODE == 'fr' %}
                                                 <div class="price__value price__value--old">{{ items.price_eur|euro_tag|unlocalize }}<span
                                                         class="price__unit">&nbsp;€</span>
                                                 </div>
-                                                <div class="price__value">{{ discount.2 }}<span
+                                                <div class="price__value">{{ discount.2|unlocalize }}<span
                                                         class="price__unit">&nbsp;€</span>
                                                 </div>
                                             {% endif %}
 
                                         {% else %}
-                                            {% if items.price_rub and LANGUAGE_CODE == 'ru' %}
+                                        {% if currency == 'rub' %}
                                             <div class="price__value">{{ items.price_rub|price_space }}<span
                                                     class="price__unit">&nbsp;₽</span>
                                             </div>
-                                           {% endif %}
-                                                {% if items.price_usd and LANGUAGE_CODE == 'en' %}
+                                            {% else %}
                                             <div class="price__value">{{ items.price_usd|dollar_tag|unlocalize }}<span
                                                     class="price__unit">&nbsp;$</span>
                                             </div>
-                                                    {% endif %}
-                                            {%  if items.price_eur and LANGUAGE_CODE == 'fr' %}
                                             <div class="price__value">{{ items.price_eur|euro_tag|unlocalize }}<span
                                                     class="price__unit">&nbsp;€</span>
                                             </div>
-                                                {% endif %}
-
+                                            {% endif %}
                                         {% endif %}
                                     </div>
                                 </div>
@@ -316,9 +307,11 @@
                                         {% endif %}
                                     </div>
                                     <div class="guide__list">
+                                        <div class="step-list">
                                         {% autoescape off %}
                                             {{ items.bottom_list }} {% endautoescape %}
                                         {% if items.bottom_link %}
+                                        </div>
                                             <div class="guide__download guide__download--mobile">
                                                 <a class="download-link"
                                                    href="{{ items.bottom_link.url }}"

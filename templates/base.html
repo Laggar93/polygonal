@@ -158,73 +158,22 @@
                                     </ul>
                                 </div>
                                 <div class="page-header__settings">
-                                    {#                                                                        <li>#}
-                                    {#                                                                            <form action="{% url 'set_language' %}"#}
-                                    {#                                                                                  method="post">{% csrf_token %}#}
-                                    {#                                                                                <input name="next" type="hidden"#}
-                                    {#                                                                                       value="{{ redirect_to }}">#}
-                                    {#                                                                                <select name="language">#}
-                                    {#                                                                                    {% get_current_language as LANGUAGE_CODE %}#}
-                                    {#                                                                                    {% get_available_languages as LANGUAGES %}#}
-                                    {#                                                                                    {% get_language_info_list for LANGUAGES as languages %}#}
-                                    {#                                                                                    {% for language in languages %}#}
-                                    {#                                                                                        <option value="{{ language.code }}"#}
-                                    {#                                                                                               {% if language.code == LANGUAGE_CODE %}#}
-                                    {#                                                                                                selected{% endif %}>#}
-                                    {#                                                                                            {{ language.name_local }}#}
-                                    {#                                                                                            ({{ language.code }})#}
-                                    {#                                                                                        </option>#}
-                                    {#                                                                                    {% endfor %}#}
-                                    {#                                                                                </select>#}
-                                    {#                                                                                <input type="submit" value="Go">#}
-                                    {#                                                                            </form>#}
-                                    {#                                                                        </li>#}
                                     <div class="page-header__lang-wrap">
-                                        <div class="dropdown">
-                                            <div class="dropdown__toggle js-dropdown-toggle">
-                                                <div class="dropdown__value">
-                                                    RU
-                                                </div>
-                                            </div>
-                                            <ul class="dropdown__list">
-                                                <li class="dropdown__item dropdown__item--active js-dropdown-option">
-                                                    RU
-                                                </li>
-                                                <li class="dropdown__item js-dropdown-option">
-                                                    ENG
-                                                </li>
-                                                <li class="dropdown__item js-dropdown-option">
-                                                    FR
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <select class="form-select form-select--switch visuallyhidden js-form-select" onchange="if (this.value) window.location.href=this.value">
+                                            <option value="/ru/shop/" {% if '/ru/' in request.path %}selected{% endif %}>RU</option>
+                                            <option value="/en/shop/" {% if '/en/' in request.path %}selected{% endif %}>EN</option>
+                                            <option value="/fr/shop/" {% if '/fr/' in request.path %}selected{% endif %}>FR</option>
+                                        </select>
                                     </div>
                                     <!--todo-->
                                     <div class="page-header__currency">
-                                        <div class="dropdown">
-                                            <div class="dropdown__toggle js-dropdown-toggle">
-                                                <div class="dropdown__value">
-                                                    {% if LANGUAGE_CODE == 'ru' %}
-                                                        ₽{% elif LANGUAGE_CODE == 'en' %}$
-                                                    {% else %} €
-                                                    {% endif %}
-                                                </div>
-                                            </div>
-                                            <ul class="dropdown__list">
-                                                {% if LANGUAGE_CODE == 'ru' %}
-                                                    <li class="dropdown__item dropdown__item--active js-dropdown-option">
-                                                        ₽
-                                                    </li>
-                                                {% else %}
-                                                    <li class="dropdown__item js-dropdown-option">
-                                                        $
-                                                    </li>
-                                                    <li class="dropdown__item js-dropdown-option">
-                                                        €
-                                                    </li>
-                                            {% endif %}
-                                            </ul>
-                                        </div>
+                                        <select class="form-select form-select--switch visuallyhidden js-form-select" onchange="if (this.value) window.location.href=this.value">
+                                            <!-- в value выводим ссылку с префиксом /ru/ -->
+                                            <option value="/ru/shop/" {% if '/ru/' in request.path %}selected{% endif %}>₽</option>
+                                            <option value="{% if '/fr/' in request.path %}/fr/shop/{% else %}/en/shop/{% endif %}" {% if '/en/' in request.path and currency == 'usd' or '/fr/' in request.path and currency == 'usd' %}selected{% endif %}>$</option>
+                                            <!-- в value выводим ссылку с префиксом /en/ или /fr/ -->
+                                            <option value="{% if '/fr/' in request.path %}/fr/shop/{% else %}/en/shop/{% endif %}?currency=eur" {% if '/en/' in request.path and currency == 'eur' or '/fr/' in request.path and currency == 'eur' %}selected{% endif %}>€</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="page-header__phone">
@@ -550,43 +499,18 @@
                                 </div>
                                 <div class="page-header__bottom-settings">
                                     <div class="page-header__lang-wrap">
-                                        <div class="dropdown">
-                                            <div class="dropdown__toggle js-dropdown-toggle">
-                                                <div class="dropdown__value">
-                                                    RU
-                                                </div>
-                                            </div>
-                                            <ul class="dropdown__list">
-                                                <li class="dropdown__item dropdown__item--active js-dropdown-option">
-                                                    RU
-                                                </li>
-                                                <li class="dropdown__item js-dropdown-option">
-                                                    ENG
-                                                </li>
-                                                <li class="dropdown__item js-dropdown-option">
-                                                    FR
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <select class="form-select form-select--switch visuallyhidden js-form-select" onchange="if (this.value) window.location.href=this.value">
+                                            <option value="/index.html" {% if '/ru/' in request.path %}selected{% endif %}>RU</option>
+                                            <option value="/index.html" {% if '/en/' in request.path %}selected{% endif %}>EN</option>
+                                            <option value="/index.html" {% if '/fr/' in request.path %}selected{% endif %}>FR</option>
+                                        </select>
                                     </div>
                                     <div class="page-header__currency">
-                                        <div class="dropdown">
-                                            <div class="dropdown__toggle js-dropdown-toggle">
-                                                <div class="dropdown__value">₽
-                                                </div>
-                                            </div>
-                                            <ul class="dropdown__list">
-                                                <li class="dropdown__item dropdown__item--active js-dropdown-option">
-                                                    ₽
-                                                </li>
-                                                <li class="dropdown__item js-dropdown-option">
-                                                    $
-                                                </li>
-                                                <li class="dropdown__item js-dropdown-option">
-                                                    €
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <select class="form-select form-select--switch visuallyhidden js-form-select" onchange="if (this.value) window.location.href=this.value">
+                                            <option value="/index.html" selected>₽</option>
+                                            <option value="/index.html">$</option>
+                                            <option value="/index.html">€</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="page-header__agreement">

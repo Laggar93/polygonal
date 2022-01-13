@@ -10,6 +10,19 @@ from .service import get_order_params
 
 
 def category_view(request, category_slug):
+
+    language = request.LANGUAGE_CODE
+
+    if language == 'en' or language == 'fr':
+        if request.GET:
+            currency = request.GET['currency']
+            if currency != 'eur':
+                currency = 'usd'
+        else:
+            currency = 'usd'
+    else:
+        currency = 'rub'
+
     query_param = request.GET.get('sort')
     get_object_or_404(category, slug=category_slug)
     active_category = category.objects.filter(slug=category_slug).first()
@@ -35,6 +48,7 @@ def category_view(request, category_slug):
         'active_category': active_category,
         'shop_page': shop_page.objects.first(),
         'query_param': query_param,
+        'currency': currency,
     }
 
     return render(request, 'catalog.html', context=context)
@@ -48,6 +62,19 @@ def first_category_for_url(request):
 
 
 def subcategory_view(request, category_slug, subcategory_slug):
+
+    language = request.LANGUAGE_CODE
+
+    if language == 'en' or language == 'fr':
+        if request.GET:
+            currency = request.GET['currency']
+            if currency != 'eur':
+                currency = 'usd'
+        else:
+            currency = 'usd'
+    else:
+        currency = 'rub'
+
     query_param = request.GET.get('sort')
     active_category = category.objects.filter(slug=category_slug).first()
     active_subcategory = subcategory.objects.filter(slug=subcategory_slug,
@@ -76,12 +103,26 @@ def subcategory_view(request, category_slug, subcategory_slug):
         'active_category': active_category,
         'shop_page': shop_page.objects.first(),
         'query_param': query_param,
+        'currency': currency,
     }
 
     return render(request, 'catalog.html', context=context)
 
 
 def catalog_item(request, category_slug, subcategory_slug, item_slug):
+    
+    language = request.LANGUAGE_CODE
+
+    if language == 'en' or language == 'fr':
+        if request.GET:
+            currency = request.GET['currency']
+            if currency != 'eur':
+                currency = 'usd'
+        else:
+            currency = 'usd'
+    else:
+        currency = 'rub'
+
     active_category = category.objects.filter(slug=category_slug).first()
     active_subcategory = subcategory.objects.filter(slug=subcategory_slug,
                                                     category=active_category).first()
@@ -101,6 +142,9 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
         output_discount = item_discounts.get_currency_price()
     else:
         output_discount = None
+
+    # 1. проверяем существование товара с этой категорий и подкатегорий в русском, английском и французском языках
+    # 2. если да, то передаем 3 ссылки в context
     
     context = {
         'items': items,
@@ -112,7 +156,8 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
         'related_categories': related_categories,
         'delivery_info': delivery_info,
         'items_photos': items_photos,
-        'item_discounts': item_discounts
+        'item_discounts': item_discounts,
+        'currency': currency,
     }
     return render(request, 'catalog_item.html', context=context)
 
