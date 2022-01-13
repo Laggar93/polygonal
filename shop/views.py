@@ -104,12 +104,14 @@ def subcategory_view(request, category_slug, subcategory_slug):
         'shop_page': shop_page.objects.first(),
         'query_param': query_param,
         'currency': currency,
+        'currency_active': True,
     }
 
     return render(request, 'catalog.html', context=context)
 
 
 def catalog_item(request, category_slug, subcategory_slug, item_slug):
+
     language = request.LANGUAGE_CODE
     if language == 'en' or language == 'fr':
         if request.GET:
@@ -121,28 +123,32 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
     else:
         currency = 'rub'
 
-
-    active_category = category.objects.filter(slug=category_slug).first()
+    active_category = category.objects.filter(slug=category_slug, is_active=True).first()
     active_subcategory = subcategory.objects.filter(slug=subcategory_slug,
-                                                    category=active_category).first()
+                                                    category=active_category, is_active=True).first()
     get_object_or_404(item, slug=item_slug,
-                      category=active_subcategory)
-    items = item.objects.filter(slug=item_slug, category=active_subcategory).first()
+                      category=active_subcategory, is_active=True)
+    items = item.objects.filter(slug=item_slug, category=active_subcategory, is_active=True).first()
 
-    item.objects.filter(slug=item_slug, category=active_subcategory).update(views=F("views") + 1)
+    item.objects.filter(slug=item_slug, category=active_subcategory, is_active=True).update(views=F("views") + 1)
 
-    if item.objects.filter(slug=item_slug, category=active_subcategory).filter(
+    if item.objects.filter(slug=item_slug, category=active_subcategory, is_active=True).filter(
+            is_active_ru=True):
+        link_ru = request.path.replace('/' + language + '/', '/ru/')
+    else:
+        link_ru = '/ru/shop/'
+
+    if item.objects.filter(slug=item_slug, category=active_subcategory, is_active=True).filter(
             is_active_en=True):
         link_en = request.path.replace('/' + language + '/', '/en/')
     else:
         link_en = '/en/shop/'
 
-    if item.objects.filter(slug=item_slug, category=active_subcategory).filter(
+    if item.objects.filter(slug=item_slug, category=active_subcategory, is_active=True).filter(
             is_active_fr=True):
         link_fr = request.path.replace('/' + language + '/', '/fr/')
     else:
         link_fr = '/fr/shop/'
-
 
     delivery_info = item_terms.objects.filter(item=items)
     related_items = item.objects.filter(
@@ -154,10 +160,6 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
         output_discount = item_discounts.get_currency_price()
     else:
         output_discount = None
-
-    # 1. проверяем существование товара с этой категорий и подкатегорий в русском, английском и французском языках
-    # 2. если да, то передаем 3 ссылки в context
-    
     
     context = {
         'items': items,
@@ -172,7 +174,8 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
         'item_discounts': item_discounts,
         'currency': currency,
         'link_en': link_en,
-        'link_fr': link_fr
+        'link_fr': link_fr,
+        'link_ru': link_ru,
     }
     return render(request, 'catalog_item.html', context=context)
 
