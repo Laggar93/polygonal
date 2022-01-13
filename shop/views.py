@@ -146,6 +146,7 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
     # 1. проверяем существование товара с этой категорий и подкатегорий в русском, английском и французском языках
     # 2. если да, то передаем 3 ссылки в context
     
+    
     context = {
         'items': items,
         'discount': output_discount,
