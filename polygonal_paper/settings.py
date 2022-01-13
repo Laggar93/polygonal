@@ -76,7 +76,6 @@ TEMPLATES = [
                 'shop.templatetags.extension',
                 'shop.templatetags.dollar_tag',
                 'shop.templatetags.euro_tag',
-                'shop.templatetags.currency_locale',
             ]
         },
     },
