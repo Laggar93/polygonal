@@ -183,16 +183,17 @@
                                                 <div class="price__value price__value--old">{{ items.price_rub|price_space }}<span
                                                         class="price__unit">&nbsp;₽</span>
                                                 </div>
-                                            {% else %}
                                                 <div class="price__value">{{ discount.0|unlocalize }}<span
                                                         class="price__unit">&nbsp;₽</span>
                                                 </div>
+                                                {% elif currency == 'usd' %}
                                                 <div class="price__value price__value--old">{{ items.price_usd|dollar_tag|unlocalize }}<span
                                                         class="price__unit">&nbsp;$</span>
                                                 </div>
                                                 <div class="price__value">{{ discount.1|unlocalize }}<span
                                                         class="price__unit">&nbsp;$</span>
                                                 </div>
+                                                {% elif currency == 'eur' %}
                                                 <div class="price__value price__value--old">{{ items.price_eur|euro_tag|unlocalize }}<span
                                                         class="price__unit">&nbsp;€</span>
                                                 </div>
@@ -206,10 +207,11 @@
                                             <div class="price__value">{{ items.price_rub|price_space }}<span
                                                     class="price__unit">&nbsp;₽</span>
                                             </div>
-                                            {% else %}
+                                            {% elif currency == 'usd' %}
                                             <div class="price__value">{{ items.price_usd|dollar_tag|unlocalize }}<span
                                                     class="price__unit">&nbsp;$</span>
                                             </div>
+                                            {% elif currency == 'eur' %}
                                             <div class="price__value">{{ items.price_eur|euro_tag|unlocalize }}<span
                                                     class="price__unit">&nbsp;€</span>
                                             </div>

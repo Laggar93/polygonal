@@ -110,9 +110,7 @@ def subcategory_view(request, category_slug, subcategory_slug):
 
 
 def catalog_item(request, category_slug, subcategory_slug, item_slug):
-    
     language = request.LANGUAGE_CODE
-
     if language == 'en' or language == 'fr':
         if request.GET:
             currency = request.GET['currency']
@@ -123,6 +121,7 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
     else:
         currency = 'rub'
 
+
     active_category = category.objects.filter(slug=category_slug).first()
     active_subcategory = subcategory.objects.filter(slug=subcategory_slug,
                                                     category=active_category).first()
@@ -131,6 +130,19 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
     items = item.objects.filter(slug=item_slug, category=active_subcategory).first()
 
     item.objects.filter(slug=item_slug, category=active_subcategory).update(views=F("views") + 1)
+
+    if item.objects.filter(slug=item_slug, category=active_subcategory).filter(
+            is_active_en=True):
+        link_en = request.path.replace('/' + language + '/', '/en/')
+    else:
+        link_en = '/en/shop/'
+
+    if item.objects.filter(slug=item_slug, category=active_subcategory).filter(
+            is_active_fr=True):
+        link_fr = request.path.replace('/' + language + '/', '/fr/')
+    else:
+        link_fr = '/fr/shop/'
+
 
     delivery_info = item_terms.objects.filter(item=items)
     related_items = item.objects.filter(
@@ -158,6 +170,8 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
         'items_photos': items_photos,
         'item_discounts': item_discounts,
         'currency': currency,
+        'link_en': link_en,
+        'link_fr': link_fr
     }
     return render(request, 'catalog_item.html', context=context)
 

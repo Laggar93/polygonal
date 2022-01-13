@@ -1,6 +1,8 @@
+from shop.models import item
+
 
 def globals(request):
     context = {
-        'discount_symbol': '',
+        'items': item.objects.all(),
     }
     return context
