@@ -68,12 +68,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'polygonal_paper.context_processor.globals'
             ],
             'builtins': [
                 'shop.templatetags.price_space',
                 'shop.templatetags.sizify',
                 'shop.templatetags.extension',
-                'shop.templatetags.dollar_tag'
+                'shop.templatetags.dollar_tag',
+                'shop.templatetags.euro_tag',
+                'shop.templatetags.currency_locale',
             ]
         },
     },

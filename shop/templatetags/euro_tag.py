@@ -3,7 +3,7 @@ register = Library()
 
 
 @register.filter()
-def dollar_tag(value):
+def euro_tag(value):
     if value:
         value_dec = str(value - int(value))[1:]
         if value_dec == '.0':

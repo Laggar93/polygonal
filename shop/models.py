@@ -96,6 +96,8 @@ class shop_page(models.Model):
     page_not_found = models.CharField('Страница не найдена', max_length=255,
                                       blank=True)
     new_start = models.CharField('Начать сначала', max_length=255, blank=True)
+    of = models.CharField('Из (сложность)', max_length=255, blank=True)
+
 
     class Meta:
         verbose_name = 'Статический перевод'
@@ -469,15 +471,12 @@ class discount(models.Model):
             if self.type == '2':
                 if item.price_rub:
                     ruble_price = item.price_rub - self.amount_ru
-                    print(ruble_price)
                     results[0] = ruble_price
                 if item.price_usd:
                     dollar_price = item.price_usd - self.amount_usd
-                    print(dollar_price)
                     results[1] = dollar_price
                 if item.price_eur:
                     euro_price = item.price_eur - self.amount_eur
-                    print(euro_price)
                     results[2] = euro_price
 
                 return results
