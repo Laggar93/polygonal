@@ -10,9 +10,7 @@ from .service import get_order_params
 
 
 def category_view(request, category_slug):
-
     language = request.LANGUAGE_CODE
-
     if language == 'en' or language == 'fr':
         if request.GET:
             currency = request.GET['currency']
@@ -24,8 +22,26 @@ def category_view(request, category_slug):
         currency = 'rub'
 
     query_param = request.GET.get('sort')
-    get_object_or_404(category, slug=category_slug)
-    active_category = category.objects.filter(slug=category_slug).first()
+    get_object_or_404(category, slug=category_slug, is_active=True)
+    active_category = category.objects.filter(slug=category_slug, is_active=True).first()
+
+    if category.objects.filter(slug=active_category,  is_active=True).filter(
+            is_active_ru=True):
+        link_ru = request.path.replace('/' + language + '/', '/ru/')
+    else:
+        link_ru = '/ru/shop/'
+
+    if category.objects.filter(slug=active_category, is_active=True).filter(
+            is_active_en=True):
+        link_en = request.path.replace('/' + language + '/', '/en/')
+    else:
+        link_en = '/en/shop/'
+
+    if category.objects.filter(slug=active_category, is_active=True).filter(
+            is_active_fr=True):
+        link_fr = request.path.replace('/' + language + '/', '/fr/')
+    else:
+        link_fr = '/fr/shop/'
 
     items = item.objects.filter(
         category__category=active_category).prefetch_related(
@@ -39,7 +55,7 @@ def category_view(request, category_slug):
                 'category').order_by(param)
 
     categories = category.objects.all()
-    subcategories = subcategory.objects.filter(category=active_category)
+    subcategories = subcategory.objects.filter(category=active_category, is_active=True)
 
     context = {
         'categories': categories,
@@ -49,13 +65,16 @@ def category_view(request, category_slug):
         'shop_page': shop_page.objects.first(),
         'query_param': query_param,
         'currency': currency,
+        'link_en': link_en,
+        'link_fr': link_fr,
+        'link_ru': link_ru,
     }
 
     return render(request, 'catalog.html', context=context)
 
 
 def first_category_for_url(request):
-    active_category = category.objects.all().first()
+    active_category = category.objects.filter(is_active=True).first()
     path = active_category.slug
 
     return redirect(category_view, category_slug=path)
@@ -76,12 +95,30 @@ def subcategory_view(request, category_slug, subcategory_slug):
         currency = 'rub'
 
     query_param = request.GET.get('sort')
-    active_category = category.objects.filter(slug=category_slug).first()
+    active_category = category.objects.filter(slug=category_slug, is_active=True).first()
     active_subcategory = subcategory.objects.filter(slug=subcategory_slug,
-                                                    category=active_category).first()
+                                                    category=active_category, is_active=True).first()
 
     get_object_or_404(subcategory, slug=subcategory_slug,
-                      category=active_category)
+                      category=active_category, is_active=True)
+
+    if subcategory.objects.filter(category=active_category, is_active=True).filter(
+            is_active_ru=True):
+        link_ru = request.path.replace('/' + language + '/', '/ru/')
+    else:
+        link_ru = '/ru/shop/'
+
+    if subcategory.objects.filter(category=active_category, is_active=True).filter(
+            is_active_en=True):
+        link_en = request.path.replace('/' + language + '/', '/en/')
+    else:
+        link_en = '/en/shop/'
+
+    if subcategory.objects.filter(category=active_category, is_active=True).filter(
+            is_active_fr=True):
+        link_fr = request.path.replace('/' + language + '/', '/fr/')
+    else:
+        link_fr = '/fr/shop/'
 
     items = item.objects.filter(category=active_subcategory).order_by(
         'name')
@@ -93,8 +130,8 @@ def subcategory_view(request, category_slug, subcategory_slug):
                 category=active_subcategory).order_by(
                 param)
 
-    categories = category.objects.all()
-    subcategories = subcategory.objects.filter(category=active_category)
+    categories = category.objects.filter(is_active=True)
+    subcategories = subcategory.objects.filter(category=active_category, is_active=True)
 
     context = {
         'categories': categories,
@@ -105,6 +142,9 @@ def subcategory_view(request, category_slug, subcategory_slug):
         'query_param': query_param,
         'currency': currency,
         'currency_active': True,
+        'link_en': link_en,
+        'link_fr': link_fr,
+        'link_ru': link_ru,
     }
 
     return render(request, 'catalog.html', context=context)
