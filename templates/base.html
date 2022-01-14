@@ -159,20 +159,38 @@
                                 </div>
                                 <div class="page-header__settings">
                                     <div class="page-header__lang-wrap">
-                                        <select class="form-select form-select--switch visuallyhidden js-form-select" onchange="if (this.value) window.location.href=this.value">
-                                            <option value="{{ link_ru }}" {% if '/ru/' in request.path %}selected{% endif %}>RU</option>
-                                            <option value="{{ link_en }}" {% if '/en/' in request.path %}selected{% endif %}>EN</option>
-                                            <option value="{{ link_fr }}" {% if '/fr/' in request.path %}selected{% endif %}>FR</option>
+                                        <select class="form-select form-select--switch visuallyhidden js-form-select"
+                                                onchange="if (this.value) window.location.href=this.value">
+                                            <option value="{{ link_ru }}"
+                                                    {% if '/ru/' in request.path %}selected{% endif %}>RU
+                                            </option>
+                                            <option value="{{ link_en }}"
+                                                    {% if '/en/' in request.path %}selected{% endif %}>EN
+                                            </option>
+                                            <option value="{{ link_fr }}"
+                                                    {% if '/fr/' in request.path %}selected{% endif %}>FR
+                                            </option>
                                         </select>
                                     </div>
                                     <!--todo-->
                                     <div class="page-header__currency">
-                                        <select class="form-select form-select--switch visuallyhidden js-form-select" onchange="if (this.value) window.location.href=this.value">
+                                        <select class="form-select form-select--switch visuallyhidden js-form-select"
+                                                onchange="if (this.value) window.location.href=this.value">
                                             <!-- в value выводим ссылку с префиксом /ru/ -->
-                                            <option value="{{ link_ru }}" {% if '/ru/' in request.path %}selected{% endif %}>₽</option>
-                                            <option value="{% if '/fr/' in request.path %}{{ link_fr }}{% else %}{{ link_en }}{% endif %}" {% if '/en/' in request.path and currency == 'usd' or '/fr/' in request.path and currency == 'usd' %}selected{% endif %}>$</option>
+                                            <option value="{{ link_ru }}"
+                                                    {% if '/ru/' in request.path %}selected{% endif %}>₽
+                                            </option>
+                                            <option value="
+                                                    {% if '/en/' in request.path %}{{ link_en }}{% else %}{{ link_fr }}{% endif %}"
+                                                    {% if '/en/' in request.path and currency == 'usd' or '/fr/' in request.path and currency == 'usd' %}selected{% endif %}>
+                                                $
+                                            </option>
                                             <!-- в value выводим ссылку с префиксом /en/ или /fr/ -->
-                                            <option value="{% if '/fr/' in request.path %}{{ link_fr }}{% else %}{{ link_en }}{% endif %}?currency=eur" {% if '/en/' in request.path and currency == 'eur' or '/fr/' in request.path and currency == 'eur' %}selected{% endif %}>€</option>
+                                            <option value="
+                                                    {% if '/fr/' in request.path %}{{ link_fr }}{% else %}{{ link_en }}{% endif %}?currency=eur"
+                                                    {% if '/en/' in request.path and currency == 'eur' or '/fr/' in request.path and currency == 'eur' %}selected{% endif %}>
+                                                €
+                                            </option>
                                         </select>
                                     </div>
                                 </div>
@@ -499,20 +517,38 @@
                                 </div>
                                 <div class="page-header__bottom-settings">
                                     <div class="page-header__lang-wrap">
-                                        <select class="form-select form-select--switch visuallyhidden js-form-select" onchange="if (this.value) window.location.href=this.value">
-                                            <option value="{{ link_ru }}" {% if '/ru/' in request.path %}selected{% endif %}>RU</option>
-                                            <option value="{{ link_en }}" {% if '/en/' in request.path %}selected{% endif %}>EN</option>
-                                            <option value="{{ link_fr }}" {% if '/fr/' in request.path %}selected{% endif %}>FR</option>
+                                        <select class="form-select form-select--switch visuallyhidden js-form-select"
+                                                onchange="if (this.value) window.location.href=this.value">
+                                            <option value="{{ link_ru }}"
+                                                    {% if '/ru/' in request.path %}selected{% endif %}>RU
+                                            </option>
+                                            <option value="{{ link_en }}"
+                                                    {% if '/en/' in request.path %}selected{% endif %}>EN
+                                            </option>
+                                            <option value="{{ link_fr }}"
+                                                    {% if '/fr/' in request.path %}selected{% endif %}>FR
+                                            </option>
                                         </select>
                                     </div>
                                     <!--todo-->
                                     <div class="page-header__currency">
-                                        <select class="form-select form-select--switch visuallyhidden js-form-select" onchange="if (this.value) window.location.href=this.value">
+                                        <select class="form-select form-select--switch visuallyhidden js-form-select"
+                                                onchange="if (this.value) window.location.href=this.value">
                                             <!-- в value выводим ссылку с префиксом /ru/ -->
-                                            <option value="{{ link_ru }}" {% if '/ru/' in request.path %}selected{% endif %}>₽</option>
-                                            <option value="{% if '/fr/' in request.path %}{{ link_fr }}{% else %}{{ link_en }}{% endif %}" {% if '/en/' in request.path and currency == 'usd' or '/fr/' in request.path and currency == 'usd' %}selected{% endif %}>$</option>
+                                            <option value="{{ link_ru }}"
+                                                    {% if '/ru/' in request.path %}selected{% endif %}>₽
+                                            </option>
+                                            <option value="
+                                                    {% if '/fr/' in request.path %}{{ link_fr }}{% else %}{{ link_en }}{% endif %}"
+                                                    {% if '/en/' in request.path and currency == 'usd' or '/fr/' in request.path and currency == 'usd' %}selected{% endif %}>
+                                                $
+                                            </option>
                                             <!-- в value выводим ссылку с префиксом /en/ или /fr/ -->
-                                            <option value="{% if '/fr/' in request.path %}{{ link_fr }}{% else %}{{ link_en }}{% endif %}?currency=eur" {% if '/en/' in request.path and currency == 'eur' or '/fr/' in request.path and currency == 'eur' %}selected{% endif %}>€</option>
+                                            <option value="
+                                                    {% if '/fr/' in request.path %}{{ link_fr }}{% else %}{{ link_en }}{% endif %}?currency=eur"
+                                                    {% if '/fr/' in request.path and currency == 'eur' or '/en/' in request.path and currency == 'eur' %}selected{% endif %}>
+                                                €
+                                            </option>
                                         </select>
                                     </div>
                                 </div>

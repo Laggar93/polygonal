@@ -89,8 +89,10 @@
                                                     <picture>
                                                         <img class="g-slider-thumbs__img"
                                                              src="
+
                                                                      {% if items.main_photo_thumb_xs %}{{ items.main_photo_thumb_xs.url }}{% endif %}"
                                                              srcset="
+
                                                                      {% if items.main_photo_thumb_xs2 %}{{ items.main_photo_thumb_xs2.url }}{% endif %} 2x"
                                                              width="144"
                                                              height="144"
@@ -105,8 +107,10 @@
                                                     <picture>
                                                         <img class="g-slider-thumbs__img"
                                                              src="
+
                                                                      {% if i.main_photo_thumb_xs %}{{ i.main_photo_thumb_xs.url }}{% endif %}"
                                                              srcset="
+
                                                                      {% if i.main_photo_thumb_xs2 %}{{ i.main_photo_thumb_xs2.url }} {% endif %} 2x"
                                                              width="144"
                                                              height="144"
@@ -185,14 +189,14 @@
                                                 <div class="price__value">{{ discount.0|unlocalize }}<span
                                                         class="price__unit">&nbsp;₽</span>
                                                 </div>
-                                                {% elif currency == 'usd' %}
+                                            {% elif currency == 'usd' %}
                                                 <div class="price__value price__value--old">{{ items.price_usd|dollar_tag|unlocalize }}<span
                                                         class="price__unit">&nbsp;$</span>
                                                 </div>
                                                 <div class="price__value">{{ discount.1|unlocalize }}<span
                                                         class="price__unit">&nbsp;$</span>
                                                 </div>
-                                                {% elif currency == 'eur' %}
+                                            {% elif currency == 'eur' %}
                                                 <div class="price__value price__value--old">{{ items.price_eur|euro_tag|unlocalize }}<span
                                                         class="price__unit">&nbsp;€</span>
                                                 </div>
@@ -202,18 +206,18 @@
                                             {% endif %}
 
                                         {% else %}
-                                        {% if currency == 'rub' %}
-                                            <div class="price__value">{{ items.price_rub|price_space }}<span
-                                                    class="price__unit">&nbsp;₽</span>
-                                            </div>
+                                            {% if currency == 'rub' %}
+                                                <div class="price__value">{{ items.price_rub|price_space }}<span
+                                                        class="price__unit">&nbsp;₽</span>
+                                                </div>
                                             {% elif currency == 'usd' %}
-                                            <div class="price__value">{{ items.price_usd|dollar_tag|unlocalize }}<span
-                                                    class="price__unit">&nbsp;$</span>
-                                            </div>
+                                                <div class="price__value">{{ items.price_usd|dollar_tag|unlocalize }}<span
+                                                        class="price__unit">&nbsp;$</span>
+                                                </div>
                                             {% elif currency == 'eur' %}
-                                            <div class="price__value">{{ items.price_eur|euro_tag|unlocalize }}<span
-                                                    class="price__unit">&nbsp;€</span>
-                                            </div>
+                                                <div class="price__value">{{ items.price_eur|euro_tag|unlocalize }}<span
+                                                        class="price__unit">&nbsp;€</span>
+                                                </div>
                                             {% endif %}
                                         {% endif %}
                                     </div>
@@ -309,21 +313,21 @@
                                     </div>
                                     <div class="guide__list">
                                         <div class="step-list">
-                                        {% autoescape off %}
-                                            {{ items.bottom_list }} {% endautoescape %}
-                                        {% if items.bottom_link %}
-                                        </div>
-                                            <div class="guide__download guide__download--mobile">
-                                                <a class="download-link"
-                                                   href="{{ items.bottom_link.url }}"
-                                                   download="{{ items.bottom_link_title }}">
-                                                    <span class="download-link__title">{{ items.bottom_link_title }}</span>
-                                                    <span class="download-link__tip">
+                                            {% autoescape off %}
+                                                {{ items.bottom_list }} {% endautoescape %}
+                                            {% if items.bottom_link %}
+                                                </div>
+                                                <div class="guide__download guide__download--mobile">
+                                                    <a class="download-link"
+                                                       href="{{ items.bottom_link.url }}"
+                                                       download="{{ items.bottom_link_title }}">
+                                                        <span class="download-link__title">{{ items.bottom_link_title }}</span>
+                                                        <span class="download-link__tip">
 													<span class="download-link__tip-unit">{{ items.bottom_link|extension }}</span>,&nbsp;<span>{{ items.bottom_link.size|sizify:shop_page.megabyte }}</span>
 												</span>
-                                                </a>
-                                            </div>
-                                        {% endif %}
+                                                    </a>
+                                                </div>
+                                            {% endif %}
                                     </div>
                                     <div class="guide__content">
                                         <div class="guide__text content">

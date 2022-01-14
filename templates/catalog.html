@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
-{% load static i18n %}
+{% load static i18n l10n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
 {% load price_space %}
 {% block content %}
     <main class="page__main">
@@ -109,12 +111,28 @@
                                                                    href="{{ item.get_absolute_url }}">{{ item.name }}</a>
                                                             </h3>
                                                             <div class="c-card__footer">
+                                                                {% if currency == 'rub' %}
                                                                 <div class="price price--c-card">
                                                                     {#																	<div class="price__value price__value--old">2&nbsp;700<span class="price__unit">&nbsp;₽</span></div>#}
-                                                                    <div class="price__value">{{ item.price_rub|price_space }}<span
+                                                                    <div class="price__value">{{ item.price_rub|price_space|unlocalize }}<span
                                                                             class="price__unit">&nbsp;₽</span>
                                                                     </div>
                                                                 </div>
+                                                                    {% elif currency == 'usd' %}
+                                                                    <div class="price price--c-card">
+                                                                    {#																	<div class="price__value price__value--old">2&nbsp;700<span class="price__unit">&nbsp;₽</span></div>#}
+                                                                    <div class="price__value">{{ item.price_usd|dollar_tag|unlocalize  }}<span
+                                                                            class="price__unit">&nbsp;$</span>
+                                                                    </div>
+                                                                </div>
+                                                                    {% elif currency == 'eur' %}
+                                                                    <div class="price price--c-card">
+                                                                    {#																	<div class="price__value price__value--old">2&nbsp;700<span class="price__unit">&nbsp;₽</span></div>#}
+                                                                    <div class="price__value">{{ item.price_rub|euro_tag|unlocalize  }}<span
+                                                                            class="price__unit">&nbsp;€</span>
+                                                                    </div>
+                                                                </div>
+                                                                    {% endif %}
                                                                 <div class="c-card__buttons">
                                                                     <!--todo: Если товар в сравнении, добавляем класс-модификатор btn-count--active у кнопки -->
                                                                     <button class="btn-count btn-count--short btn-count--card"
