@@ -172,11 +172,10 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <!--todo-->
+                                    {% if show_currency %}
                                     <div class="page-header__currency">
                                         <select class="form-select form-select--switch visuallyhidden js-form-select"
                                                 onchange="if (this.value) window.location.href=this.value">
-                                            <!-- в value выводим ссылку с префиксом /ru/ -->
                                             <option value="{{ link_ru }}"
                                                     {% if '/ru/' in request.path %}selected{% endif %}>₽
                                             </option>
@@ -185,7 +184,6 @@
                                                     {% if '/en/' in request.path and currency == 'usd' or '/fr/' in request.path and currency == 'usd' %}selected{% endif %}>
                                                 $
                                             </option>
-                                            <!-- в value выводим ссылку с префиксом /en/ или /fr/ -->
                                             <option value="
                                                     {% if '/fr/' in request.path %}{{ link_fr }}{% else %}{{ link_en }}{% endif %}?currency=eur"
                                                     {% if '/en/' in request.path and currency == 'eur' or '/fr/' in request.path and currency == 'eur' %}selected{% endif %}>
@@ -193,6 +191,7 @@
                                             </option>
                                         </select>
                                     </div>
+                                    {% endif %}
                                 </div>
                                 <div class="page-header__phone">
                                     <a class="page-header__phone-link"
@@ -530,11 +529,9 @@
                                             </option>
                                         </select>
                                     </div>
-                                    <!--todo-->
                                     <div class="page-header__currency">
                                         <select class="form-select form-select--switch visuallyhidden js-form-select"
                                                 onchange="if (this.value) window.location.href=this.value">
-                                            <!-- в value выводим ссылку с префиксом /ru/ -->
                                             <option value="{{ link_ru }}"
                                                     {% if '/ru/' in request.path %}selected{% endif %}>₽
                                             </option>
@@ -543,7 +540,6 @@
                                                     {% if '/en/' in request.path and currency == 'usd' or '/fr/' in request.path and currency == 'usd' %}selected{% endif %}>
                                                 $
                                             </option>
-                                            <!-- в value выводим ссылку с префиксом /en/ или /fr/ -->
                                             <option value="
                                                     {% if '/fr/' in request.path %}{{ link_fr }}{% else %}{{ link_en }}{% endif %}?currency=eur"
                                                     {% if '/en/' in request.path and currency == 'eur' or '/fr/' in request.path and currency == 'eur' %}selected{% endif %}>

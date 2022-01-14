@@ -25,20 +25,17 @@ def category_view(request, category_slug):
     get_object_or_404(category, slug=category_slug, is_active=True)
     active_category = category.objects.filter(slug=category_slug, is_active=True).first()
 
-    if category.objects.filter(slug=active_category,  is_active=True).filter(
-            is_active_ru=True):
+    if category.objects.filter(slug=category_slug, is_active_ru=True):
         link_ru = request.path.replace('/' + language + '/', '/ru/')
     else:
         link_ru = '/ru/shop/'
 
-    if category.objects.filter(slug=active_category, is_active=True).filter(
-            is_active_en=True):
+    if category.objects.filter(slug=category_slug, is_active_en=True):
         link_en = request.path.replace('/' + language + '/', '/en/')
     else:
         link_en = '/en/shop/'
 
-    if category.objects.filter(slug=active_category, is_active=True).filter(
-            is_active_fr=True):
+    if category.objects.filter(slug=category_slug, is_active_fr=True):
         link_fr = request.path.replace('/' + language + '/', '/fr/')
     else:
         link_fr = '/fr/shop/'
@@ -102,20 +99,17 @@ def subcategory_view(request, category_slug, subcategory_slug):
     get_object_or_404(subcategory, slug=subcategory_slug,
                       category=active_category, is_active=True)
 
-    if subcategory.objects.filter(category=active_category, is_active=True).filter(
-            is_active_ru=True):
+    if subcategory.objects.filter(category=active_category, is_active_ru=True):
         link_ru = request.path.replace('/' + language + '/', '/ru/')
     else:
         link_ru = '/ru/shop/'
 
-    if subcategory.objects.filter(category=active_category, is_active=True).filter(
-            is_active_en=True):
+    if subcategory.objects.filter(category=active_category, is_active_en=True):
         link_en = request.path.replace('/' + language + '/', '/en/')
     else:
         link_en = '/en/shop/'
 
-    if subcategory.objects.filter(category=active_category, is_active=True).filter(
-            is_active_fr=True):
+    if subcategory.objects.filter(category=active_category, is_active_fr=True):
         link_fr = request.path.replace('/' + language + '/', '/fr/')
     else:
         link_fr = '/fr/shop/'
@@ -172,20 +166,17 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
 
     item.objects.filter(slug=item_slug, category=active_subcategory, is_active=True).update(views=F("views") + 1)
 
-    if item.objects.filter(slug=item_slug, category=active_subcategory, is_active=True).filter(
-            is_active_ru=True):
+    if item.objects.filter(slug=item_slug, category=active_subcategory, is_active_ru=True):
         link_ru = request.path.replace('/' + language + '/', '/ru/')
     else:
         link_ru = '/ru/shop/'
 
-    if item.objects.filter(slug=item_slug, category=active_subcategory, is_active=True).filter(
-            is_active_en=True):
+    if item.objects.filter(slug=item_slug, category=active_subcategory, is_active_en=True):
         link_en = request.path.replace('/' + language + '/', '/en/')
     else:
         link_en = '/en/shop/'
 
-    if item.objects.filter(slug=item_slug, category=active_subcategory, is_active=True).filter(
-            is_active_fr=True):
+    if item.objects.filter(slug=item_slug, category=active_subcategory, is_active_fr=True):
         link_fr = request.path.replace('/' + language + '/', '/fr/')
     else:
         link_fr = '/fr/shop/'
@@ -216,6 +207,7 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
         'link_en': link_en,
         'link_fr': link_fr,
         'link_ru': link_ru,
+        'show_curreny': True,
     }
     return render(request, 'catalog_item.html', context=context)
 
