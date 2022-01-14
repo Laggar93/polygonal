@@ -546,7 +546,7 @@
                                             <!-- в value выводим ссылку с префиксом /en/ или /fr/ -->
                                             <option value="
                                                     {% if '/fr/' in request.path %}{{ link_fr }}{% else %}{{ link_en }}{% endif %}?currency=eur"
-                                                    {% if '/fr/' in request.path and currency == 'eur' or '/en/' in request.path and currency == 'eur' %}selected{% endif %}>
+                                                    {% if '/en/' in request.path and currency == 'eur' or '/fr/' in request.path and currency == 'eur' %}selected{% endif %}>
                                                 €
                                             </option>
                                         </select>
