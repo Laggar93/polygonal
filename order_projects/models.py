@@ -14,6 +14,7 @@ def get_file_path(instance, filename):
     filename = "%s.%s" % (uuid.uuid4(), ext)
     return os.path.join(dir, filename)
 
+
 class project_page(models.Model):
     keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)
     description = models.CharField('Описание', max_length=1000, blank=True)
@@ -25,7 +26,6 @@ class project_page(models.Model):
         return str(self.name)
 
     class Meta:
-        ordering = ['-name']
         verbose_name = 'Проекты на заказ'
         verbose_name_plural = 'Проекты на заказ'
 
@@ -33,25 +33,29 @@ class project_page(models.Model):
 class project_list(models.Model):
     order = models.IntegerField('Порядок показа')
     is_active = models.BooleanField('Показывать на сайте', default=True)
+
+    # сделать unique boolean для обозначения, что проект первый
+
     name = models.CharField('Название проекта', max_length=500)
-    project = models.ForeignKey(project_page, on_delete=models.CASCADE, verbose_name='Проекты на заказ', related_name='in_project')
+
+    # превью: 5 размеров (sm, sm2x, xs, xs2x), 1 изображение будет ResizedImageField, остальные ImageField
 
     def __str__(self):
         return str(self.name)
 
     class Meta:
+        ordering = ['order']
         verbose_name = 'Список проектов'
         verbose_name_plural = 'Списки проектов'
 
 
 class project_images(models.Model):
-    project = models.ForeignKey(project_page, on_delete=models.CASCADE, verbose_name='Проекты на заказ', related_name='in_project_lists')
+    project = models.ForeignKey(project_list, on_delete=models.CASCADE, verbose_name='Проекты на заказ')
     order = models.IntegerField('Порядок показа')
 
     main_photo_1 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    main_photo_2 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    main_photo_3 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    main_photo_4 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+
+    # 1 изображение ResizedImageField
 
     def __str__(self):
         return str(self.id)

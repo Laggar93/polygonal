@@ -5,7 +5,7 @@ class ProjectPageTranslationOptions(TranslationOptions):
     fields = ('keywords', 'description', 'title', 'name', 'text')
 
 class ProjectListTranslationOptions(TranslationOptions):
-    fields = ('is_active', 'name', 'project')
+    fields = ('is_active', 'name',)
 
 class ProjectImagesTranslationOptions(TranslationOptions):
     fields = ()

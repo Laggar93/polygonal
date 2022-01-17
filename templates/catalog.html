@@ -59,10 +59,11 @@
                                 {% if items %}
                                     <div class="c-filter__price">
                                         <select class="tabs-select form-select form-select--size_small js-form-select" onchange="if (this.value) window.location.href=this.value">
+                                            
+                                            <option value="?sort=alphabet" {% if query_param == 'alphabet' %}selected{% endif %}>{{ shop_page.alphabet }}</option>
                                             <option value="?sort=asc" {% if query_param == 'asc' %}selected{% endif %}>{{ shop_page.increase }}</option>
                                             <option value="?sort=desc" {% if query_param == 'desc' %}selected{% endif %}>{{ shop_page.decrease }}</option>
                                             <option value="?sort=popular" {% if query_param == 'popular' %}selected{% endif %}>{{ shop_page.popular }}</option>
-                                            <option value="?sort=alphabet" {% if query_param == 'alphabet' %}selected{% endif %}>{{ shop_page.alphabet }}</option>
                                             <option value="?sort=difficult" {% if query_param == 'difficult' %}selected{% endif %}>{{ shop_page.difficult }}</option>
 
                                         </select>
