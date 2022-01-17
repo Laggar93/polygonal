@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'adminsortable2',
     'django_unused_media',
     'shop.apps.ShopConfig',
+    'order_projects.apps.OrderProjectsConfig'
 ]
 
 MIDDLEWARE = [
