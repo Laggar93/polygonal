@@ -66,6 +66,9 @@ def resize_img(f1, f2, fs):
 
 
 class shop_page(models.Model):
+    keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)
+    description = models.CharField('Описание', max_length=1000, blank=True)
+    title = models.CharField('Заголовок', max_length=500)
     all = models.CharField('Заголовок ссылки всех товаров', max_length=200,
                            blank=True)
     no_items = models.CharField('Товары не найдены', max_length=255, blank=True)
