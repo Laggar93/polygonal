@@ -1,22 +1,21 @@
-from django.db import models
-import uuid
 import os
-from django.core.validators import FileExtensionValidator
-from ckeditor.fields import RichTextField
-from pytils.translit import slugify
-from django.utils.html import format_html
-from django.utils.functional import cached_property
-from django_resized import ResizedImageField
-from PIL import Image
-from datetime import datetime
-from django.utils import timezone
-from django.core.files.uploadedfile import InMemoryUploadedFile
-from io import BytesIO
-from django.urls import reverse
-
-import sys
-import string
 import random
+import string
+import sys
+import uuid
+from io import BytesIO
+
+from PIL import Image
+from ckeditor.fields import RichTextField
+from django.core.files.uploadedfile import InMemoryUploadedFile
+from django.core.validators import FileExtensionValidator
+from django.db import models
+from django.urls import reverse
+from django.utils import timezone
+from django.utils.functional import cached_property
+from django.utils.html import format_html
+from django_resized import ResizedImageField
+from pytils.translit import slugify
 
 
 def get_file_path(instance, filename):
@@ -87,19 +86,16 @@ class shop_page(models.Model):
     assembly_time = models.CharField('Время сборки', max_length=255, blank=True)
     number = models.CharField('Количество листов', max_length=255, blank=True)
     number_size = models.CharField('Размер листа', max_length=255, blank=True)
-    another_items = models.CharField('Этот товар в других форматах',
-                                     max_length=255, blank=True)
+    another_items = models.CharField('Этот товар в других форматах', max_length=255, blank=True)
     to_do = models.CharField('Что с этим делать', max_length=255, blank=True)
-    megabyte = models.CharField('Мегабайт документа', max_length=255,
-                                blank=True)
+    megabyte = models.CharField('Мегабайт документа', max_length=255, blank=True)
     delivery = models.CharField('Доставка и оплата', max_length=255, blank=True)
-    another_models = models.CharField('Другие модели', max_length=255,
-                                      blank=True)
+    another_models = models.CharField('Другие модели', max_length=255, blank=True)
     see_more = models.CharField('Подробнее', max_length=255, blank=True)
-    page_not_found = models.CharField('Страница не найдена', max_length=255,
-                                      blank=True)
+    page_not_found = models.CharField('Страница не найдена', max_length=255, blank=True)
     new_start = models.CharField('Начать сначала', max_length=255, blank=True)
     of = models.CharField('Из (сложность)', max_length=255, blank=True)
+    shop = models.CharField('Магазин', max_length=255, blank=True)
 
     class Meta:
         verbose_name = 'Статический перевод'
@@ -116,37 +112,18 @@ class category(models.Model):
     description = models.CharField('Описание', max_length=1000, blank=True)
     title = models.CharField('Заголовок', max_length=500)
     name = models.CharField('Название', max_length=300)
-    slug = models.SlugField('URL', max_length=50, allow_unicode=True,
-                            blank=True,
-                            help_text='URL генерируется автоматически из названия раздела, но может быть задан вручную',
-                            unique=True)
-    figure_size_heading = models.CharField('Заголовок размера фигуры',
-                                           default='Размер фигуры',
-                                           max_length=300)
-    paper_size_heading = models.CharField('Заголовок размера бумаги',
-                                          default='Размер бумаги',
-                                          max_length=300)
-    color_heading = models.CharField('Заголовок цвета', default='Цвет',
-                                     max_length=300)
-    difficulty_heading = models.CharField('Заголовок сложности',
-                                          default='Сложность', max_length=300)
-    time_heading = models.CharField('Заголовок времени сбора',
-                                    default='Время сбора', max_length=300)
-    paper_amount_heading = models.CharField('Заголовок количество листов',
-                                            default='Количество листов',
-                                            max_length=300)
-    connected_items_heading = models.CharField(
-        'Заголовок товара в других категориях',
-        default='Товар в других категориях', max_length=300)
-    bottom_heading = models.CharField('Заголовок нижнего блока',
-                                      default='Что с этим делать',
-                                      max_length=300)
-    delivery_heading = models.CharField('Заголовок доставки и оплаты',
-                                        default='Доставка и оплата',
-                                        max_length=300)
-    other_models_heading = models.CharField('Заголовок других моделей',
-                                            default='Другие модели',
-                                            max_length=300)
+    slug = models.SlugField('URL', max_length=50, allow_unicode=True, blank=True,
+                            help_text='URL генерируется автоматически из названия раздела, но может быть задан вручную', unique=True)
+    figure_size_heading = models.CharField('Заголовок размера фигуры', default='Размер фигуры', max_length=300)
+    paper_size_heading = models.CharField('Заголовок размера бумаги', default='Размер бумаги', max_length=300)
+    color_heading = models.CharField('Заголовок цвета', default='Цвет', max_length=300)
+    difficulty_heading = models.CharField('Заголовок сложности', default='Сложность', max_length=300)
+    time_heading = models.CharField('Заголовок времени сбора', default='Время сбора', max_length=300)
+    paper_amount_heading = models.CharField('Заголовок количество листов', default='Количество листов', max_length=300)
+    connected_items_heading = models.CharField('Заголовок товара в других категориях', default='Товар в других категориях', max_length=300)
+    bottom_heading = models.CharField('Заголовок нижнего блока', default='Что с этим делать', max_length=300)
+    delivery_heading = models.CharField('Заголовок доставки и оплаты', default='Доставка и оплата', max_length=300)
+    other_models_heading = models.CharField('Заголовок других моделей', default='Другие модели', max_length=300)
 
     def __str__(self):
         return self.name
@@ -170,15 +147,12 @@ class category(models.Model):
 class subcategory(models.Model):
     order = models.IntegerField('Порядок показа')
     is_active = models.BooleanField('Показывать на сайте', default=True)
-    category = models.ForeignKey(category, on_delete=models.CASCADE,
-                                 verbose_name='Категория',
-                                 related_name='in_category')
+    category = models.ForeignKey(category, on_delete=models.CASCADE, verbose_name='Категория', related_name='in_category')
     keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)
     description = models.CharField('Описание', max_length=1000, blank=True)
     title = models.CharField('Заголовок', max_length=500)
     name = models.CharField('Название', max_length=300)
-    slug = models.SlugField('URL', max_length=50, allow_unicode=True,
-                            blank=True,
+    slug = models.SlugField('URL', max_length=50, allow_unicode=True, blank=True,
                             help_text='URL генерируется автоматически из названия раздела, но может быть задан вручную')
 
     def __str__(self):
@@ -205,74 +179,45 @@ class subcategory(models.Model):
 
 class item(models.Model):
     order = models.IntegerField('Порядок показа')
-    views = models.IntegerField('Количество просмотров товара', null=True,
-                                blank=True, default=0)
+    views = models.IntegerField('Количество просмотров товара', null=True, blank=True, default=0)
     is_active = models.BooleanField('Показывать на сайте', default=True)
     keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)
     description = models.CharField('Описание', max_length=1000, blank=True)
     title = models.CharField('Заголовок', max_length=500)
-    slug = models.SlugField('URL', max_length=50, allow_unicode=True,
-                            blank=True,
-                            help_text='URL генерируется автоматически из названия раздела, но может быть задан вручную',
-                            unique=True)
+    slug = models.SlugField('URL', max_length=50, allow_unicode=True, blank=True,
+                            help_text='URL генерируется автоматически из названия раздела, но может быть задан вручную', unique=True)
     name = models.CharField('Название', max_length=500)
-    category = models.ForeignKey(subcategory, on_delete=models.CASCADE,
-                                 verbose_name='Категория')
-    main_photo_xxl2 = ResizedImageField('Основное изображение',
-                                        size=[2400, 1800],
-                                        crop=['middle', 'center'],
-                                        upload_to=get_file_path, quality=80,
+    category = models.ForeignKey(subcategory, on_delete=models.CASCADE, verbose_name='Категория')
+    main_photo_xxl2 = ResizedImageField('Основное изображение', size=[2400, 1800], crop=['middle', 'center'], upload_to=get_file_path, quality=80,
                                         help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.')
-    main_photo_popup = models.ImageField(upload_to=get_file_path, blank=True,
-                                         null=True)
-    main_photo_xs2 = models.ImageField(upload_to=get_file_path, blank=True,
-                                       null=True)
-    main_photo_xxl = models.ImageField(upload_to=get_file_path, blank=True,
-                                       null=True)
-    main_photo_xs = models.ImageField(upload_to=get_file_path, blank=True,
-                                      null=True)
-    main_photo_thumb_xs2 = models.ImageField(upload_to=get_file_path,
-                                             blank=True,
-                                             null=True)
-    main_photo_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True,
-                                            null=True)
-    video_title = models.CharField('Заголовок видео-ссылки под слайдером',
-                                   max_length=500, blank=True)
-    video_link = models.CharField('Ссылка на видео под слайдером',
-                                  max_length=500, blank=True)
+    main_photo_popup = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    main_photo_xs2 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    main_photo_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    main_photo_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    main_photo_thumb_xs2 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    main_photo_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    video_title = models.CharField('Заголовок видео-ссылки под слайдером', max_length=500, blank=True)
+    video_link = models.CharField('Ссылка на видео под слайдером', max_length=500, blank=True)
     figure_size = models.CharField('Размеры фигуры', max_length=100, blank=True)
     paper_size = models.CharField('Размеры листа', max_length=100, blank=True)
     color = models.CharField('Цвет', max_length=500, blank=True)
     difficulty = models.CharField('Сложность',
                                   choices=[('1', 'Низкая'), ('2', 'Средняя'),
-                                           ('3', 'Высокая')], max_length=100,
-                                  blank=True)
+                                           ('3', 'Высокая')], max_length=100, blank=True)
     time = models.CharField('Время сборки', max_length=500, blank=True)
-    paper_amount = models.CharField('Количество листов', max_length=500,
-                                    blank=True)
+    paper_amount = models.CharField('Количество листов', max_length=500, blank=True)
     about = RichTextField('Текст справа', blank=True)
-    connected_items = models.ManyToManyField('self', blank=True,
-                                             verbose_name='Связанные товары')
-    bottom_photo_xxl2 = ResizedImageField('Картинка для нижнего блока',
-                                          size=[3200, 2400],
-                                          crop=['middle', 'center'],
+    connected_items = models.ManyToManyField('self', blank=True, verbose_name='Связанные товары')
+    bottom_photo_xxl2 = ResizedImageField('Картинка для нижнего блока', size=[3200, 2400], crop=['middle', 'center'],
                                           upload_to=get_file_path, quality=80,
-                                          help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.',
-                                          blank=True)
-    bottom_photo_xs2 = models.ImageField(upload_to=get_file_path, blank=True,
-                                         null=True)
-    bottom_photo_xxl = models.ImageField(upload_to=get_file_path, blank=True,
-                                         null=True)
-    bottom_photo_xs = models.ImageField(upload_to=get_file_path, blank=True,
-                                        null=True)
+                                          help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
+    bottom_photo_xs2 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    bottom_photo_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    bottom_photo_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     bottom_list = RichTextField('Список для нижнего блока', blank=True)
-    bottom_link_title = models.CharField('Заголовок файла для нижнего блока',
-                                         max_length=500, blank=True)
-    bottom_link = models.FileField('Файл для нижнего блока',
-                                   upload_to=get_file_path,
-                                   validators=[FileExtensionValidator(['pdf'])],
-                                   help_text='Формат файла: pdf. Ограничени размера: 1 Мбайт.',
-                                   blank=True)
+    bottom_link_title = models.CharField('Заголовок файла для нижнего блока', max_length=500, blank=True)
+    bottom_link = models.FileField('Файл для нижнего блока', upload_to=get_file_path, validators=[FileExtensionValidator(['pdf'])],
+                                   help_text='Формат файла: pdf. Ограничени размера: 1 Мбайт.', blank=True)
     bottom_text = RichTextField('Текст под нижним блоком', blank=True)
     price_rub = models.FloatField('Цена в рублях', null=True, blank=True)
     price_eur = models.FloatField('Цена в евро', null=True, blank=True)
@@ -283,7 +228,6 @@ class item(models.Model):
     height = models.FloatField('Высота, мм', null=True, blank=True)
     __original_main_photo_xxl2 = None
     __original_bottom_photo_xxl2 = None
-    print(price_usd)
 
     def __init__(self, *args, **kwargs):
         super(item, self).__init__(*args, **kwargs)
@@ -291,10 +235,8 @@ class item(models.Model):
         self.__original_bottom_photo_xxl2 = self.bottom_photo_xxl2
 
     def get_absolute_url(self):
-        return reverse('catalog_item',
-                       kwargs={'category_slug': self.category.category.slug,
-                               'subcategory_slug': self.category.slug,
-                               'item_slug': self.slug})
+        return reverse('catalog_item', kwargs={'category_slug': self.category.category.slug,
+                                               'subcategory_slug': self.category.slug, 'item_slug': self.slug})
 
     def __str__(self):
         return str(self.category) + ': ' + str(self.name)
@@ -340,14 +282,12 @@ class item(models.Model):
 
     @cached_property
     def display_main_image(self):
-        return format_html('<img src="{img}" width="300">',
-                           img=self.main_photo_xxl2.url)
+        return format_html('<img src="{img}" width="300">', img=self.main_photo_xxl2.url)
 
     display_main_image.short_description = 'Предпросмотр основного изображения'
 
     def display_bottom_image(self):
-        return format_html('<img src="{img}" width="300">',
-                           img=self.bottom_photo_xxl2.url)
+        return format_html('<img src="{img}" width="300">', img=self.bottom_photo_xxl2.url)
 
     display_bottom_image.short_description = 'Предпросмотр изображения нижнего блока'
 
@@ -355,23 +295,14 @@ class item(models.Model):
 class item_photos(models.Model):
     item = models.ForeignKey(item, on_delete=models.CASCADE)
     order = models.IntegerField('Порядок показа')
-    main_photo_xxl2 = ResizedImageField('Картинка', size=[3200, 2400],
-                                        crop=['middle', 'center'],
-                                        upload_to=get_file_path, quality=80,
+    main_photo_xxl2 = ResizedImageField('Картинка', size=[3200, 2400], crop=['middle', 'center'], upload_to=get_file_path, quality=80,
                                         help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.')
-    main_photo_popup = models.ImageField(upload_to=get_file_path, blank=True,
-                                         null=True)
-    main_photo_xs2 = models.ImageField(upload_to=get_file_path, blank=True,
-                                       null=True)
-    main_photo_xxl = models.ImageField(upload_to=get_file_path, blank=True,
-                                       null=True)
-    main_photo_xs = models.ImageField(upload_to=get_file_path, blank=True,
-                                      null=True)
-    main_photo_thumb_xs2 = models.ImageField(upload_to=get_file_path,
-                                             blank=True,
-                                             null=True)
-    main_photo_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True,
-                                            null=True)
+    main_photo_popup = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    main_photo_xs2 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    main_photo_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    main_photo_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    main_photo_thumb_xs2 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    main_photo_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     __original_main_photo_xxl2 = None
 
     def __init__(self, *args, **kwargs):
@@ -408,8 +339,7 @@ class item_photos(models.Model):
 
     @cached_property
     def display_image(self):
-        return format_html('<img src="{img}" width="300">',
-                           img=self.main_photo_xxl2.url)
+        return format_html('<img src="{img}" width="300">', img=self.main_photo_xxl2.url)
 
     display_image.short_description = 'Предпросмотр'
 
@@ -431,8 +361,7 @@ class item_terms(models.Model):
 class item_files(models.Model):
     item = models.ForeignKey(item, on_delete=models.CASCADE)
     order = models.IntegerField('Порядок показа')
-    file = models.FileField('Файл', upload_to=get_file_path, validators=[
-        FileExtensionValidator(['jpg', 'zip', 'pdf'])],
+    file = models.FileField('Файл', upload_to=get_file_path, validators=[FileExtensionValidator(['jpg', 'zip', 'pdf'])],
                             help_text='Формат файла: jpg, zip или pdf. Ограничени размера: 3 Мбайт.')
 
     def __str__(self):
@@ -445,13 +374,11 @@ class item_files(models.Model):
 
 
 class discount(models.Model):
-    subcategory = models.ManyToManyField(subcategory, blank=True,
-                                         verbose_name="Категории")
+    subcategory = models.ManyToManyField(subcategory, blank=True, verbose_name="Категории")
     item = models.ManyToManyField(item, blank=True, verbose_name="Товары")
     is_active = models.BooleanField('Активная', default=True)
     name = models.CharField('Название скидки', max_length=500)
-    type = models.CharField('Тип', choices=[('1', 'Процент'), ('2', 'Валюта')],
-                            max_length=100, blank=True)
+    type = models.CharField('Тип', choices=[('1', 'Процент'), ('2', 'Валюта')], max_length=100, blank=True)
     amount_ru = models.FloatField('Величина скидки рубля', blank=True, null=True)
     amount_usd = models.FloatField('Величина скидки доллара', blank=True, null=True)
     amount_eur = models.FloatField('Величина скидки евро', blank=True, null=True)
@@ -492,19 +419,14 @@ class discount(models.Model):
 
 
 class coupon(models.Model):
-    subcategory = models.ManyToManyField(subcategory, blank=True,
-                                         verbose_name="Категории")
+    subcategory = models.ManyToManyField(subcategory, blank=True, verbose_name="Категории")
     item = models.ManyToManyField(item, blank=True, verbose_name="Товары")
     is_active = models.BooleanField('Активная', default=True)
     name = models.CharField('Название купона', max_length=500)
-    number = models.CharField('Номер купона (генерируется автоматически)',
-                              max_length=500, blank=True)
-    usage = models.CharField('Возможность использования',
-                             choices=[('1', 'Одноразовый'),
-                                      ('2', 'Многоразовый')], max_length=100,
-                             blank=True)
-    type = models.CharField('Тип', choices=[('1', 'Процент'), ('2', 'Валюта')],
-                            max_length=100, blank=True)
+    number = models.CharField('Номер купона (генерируется автоматически)', max_length=500, blank=True)
+    usage = models.CharField('Возможность использования', choices=[('1', 'Одноразовый'), ('2', 'Многоразовый')],
+                             max_length=100, blank=True)
+    type = models.CharField('Тип', choices=[('1', 'Процент'), ('2', 'Валюта')], max_length=100, blank=True)
     amount = models.FloatField('Величина купона', blank=True, null=True)
     starts = models.DateTimeField('Начало действия', blank=True, null=True)
     ends = models.DateTimeField('Окончание действия', blank=True, null=True)

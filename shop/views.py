@@ -1,11 +1,8 @@
-from datetime import datetime
-
-from django.db.models.fields import related
+from django.db.models import F
 from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import render
 from .models import category, subcategory, item, shop_page, item_terms, \
     item_photos, discount
-from django.shortcuts import render
-from django.db.models import F, Avg
 from .service import get_order_params
 
 
@@ -40,16 +37,12 @@ def category_view(request, category_slug):
     else:
         link_fr = '/fr/shop/'
 
-    items = item.objects.filter(
-        category__category=active_category).prefetch_related(
-        'category').order_by('name')
+    items = item.objects.filter(category__category=active_category).prefetch_related('category').order_by('name')
 
     if query_param:
         param = get_order_params(query_param)
         if param:
-            items = item.objects.filter(
-                category__category=active_category).prefetch_related(
-                'category').order_by(param)
+            items = item.objects.filter(category__category=active_category).prefetch_related('category').order_by(param)
 
     categories = category.objects.all()
     subcategories = subcategory.objects.filter(category=active_category, is_active=True)
@@ -66,6 +59,7 @@ def category_view(request, category_slug):
         'link_fr': link_fr,
         'link_ru': link_ru,
         'show_currency': True,
+        'show_language': True,
     }
 
     return render(request, 'catalog.html', context=context)
@@ -93,11 +87,8 @@ def subcategory_view(request, category_slug, subcategory_slug):
 
     query_param = request.GET.get('sort')
     active_category = category.objects.filter(slug=category_slug, is_active=True).first()
-    active_subcategory = subcategory.objects.filter(slug=subcategory_slug,
-                                                    category=active_category, is_active=True).first()
-
-    get_object_or_404(subcategory, slug=subcategory_slug,
-                      category=active_category, is_active=True)
+    active_subcategory = subcategory.objects.filter(slug=subcategory_slug, category=active_category, is_active=True).first()
+    get_object_or_404(subcategory, slug=subcategory_slug, category=active_category, is_active=True)
 
     if subcategory.objects.filter(category=active_category, is_active_ru=True):
         link_ru = request.path.replace('/' + language + '/', '/ru/')
@@ -114,15 +105,12 @@ def subcategory_view(request, category_slug, subcategory_slug):
     else:
         link_fr = '/fr/shop/'
 
-    items = item.objects.filter(category=active_subcategory).order_by(
-        'name')
+    items = item.objects.filter(category=active_subcategory).order_by('name')
 
     if query_param:
         param = get_order_params(query_param)
         if param:
-            items = item.objects.filter(
-                category=active_subcategory).order_by(
-                param)
+            items = item.objects.filter(category=active_subcategory).order_by(param)
 
     categories = category.objects.filter(is_active=True)
     subcategories = subcategory.objects.filter(category=active_category, is_active=True)
@@ -132,6 +120,7 @@ def subcategory_view(request, category_slug, subcategory_slug):
         'subcategories': subcategories,
         'items': items,
         'active_category': active_category,
+        'active_subcategory': active_subcategory,
         'shop_page': shop_page.objects.first(),
         'query_param': query_param,
         'currency': currency,
@@ -139,6 +128,7 @@ def subcategory_view(request, category_slug, subcategory_slug):
         'link_en': link_en,
         'link_fr': link_fr,
         'link_ru': link_ru,
+        'show_language': True,
     }
 
     return render(request, 'catalog.html', context=context)
@@ -157,12 +147,9 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
         currency = 'rub'
 
     active_category = category.objects.filter(slug=category_slug, is_active=True).first()
-    active_subcategory = subcategory.objects.filter(slug=subcategory_slug,
-                                                    category=active_category, is_active=True).first()
-    get_object_or_404(item, slug=item_slug,
-                      category=active_subcategory, is_active=True)
+    active_subcategory = subcategory.objects.filter(slug=subcategory_slug, category=active_category, is_active=True).first()
+    get_object_or_404(item, slug=item_slug, category=active_subcategory, is_active=True)
     items = item.objects.filter(slug=item_slug, category=active_subcategory, is_active=True).first()
-
     item.objects.filter(slug=item_slug, category=active_subcategory, is_active=True).update(views=F("views") + 1)
 
     if item.objects.filter(slug=item_slug, category=active_subcategory, is_active_ru=True):
@@ -181,8 +168,7 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
         link_fr = '/fr/shop/'
 
     delivery_info = item_terms.objects.filter(item=items)
-    related_items = item.objects.filter(
-        category__slug=subcategory_slug).exclude(slug=item_slug)[:6]
+    related_items = item.objects.filter(category__slug=subcategory_slug).exclude(slug=item_slug)[:6]
     related_categories = items.connected_items.all()
     items_photos = item_photos.objects.filter(item=items)
     item_discounts = discount.objects.filter(item=items, subcategory=active_subcategory).first()
@@ -207,6 +193,7 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
         'link_fr': link_fr,
         'link_ru': link_ru,
         'show_currency': True,
+        'show_language': True,
     }
     return render(request, 'catalog_item.html', context=context)
 

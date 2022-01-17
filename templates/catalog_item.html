@@ -12,12 +12,10 @@
                     <div class="breadcrumbs__col">
                         <ul class="breadcrumbs-list">
                             <li class="breadcrumbs-list__item">
-                                <a class="breadcrumbs-list__link"
-                                   href="{{ items.category.category.get_absolute_url }}">{{ items.category.category.name }}</a>
+                                <a class="breadcrumbs-list__link" href="{{ items.category.category.get_absolute_url }}">{{ items.category.category.name }}</a>
                             </li>
                             <li class="breadcrumbs-list__item">
-                                <a class="breadcrumbs-list__link"
-                                   href="{{ items.category.get_absolute_url }}">{{ items.category.name }}</a>
+                                <a class="breadcrumbs-list__link" href="{{ items.category.get_absolute_url }}">{{ items.category.name }}</a>
                             </li>
                         </ul>
                     </div>
@@ -27,9 +25,7 @@
         <section class="section section--fluid section--no-padding">
             <div class="section__container">
                 <div class="section__row">
-                    <div class="section__header">
-                        <h1 class="main-title">{{ items.name }}</h1>
-                    </div>
+                    <div class="section__header"><h1 class="main-title">{{ items.name }}</h1></div>
                 </div>
             </div>
             <div class="catalog-item">
@@ -41,19 +37,11 @@
                                     <div class="g-slider__wrapper swiper-wrapper">
                                         {% if items.main_photo_xxl2.url %}
                                             <div class="g-slider__item swiper-slide">
-                                                <a class="g-slider__img-wrap"
-                                                   href="{{ items.main_photo_xxl2.url }}"
-                                                   data-fancybox="gallery">
+                                                <a class="g-slider__img-wrap" href="{{ items.main_photo_xxl2.url }}" data-fancybox="gallery">
                                                     <div class="g-slider__img-ratio">
                                                         <picture>
-                                                            <source media="(min-width: 1700px)"
-                                                                    srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
-                                                            <img class="g-slider__img"
-                                                                 src="{{ items.main_photo_xs.url }}"
-                                                                 srcset="{{ items.main_photo_xs2.url }} 2x"
-                                                                 width="768"
-                                                                 height="576"
-                                                                 alt="">
+                                                            <source media="(min-width: 1700px)" srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
+                                                            <img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
                                                         </picture>
                                                     </div>
                                                 </a>
@@ -61,19 +49,11 @@
                                         {% endif %}
                                         {% for i in items_photos %}
                                             <div class="g-slider__item swiper-slide">
-                                                <a class="g-slider__img-wrap"
-                                                   href="{{ i.main_photo_xxl2.url }}"
-                                                   data-fancybox="gallery">
+                                                <a class="g-slider__img-wrap" href="{{ i.main_photo_xxl2.url }}" data-fancybox="gallery">
                                                     <div class="g-slider__img-ratio">
                                                         <picture>
-                                                            <source media="(min-width: 1700px)"
-                                                                    srcset="{{ i.main_photo_xxl.url }} 1x, {{ i.main_photo_xxl2.url }} 2x">
-                                                            <img class="g-slider__img"
-                                                                 src="{{ i.main_photo_xs.url }}"
-                                                                 srcset="{{ i.main_photo_xs2.url }} 2x"
-                                                                 width="768"
-                                                                 height="576"
-                                                                 alt="">
+                                                            <source media="(min-width: 1700px)" srcset="{{ i.main_photo_xxl.url }} 1x, {{ i.main_photo_xxl2.url }} 2x">
+                                                            <img class="g-slider__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
                                                         </picture>
                                                     </div>
                                                 </a>
@@ -87,16 +67,8 @@
                                             <div class="g-slider-thumbs__item swiper-slide">
                                                 <div class="g-slider-thumbs__img-wrap">
                                                     <picture>
-                                                        <img class="g-slider-thumbs__img"
-                                                             src="
-
-                                                                     {% if items.main_photo_thumb_xs %}{{ items.main_photo_thumb_xs.url }}{% endif %}"
-                                                             srcset="
-
-                                                                     {% if items.main_photo_thumb_xs2 %}{{ items.main_photo_thumb_xs2.url }}{% endif %} 2x"
-                                                             width="144"
-                                                             height="144"
-                                                             alt="">
+                                                        <img class="g-slider-thumbs__img" src="{% if items.main_photo_thumb_xs %}{{ items.main_photo_thumb_xs.url }}{% endif %}"
+                                                             srcset="{% if items.main_photo_thumb_xs2 %}{{ items.main_photo_thumb_xs2.url }}{% endif %} 2x" width="144" height="144" alt="">
                                                     </picture>
                                                 </div>
                                             </div>
@@ -105,16 +77,8 @@
                                             <div class="g-slider-thumbs__item swiper-slide">
                                                 <div class="g-slider-thumbs__img-wrap">
                                                     <picture>
-                                                        <img class="g-slider-thumbs__img"
-                                                             src="
-
-                                                                     {% if i.main_photo_thumb_xs %}{{ i.main_photo_thumb_xs.url }}{% endif %}"
-                                                             srcset="
-
-                                                                     {% if i.main_photo_thumb_xs2 %}{{ i.main_photo_thumb_xs2.url }} {% endif %} 2x"
-                                                             width="144"
-                                                             height="144"
-                                                             alt="">
+                                                        <img class="g-slider-thumbs__img" src="{% if i.main_photo_thumb_xs %}{{ i.main_photo_thumb_xs.url }}{% endif %}"
+                                                             srcset="{% if i.main_photo_thumb_xs2 %}{{ i.main_photo_thumb_xs2.url }} {% endif %} 2x" width="144" height="144" alt="">
                                                     </picture>
                                                 </div>
                                             </div>
@@ -123,9 +87,7 @@
                                 </div>
                             </div>
                             {% if items.video_link %}
-                                <a class="video-link"
-                                   href="{{ items.video_link }}"
-                                   target="_blank">
+                                <a class="video-link" href="{{ items.video_link }}" target="_blank">
                                     <div class="video-link__icon"></div>
                                     <span class="video-link__title">{{ items.video_title }}</span>
                                 </a>
@@ -149,9 +111,7 @@
                                     {% if items.difficulty %}
                                         <li class="prop-list__item">
                                             <div class="prop-list__prop">{{ shop_page.complexity }}</div>
-                                            <div class="prop-list__value">{{ items.difficulty }} {{ shop_page.of }}
-                                                3
-                                            </div>
+                                            <div class="prop-list__value">{{ items.difficulty }} {{ shop_page.of }} 3 </div>
                                         </li>
                                     {% endif %}
                                     {% if items.time %}
@@ -175,74 +135,58 @@
                                 </ul>
                             </div>
                             <div class="catalog-item__content style-content style-content--small">
-                                {% autoescape off %}
-                                    {{ items.about }} {% endautoescape %}
+                                {% autoescape off %} {{ items.about }} {% endautoescape %}
                             </div>
                             <div class="catalog-item__purchase">
                                 <div class="catalog-item__price">
                                     <div class="price price--catalog-item">
                                         {% if discount %}
                                             {% if currency == 'rub' %}
-                                                <div class="price__value price__value--old">{{ items.price_rub|price_space }}<span
-                                                        class="price__unit">&nbsp;₽</span>
+                                                <div class="price__value price__value--old">{{ items.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span>
                                                 </div>
-                                                <div class="price__value">{{ discount.0|unlocalize }}<span
-                                                        class="price__unit">&nbsp;₽</span>
+                                                <div class="price__value">{{ discount.0|unlocalize }}<span class="price__unit">&nbsp;₽</span>
                                                 </div>
                                             {% elif currency == 'usd' %}
-                                                <div class="price__value price__value--old">{{ items.price_usd|dollar_tag|unlocalize }}<span
-                                                        class="price__unit">&nbsp;$</span>
+                                                <div class="price__value price__value--old">{{ items.price_usd|dollar_tag|unlocalize }}<span class="price__unit">&nbsp;$</span>
                                                 </div>
-                                                <div class="price__value">{{ discount.1|unlocalize }}<span
-                                                        class="price__unit">&nbsp;$</span>
+                                                <div class="price__value">{{ discount.1|unlocalize }}<span class="price__unit">&nbsp;$</span>
                                                 </div>
                                             {% elif currency == 'eur' %}
-                                                <div class="price__value price__value--old">{{ items.price_eur|euro_tag|unlocalize }}<span
-                                                        class="price__unit">&nbsp;€</span>
+                                                <div class="price__value price__value--old">{{ items.price_eur|euro_tag|unlocalize }}<span class="price__unit">&nbsp;€</span>
                                                 </div>
-                                                <div class="price__value">{{ discount.2|unlocalize }}<span
-                                                        class="price__unit">&nbsp;€</span>
+                                                <div class="price__value">{{ discount.2|unlocalize }}<span class="price__unit">&nbsp;€</span>
                                                 </div>
                                             {% endif %}
 
                                         {% else %}
                                             {% if currency == 'rub' %}
-                                                <div class="price__value">{{ items.price_rub|price_space }}<span
-                                                        class="price__unit">&nbsp;₽</span>
+                                                <div class="price__value">{{ items.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span>
                                                 </div>
                                             {% elif currency == 'usd' %}
-                                                <div class="price__value">{{ items.price_usd|dollar_tag|unlocalize }}<span
-                                                        class="price__unit">&nbsp;$</span>
+                                                <div class="price__value">{{ items.price_usd|dollar_tag|unlocalize }}<span class="price__unit">&nbsp;$</span>
                                                 </div>
                                             {% elif currency == 'eur' %}
-                                                <div class="price__value">{{ items.price_eur|euro_tag|unlocalize }}<span
-                                                        class="price__unit">&nbsp;€</span>
+                                                <div class="price__value">{{ items.price_eur|euro_tag|unlocalize }}<span class="price__unit">&nbsp;€</span>
                                                 </div>
                                             {% endif %}
                                         {% endif %}
                                     </div>
                                 </div>
                                 <!--todo: Если товар в корзине, добавляем класс-модификатор btn--active у кнопки -->
-                                <button class="catalog-item__btn btn btn--buy"
-                                        type="button">
-                                    <svg class="btn__icon" viewBox="0 0 22 19"
-                                         width="22" height="19">
+                                <button class="catalog-item__btn btn btn--buy" type="button">
+                                    <svg class="btn__icon" viewBox="0 0 22 19" width="22" height="19">
                                         <use xlink:href="{% static 'img/sprite.svg' %}#icon-btn-cart"></use>
                                     </svg>
-                                    <svg class="btn__icon" viewBox="0 0 22 19"
-                                         width="22" height="19">
+                                    <svg class="btn__icon" viewBox="0 0 22 19" width="22" height="19">
                                         <use xlink:href="{% static 'img/sprite.svg' %}#icon-btn-cart-check"></use>
                                     </svg>
                                     <span class="btn__title">{{ shop_page.cart }}</span>
                                 </button>
                                 <div class="catalog-item__compare">
                                     <!--todo: Если товар в сравнении, добавляем класс-модификатор btn-count--active у кнопки -->
-                                    <button class="btn-count btn-count--card"
-                                            type="button">
+                                    <button class="btn-count btn-count--card" type="button">
                                         <div class="btn-count__icon-wrap">
-                                            <svg class="btn-count__icon"
-                                                 viewBox="0 0 32 25" width="32"
-                                                 height="25">
+                                            <svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
                                                 <use xlink:href="{% static 'img/sprite.svg' %}#icon-compare"></use>
                                             </svg>
                                         </div>
@@ -256,11 +200,9 @@
                                     <ul class="l-list">
                                         {% for value in related_categories %}
                                             <li class="l-list__item">
-                                                <a class="l-list__link"
-                                                   href="{{ value.get_absolute_url }}">{{ value.category.category.name }}</a>
+                                                <a class="l-list__link" href="{{ value.get_absolute_url }}">{{ value.category.category.name }}</a>
                                             </li>
                                         {% endfor %}
-
                                     </ul>
                                 {% endif %}
                             </div>
@@ -285,24 +227,15 @@
                                             <div class="guide__img-ratio">
                                                 {% if items.bottom_photo_xxl2 %}
                                                     <picture>
-                                                        <source media="(min-width: 1700px)"
-                                                                srcset="{{ items.bottom_photo_xxl.url }} 1x, {{ items.bottom_photo_xxl2.url }} 2x">
-                                                        <img class="guide__img"
-                                                             src="{{ items.bottom_photo_xs.url }}"
-                                                             srcset="{{ items.bottom_photo_xs2.url }} 2x"
-                                                             width="768"
-                                                             height="576"
-                                                             loading="lazy"
-                                                             alt="">
+                                                        <source media="(min-width: 1700px)" srcset="{{ items.bottom_photo_xxl.url }} 1x, {{ items.bottom_photo_xxl2.url }} 2x">
+                                                        <img class="guide__img" src="{{ items.bottom_photo_xs.url }}" srcset="{{ items.bottom_photo_xs2.url }} 2x" width="768" height="576" loading="lazy" alt="">
                                                     </picture>
                                                 {% endif %}
                                             </div>
                                         </div>
                                         {% if items.bottom_link %}
                                             <div class="guide__download">
-                                                <a class="download-link"
-                                                   href="{{ items.bottom_link.url }}"
-                                                   download="{{ items.bottom_link_title }}">
+                                                <a class="download-link" href="{{ items.bottom_link.url }}" download="{{ items.bottom_link_title }}">
                                                     <span class="download-link__title"> {{ items.bottom_link_title }}</span>
                                                     <span class="download-link__tip">
 													<span class="download-link__tip-unit">{{ items.bottom_link|extension }}</span>,&nbsp;<span>{{ items.bottom_link.size|sizify:shop_page.megabyte }}</span>
@@ -313,28 +246,19 @@
                                     </div>
                                     <div class="guide__list">
                                         <div class="step-list">
-                                            {% autoescape off %}
-                                                {{ items.bottom_list }} {% endautoescape %}
-                                            {% if items.bottom_link %}
-                                                </div>
+                                            {% autoescape off %} {{ items.bottom_list }} {% endautoescape %}
+                                            {% if items.bottom_link %}</div>
                                                 <div class="guide__download guide__download--mobile">
-                                                    <a class="download-link"
-                                                       href="{{ items.bottom_link.url }}"
-                                                       download="{{ items.bottom_link_title }}">
+                                                    <a class="download-link" href="{{ items.bottom_link.url }}" download="{{ items.bottom_link_title }}">
                                                         <span class="download-link__title">{{ items.bottom_link_title }}</span>
                                                         <span class="download-link__tip">
 													<span class="download-link__tip-unit">{{ items.bottom_link|extension }}</span>,&nbsp;<span>{{ items.bottom_link.size|sizify:shop_page.megabyte }}</span>
-												</span>
-                                                    </a>
-                                                </div>
+												</span></a></div>
                                             {% endif %}
                                     </div>
                                     <div class="guide__content">
                                         <div class="guide__text content">
-                                            {% autoescape off %}
-                                                {{ items.bottom_text }} {% endautoescape %}
-
-                                        </div>
+                                            {% autoescape off %} {{ items.bottom_text }} {% endautoescape %}</div>
                                     </div>
                                 </div>
                             </div>
@@ -351,23 +275,17 @@
                         <div class="promo promo--delivery">
                             <div class="promo__row">
                                 <div class="promo__col">
-                                    <div class="promo__header">
-                                        <h2 class="section-title">{{ shop_page.delivery }}</h2>
-                                    </div>
+                                    <div class="promo__header"><h2 class="section-title">{{ shop_page.delivery }}</h2></div>
                                     <div class="promo__content">
-
                                         <ul class="promo-list">
                                             {% for i in delivery_info %}
                                                 {% if i.text %}
-                                                    <li class="promo-list__item text-content text-content--small">
-                                                        <p>{{ i.text }}</p>
-                                                    </li>
+                                                    <li class="promo-list__item text-content text-content--small"><p>{{ i.text }}</p></li>
                                                 {% endif %}
                                             {% endfor %}
                                         </ul>
                                         <div class="promo__link-wrap">
-                                            <a class="promo__link"
-                                               href="delivery.html">{{ shop_page.see_more }}</a>
+                                            <a class="promo__link" href="delivery.html">{{ shop_page.see_more }}</a>
                                         </div>
                                     </div>
                                 </div>
@@ -395,56 +313,37 @@
                                                     {% if i.main_photo_xxl %}
                                                         <div class="c-card__img-ratio">
                                                             <picture>
-                                                                <source media="(min-width: 1700px)"
-                                                                        srcset="{{ i.main_photo_xxl.url }} 1x, {{ i.main_photo_xxl2 }} 2x">
-                                                                <img class="c-card__img"
-                                                                     src="{{ i.main_photo_xs.url }}"
-                                                                     srcset="{{ i.main_photo_xs2.url }} 2x"
-                                                                     width="728"
-                                                                     height="546"
-                                                                     alt="">
+                                                                <source media="(min-width: 1700px)" srcset="{{ i.main_photo_xxl.url }} 1x, {{ i.main_photo_xxl2 }} 2x">
+                                                                <img class="c-card__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2.url }} 2x" width="728" height="546" alt="">
                                                             </picture>
                                                         </div>
                                                     {% endif %}
                                                 </a>
                                                 <div class="c-card__content">
                                                     <h3 class="c-card__title">
-                                                        <a class="c-card__title-link"
-                                                           href="{{ i.get_absolute_url }}">{{ i.name }}</a>
+                                                        <a class="c-card__title-link" href="{{ i.get_absolute_url }}">{{ i.name }}</a>
                                                     </h3>
                                                     <div class="c-card__footer">
                                                         <div class="price price--c-card">
-                                                            <div class="price__value">{{ i.price_rub|price_space }}<span
-                                                                    class="price__unit">&nbsp;₽</span>
+                                                            <div class="price__value">{{ i.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span>
                                                             </div>
                                                         </div>
                                                         <div class="c-card__buttons">
                                                             <!--todo: Если товар в сравнении, добавляем класс-модификатор btn-count--active у кнопки -->
-                                                            <button class="btn-count btn-count--short btn-count--card"
-                                                                    type="button">
+                                                            <button class="btn-count btn-count--short btn-count--card" type="button">
                                                                 <div class="btn-count__icon-wrap">
-                                                                    <svg class="btn-count__icon"
-                                                                         viewBox="0 0 32 25"
-                                                                         width="32"
-                                                                         height="25">
+                                                                    <svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
                                                                         <use xlink:href="{% static 'img/sprite.svg' %}#icon-compare"></use>
                                                                     </svg>
                                                                 </div>
                                                                 <span class="btn-count__title">{{ shop_page.compare }}</span>
                                                             </button>
-                                                            <button class="btn-count btn-count--buy btn-count--card js-add-to-cart"
-                                                                    type="button">
+                                                            <button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
 																		<span class="btn-count__icon-wrap">
-																			<svg class="btn-count__icon"
-                                                                                 viewBox="0 0 22 19"
-                                                                                 width="22"
-                                                                                 height="19">
+																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
 																				<use xlink:href="{% static 'img/sprite.svg' %}#icon-btn-cart"></use>
 																			</svg>
-																			<svg class="btn-count__icon"
-                                                                                 viewBox="0 0 22 19"
-                                                                                 width="22"
-                                                                                 height="19">
+																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
 																				<use xlink:href="{% static 'img/sprite.svg' %}#icon-btn-cart-check"></use>
 																			</svg>
 																		</span>

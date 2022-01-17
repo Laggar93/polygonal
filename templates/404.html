@@ -1,5 +1,4 @@
 {% extends 'base.html' %}
-
 {% block content %}
     <div>
         <main class="page__main">
@@ -12,9 +11,7 @@
                                     <div class="not-found__col">
                                         <h1 class="not-found__title">404</h1>
                                         <div class="not-found__text">
-                                            <p>{{ shop_pages.page_not_found }},
-                                                <a href="{% url 'first_category_for_url' %}">{{ shop_pages.new_start }}</a>.
-                                            </p>
+                                            <p>{{ shop_pages.page_not_found }},<a href="{% url 'first_category_for_url' %}">{{ shop_pages.new_start }}</a>.</p>
                                         </div>
                                     </div>
                                 </div>
