@@ -15,22 +15,24 @@
                                 <div class="c-filter__products">
                                     <div class="tabs js-tabs">
                                         <div class="tabs__select">
-                                            <select class="tabs-select form-select c-filter__tabs-select js-form-select" onchange="if (this.value) window.location.href=this.value">
+                                            <select class="tabs-select form-select c-filter__tabs-select js-form-select"
+                                                    onchange="if (this.value) window.location.href=this.value">
                                                 {% for category in categories %}
-                                                {% if category.is_active %}
-                                                <option value="{{ category.get_absolute_url }}" {% if category.slug in request.path %}selected{% endif %}>{{ category.name }}</option>
-                                                {% endif %}
+                                                    {% if category.is_active %}
+                                                        <option value="{{ category.get_absolute_url }}"
+                                                                {% if category.slug in request.path %}selected{% endif %}>{{ category.name }}</option>
+                                                    {% endif %}
                                                 {% endfor %}
                                             </select>
                                         </div>
                                         <div class="tabs__list">
                                             <ul class="tabs-list c-filter__tabs-list">
                                                 {% for category in categories %}
-                                                {% if category.is_active %}
-                                                <li class="tabs-list__item {% if category.slug in request.path %}tabs-list__item--active{% endif %}">
-                                                    <a class="tabs-list__link" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
-                                                </li>
-                                                {% endif %}
+                                                    {% if category.is_active %}
+                                                        <li class="tabs-list__item {% if category.slug in request.path %}tabs-list__item--active{% endif %}">
+                                                            <a class="tabs-list__link" href="{{ category.get_absolute_url }}">{{ category.name }}</a>
+                                                        </li>
+                                                    {% endif %}
                                                 {% endfor %}
                                             </ul>
                                         </div>
@@ -45,43 +47,47 @@
                                             <a class="filter-list__item-link
 													{% if request.path == active_category.get_absolute_url %}
 													filter-list__item-link--active {% endif %}"
-                                               href="{{ active_category.get_absolute_url }}">{% if items %} {{ shop_page.all }} {% endif %} {% if not items %} {{ shop_page.all }} {% endif %}</a>
+                                               href="{{ active_category.get_absolute_url }}">{% if items %} {{ shop_page.all }} {% endif %} {% if not items %}
+                                                {{ shop_page.all }} {% endif %}</a>
                                         </li>
 
-                                    {% if items or not items %}
-                                        {% for i in subcategories %}
-                                            <li class="filter-list__item">
-                                                <a class="filter-list__item-link
+                                        {% if items or not items %}
+                                            {% for i in subcategories %}
+                                                <li class="filter-list__item">
+                                                    <a class="filter-list__item-link
                                                         {% if request.path == i.get_absolute_url %}
                                                         filter-list__item-link--active {% endif %}"
-                                                   data-url="{{ request.path }}"
-                                                   href="{{ i.get_absolute_url }}">{{ i.name }}</a>
-                                            </li>
-                                        {% endfor %}
-                                    {% endif %}
+                                                       data-url="{{ request.path }}"
+                                                       href="{{ i.get_absolute_url }}">{{ i.name }}</a>
+                                                </li>
+                                            {% endfor %}
+                                        {% endif %}
                                     </ul>
                                 </div>
-                            {% if items %}
-                                <div class="c-filter__price">
-                                    <select class="tabs-select form-select form-select--size_small js-form-select" onchange="if (this.value) window.location.href=this.value">
-                                        <option value="?sort=asc" {% if query_param == 'asc' %}selected{% endif %}>{{ shop_page.increase }}</option>
-                                        <option value="?sort=desc" {% if query_param == 'desc' %}selected{% endif %}>{{ shop_page.decrease }}</option>
-                                        <option value="?sort=popular" {% if query_param == 'popular' %}selected{% endif %}>{{ shop_page.popular }}</option>
-                                        <option value="?sort=alphabet" {% if query_param == 'alphabet' %}selected{% endif %}>{{ shop_page.alphabet }}</option>
-                                        <option value="?sort=difficult" {% if query_param == 'difficult' %}selected{% endif %}>{{ shop_page.difficult }}</option>
+                                {% if items %}
+                                    <div class="c-filter__price">
+                                        <select class="tabs-select form-select form-select--size_small js-form-select"
+                                                onchange="if (this.value) window.location.href=this.value">
+                                            <option value="?sort=asc" {% if query_param == 'asc' %}selected{% endif %}>{{ shop_page.increase }}</option>
+                                            <option value="?sort=desc" {% if query_param == 'desc' %}selected{% endif %}>{{ shop_page.decrease }}</option>
+                                            <option value="?sort=popular" {% if query_param == 'popular' %}selected{% endif %}>{{ shop_page.popular }}</option>
+                                            <option value="?sort=alphabet"
+                                                    {% if query_param == 'alphabet' %}selected{% endif %}>{{ shop_page.alphabet }}</option>
+                                            <option value="?sort=difficult"
+                                                    {% if query_param == 'difficult' %}selected{% endif %}>{{ shop_page.difficult }}</option>
 
-                                    </select>
-                                </div>
-                            {% endif %}
+                                        </select>
+                                    </div>
+                                {% endif %}
                             </div>
                             <div class="tabs-content c-filter__tabs-content tabs-content--active">
                                 <div class="catalog-list">
                                     <div class="catalog-list__row">
 
                                         {% if not items %}
-                                        <div class="catalog-list__col">
-                                        <p>{{ shop_page.no_items }}</p>
-                                        </div>
+                                            <div class="catalog-list__col">
+                                                <p>{{ shop_page.no_items }}</p>
+                                            </div>
                                         {% endif %}
 
                                         {% for item in items %}
@@ -112,27 +118,27 @@
                                                             </h3>
                                                             <div class="c-card__footer">
                                                                 {% if currency == 'rub' %}
-                                                                <div class="price price--c-card">
-                                                                    {#																	<div class="price__value price__value--old">2&nbsp;700<span class="price__unit">&nbsp;₽</span></div>#}
-                                                                    <div class="price__value">{{ item.price_rub|price_space|unlocalize }}<span
-                                                                            class="price__unit">&nbsp;₽</span>
-                                                                    </div>
-                                                                </div>
-                                                                    {% elif currency == 'usd' %}
                                                                     <div class="price price--c-card">
-                                                                    {#																	<div class="price__value price__value--old">2&nbsp;700<span class="price__unit">&nbsp;₽</span></div>#}
-                                                                    <div class="price__value">{{ item.price_usd|dollar_tag|unlocalize  }}<span
-                                                                            class="price__unit">&nbsp;$</span>
+                                                                        {#																	<div class="price__value price__value--old">2&nbsp;700<span class="price__unit">&nbsp;₽</span></div>#}
+                                                                        <div class="price__value">{{ item.price_rub|price_space|unlocalize }}<span
+                                                                                class="price__unit">&nbsp;₽</span>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                    {% elif currency == 'eur' %}
+                                                                {% elif currency == 'usd' %}
                                                                     <div class="price price--c-card">
-                                                                    {#																	<div class="price__value price__value--old">2&nbsp;700<span class="price__unit">&nbsp;₽</span></div>#}
-                                                                    <div class="price__value">{{ item.price_rub|euro_tag|unlocalize  }}<span
-                                                                            class="price__unit">&nbsp;€</span>
+                                                                        {#																	<div class="price__value price__value--old">2&nbsp;700<span class="price__unit">&nbsp;₽</span></div>#}
+                                                                        <div class="price__value">{{ item.price_usd|dollar_tag|unlocalize }}<span
+                                                                                class="price__unit">&nbsp;$</span>
+                                                                        </div>
                                                                     </div>
-                                                                </div>
-                                                                    {% endif %}
+                                                                {% elif currency == 'eur' %}
+                                                                    <div class="price price--c-card">
+                                                                        {#																	<div class="price__value price__value--old">2&nbsp;700<span class="price__unit">&nbsp;₽</span></div>#}
+                                                                        <div class="price__value">{{ item.price_rub|euro_tag|unlocalize }}<span
+                                                                                class="price__unit">&nbsp;€</span>
+                                                                        </div>
+                                                                    </div>
+                                                                {% endif %}
                                                                 <div class="c-card__buttons">
                                                                     <!--todo: Если товар в сравнении, добавляем класс-модификатор btn-count--active у кнопки -->
                                                                     <button class="btn-count btn-count--short btn-count--card"

@@ -65,6 +65,7 @@ def category_view(request, category_slug):
         'link_en': link_en,
         'link_fr': link_fr,
         'link_ru': link_ru,
+        'show_currency': True,
     }
 
     return render(request, 'catalog.html', context=context)
@@ -78,7 +79,6 @@ def first_category_for_url(request):
 
 
 def subcategory_view(request, category_slug, subcategory_slug):
-
     language = request.LANGUAGE_CODE
 
     if language == 'en' or language == 'fr':
@@ -135,7 +135,7 @@ def subcategory_view(request, category_slug, subcategory_slug):
         'shop_page': shop_page.objects.first(),
         'query_param': query_param,
         'currency': currency,
-        'currency_active': True,
+        'show_currency': True,
         'link_en': link_en,
         'link_fr': link_fr,
         'link_ru': link_ru,
@@ -145,7 +145,6 @@ def subcategory_view(request, category_slug, subcategory_slug):
 
 
 def catalog_item(request, category_slug, subcategory_slug, item_slug):
-
     language = request.LANGUAGE_CODE
     if language == 'en' or language == 'fr':
         if request.GET:
@@ -191,7 +190,7 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
         output_discount = item_discounts.get_currency_price()
     else:
         output_discount = None
-    
+
     context = {
         'items': items,
         'discount': output_discount,
@@ -207,7 +206,7 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
         'link_en': link_en,
         'link_fr': link_fr,
         'link_ru': link_ru,
-        'show_curreny': True,
+        'show_currency': True,
     }
     return render(request, 'catalog_item.html', context=context)
 

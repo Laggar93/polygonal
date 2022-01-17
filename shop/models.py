@@ -98,7 +98,6 @@ class shop_page(models.Model):
     new_start = models.CharField('Начать сначала', max_length=255, blank=True)
     of = models.CharField('Из (сложность)', max_length=255, blank=True)
 
-
     class Meta:
         verbose_name = 'Статический перевод'
         verbose_name_plural = 'Статические переводы'
@@ -487,8 +486,6 @@ class discount(models.Model):
                 item.price_usd = item.price_usd
             if item.price_eur:
                 item.price_eur = item.price_eur
-
-
 
 
 class coupon(models.Model):
