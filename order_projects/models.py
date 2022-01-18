@@ -72,9 +72,8 @@ class project_list(models.Model):
                                         help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.')
     main_photo_sm = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     main_photo_sm2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    main_photo_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     main_photo_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    main_photo_xs2 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    main_photo_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
 
     def __str__(self):
         return str(self.name)
@@ -89,9 +88,8 @@ class project_list(models.Model):
         if self.product_original_img != self.product_original_img:
             self.main_photo_sm = resize_img(self.main_photo_sm, self.product_original_img, [1600, 1200])
             self.main_photo_sm2x = resize_img(self.main_photo_sm2x, self.product_original_img, [1536, 1152])
-            self.main_photo_xxl = resize_img(self.main_photo_xxl, self.product_original_img, [1200, 900])
             self.main_photo_xs = resize_img(self.main_photo_xs, self.product_original_img, [768, 576])
-            self.main_photo_xs2 = resize_img(self.main_photo_xs2, self.product_original_img, [288, 288])
+            self.main_photo_xs2 = resize_img(self.main_photo_xs2x, self.product_original_img, [288, 288])
 
 
 class project_images(models.Model):
