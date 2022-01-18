@@ -7,40 +7,47 @@
         <section class="section section--fluid section--top">
             <div class="section__container">
                 <div class="section__row">
-                    <div class="section__header">
-                        <h1 class="main-title">Реализуем индивидуальный проект на&nbsp;заказ</h1>
-                        <div class="section__text">
-                            <p>Мы&nbsp;можем спроектировать абсолютно любую фигуру для изготовления из&nbsp;металла, микрогофрокартона или бумаги&nbsp;&mdash; для дома, улицы, торговых центров,
-                                парков, мероприятий. Изготовим партию сувенирной продукции на&nbsp;праздник.</p>
+                    {% for i in project_items %}
+                        <div class="section__header">
+                            <h1 class="main-title">{{ i.name }}</h1>
+                            <div class="section__text">
+                                {% autoescape off %} {{ i.text }} {% endautoescape %}
+                            </div>
                         </div>
-                    </div>
+                    {% endfor %}
                     <div class="section__col">
                         <div class="project-intro js-gallery">
                             <div class="project-intro__row">
-                                <div class="project-intro__col">
-                                    <div class="photo-card">
-                                        <a class="photo-card__link js-gallery-base" href="{% static 'img/product-original-img.jpg' %}" data-fancybox="gallery-1">
-                                            <div class="photo-card__img-wrap">
-                                                <div class="photo-card__img-ratio">
-                                                    <picture>
-                                                        <source media="(min-width: 768px)" srcset="{% static 'img/photo-card-intro-img-01--sm.jpg' %} 1x, {% static 'img/photo-card-intro-img-01--sm@2x.jpg' %} 2x">
-                                                        <source media="(min-width: 0)" srcset="{% static 'img/photo-card-intro-img-01--xs.jpg' %} 1x, {% static 'img/photo-card-intro-img-01--xs@2x.jpg 2x' %}">
-                                                        <img class="photo-card__img" src="{% static 'img/photo-card-intro-img-01--sm.jpg' %}" srcset="{% static 'img/photo-card-intro-img-01--sm@2x.jpg' %} 2x" alt="">
-                                                    </picture>
+                                {% for i in project_lists %}
+                                    {% if i.first_display %}
+                                        <div class="project-intro__col">
+                                            <div class="photo-card">
+                                                {% if i.product_original_img %}
+                                                    <a class="photo-card__link js-gallery-base" href="{{ i.product_original_img.url }}" data-fancybox="gallery-1">
+                                                {% endif %}
+                                                <div class="photo-card__img-wrap">
+                                                    <div class="photo-card__img-ratio">
+                                                        <picture>
+                                                            <source media="(min-width: 768px)" srcset="{{ i.product_original_img.url  }} 1x, {{ i.product_original_img.url }} 2x">
+                                                            <source media="(min-width: 0)" srcset="{{ i.main_photo_sm.url }} 1x, {{ i.main_photo_sm2x.url }}">
+                                                            <img class="photo-card__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2.url }} 2x" alt="">
+                                                        </picture>
+                                                    </div>
+                                                </div>
+                                                </a>
+                                                <div class="photo-card__gallery">
+                                                    <a class="photo-card__gallery-link" href="{{ i.main_photo_sm.url }}" data-fancybox="gallery-1"></a>
+                                                    <a class="photo-card__gallery-link" href="{{ i.main_photo_sm2x.url }}" data-fancybox="gallery-1"></a>
+                                                    <a class="photo-card__gallery-link" href="{{ i.main_photo_xs.url }}" data-fancybox="gallery-1"></a>
+                                                    <a class="photo-card__gallery-link" href="{{ i.main_photo_xs2x.url }}" data-fancybox="gallery-1"></a>
                                                 </div>
                                             </div>
-                                        </a>
-                                        <div class="photo-card__gallery">
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/1600/1200" data-fancybox="gallery-1"></a>
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/1200/1400" data-fancybox="gallery-1"></a>
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/600/1500" data-fancybox="gallery-1"></a>
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/1100/1600" data-fancybox="gallery-1"></a>
                                         </div>
-                                    </div>
-                                </div>
-                                <div class="project-intro__desc">
-                                    <a class="project-intro__link js-gallery-trigger" href="#">Олени для декора торговых центров в&nbsp;Швейцарии</a>
-                                </div>
+                                        <div class="project-intro__desc">
+                                            <a class="project-intro__link js-gallery-trigger" href="#">{{ i.name }}</a>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
                             </div>
                         </div>
                     </div>
@@ -51,98 +58,35 @@
             <div class="section__container">
                 <div class="section__row">
                     <div class="section__header">
-                        <div class="section-title section-title--theme_blue">Другие проекты</div>
+                        <div class="section-title section-title--theme_blue">{{ shop_page.another_projects }}</div>
                     </div>
                     <div class="section__col">
                         <ul class="project-list">
+                        {% for i in project_lists %}
                             <li class="project-list__item">
                                 <div class="project-list__card">
                                     <div class="photo-card">
-                                        <a class="photo-card__link" href="{% static 'img/product-original-img.jpg' %}" data-fancybox="gallery-2">
+                                        <a class="photo-card__link" href="{% if i.product_original_img %}{{ i.product_original_img.url }}{% endif %}" data-fancybox="gallery-2">
                                             <div class="photo-card__img-wrap">
                                                 <div class="photo-card__img-ratio">
                                                     <picture>
-                                                        <img class="photo-card__img" src="{% static 'img/photo-card-img-01--xs.jpg' %}" srcset="{% static 'img/photo-card-img-01--xs@2x.jpg' %} 2x" alt="">
+                                                        <img class="photo-card__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2x.url }} 2x" alt="">
                                                     </picture>
                                                 </div>
                                             </div>
-                                            <h3 class="photo-card__title">Оформление интерьера детского сада в&nbsp;Новосибирске</h3>
+                                            <h3 class="photo-card__title">{{ i.name }}</h3>
                                         </a>
                                         <div class="photo-card__gallery">
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/1600/1200" data-fancybox="gallery-2"></a>
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/1200/1400" data-fancybox="gallery-2"></a>
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/600/1500" data-fancybox="gallery-2"></a>
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/1100/1600" data-fancybox="gallery-2"></a>
+                                            <a class="photo-card__gallery-link" href="{{ i.main_photo_sm.url }}" data-fancybox="gallery-2"></a>
+                                            <a class="photo-card__gallery-link" href="{{ i.main_photo_sm2x.url }}" data-fancybox="gallery-2"></a>
+                                            <a class="photo-card__gallery-link" href="{{ i.main_photo_xs.url }}" data-fancybox="gallery-2"></a>
+                                            <a class="photo-card__gallery-link" href="{{ i.main_photo_xs2x.url }}" data-fancybox="gallery-2"></a>
                                         </div>
                                     </div>
                                 </div>
                             </li>
-                            <li class="project-list__item">
-                                <div class="project-list__card">
-                                    <div class="photo-card">
-                                        <a class="photo-card__link" href="{% static 'img/product-original-img.jpg' %}" data-fancybox="gallery-3">
-                                            <div class="photo-card__img-wrap">
-                                                <div class="photo-card__img-ratio">
-                                                    <picture>
-                                                        <img class="photo-card__img" src="{% static 'img/photo-card-img-02--xs.jpg' %}" srcset="{% static 'img/photo-card-img-02--xs@2x.jpg' %} 2x" alt="">
-                                                    </picture>
-                                                </div>
-                                            </div>
-                                            <h3 class="photo-card__title">Оформление интерьера детского сада в&nbsp;Новосибирске</h3>
-                                        </a>
-                                        <div class="photo-card__gallery">
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/1600/1200" data-fancybox="gallery-3"></a>
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/1200/1400" data-fancybox="gallery-3"></a>
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/600/1500" data-fancybox="gallery-3"></a>
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/1100/1600" data-fancybox="gallery-3"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="project-list__item">
-                                <div class="project-list__card">
-                                    <div class="photo-card">
-                                        <a class="photo-card__link" href="{% static 'img/product-original-img.jpg' %}" data-fancybox="gallery-4">
-                                            <div class="photo-card__img-wrap">
-                                                <div class="photo-card__img-ratio">
-                                                    <picture>
-                                                        <img class="photo-card__img" src="{% static 'img/photo-card-img-01--xs.jpg' %}" srcset="{% static 'img/photo-card-img-01--xs@2x.jpg' %} 2x" alt="">
-                                                    </picture>
-                                                </div>
-                                            </div>
-                                            <h3 class="photo-card__title">Оформление интерьера детского сада в&nbsp;Новосибирске</h3>
-                                        </a>
-                                        <div class="photo-card__gallery">
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/1600/1200" data-fancybox="gallery-4"></a>
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/1200/1400" data-fancybox="gallery-4"></a>
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/600/1500" data-fancybox="gallery-4"></a>
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/1100/1600" data-fancybox="gallery-4"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                            <li class="project-list__item">
-                                <div class="project-list__card">
-                                    <div class="photo-card">
-                                        <a class="photo-card__link" href="{% static 'img/product-original-img.jpg' %}" data-fancybox="gallery-5">
-                                            <div class="photo-card__img-wrap">
-                                                <div class="photo-card__img-ratio">
-                                                    <picture>
-                                                        <img class="photo-card__img" src="{% static 'img/photo-card-img-02--xs.jpg' %}" srcset="{% static 'img/photo-card-img-02--xs@2x.jpg' %} 2x" alt="">
-                                                    </picture>
-                                                </div>
-                                            </div>
-                                            <h3 class="photo-card__title">Оформление интерьера детского сада в&nbsp;Новосибирске</h3>
-                                        </a>
-                                        <div class="photo-card__gallery">
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/1600/1200" data-fancybox="gallery-5"></a>
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/1200/1400" data-fancybox="gallery-5"></a>
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/600/1500" data-fancybox="gallery-5"></a>
-                                            <a class="photo-card__gallery-link" href="https://picsum.photos/1100/1600" data-fancybox="gallery-5"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
+                        {% endfor %}
+
                         </ul>
                     </div>
                 </div>

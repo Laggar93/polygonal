@@ -97,6 +97,7 @@ class shop_page(models.Model):
     of = models.CharField('Из (сложность)', max_length=255, blank=True)
     shop = models.CharField('Магазин', max_length=255, blank=True)
     projects = models.CharField('Проекты на заказ', max_length=255, blank=True)
+    another_projects = models.CharField('Другие проекты', max_length=255, blank=True)
 
     class Meta:
         verbose_name = 'Статический перевод'
