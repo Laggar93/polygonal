@@ -95,7 +95,7 @@ class project_list(models.Model):
 class project_images(models.Model):
     project = models.ForeignKey(project_list, on_delete=models.CASCADE, verbose_name='Проекты на заказ')
     order = models.IntegerField('Порядок показа')
-    main_photo_1 = ResizedImageField(upload_to=get_file_path, blank=True, null=True)
+    product_original_img = ResizedImageField(upload_to=get_file_path, blank=True, null=True)
 
     def __str__(self):
         return str(self.id)
