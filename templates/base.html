@@ -241,10 +241,10 @@
                                     <ul class="page-header__nav-list">
                                         <li class="page-header__nav-item">
                                             <!--todo: пример активной ссылки -->
-                                            <a class="page-header__nav-link page-header__nav-link--active" href="{% url 'first_category_for_url' %}">{{ shop_page.shop }}</a>
+                                            <a class="page-header__nav-link {% if '/shop/' in request.path %}page-header__nav-link--active{% endif %}" href="{% url 'first_category_for_url' %}">{{ shop_page.shop }}</a>
                                         </li>
                                         <li class="page-header__nav-item">
-                                            <a class="page-header__nav-link" href="{% url 'projects' %}">{{ shop_page.projects }}</a></li>
+                                            <a class="page-header__nav-link {% if '/projects/' in request.path %}page-header__nav-link--active{% endif %}" href="{% url 'projects' %}">{{ shop_page.projects }}</a></li>
                                         <li class="page-header__nav-item">
                                             <a class="page-header__nav-link" href="articles.html">Советы по сборке</a></li>
                                         <li class="page-header__nav-item">

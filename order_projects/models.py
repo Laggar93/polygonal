@@ -75,6 +75,7 @@ class project_list(models.Model):
     main_photo_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     main_photo_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
 
+
     def __str__(self):
         return str(self.name)
 
@@ -85,15 +86,15 @@ class project_list(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        if self.product_original_img != self.product_original_img:
-            self.main_photo_sm = resize_img(self.main_photo_sm, self.product_original_img, [1024, 768])
-            self.main_photo_original = resize_img(self.main_photo_original, self.product_original_img, [1600, 1200])
-            self.main_photo_xs = resize_img(self.main_photo_xs, self.product_original_img, [768, 576])
-            self.main_photo_xs2 = resize_img(self.main_photo_xs2x, self.product_original_img, [1536, 1152])
+        if self.main_photo != self.main_photo:
+            self.main_photo_sm = resize_img(self.main_photo_sm, self.main_photo, [1024, 768])
+            self.main_photo_original = resize_img(self.main_photo_original, self.main_photo, [1600, 1200])
+            self.main_photo_xs = resize_img(self.main_photo_xs, self.main_photo, [768, 576])
+            self.main_photo_xs2 = resize_img(self.main_photo_xs2x, self.main_photo, [1536, 1152])
 
 
 class project_images(models.Model):
-    project = models.ForeignKey(project_list, on_delete=models.CASCADE, verbose_name='Проекты на заказ')
+    project = models.ForeignKey(project_list, on_delete=models.CASCADE, related_name='gallery_images', verbose_name='Проекты на заказ')
     order = models.IntegerField('Порядок показа')
     main_photo = ResizedImageField('Основное изображение', size=[1600, 1200], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                         help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.')

@@ -8,47 +8,45 @@
             <div class="section__container">
                 <div class="section__row">
                     <div class="section__header">
-                        <h1 class="main-title">{{ project_page.name }}</h1>
+                        <h1 class="main-title">{{ project_pages.name }}</h1>
                         <div class="section__text">
-                            {% autoescape off %} {{ project_page.text }} {% endautoescape %}
-                         </div>
+                            {% autoescape off %} {{ project_pages.text }} {% endautoescape %}
+                        </div>
                     </div>
                     <div class="section__col">
-                        <div class="project-intro js-gallery">
-                            <div class="project-intro__row">
-                                {% for i in project_lists %}
-                                    {% if i.first_display %}
+                        {% for i in project_lists %}
+                            {% if i.first_display %}
+                                <div class="project-intro js-gallery">
+                                    <div class="project-intro__row">
                                         <div class="project-intro__col">
                                             <div class="photo-card">
-                                                {% if i.product_original_img %}
-                                                    <a class="photo-card__link js-gallery-base" href="{{ i.product_original_img.url }}" data-fancybox="gallery-1">
-                                                
-                                                <div class="photo-card__img-wrap">
-                                                    <div class="photo-card__img-ratio">
-                                                        <picture>
-                                                            <source media="(min-width: 768px)" srcset="{{ i.product_original_img.url  }} 1x, {{ i.product_original_img.url }} 2x">
-                                                            <source media="(min-width: 0)" srcset="{{ i.main_photo_sm.url }} 1x, {{ i.main_photo_sm2x.url }}">
-                                                            <img class="photo-card__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2.url }} 2x" alt="">
-                                                        </picture>
-                                                    </div>
-                                                </div>
-                                                </a>
+                                                {% if i.main_photo.url %}
+                                                    <a class="photo-card__link js-gallery-base" href="{{ i.main_photo.url }}" data-fancybox="gallery-1">
+                                                        <div class="photo-card__img-wrap">
+                                                            <div class="photo-card__img-ratio">
+                                                                <picture>
+                                                                    <source media="(min-width: 0)" srcset="{{ i.main_photo_sm.url }} 1x, {{ i.main_photo_sm2x.url }}">
+                                                                    <img class="photo-card__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2.url }} 2x" alt="">
+                                                                </picture>
+                                                            </div>
+                                                        </div>
+                                                    </a>
                                                 {% endif %}
-                                                <div class="photo-card__gallery">
-                                                    <a class="photo-card__gallery-link" href="{{ i.main_photo_sm.url }}" data-fancybox="gallery-1"></a>
-                                                    <a class="photo-card__gallery-link" href="{{ i.main_photo_sm2x.url }}" data-fancybox="gallery-1"></a>
-                                                    <a class="photo-card__gallery-link" href="{{ i.main_photo_xs.url }}" data-fancybox="gallery-1"></a>
-                                                    <a class="photo-card__gallery-link" href="{{ i.main_photo_xs2x.url }}" data-fancybox="gallery-1"></a>
-                                                </div>
+                                                {% for item in i.gallery_images.all %}
+                                                    <div class="photo-card__gallery">
+                                                        <a class="photo-card__gallery-link" href="{{ item.main_photo.url }}" data-fancybox="gallery-1"></a>
+                                                    </div>
+                                                {% endfor %}
                                             </div>
                                         </div>
                                         <div class="project-intro__desc">
                                             <a class="project-intro__link js-gallery-trigger" href="#">{{ i.name }}</a>
                                         </div>
-                                    {% endif %}
-                                {% endfor %}
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
                     </div>
                 </div>
             </div>
@@ -61,31 +59,33 @@
                     </div>
                     <div class="section__col">
                         <ul class="project-list">
-                        {% for i in project_lists %}
-                            <li class="project-list__item">
-                                <div class="project-list__card">
-                                    <div class="photo-card">
-                                        <a class="photo-card__link" href="{% if i.product_original_img %}{{ i.product_original_img.url }}{% endif %}" data-fancybox="gallery-2">
-                                            <div class="photo-card__img-wrap">
-                                                <div class="photo-card__img-ratio">
-                                                    <picture>
-                                                        <img class="photo-card__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2x.url }} 2x" alt="">
-                                                    </picture>
+                            {% for j in project_lists %}
+                                {% if not j.first_display %}
+                                    <li class="project-list__item">
+                                        <div class="project-list__card">
+                                            {% if j.main_photo %}
+                                                <div class="photo-card">
+                                                    <a class="photo-card__link" href="{{ j.main_photo.url }}" data-fancybox="gallery-2">
+                                                        <div class="photo-card__img-wrap">
+                                                            <div class="photo-card__img-ratio">
+                                                                <picture>
+                                                                    <img class="photo-card__img" src="{{ j.main_photo_xs.url }}" srcset="{{ j.main_photo_xs2x.url }} 2x" alt="">
+                                                                </picture>
+                                                            </div>
+                                                        </div>
+                                                        <h3 class="photo-card__title">{{ j.name }}</h3>
+                                                    </a>
+                                                    {% for value in j.gallery_images.all %}
+                                                        <div class="photo-card__gallery">
+                                                            <a class="photo-card__gallery-link" href="{{ value.main_photo.url }}" data-fancybox="gallery-2"></a>
+                                                        </div>
+                                                    {% endfor %}
                                                 </div>
-                                            </div>
-                                            <h3 class="photo-card__title">{{ i.name }}</h3>
-                                        </a>
-                                        <div class="photo-card__gallery">
-                                            <a class="photo-card__gallery-link" href="{{ i.main_photo_sm.url }}" data-fancybox="gallery-2"></a>
-                                            <a class="photo-card__gallery-link" href="{{ i.main_photo_sm2x.url }}" data-fancybox="gallery-2"></a>
-                                            <a class="photo-card__gallery-link" href="{{ i.main_photo_xs.url }}" data-fancybox="gallery-2"></a>
-                                            <a class="photo-card__gallery-link" href="{{ i.main_photo_xs2x.url }}" data-fancybox="gallery-2"></a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        {% endfor %}
-
+                                                </div>
+                                            {% endif %}
+                                    </li>
+                                {% endif %}
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
