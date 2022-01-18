@@ -201,6 +201,7 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
 def handler404(request, exception):
     shop_pages = shop_page.objects.all().first()
     context = {
-        'shop_pages': shop_pages
+        'shop_page': shop_page.objects.first(),
+
     }
     return render(request, '404.html', status=404, context=context)

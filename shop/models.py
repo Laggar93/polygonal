@@ -96,6 +96,7 @@ class shop_page(models.Model):
     new_start = models.CharField('Начать сначала', max_length=255, blank=True)
     of = models.CharField('Из (сложность)', max_length=255, blank=True)
     shop = models.CharField('Магазин', max_length=255, blank=True)
+    projects = models.CharField('Проекты на заказ', max_length=255, blank=True)
 
     class Meta:
         verbose_name = 'Статический перевод'
@@ -172,9 +173,7 @@ class subcategory(models.Model):
         super().save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return reverse('subcategory_view',
-                       kwargs={'category_slug': self.category.slug,
-                               'subcategory_slug': self.slug})
+        return reverse('subcategory_view', kwargs={'category_slug': self.category.slug, 'subcategory_slug': self.slug})
 
 
 class item(models.Model):
@@ -249,31 +248,16 @@ class item(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.main_photo_xxl2 != self.__original_main_photo_xxl2:
-            self.main_photo_popup = resize_img(self.main_photo_popup,
-                                               self.main_photo_xxl2,
-                                               [1600, 1200])
-            self.main_photo_xs2 = resize_img(self.main_photo_xs2,
-                                             self.main_photo_xxl2, [1536, 1152])
-            self.main_photo_xxl = resize_img(self.main_photo_xxl,
-                                             self.main_photo_xxl2, [1200, 900])
-            self.main_photo_xs = resize_img(self.main_photo_xs,
-                                            self.main_photo_xxl2, [768, 576])
-            self.main_photo_thumb_xs2 = resize_img(self.main_photo_thumb_xs2,
-                                                   self.main_photo_xxl2,
-                                                   [288, 288])
-            self.main_photo_thumb_xs = resize_img(self.main_photo_thumb_xs,
-                                                  self.main_photo_xxl2,
-                                                  [144, 144])
+            self.main_photo_popup = resize_img(self.main_photo_popup, self.main_photo_xxl2, [1600, 1200])
+            self.main_photo_xs2 = resize_img(self.main_photo_xs2, self.main_photo_xxl2, [1536, 1152])
+            self.main_photo_xxl = resize_img(self.main_photo_xxl, self.main_photo_xxl2, [1200, 900])
+            self.main_photo_xs = resize_img(self.main_photo_xs, self.main_photo_xxl2, [768, 576])
+            self.main_photo_thumb_xs2 = resize_img(self.main_photo_thumb_xs2, self.main_photo_xxl2, [288, 288])
+            self.main_photo_thumb_xs = resize_img(self.main_photo_thumb_xs, self.main_photo_xxl2, [144, 144])
         if self.bottom_photo_xxl2 != self.__original_bottom_photo_xxl2:
-            self.bottom_photo_xs2 = resize_img(self.bottom_photo_xs2,
-                                               self.bottom_photo_xxl2,
-                                               [1536, 1152])
-            self.bottom_photo_xxl = resize_img(self.bottom_photo_xxl,
-                                               self.bottom_photo_xxl2,
-                                               [1200, 900])
-            self.bottom_photo_xs = resize_img(self.bottom_photo_xs,
-                                              self.bottom_photo_xxl2,
-                                              [768, 576])
+            self.bottom_photo_xs2 = resize_img(self.bottom_photo_xs2, self.bottom_photo_xxl2, [1536, 1152])
+            self.bottom_photo_xxl = resize_img(self.bottom_photo_xxl, self.bottom_photo_xxl2,[1200, 900])
+            self.bottom_photo_xs = resize_img(self.bottom_photo_xs, self.bottom_photo_xxl2, [768, 576])
         if not self.slug:
             self.slug = slugify(self.name)[:50]
         else:
@@ -320,21 +304,12 @@ class item_photos(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.main_photo_xxl2 != self.__original_main_photo_xxl2:
-            self.main_photo_popup = resize_img(self.main_photo_popup,
-                                               self.main_photo_xxl2,
-                                               [1600, 1200])
-            self.main_photo_xs2 = resize_img(self.main_photo_xs2,
-                                             self.main_photo_xxl2, [1536, 1152])
-            self.main_photo_xxl = resize_img(self.main_photo_xxl,
-                                             self.main_photo_xxl2, [1200, 900])
-            self.main_photo_xs = resize_img(self.main_photo_xs,
-                                            self.main_photo_xxl2, [768, 576])
-            self.main_photo_thumb_xs2 = resize_img(self.main_photo_thumb_xs2,
-                                                   self.main_photo_xxl2,
-                                                   [288, 288])
-            self.main_photo_thumb_xs = resize_img(self.main_photo_thumb_xs,
-                                                  self.main_photo_xxl2,
-                                                  [144, 144])
+            self.main_photo_popup = resize_img(self.main_photo_popup, self.main_photo_xxl2, [1600, 1200])
+            self.main_photo_xs2 = resize_img(self.main_photo_xs2, self.main_photo_xxl2, [1536, 1152])
+            self.main_photo_xxl = resize_img(self.main_photo_xxl, self.main_photo_xxl2, [1200, 900])
+            self.main_photo_xs = resize_img(self.main_photo_xs, self.main_photo_xxl2, [768, 576])
+            self.main_photo_thumb_xs2 = resize_img(self.main_photo_thumb_xs2, self.main_photo_xxl2, [288, 288])
+            self.main_photo_thumb_xs = resize_img(self.main_photo_thumb_xs, self.main_photo_xxl2, [144, 144])
         super().save(*args, **kwargs)
 
     @cached_property

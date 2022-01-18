@@ -18,8 +18,11 @@ class project_list_admin(SortableAdminMixin, TranslationAdmin):
 
 class project_page_admin(TranslationAdmin):
     list_display = ('name', )
-    # убрать возможность добавления и удаления
+    def has_add_permission(self, request, obj=None):
+        return False
 
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 
 admin.site.register(project_page, project_page_admin)
