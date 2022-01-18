@@ -7,14 +7,12 @@
         <section class="section section--fluid section--top">
             <div class="section__container">
                 <div class="section__row">
-                    {% for i in project_items %}
-                        <div class="section__header">
-                            <h1 class="main-title">{{ i.name }}</h1>
-                            <div class="section__text">
-                                {% autoescape off %} {{ i.text }} {% endautoescape %}
-                            </div>
-                        </div>
-                    {% endfor %}
+                    <div class="section__header">
+                        <h1 class="main-title">{{ project_page.name }}</h1>
+                        <div class="section__text">
+                            {% autoescape off %} {{ project_page.text }} {% endautoescape %}
+                         </div>
+                    </div>
                     <div class="section__col">
                         <div class="project-intro js-gallery">
                             <div class="project-intro__row">
@@ -24,7 +22,7 @@
                                             <div class="photo-card">
                                                 {% if i.product_original_img %}
                                                     <a class="photo-card__link js-gallery-base" href="{{ i.product_original_img.url }}" data-fancybox="gallery-1">
-                                                {% endif %}
+                                                
                                                 <div class="photo-card__img-wrap">
                                                     <div class="photo-card__img-ratio">
                                                         <picture>
@@ -35,6 +33,7 @@
                                                     </div>
                                                 </div>
                                                 </a>
+                                                {% endif %}
                                                 <div class="photo-card__gallery">
                                                     <a class="photo-card__gallery-link" href="{{ i.main_photo_sm.url }}" data-fancybox="gallery-1"></a>
                                                     <a class="photo-card__gallery-link" href="{{ i.main_photo_sm2x.url }}" data-fancybox="gallery-1"></a>
