@@ -8,6 +8,7 @@ def projects_view(request):
     # projects = project_page.objects.all()
 
     context = {
+        'show_language': True,
     }
 
     return render(request, 'projects.html', context=context)
