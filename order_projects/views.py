@@ -8,7 +8,6 @@ def projects_view(request):
     link_ru = '/ru/projects/'
     link_en = '/en/projects/'
     link_fr = '/fr/projects/'
-    # project_lists = project_list.objects.all(),
 
     context = {
         'show_language': True,
@@ -18,7 +17,6 @@ def projects_view(request):
         'link_ru': link_ru,
         'project_pages': project_page.objects.first(),
         'project_lists': project_list.objects.all(),
-        'project_pictures': project_images.objects.all()
 
     }
 

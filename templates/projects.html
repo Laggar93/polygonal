@@ -25,6 +25,7 @@
                                                         <div class="photo-card__img-wrap">
                                                             <div class="photo-card__img-ratio">
                                                                 <picture>
+                                                                    <source media="(min-width: 768px)" srcset="{{ i.main_photo_sm.url }} 1x, {{ i.main_photo_sm2x.url }} 2x">
                                                                     <source media="(min-width: 0)" srcset="{{ i.main_photo_sm.url }} 1x, {{ i.main_photo_sm2x.url }}">
                                                                     <img class="photo-card__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2.url }} 2x" alt="">
                                                                 </picture>
@@ -60,12 +61,13 @@
                     <div class="section__col">
                         <ul class="project-list">
                             {% for j in project_lists %}
+                            {% with gallery_num=forloop.counter %}
                                 {% if not j.first_display %}
                                     <li class="project-list__item">
                                         <div class="project-list__card">
                                             {% if j.main_photo %}
                                                 <div class="photo-card">
-                                                    <a class="photo-card__link" href="{{ j.main_photo.url }}" data-fancybox="gallery-2">
+                                                    <a class="photo-card__link" href="{{ j.main_photo.url }}" data-fancybox="gallery-{{ gallery_num }}">
                                                         <div class="photo-card__img-wrap">
                                                             <div class="photo-card__img-ratio">
                                                                 <picture>
@@ -77,7 +79,7 @@
                                                     </a>
                                                     {% for value in j.gallery_images.all %}
                                                         <div class="photo-card__gallery">
-                                                            <a class="photo-card__gallery-link" href="{{ value.main_photo.url }}" data-fancybox="gallery-2"></a>
+                                                            <a class="photo-card__gallery-link" href="{{ value.main_photo.url }}" data-fancybox="gallery-{{ gallery_num }}"></a>
                                                         </div>
                                                     {% endfor %}
                                                 </div>
@@ -85,6 +87,7 @@
                                             {% endif %}
                                     </li>
                                 {% endif %}
+                            {% endwith %}
                             {% endfor %}
                         </ul>
                     </div>
