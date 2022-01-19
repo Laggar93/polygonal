@@ -17,6 +17,7 @@ if settings.DEBUG:
 urlpatterns += i18n_patterns(
     path('', include('shop.urls')),
     path('', include('order_projects.urls')),
+    path('', include('advice.urls')),
 )
 
 handler404 = handler404
