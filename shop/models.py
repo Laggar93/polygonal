@@ -96,9 +96,6 @@ class shop_page(models.Model):
     new_start = models.CharField('Начать сначала', max_length=255, blank=True)
     of = models.CharField('Из (сложность)', max_length=255, blank=True)
     shop = models.CharField('Магазин', max_length=255, blank=True)
-    projects = models.CharField('Проекты на заказ', max_length=255, blank=True)
-    another_projects = models.CharField('Другие проекты', max_length=255, blank=True)
-    advice = models.CharField('Советы по сборке', max_length=255, blank=True)
 
     class Meta:
         verbose_name = 'Статический перевод'

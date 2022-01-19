@@ -6,6 +6,8 @@ from PIL import Image
 from ckeditor.fields import RichTextField
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django_resized import ResizedImageField
+from django.utils.functional import cached_property
+from django.utils.html import format_html
 from django.db import models
 from pytils.translit import slugify
 
@@ -53,6 +55,7 @@ class advice_main(models.Model):
     description = models.CharField('Описание', max_length=1000, blank=True)
     title = models.CharField('Заголовок', max_length=500)
     name = models.CharField('Название заголовка', max_length=500)
+    advice = models.CharField('Стат. перевод - Советы по сборке', max_length=255, blank=True)
 
     def __str__(self):
         return str(self.name)
@@ -63,11 +66,11 @@ class advice_main(models.Model):
 
 
 class advice_page(models.Model):
+    is_active = models.BooleanField('Показывать на сайте', default=True)
     keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)
     description = models.CharField('Описание', max_length=1000, blank=True)
     title = models.CharField('Заголовок', max_length=500)
     order = models.IntegerField('Порядок показа', null=True)
-    is_active = models.BooleanField('Показывать на сайте', default=True)
     name = models.CharField('Название элемента', max_length=500)
     main_photo = ResizedImageField('Основное изображение', size=[2048, 1536], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                    help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.')
@@ -77,7 +80,7 @@ class advice_page(models.Model):
     main_photo_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slug = models.SlugField('URL', max_length=50, allow_unicode=True, blank=True,
                             help_text='URL генерируется автоматически из названия раздела, но может быть задан вручную', unique=True)
-    intro_text = RichTextField('Текст справа', blank=True)
+    intro_text = RichTextField('Вступительный текст', blank=True)
 
 
     def __str__(self):
@@ -85,8 +88,8 @@ class advice_page(models.Model):
 
     class Meta:
         ordering = ['order']
-        verbose_name = 'Страница советов по сборке'
-        verbose_name_plural = 'Страница советов по сборке'
+        verbose_name = 'Список советов'
+        verbose_name_plural = 'Список советов'
 
 
     def save(self, *args, **kwargs):
@@ -102,6 +105,12 @@ class advice_page(models.Model):
             self.slug = slugify(self.slug)[:50]
         super().save(*args, **kwargs)
 
+    @cached_property
+    def display_page_image(self):
+        return format_html('<img src="{img}" width="300">', img=self.main_photo.url)
+
+    display_page_image.short_description = 'Предпросмотр'
+
 
 class advice_blocks(models.Model):
     advice_page = models.ForeignKey(advice_page, on_delete=models.CASCADE, verbose_name='Страница советов по сборке')
@@ -112,25 +121,25 @@ class advice_blocks(models.Model):
     name = models.CharField('Заголовок блока', max_length=500)
     video_link = models.CharField('Ссылка на видео Vimeo или YouTube', max_length=500, blank=True)
     text = RichTextField('Текст', null=True, blank=True)
-    title_paragraph1 = RichTextField('Первый заголовок пункта списка', null=True, blank=True)
-    title_paragraph2 = RichTextField('Второй заголовок пункта списка', null=True, blank=True)
-    title_paragraph3 = RichTextField('Третий заголовок пункта списка', null=True, blank=True)
-    title_paragraph4 = RichTextField('Четвертый заголовок пункта списка', null=True, blank=True)
-    title_paragraph5 = RichTextField('Пятый заголовок пункта списка', null=True, blank=True)
+    title_paragraph1 = models.CharField('Первый заголовок пункта списка', max_length=255, null=True, blank=True)
+    title_paragraph2 = models.CharField('Второй заголовок пункта списка', max_length=255, null=True, blank=True)
+    title_paragraph3 = models.CharField('Третий заголовок пункта списка', max_length=255, null=True, blank=True)
+    title_paragraph4 = models.CharField('Четвертый заголовок пункта списка', max_length=255, null=True, blank=True)
+    title_paragraph5 = models.CharField('Пятый заголовок пункта списка', max_length=255, null=True, blank=True)
     text_paragraph1 = RichTextField('Текст первого пункта', null=True, blank=True)
     text_paragraph2 = RichTextField('Текст второго пункта', null=True, blank=True)
     text_paragraph3 = RichTextField('Текст третьего пункта', null=True, blank=True)
     text_paragraph4 = RichTextField('Текст четвертого пункта', null=True, blank=True)
     text_paragraph5 = RichTextField('Текст пятого пункта', null=True, blank=True)
-    image = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    slide_picture_1 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    slide_picture_2 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    slide_picture_3 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    slide_picture_4 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    slide_picture_5 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    slide_picture_6 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    slide_picture_7 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    slide_picture_8 = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    image = models.ImageField(verbose_name='Изображение', upload_to=get_file_path, blank=True, null=True)
+    slide_picture_1 = models.ImageField(verbose_name='Первое изображение слайдера', upload_to=get_file_path, blank=True, null=True)
+    slide_picture_2 = models.ImageField(verbose_name='Второе изображение слайдера', upload_to=get_file_path, blank=True, null=True)
+    slide_picture_3 = models.ImageField(verbose_name='Третье изображение слайдера', upload_to=get_file_path, blank=True, null=True)
+    slide_picture_4 = models.ImageField(verbose_name='Четвертое изображение слайдера', upload_to=get_file_path, blank=True, null=True)
+    slide_picture_5 = models.ImageField(verbose_name='Пятое изображение слайдера', upload_to=get_file_path, blank=True, null=True)
+    slide_picture_6 = models.ImageField(verbose_name='Шестое изображение слайдера', upload_to=get_file_path, blank=True, null=True)
+    slide_picture_7 = models.ImageField(verbose_name='Седьмое изображение слайдера', upload_to=get_file_path, blank=True, null=True)
+    slide_picture_8 = models.ImageField(verbose_name='Восьмое изображение слайдера', upload_to=get_file_path, blank=True, null=True)
 
     def __str__(self):
         return str(self.name)
@@ -139,3 +148,9 @@ class advice_blocks(models.Model):
         ordering = ['order']
         verbose_name = 'Блоки страницы советов'
         verbose_name_plural = 'Блоки страницы советов'
+
+    @cached_property
+    def display_block_image(self):
+        return format_html('<img src="{img}" width="300">', img=self.image.url)
+
+    display_block_image.short_description = 'Предпросмотр'

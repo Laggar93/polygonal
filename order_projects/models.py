@@ -6,6 +6,8 @@ from PIL import Image
 from ckeditor.fields import RichTextField
 from django.core.files.uploadedfile import InMemoryUploadedFile
 from django_resized import ResizedImageField
+from django.utils.functional import cached_property
+from django.utils.html import format_html
 from django.db import models
 
 
@@ -52,6 +54,8 @@ class project_page(models.Model):
     keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)
     description = models.CharField('Описание', max_length=1000, blank=True)
     title = models.CharField('Заголовок', max_length=500)
+    projects = models.CharField('Стат. перевод - Проекты на заказ', max_length=255, blank=True)
+    another_projects = models.CharField('Стат. перевод - Другие проекты', max_length=255, blank=True)
     name = models.CharField('Название раздела', max_length=500)
     text = RichTextField('Текст после названия', blank=True)
 
@@ -92,6 +96,12 @@ class project_list(models.Model):
             self.main_photo_xs = resize_img(self.main_photo_xs, self.main_photo, [768, 576])
             self.main_photo_xs2 = resize_img(self.main_photo_xs2x, self.main_photo, [1536, 1152])
 
+    @cached_property
+    def display_image(self):
+        return format_html('<img src="{img}" width="300">', img=self.main_photo.url)
+
+    display_image.short_description = 'Предпросмотр'
+
 
 class project_images(models.Model):
     project = models.ForeignKey(project_list, on_delete=models.CASCADE, related_name='gallery_images', verbose_name='Проекты на заказ')
@@ -106,3 +116,9 @@ class project_images(models.Model):
         ordering = ['order']
         verbose_name = 'Изображение'
         verbose_name_plural = 'Изображения'
+
+    @cached_property
+    def display_image(self):
+        return format_html('<img src="{img}" width="300">', img=self.main_photo.url)
+
+    display_image.short_description = 'Предпросмотр'

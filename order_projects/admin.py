@@ -7,6 +7,7 @@ class project_images_admin(SortableInlineAdminMixin, admin.StackedInline):
     model = project_images
     extra = 0
     ordering = ('order',)
+    readonly_fields = ('display_image',)
 
 
 class project_list_admin(SortableAdminMixin, TranslationAdmin):
@@ -14,6 +15,8 @@ class project_list_admin(SortableAdminMixin, TranslationAdmin):
     extra = 0
     inlines = [project_images_admin]
     ordering = ('order',)
+    exclude = ('main_photo_sm', 'main_photo_original', 'main_photo_xs', 'main_photo_xs2x')
+    readonly_fields = ('display_image',)
 
 
 class project_page_admin(TranslationAdmin):

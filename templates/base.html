@@ -244,9 +244,9 @@
                                             <a class="page-header__nav-link {% if '/shop/' in request.path %}page-header__nav-link--active{% endif %}" href="{% url 'first_category_for_url' %}">{{ shop_page.shop }}</a>
                                         </li>
                                         <li class="page-header__nav-item">
-                                            <a class="page-header__nav-link {% if '/projects/' in request.path %}page-header__nav-link--active{% endif %}" href="{% url 'projects' %}">{{ shop_page.projects }}</a></li>
+                                            <a class="page-header__nav-link {% if '/projects/' in request.path %}page-header__nav-link--active{% endif %}" href="{% url 'projects' %}">{{ project_pages.projects }}</a></li>
                                         <li class="page-header__nav-item">
-                                            <a class="page-header__nav-link {% if '/advice/' in request.path %} page-header__nav-link--active{% endif %}" href="{% url 'advice' %}">{{ shop_page.advice }}</a></li>
+                                            <a class="page-header__nav-link {% if '/advice/' in request.path %} page-header__nav-link--active{% endif %}" href="{% url 'advice' %}">{{ advice_main.advice }}</a></li>
                                         <li class="page-header__nav-item">
                                             <a class="page-header__nav-link" href="about.html">О нас</a></li>
                                         <li class="page-header__nav-item">

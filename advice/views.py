@@ -12,6 +12,7 @@ def advice_view(request):
     context = {
         'show_language': True,
         'shop_page': shop_page.objects.first(),
+        'advice_main': advice_main.objects.first(),
         'link_en': link_en,
         'link_fr': link_fr,
         'link_ru': link_ru,
@@ -30,6 +31,7 @@ def advice_item_view(request):
     context = {
         'show_language': True,
         'shop_page': shop_page.objects.first(),
+        'advice_main': advice_main.objects.first(),
         'link_en': link_en,
         'link_fr': link_fr,
         'link_ru': link_ru,

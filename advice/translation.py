@@ -2,10 +2,10 @@ from modeltranslation.translator import translator, TranslationOptions
 from .models import advice_page, advice_blocks, advice_main
 
 class AdviceMainTranslationOptions(TranslationOptions):
-    fields = ('keywords', 'description', 'title', 'name')
+    fields = ('keywords', 'description', 'title', 'name', 'advice')
 
 class AdvicePageTranslationOptions(TranslationOptions):
-    fields = ('keywords', 'description', 'title', 'name', 'intro_text')
+    fields = ('is_active', 'keywords', 'description', 'title', 'name', 'intro_text')
 
 class AdviceBlocksTranslationOptions(TranslationOptions):
     fields = ('keywords', 'description', 'title', 'name', 'text', 'title_paragraph1', 'title_paragraph2', 'title_paragraph3',
