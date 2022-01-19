@@ -11,7 +11,6 @@ class advice_blocks_admin(SortableInlineAdminMixin, TranslationStackedInline):
 
 
 class advice_page_admin(SortableAdminMixin, TranslationAdmin):
-    model = advice_page
     extra = 0
     inlines = [advice_blocks_admin]
     ordering = ('order',)
