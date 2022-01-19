@@ -159,6 +159,7 @@ CKEDITOR_CONFIGS = {
     'default': {
         'toolbar': 'Custom',
         'toolbar_Custom': [
+            ['Bold'],
             ['NumberedList', 'BulletedList'],
             ['Link', 'Unlink']
         ]
