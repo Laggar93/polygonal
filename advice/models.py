@@ -140,12 +140,19 @@ class advice_blocks(models.Model):
     image = ResizedImageField('Одно изображение', size=[1600, 1200], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                    help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
     
+    # добавить 8-ую фото в слайдер
+    # добавить везде thumbnails
+    # в админке все скрыть
+    # добавить в article-item
+
     slide_picture_1_xxl2x = ResizedImageField('Изображение 1 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                    help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
     slide_picture_1_original = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_1_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_1_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_1_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_1_thumb_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_1_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
 
     slide_picture_2_xxl2x = ResizedImageField('Изображение 2 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                               help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
@@ -222,6 +229,8 @@ class advice_blocks(models.Model):
             self.slide_picture_1_xxl = resize_img(self.slide_picture_1_xxl, self.slide_picture_1_xxl2x, [728, 546])
             self.slide_picture_1_xs2x = resize_img(self.slide_picture_1_xs2x, self.slide_picture_1_xxl2x, [1456, 1092])
             self.slide_picture_1_xs = resize_img(self.slide_picture_1_xs, self.slide_picture_1_xxl2x, [1456, 1092])
+            self.slide_picture_1_thumb_xs2x = resize_img(self.slide_picture_1_thumb_xs2x, self.slide_picture_1_xxl2x, [288, 288])
+            self.slide_picture_1_thumb_xs = resize_img(self.slide_picture_1_thumb_xs, self.slide_picture_1_xxl2x, [144, 144])
         if self.slide_picture_2_xxl2x != self.__original_slide_picture_2_xxl2x:
             self.slide_picture_2_original = resize_img(self.slide_picture_2_original, self.slide_picture_2_xxl2x, [800, 600])
             self.slide_picture_2_xxl = resize_img(self.slide_picture_2_xxl, self.slide_picture_2_xxl2x, [728, 546])
