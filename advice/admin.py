@@ -4,6 +4,7 @@ from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from modeltranslation.admin import TranslationAdmin, TranslationStackedInline
 
 class advice_blocks_admin(SortableInlineAdminMixin, TranslationStackedInline):
+    classes = ['collapse']
     model = advice_blocks
     extra = 0
     ordering = ('order',)

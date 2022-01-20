@@ -104,9 +104,9 @@ class advice_page(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         if self.__original_main_photo_xxl2 != self.main_photo_xxl2x:
-            self.main_photo_xxl = resize_img(self.main_photo_xxl, self.main_photo_xxl2x, [800, 600])
-            self.main_photo_xs = resize_img(self.main_photo_xs, self.main_photo_xxl2x, [728, 546])
-            self.main_photo_xs2x = resize_img(self.main_photo_xs2x, self.main_photo_xxl2x, [1456, 1092])
+            self.main_photo_xxl = resize_img(self.main_photo_xxl, self.main_photo_xxl2x, [1600, 1200])
+            self.main_photo_xs = resize_img(self.main_photo_xs, self.main_photo_xxl2x, [1200, 900])
+            self.main_photo_xs2x = resize_img(self.main_photo_xs2x, self.main_photo_xxl2x, [1536, 1152])
         if not self.slug:
             self.slug = slugify(self.name)[:50]
         else:
@@ -139,11 +139,6 @@ class advice_blocks(models.Model):
     text_paragraph5 = RichTextField('Текст пятого пункта', null=True, blank=True)
     image = ResizedImageField('Одно изображение', size=[1600, 1200], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                    help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
-    
-    # добавить 8-ую фото в слайдер
-    # добавить везде thumbnails
-    # в админке все скрыть
-    # добавить в article-item
 
     slide_picture_1_xxl2x = ResizedImageField('Изображение 1 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                    help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
@@ -247,60 +242,61 @@ class advice_blocks(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
+
         if self.slide_picture_1_xxl2x != self.__original_slide_picture_1_xxl2x:
-            self.slide_picture_1_original = resize_img(self.slide_picture_1_original, self.slide_picture_1_xxl2x, [800, 600])
-            self.slide_picture_1_xxl = resize_img(self.slide_picture_1_xxl, self.slide_picture_1_xxl2x, [728, 546])
-            self.slide_picture_1_xs2x = resize_img(self.slide_picture_1_xs2x, self.slide_picture_1_xxl2x, [1456, 1092])
-            self.slide_picture_1_xs = resize_img(self.slide_picture_1_xs, self.slide_picture_1_xxl2x, [1456, 1092])
+            self.slide_picture_1_original = resize_img(self.slide_picture_1_original, self.slide_picture_1_xxl2x, [1600, 1200])
+            self.slide_picture_1_xxl = resize_img(self.slide_picture_1_xxl, self.slide_picture_1_xxl2x, [1200, 900])
+            self.slide_picture_1_xs2x = resize_img(self.slide_picture_1_xs2x, self.slide_picture_1_xxl2x, [1536, 1152])
+            self.slide_picture_1_xs = resize_img(self.slide_picture_1_xs, self.slide_picture_1_xxl2x, [768, 576])
             self.slide_picture_1_thumb_xs2x = resize_img(self.slide_picture_1_thumb_xs2x, self.slide_picture_1_xxl2x, [288, 288])
             self.slide_picture_1_thumb_xs = resize_img(self.slide_picture_1_thumb_xs, self.slide_picture_1_xxl2x, [144, 144])
         if self.slide_picture_2_xxl2x != self.__original_slide_picture_2_xxl2x:
-            self.slide_picture_2_original = resize_img(self.slide_picture_2_original, self.slide_picture_2_xxl2x, [800, 600])
-            self.slide_picture_2_xxl = resize_img(self.slide_picture_2_xxl, self.slide_picture_2_xxl2x, [728, 546])
-            self.slide_picture_2_xs2x = resize_img(self.slide_picture_2_xs2x, self.slide_picture_2_xxl2x, [1456, 1092])
-            self.slide_picture_2_xs = resize_img(self.slide_picture_2_xs, self.slide_picture_2_xxl2x, [1456, 1092])
+            self.slide_picture_2_original = resize_img(self.slide_picture_2_original, self.slide_picture_2_xxl2x, [1600, 1200])
+            self.slide_picture_2_xxl = resize_img(self.slide_picture_2_xxl, self.slide_picture_2_xxl2x, [1200, 900])
+            self.slide_picture_2_xs2x = resize_img(self.slide_picture_2_xs2x, self.slide_picture_2_xxl2x, [1536, 1152])
+            self.slide_picture_2_xs = resize_img(self.slide_picture_2_xs, self.slide_picture_2_xxl2x, [768, 576])
             self.slide_picture_2_thumb_xs2x = resize_img(self.slide_picture_2_thumb_xs2x, self.slide_picture_2_xxl2x, [288, 288])
             self.slide_picture_2_thumb_xs = resize_img(self.slide_picture_2_thumb_xs, self.slide_picture_2_xxl2x, [144, 144])
         if self.slide_picture_3_xxl2x != self.__original_slide_picture_3_xxl2x:
-            self.slide_picture_3_original = resize_img(self.slide_picture_3_original, self.slide_picture_3_xxl2x, [800, 600])
-            self.slide_picture_3_xxl = resize_img(self.slide_picture_3_xxl, self.slide_picture_3_xxl2x, [728, 546])
-            self.slide_picture_3_xs2x = resize_img(self.slide_picture_3_xs2x, self.slide_picture_3_xxl2x, [1456, 1092])
-            self.slide_picture_3_xs = resize_img(self.slide_picture_3_xs, self.slide_picture_3_xxl2x, [1456, 1092])
+            self.slide_picture_3_original = resize_img(self.slide_picture_3_original, self.slide_picture_3_xxl2x, [1600, 1200])
+            self.slide_picture_3_xxl = resize_img(self.slide_picture_3_xxl, self.slide_picture_3_xxl2x, [1200, 900])
+            self.slide_picture_3_xs2x = resize_img(self.slide_picture_3_xs2x, self.slide_picture_3_xxl2x, [1536, 1152])
+            self.slide_picture_3_xs = resize_img(self.slide_picture_3_xs, self.slide_picture_3_xxl2x, [768, 576])
             self.slide_picture_3_thumb_xs2x = resize_img(self.slide_picture_3_thumb_xs2x, self.slide_picture_3_xxl2x, [288, 288])
             self.slide_picture_3_thumb_xs = resize_img(self.slide_picture_3_thumb_xs, self.slide_picture_3_xxl2x, [144, 144])
         if self.slide_picture_4_xxl2x != self.__original_slide_picture_4_xxl2x:
-            self.slide_picture_4_original = resize_img(self.slide_picture_4_original, self.slide_picture_4_xxl2x, [800, 600])
-            self.slide_picture_4_xxl = resize_img(self.slide_picture_4_xxl, self.slide_picture_4_xxl2x, [728, 546])
-            self.slide_picture_4_xs2x = resize_img(self.slide_picture_4_xs2x, self.slide_picture_4_xxl2x, [1456, 1092])
-            self.slide_picture_4_xs = resize_img(self.slide_picture_4_xs, self.slide_picture_4_xxl2x, [1456, 1092])
+            self.slide_picture_4_original = resize_img(self.slide_picture_4_original, self.slide_picture_4_xxl2x, [1600, 1200])
+            self.slide_picture_4_xxl = resize_img(self.slide_picture_4_xxl, self.slide_picture_4_xxl2x, [1200, 900])
+            self.slide_picture_4_xs2x = resize_img(self.slide_picture_4_xs2x, self.slide_picture_4_xxl2x, [1536, 1152])
+            self.slide_picture_4_xs = resize_img(self.slide_picture_4_xs, self.slide_picture_4_xxl2x, [768, 576])
             self.slide_picture_4_thumb_xs2x = resize_img(self.slide_picture_4_thumb_xs2x, self.slide_picture_4_xxl2x, [288, 288])
             self.slide_picture_4_thumb_xs = resize_img(self.slide_picture_4_thumb_xs, self.slide_picture_4_xxl2x, [144, 144])
         if self.slide_picture_5_xxl2x != self.__original_slide_picture_5_xxl2x:
-            self.slide_picture_5_original = resize_img(self.slide_picture_5_original, self.slide_picture_5_xxl2x, [800, 600])
-            self.slide_picture_5_xxl = resize_img(self.slide_picture_5_xxl, self.slide_picture_5_xxl2x, [728, 546])
-            self.slide_picture_5_xs2x = resize_img(self.slide_picture_5_xs2x, self.slide_picture_5_xxl2x, [1456, 1092])
-            self.slide_picture_5_xs = resize_img(self.slide_picture_5_xs, self.slide_picture_5_xxl2x, [1456, 1092])
+            self.slide_picture_5_original = resize_img(self.slide_picture_5_original, self.slide_picture_5_xxl2x, [1600, 1200])
+            self.slide_picture_5_xxl = resize_img(self.slide_picture_5_xxl, self.slide_picture_5_xxl2x, [1200, 900])
+            self.slide_picture_5_xs2x = resize_img(self.slide_picture_5_xs2x, self.slide_picture_5_xxl2x, [1536, 1152])
+            self.slide_picture_5_xs = resize_img(self.slide_picture_5_xs, self.slide_picture_5_xxl2x, [768, 576])
             self.slide_picture_5_thumb_xs2x = resize_img(self.slide_picture_5_thumb_xs2x, self.slide_picture_5_xxl2x, [288, 288])
             self.slide_picture_5_thumb_xs = resize_img(self.slide_picture_5_thumb_xs, self.slide_picture_5_xxl2x, [144, 144])
         if self.slide_picture_6_xxl2x != self.__original_slide_picture_6_xxl2x:
-            self.slide_picture_6_original = resize_img(self.slide_picture_6_original, self.slide_picture_6_xxl2x, [800, 600])
-            self.slide_picture_6_xxl = resize_img(self.slide_picture_6_xxl, self.slide_picture_6_xxl2x, [728, 546])
-            self.slide_picture_6_xs2x = resize_img(self.slide_picture_6_xs2x, self.slide_picture_6_xxl2x, [1456, 1092])
-            self.slide_picture_6_xs = resize_img(self.slide_picture_6_xs, self.slide_picture_6_xxl2x, [1456, 1092])
+            self.slide_picture_6_original = resize_img(self.slide_picture_6_original, self.slide_picture_6_xxl2x, [1600, 1200])
+            self.slide_picture_6_xxl = resize_img(self.slide_picture_6_xxl, self.slide_picture_6_xxl2x, [1200, 900])
+            self.slide_picture_6_xs2x = resize_img(self.slide_picture_6_xs2x, self.slide_picture_6_xxl2x, [1536, 1152])
+            self.slide_picture_6_xs = resize_img(self.slide_picture_6_xs, self.slide_picture_6_xxl2x, [768, 576])
             self.slide_picture_6_thumb_xs2x = resize_img(self.slide_picture_6_thumb_xs2x, self.slide_picture_6_xxl2x, [288, 288])
             self.slide_picture_6_thumb_xs = resize_img(self.slide_picture_6_thumb_xs, self.slide_picture_6_xxl2x, [144, 144])
         if self.slide_picture_7_xxl2x != self.__original_slide_picture_7_xxl2x:
-            self.slide_picture_7_original = resize_img(self.slide_picture_7_original, self.slide_picture_7_xxl2x, [800, 600])
-            self.slide_picture_7_xxl = resize_img(self.slide_picture_7_xxl, self.slide_picture_7_xxl2x, [728, 546])
-            self.slide_picture_7_xs2x = resize_img(self.slide_picture_7_xs2x, self.slide_picture_7_xxl2x, [1456, 1092])
-            self.slide_picture_7_xs = resize_img(self.slide_picture_7_xs, self.slide_picture_7_xxl2x, [1456, 1092])
+            self.slide_picture_7_original = resize_img(self.slide_picture_7_original, self.slide_picture_7_xxl2x, [1600, 1200])
+            self.slide_picture_7_xxl = resize_img(self.slide_picture_7_xxl, self.slide_picture_7_xxl2x, [1200, 900])
+            self.slide_picture_7_xs2x = resize_img(self.slide_picture_7_xs2x, self.slide_picture_7_xxl2x, [1536, 1152])
+            self.slide_picture_7_xs = resize_img(self.slide_picture_7_xs, self.slide_picture_7_xxl2x, [768, 576])
             self.slide_picture_7_thumb_xs2x = resize_img(self.slide_picture_7_thumb_xs2x, self.slide_picture_7_xxl2x, [288, 288])
             self.slide_picture_7_thumb_xs = resize_img(self.slide_picture_7_thumb_xs, self.slide_picture_7_xxl2x, [144, 144])
         if self.slide_picture_8_xxl2x != self.__original_slide_picture_8_xxl2x:
-            self.slide_picture_8_original = resize_img(self.slide_picture_8_original, self.slide_picture_8_xxl2x, [800, 600])
-            self.slide_picture_8_xxl = resize_img(self.slide_picture_8_xxl, self.slide_picture_8_xxl2x, [728, 546])
-            self.slide_picture_8_xs2x = resize_img(self.slide_picture_8_xs2x, self.slide_picture_8_xxl2x, [1456, 1092])
-            self.slide_picture_8_xs = resize_img(self.slide_picture_8_xs, self.slide_picture_8_xxl2x, [1456, 1092])
+            self.slide_picture_8_original = resize_img(self.slide_picture_8_original, self.slide_picture_8_xxl2x, [1600, 1200])
+            self.slide_picture_8_xxl = resize_img(self.slide_picture_8_xxl, self.slide_picture_8_xxl2x, [1200, 900])
+            self.slide_picture_8_xs2x = resize_img(self.slide_picture_8_xs2x, self.slide_picture_8_xxl2x, [1536, 1152])
+            self.slide_picture_8_xs = resize_img(self.slide_picture_8_xs, self.slide_picture_8_xxl2x, [768, 576])
             self.slide_picture_8_thumb_xs2x = resize_img(self.slide_picture_8_thumb_xs2x, self.slide_picture_8_xxl2x, [288, 288])
             self.slide_picture_8_thumb_xs = resize_img(self.slide_picture_8_thumb_xs, self.slide_picture_8_xxl2x, [144, 144])
         super().save(*args, **kwargs)
