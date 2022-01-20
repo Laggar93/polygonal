@@ -146,42 +146,49 @@ class advice_blocks(models.Model):
     slide_picture_1_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_1_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_1_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    slide_picture_2_xxl2x = ResizedImageField('Изображение 1 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
+
+    slide_picture_2_xxl2x = ResizedImageField('Изображение 2 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                               help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
     slide_picture_2_original = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_2_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_2_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_2_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    slide_picture_3_xxl2x = ResizedImageField('Изображение 1 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
+
+    slide_picture_3_xxl2x = ResizedImageField('Изображение 3 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                               help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
     slide_picture_3_original = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_3_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_3_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_3_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    slide_picture_4_xxl2x = ResizedImageField('Изображение 1 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
+
+    slide_picture_4_xxl2x = ResizedImageField('Изображение 4 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                               help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
     slide_picture_4_original = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_4_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_4_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_4_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    slide_picture_5_xxl2x = ResizedImageField('Изображение 1 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
+
+    slide_picture_5_xxl2x = ResizedImageField('Изображение 5 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                               help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
     slide_picture_5_original = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_5_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_5_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_5_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    slide_picture_6_xxl2x = ResizedImageField('Изображение 1 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
+
+    slide_picture_6_xxl2x = ResizedImageField('Изображение 6 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                               help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
     slide_picture_6_original = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_6_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_6_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_6_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    slide_picture_7_xxl2x = ResizedImageField('Изображение 1 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
+
+    slide_picture_7_xxl2x = ResizedImageField('Изображение 7 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                               help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
     slide_picture_7_original = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_7_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_7_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_7_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    
     __original_slide_picture_1_xxl2x = None
     __original_slide_picture_2_xxl2x = None
     __original_slide_picture_3_xxl2x = None
