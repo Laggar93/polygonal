@@ -160,6 +160,8 @@ class advice_blocks(models.Model):
     slide_picture_2_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_2_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_2_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_2_thumb_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_2_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
 
     slide_picture_3_xxl2x = ResizedImageField('Изображение 3 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                               help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
@@ -167,6 +169,8 @@ class advice_blocks(models.Model):
     slide_picture_3_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_3_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_3_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_3_thumb_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_3_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
 
     slide_picture_4_xxl2x = ResizedImageField('Изображение 4 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                               help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
@@ -174,6 +178,8 @@ class advice_blocks(models.Model):
     slide_picture_4_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_4_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_4_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_4_thumb_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_4_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
 
     slide_picture_5_xxl2x = ResizedImageField('Изображение 5 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                               help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
@@ -181,6 +187,8 @@ class advice_blocks(models.Model):
     slide_picture_5_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_5_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_5_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_5_thumb_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_5_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
 
     slide_picture_6_xxl2x = ResizedImageField('Изображение 6 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                               help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
@@ -188,6 +196,8 @@ class advice_blocks(models.Model):
     slide_picture_6_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_6_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_6_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_6_thumb_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_6_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
 
     slide_picture_7_xxl2x = ResizedImageField('Изображение 7 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                               help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
@@ -195,6 +205,17 @@ class advice_blocks(models.Model):
     slide_picture_7_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_7_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     slide_picture_7_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_7_thumb_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_7_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+
+    slide_picture_8_xxl2x = ResizedImageField('Изображение 8 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
+                                              help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
+    slide_picture_8_original = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_8_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_8_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_8_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_8_thumb_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_8_thumb_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     
     __original_slide_picture_1_xxl2x = None
     __original_slide_picture_2_xxl2x = None
@@ -203,6 +224,7 @@ class advice_blocks(models.Model):
     __original_slide_picture_5_xxl2x = None
     __original_slide_picture_6_xxl2x = None
     __original_slide_picture_7_xxl2x = None
+    __original_slide_picture_8_xxl2x = None
 
     def __init__(self, *args, **kwargs):
         super(advice_blocks, self).__init__(*args, **kwargs)
@@ -213,6 +235,7 @@ class advice_blocks(models.Model):
         self.__original_slide_picture_5_xxl2x = self.slide_picture_5_xxl2x
         self.__original_slide_picture_6_xxl2x = self.slide_picture_6_xxl2x
         self.__original_slide_picture_7_xxl2x = self.slide_picture_7_xxl2x
+        self.__original_slide_picture_8_xxl2x = self.slide_picture_8_xxl2x
 
     def __str__(self):
         return str(self.name)
@@ -236,31 +259,50 @@ class advice_blocks(models.Model):
             self.slide_picture_2_xxl = resize_img(self.slide_picture_2_xxl, self.slide_picture_2_xxl2x, [728, 546])
             self.slide_picture_2_xs2x = resize_img(self.slide_picture_2_xs2x, self.slide_picture_2_xxl2x, [1456, 1092])
             self.slide_picture_2_xs = resize_img(self.slide_picture_2_xs, self.slide_picture_2_xxl2x, [1456, 1092])
+            self.slide_picture_2_thumb_xs2x = resize_img(self.slide_picture_2_thumb_xs2x, self.slide_picture_2_xxl2x, [288, 288])
+            self.slide_picture_2_thumb_xs = resize_img(self.slide_picture_2_thumb_xs, self.slide_picture_2_xxl2x, [144, 144])
         if self.slide_picture_3_xxl2x != self.__original_slide_picture_3_xxl2x:
             self.slide_picture_3_original = resize_img(self.slide_picture_3_original, self.slide_picture_3_xxl2x, [800, 600])
             self.slide_picture_3_xxl = resize_img(self.slide_picture_3_xxl, self.slide_picture_3_xxl2x, [728, 546])
             self.slide_picture_3_xs2x = resize_img(self.slide_picture_3_xs2x, self.slide_picture_3_xxl2x, [1456, 1092])
             self.slide_picture_3_xs = resize_img(self.slide_picture_3_xs, self.slide_picture_3_xxl2x, [1456, 1092])
+            self.slide_picture_3_thumb_xs2x = resize_img(self.slide_picture_3_thumb_xs2x, self.slide_picture_3_xxl2x, [288, 288])
+            self.slide_picture_3_thumb_xs = resize_img(self.slide_picture_3_thumb_xs, self.slide_picture_3_xxl2x, [144, 144])
         if self.slide_picture_4_xxl2x != self.__original_slide_picture_4_xxl2x:
             self.slide_picture_4_original = resize_img(self.slide_picture_4_original, self.slide_picture_4_xxl2x, [800, 600])
             self.slide_picture_4_xxl = resize_img(self.slide_picture_4_xxl, self.slide_picture_4_xxl2x, [728, 546])
             self.slide_picture_4_xs2x = resize_img(self.slide_picture_4_xs2x, self.slide_picture_4_xxl2x, [1456, 1092])
             self.slide_picture_4_xs = resize_img(self.slide_picture_4_xs, self.slide_picture_4_xxl2x, [1456, 1092])
+            self.slide_picture_4_thumb_xs2x = resize_img(self.slide_picture_4_thumb_xs2x, self.slide_picture_4_xxl2x, [288, 288])
+            self.slide_picture_4_thumb_xs = resize_img(self.slide_picture_4_thumb_xs, self.slide_picture_4_xxl2x, [144, 144])
         if self.slide_picture_5_xxl2x != self.__original_slide_picture_5_xxl2x:
             self.slide_picture_5_original = resize_img(self.slide_picture_5_original, self.slide_picture_5_xxl2x, [800, 600])
             self.slide_picture_5_xxl = resize_img(self.slide_picture_5_xxl, self.slide_picture_5_xxl2x, [728, 546])
             self.slide_picture_5_xs2x = resize_img(self.slide_picture_5_xs2x, self.slide_picture_5_xxl2x, [1456, 1092])
             self.slide_picture_5_xs = resize_img(self.slide_picture_5_xs, self.slide_picture_5_xxl2x, [1456, 1092])
+            self.slide_picture_5_thumb_xs2x = resize_img(self.slide_picture_5_thumb_xs2x, self.slide_picture_5_xxl2x, [288, 288])
+            self.slide_picture_5_thumb_xs = resize_img(self.slide_picture_5_thumb_xs, self.slide_picture_5_xxl2x, [144, 144])
         if self.slide_picture_6_xxl2x != self.__original_slide_picture_6_xxl2x:
             self.slide_picture_6_original = resize_img(self.slide_picture_6_original, self.slide_picture_6_xxl2x, [800, 600])
             self.slide_picture_6_xxl = resize_img(self.slide_picture_6_xxl, self.slide_picture_6_xxl2x, [728, 546])
             self.slide_picture_6_xs2x = resize_img(self.slide_picture_6_xs2x, self.slide_picture_6_xxl2x, [1456, 1092])
             self.slide_picture_6_xs = resize_img(self.slide_picture_6_xs, self.slide_picture_6_xxl2x, [1456, 1092])
+            self.slide_picture_6_thumb_xs2x = resize_img(self.slide_picture_6_thumb_xs2x, self.slide_picture_6_xxl2x, [288, 288])
+            self.slide_picture_6_thumb_xs = resize_img(self.slide_picture_6_thumb_xs, self.slide_picture_6_xxl2x, [144, 144])
         if self.slide_picture_7_xxl2x != self.__original_slide_picture_7_xxl2x:
             self.slide_picture_7_original = resize_img(self.slide_picture_7_original, self.slide_picture_7_xxl2x, [800, 600])
             self.slide_picture_7_xxl = resize_img(self.slide_picture_7_xxl, self.slide_picture_7_xxl2x, [728, 546])
             self.slide_picture_7_xs2x = resize_img(self.slide_picture_7_xs2x, self.slide_picture_7_xxl2x, [1456, 1092])
             self.slide_picture_7_xs = resize_img(self.slide_picture_7_xs, self.slide_picture_7_xxl2x, [1456, 1092])
+            self.slide_picture_7_thumb_xs2x = resize_img(self.slide_picture_7_thumb_xs2x, self.slide_picture_7_xxl2x, [288, 288])
+            self.slide_picture_7_thumb_xs = resize_img(self.slide_picture_7_thumb_xs, self.slide_picture_7_xxl2x, [144, 144])
+        if self.slide_picture_8_xxl2x != self.__original_slide_picture_8_xxl2x:
+            self.slide_picture_8_original = resize_img(self.slide_picture_8_original, self.slide_picture_8_xxl2x, [800, 600])
+            self.slide_picture_8_xxl = resize_img(self.slide_picture_8_xxl, self.slide_picture_8_xxl2x, [728, 546])
+            self.slide_picture_8_xs2x = resize_img(self.slide_picture_8_xs2x, self.slide_picture_8_xxl2x, [1456, 1092])
+            self.slide_picture_8_xs = resize_img(self.slide_picture_8_xs, self.slide_picture_8_xxl2x, [1456, 1092])
+            self.slide_picture_8_thumb_xs2x = resize_img(self.slide_picture_8_thumb_xs2x, self.slide_picture_8_xxl2x, [288, 288])
+            self.slide_picture_8_thumb_xs = resize_img(self.slide_picture_8_thumb_xs, self.slide_picture_8_xxl2x, [144, 144])
         super().save(*args, **kwargs)
 
     @cached_property

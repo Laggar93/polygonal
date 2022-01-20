@@ -24,193 +24,292 @@
                                                     <h2>{{ item.name }}</h2>
                                                 </div>
                                                 {% if item.top_text %}
-                                                <div class="article__content style-content style-content--small">
-                                                    {% autoescape off %} {{ item.top_text }} {% endautoescape %}
-                                                </div>
+                                                    <div class="article__content style-content style-content--small">
+                                                        {% autoescape off %} {{ item.top_text }} {% endautoescape %}
+                                                    </div>
                                                 {% endif %}
                                                 {% if item.video_link %}
-                                                <div class="article__video">
-                                                    <div class="article__video-row">
-                                                        <div class="article__video-col">
-                                                            <div class='embed-container'>
-                                                                <iframe src="{{ item.video_link }}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                                    <div class="article__video">
+                                                        <div class="article__video-row">
+                                                            <div class="article__video-col">
+                                                                <div class='embed-container'>
+                                                                    <iframe src="{{ item.video_link }}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
                                                 {% endif %}
-                                                <!-- поставить в конец после слайдер -->
-                                                {% if item.bottom_text %}
-                                                <div class="article__content style-content style-content--small">
-                                                    {% autoescape off %} {{ item.bottom_text }} {% endautoescape %}
-                                                </div>
-                                                {% endif %}
+
                                                 {% if item.title_paragraph1 or item.title_paragraph2 or item.title_paragraph3 or item.title_paragraph4 or item.title_paragraph5 %}
-                                                <!-- проверять li -->
-                                                <div class="article__content style-content style-content--small">
-                                                    <ol>
-                                                        <li>
+                                                    <!-- проверять li -->
+                                                    <div class="article__content style-content style-content--small">
+                                                        <ol>
                                                             {% if item.title_paragraph1 %}
-                                                                <h4>{{ item.title_paragraph1 }}</h4>
+                                                                <li>
+                                                                    <h4>{{ item.title_paragraph1 }}</h4>
+                                                                    {% if item.text_paragraph1 %}
+                                                                        {% autoescape off %} {{ item.text_paragraph1 }} {% endautoescape %}
+                                                                    {% endif %}
+                                                                </li>
                                                             {% endif %}
-                                                            {% if item.text_paragraph1 %}
-                                                                {% autoescape off %} {{ item.text_paragraph1 }} {% endautoescape %}
-                                                            {% endif %}
-                                                        </li>
-                                                        <li>
                                                             {% if item.title_paragraph2 %}
-                                                                <h4>{{ item.title_paragraph2 }}</h4>
+                                                                <li>
+                                                                    <h4>{{ item.title_paragraph2 }}</h4>
+                                                                    {% if item.text_paragraph2 %}
+                                                                        {% autoescape off %} {{ item.text_paragraph2 }} {% endautoescape %}
+                                                                    {% endif %}
+                                                                </li>
                                                             {% endif %}
-                                                            {% if item.text_paragraph2 %}
-                                                                {% autoescape off %} {{ item.text_paragraph2 }} {% endautoescape %}
-                                                            {% endif %}
-                                                        </li>
-                                                        <li>
                                                             {% if item.title_paragraph3 %}
-                                                                <h4>{{ item.title_paragraph3 }}</h4>
+                                                                <li>
+                                                                    <h4>{{ item.title_paragraph3 }}</h4>
+                                                                    {% if item.text_paragraph3 %}
+                                                                        {% autoescape off %} {{ item.text_paragraph3 }} {% endautoescape %}
+                                                                    {% endif %}
+                                                                </li>
                                                             {% endif %}
-                                                            {% if item.text_paragraph3 %}
-                                                                {% autoescape off %} {{ item.text_paragraph3 }} {% endautoescape %}
-                                                            {% endif %}
-                                                        </li>
-                                                        <li>
                                                             {% if item.title_paragraph4 %}
-                                                                <h4>{{ item.title_paragraph4 }}</h4>
+                                                                <li>
+                                                                    <h4>{{ item.title_paragraph4 }}</h4>
+                                                                    {% if item.text_paragraph4 %}
+                                                                        {% autoescape off %} {{ item.text_paragraph4 }} {% endautoescape %}
+                                                                    {% endif %}
+                                                                </li>
                                                             {% endif %}
-                                                            {% if item.text_paragraph4 %}
-                                                                {% autoescape off %} {{ item.text_paragraph4 }} {% endautoescape %}
-                                                            {% endif %}
-                                                        </li>
-                                                        <li>
                                                             {% if item.title_paragraph5 %}
-                                                                <h4>{{ item.title_paragraph5 }}</h4>
+                                                                <li>
+                                                                    <h4>{{ item.title_paragraph5 }}</h4>
+                                                                    {% if item.text_paragraph5 %}
+                                                                        {% autoescape off %} {{ item.text_paragraph5 }} {% endautoescape %}
+                                                                    {% endif %}
+                                                                </li>
                                                             {% endif %}
-                                                            {% if item.text_paragraph5 %}
-                                                                {% autoescape off %} {{ item.text_paragraph5 }} {% endautoescape %}
-                                                            {% endif %}
-                                                        </li>
-                                                    </ol>
-                                                </div>
+                                                        </ol>
+                                                    </div>
                                                 {% endif %}
                                                 {% if item.image %}
-                                                <div class="article__content style-content style-content--small">
-                                                    <img src="{{ item.image.url }}" alt="">
-                                                </div>
+                                                    <div class="article__content style-content style-content--small">
+                                                        <img src="{{ item.image.url }}" alt="">
+                                                    </div>
                                                 {% endif %}
                                                 {% if item.slide_picture_1_original or item.slide_picture_2_original or item.slide_picture_3_original or item.slide_picture_4_original or item.slide_picture_5_original or item.slide_picture_6_original or item.slide_picture_7_original %}
-                                                <div class="article__slider">
-                                                    <div class="article__slider-row">
-                                                        <div class="article__slider-col">
-                                                            <div class="slider-wrapper slider-wrapper--article">
-                                                                <div class="g-slider swiper-container js-g-slider">
-                                                                    <div class="g-slider__wrapper swiper-wrapper">
-                                                                        <!-- проверяем дивку а не <a> -->
-                                                                        {% if item.slide_picture_1_original %}
-                                                                        <div class="g-slider__item swiper-slide">
-                                                                            <a class="g-slider__img-wrap" href="{{ item.slide_picture_1_original.url }}" data-fancybox="gallery">
-                                                                                <div class="g-slider__img-ratio">
-                                                                                    <picture>
-                                                                                        <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_1_xxl.url }} 1x,  {{ item.slide_picture_1_xxl2x.url }} 2x">
-                                                                                            <img class="g-slider__img" src="{{ item.slide_picture_1_xs.url }}" srcset="{{ item.slide_picture_1_xs2x.url }} 2x" width="768" height="576" alt="">
-                                                                                    </picture>
+                                                    <div class="article__slider">
+                                                        <div class="article__slider-row">
+                                                            <div class="article__slider-col">
+                                                                <div class="slider-wrapper slider-wrapper--article">
+                                                                    <div class="g-slider swiper-container js-g-slider">
+                                                                        <div class="g-slider__wrapper swiper-wrapper">
+                                                                            <!-- проверяем дивку а не <a> -->
+                                                                            {% if item.slide_picture_1_original %}
+                                                                                <div class="g-slider__item swiper-slide">
+                                                                                    <a class="g-slider__img-wrap" href="{{ item.slide_picture_1_original.url }}" data-fancybox="gallery">
+                                                                                        <div class="g-slider__img-ratio">
+                                                                                            <picture>
+                                                                                                <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_1_xxl.url }} 1x,  {{ item.slide_picture_1_xxl2x.url }} 2x">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_1_xs.url }}" srcset="{{ item.slide_picture_1_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                            </picture>
+                                                                                        </div>
+                                                                                    </a>
                                                                                 </div>
-                                                                            </a>
-                                                                        </div>
-                                                                        {% endif %}
-                                                                        <div class="g-slider__item swiper-slide">
+                                                                            {% endif %}
                                                                             {% if item.slide_picture_2_original %}
-                                                                                <a class="g-slider__img-wrap" href="{{ item.slide_picture_2_original.url }}" data-fancybox="gallery">
-                                                                                    <div class="g-slider__img-ratio">
-                                                                                        <picture>
-                                                                                            <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_2_xxl.url }} 1x,  {{ item.slide_picture_2_xxl2x.url }} 2x">
-                                                                                            <img class="g-slider__img" src="{{ item.slide_picture_2_xs.url }}" srcset="{{ item.slide_picture_2_xs2x.url }} 2x" width="768" height="576" alt="">
-                                                                                        </picture>
-                                                                                    </div>
-                                                                                </a>
+                                                                                <div class="g-slider__item swiper-slide">
+                                                                                    <a class="g-slider__img-wrap" href="{{ item.slide_picture_2_original.url }}" data-fancybox="gallery">
+                                                                                        <div class="g-slider__img-ratio">
+                                                                                            <picture>
+                                                                                                <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_2_xxl.url }} 1x,  {{ item.slide_picture_2_xxl2x.url }} 2x">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_2_xs.url }}" srcset="{{ item.slide_picture_2_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                            </picture>
+                                                                                        </div>
+                                                                                    </a>
+                                                                                </div>
                                                                             {% endif %}
-                                                                        </div>
-                                                                        <div class="g-slider__item swiper-slide">
                                                                             {% if item.slide_picture_3_original %}
-                                                                                <a class="g-slider__img-wrap" href="{{ item.slide_picture_3_original.url }}" data-fancybox="gallery">
-                                                                                    <div class="g-slider__img-ratio">
-                                                                                        <picture>
-                                                                                            <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_3_xxl.url }} 1x,  {{ item.slide_picture_3_xxl2x.url }} 2x">
-                                                                                            <img class="g-slider__img" src="{{ item.slide_picture_3_xs.url }}" srcset="{{ item.slide_picture_3_xs2x.url }} 2x" width="768" height="576" alt="">
-                                                                                        </picture>
-                                                                                    </div>
-                                                                                </a>
+                                                                                <div class="g-slider__item swiper-slide">
+                                                                                    <a class="g-slider__img-wrap" href="{{ item.slide_picture_3_original.url }}" data-fancybox="gallery">
+                                                                                        <div class="g-slider__img-ratio">
+                                                                                            <picture>
+                                                                                                <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_3_xxl.url }} 1x,  {{ item.slide_picture_3_xxl2x.url }} 2x">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_3_xs.url }}" srcset="{{ item.slide_picture_3_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                            </picture>
+                                                                                        </div>
+                                                                                    </a>
+                                                                                </div>
                                                                             {% endif %}
-                                                                        </div>
-                                                                        <div class="g-slider__item swiper-slide">
                                                                             {% if item.slide_picture_4_original %}
-                                                                                <a class="g-slider__img-wrap" href="{{ item.slide_picture_4_original.url }}" data-fancybox="gallery">
-                                                                                    <div class="g-slider__img-ratio">
-                                                                                        <picture>
-                                                                                            <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_4_xxl.url }} 1x,  {{ item.slide_picture_4_xxl2x.url }} 2x">
-                                                                                            <img class="g-slider__img" src="{{ item.slide_picture_4_xs.url }}" srcset="{{ item.slide_picture_4_xs2x.url }} 2x" width="768" height="576" alt="">
-                                                                                        </picture>
-                                                                                    </div>
-                                                                                </a>
+                                                                                <div class="g-slider__item swiper-slide">
+                                                                                    <a class="g-slider__img-wrap" href="{{ item.slide_picture_4_original.url }}" data-fancybox="gallery">
+                                                                                        <div class="g-slider__img-ratio">
+                                                                                            <picture>
+                                                                                                <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_4_xxl.url }} 1x,  {{ item.slide_picture_4_xxl2x.url }} 2x">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_4_xs.url }}" srcset="{{ item.slide_picture_4_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                            </picture>
+                                                                                        </div>
+                                                                                    </a>
+                                                                                </div>
                                                                             {% endif %}
-                                                                        </div>
-                                                                        <div class="g-slider__item swiper-slide">
                                                                             {% if item.slide_picture_5_original %}
-                                                                                <a class="g-slider__img-wrap" href="{{ item.slide_picture_5_original.url }}" data-fancybox="gallery">
-                                                                                    <div class="g-slider__img-ratio">
-                                                                                        <picture>
-                                                                                            <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_5_xxl.url }} 1x,  {{ item.slide_picture_5_xxl2x.url }} 2x">
-                                                                                            <img class="g-slider__img" src="{{ item.slide_picture_5_xs.url }}" srcset="{{ item.slide_picture_5_xs2x.url }} 2x" width="768" height="576" alt="">
-                                                                                        </picture>
-                                                                                    </div>
-                                                                                </a>
+                                                                                <div class="g-slider__item swiper-slide">
+                                                                                    <a class="g-slider__img-wrap" href="{{ item.slide_picture_5_original.url }}" data-fancybox="gallery">
+                                                                                        <div class="g-slider__img-ratio">
+                                                                                            <picture>
+                                                                                                <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_5_xxl.url }} 1x,  {{ item.slide_picture_5_xxl2x.url }} 2x">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_5_xs.url }}" srcset="{{ item.slide_picture_5_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                            </picture>
+                                                                                        </div>
+                                                                                    </a>
+                                                                                </div>
                                                                             {% endif %}
-                                                                        </div>
-                                                                        <div class="g-slider__item swiper-slide">
                                                                             {% if item.slide_picture_6_original %}
-                                                                                <a class="g-slider__img-wrap" href="{{ item.slide_picture_6_original.url }}" data-fancybox="gallery">
-                                                                                    <div class="g-slider__img-ratio">
-                                                                                        <picture>
-                                                                                            <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_6_xxl.url }} 1x,  {{ item.slide_picture_6_xxl2x.url }} 2x">
-                                                                                            <img class="g-slider__img" src="{{ item.slide_picture_6_xs.url }}" srcset="{{ item.slide_picture_6_xs2x.url }} 2x" width="768" height="576" alt="">
-                                                                                        </picture>
-                                                                                    </div>
-                                                                                </a>
+                                                                                <div class="g-slider__item swiper-slide">
+                                                                                    <a class="g-slider__img-wrap" href="{{ item.slide_picture_6_original.url }}" data-fancybox="gallery">
+                                                                                        <div class="g-slider__img-ratio">
+                                                                                            <picture>
+                                                                                                <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_6_xxl.url }} 1x,  {{ item.slide_picture_6_xxl2x.url }} 2x">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_6_xs.url }}" srcset="{{ item.slide_picture_6_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                            </picture>
+                                                                                        </div>
+                                                                                    </a>
+                                                                                </div>
                                                                             {% endif %}
-                                                                        </div>
-                                                                        <div class="g-slider__item swiper-slide">
                                                                             {% if item.slide_picture_7_original %}
-                                                                                <a class="g-slider__img-wrap" href="{{ item.slide_picture_7_original.url }}" data-fancybox="gallery">
-                                                                                    <div class="g-slider__img-ratio">
+                                                                                <div class="g-slider__item swiper-slide">
+                                                                                    <a class="g-slider__img-wrap" href="{{ item.slide_picture_7_original.url }}" data-fancybox="gallery">
+                                                                                        <div class="g-slider__img-ratio">
+                                                                                            <picture>
+                                                                                                <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_7_xxl.url }} 1x,  {{ item.slide_picture_7_xxl2x.url }} 2x">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_7_xs.url }}" srcset="{{ item.slide_picture_7_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                            </picture>
+                                                                                        </div>
+                                                                                    </a>
+                                                                                </div>
+                                                                            {% endif %}
+                                                                            {% if item.slide_picture_8_original %}
+                                                                                <div class="g-slider__item swiper-slide">
+                                                                                    <a class="g-slider__img-wrap" href="{{ item.slide_picture_8_original.url }}" data-fancybox="gallery">
+                                                                                        <div class="g-slider__img-ratio">
+                                                                                            <picture>
+                                                                                                <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_8_xxl.url }} 1x,  {{ item.slide_picture_8_xxl2x.url }} 2x">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_8_xs.url }}" srcset="{{ item.slide_picture_8_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                            </picture>
+                                                                                        </div>
+                                                                                    </a>
+                                                                                </div>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                        <div class="g-slider__btn-prev swiper-button-prev js-g-slider-btn-prev"></div>
+                                                                        <div class="g-slider__btn-next swiper-button-next js-g-slider-btn-next"></div>
+                                                                        <div class="g-slider__pagination swiper-pagination js-g-slider-pagination"></div>
+                                                                    </div>
+                                                                    <div class="g-slider-thumbs swiper-container js-g-slider-thumbs">
+                                                                        <div class="g-slider-thumbs__wrapper swiper-wrapper">
+                                                                            {% if item.slide_picture_1_original %}
+                                                                                <div class="g-slider-thumbs__item swiper-slide">
+                                                                                    <div class="g-slider-thumbs__img-wrap">
                                                                                         <picture>
-                                                                                            <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_7_xxl.url }} 1x,  {{ item.slide_picture_7_xxl2x.url }} 2x">
-                                                                                            <img class="g-slider__img" src="{{ item.slide_picture_7_xs.url }}" srcset="{{ item.slide_picture_7_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                            <img class="g-slider-thumbs__img" src="{{ item.slide_picture_1_thumb_xs.url }}" srcset="{{ item.slide_picture_1_thumb_2xs.url }} 2x" width="144" height="144"
+                                                                                                 alt="">
                                                                                         </picture>
                                                                                     </div>
-                                                                                </a>
+                                                                                </div>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                        <div class="g-slider-thumbs__wrapper swiper-wrapper">
+                                                                            {% if item.slide_picture_2_original %}
+                                                                                <div class="g-slider-thumbs__item swiper-slide">
+                                                                                    <div class="g-slider-thumbs__img-wrap">
+                                                                                        <picture>
+                                                                                            <img class="g-slider-thumbs__img" src="{{ item.slide_picture_2_thumb_xs.url }}" srcset="{{ item.slide_picture_2_thumb_2xs.url }} 2x" width="144" height="144"
+                                                                                                 alt="">
+                                                                                        </picture>
+                                                                                    </div>
+                                                                                </div>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                        <div class="g-slider-thumbs__wrapper swiper-wrapper">
+                                                                            {% if item.slide_picture_3_original %}
+                                                                                <div class="g-slider-thumbs__item swiper-slide">
+                                                                                    <div class="g-slider-thumbs__img-wrap">
+                                                                                        <picture>
+                                                                                            <img class="g-slider-thumbs__img" src="{{ item.slide_picture_3_thumb_xs.url }}" srcset="{{ item.slide_picture_3_thumb_2xs.url }} 2x" width="144" height="144"
+                                                                                                 alt="">
+                                                                                        </picture>
+                                                                                    </div>
+                                                                                </div>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                        <div class="g-slider-thumbs__wrapper swiper-wrapper">
+                                                                            {% if item.slide_picture_4_original %}
+                                                                                <div class="g-slider-thumbs__item swiper-slide">
+                                                                                    <div class="g-slider-thumbs__img-wrap">
+                                                                                        <picture>
+                                                                                            <img class="g-slider-thumbs__img" src="{{ item.slide_picture_4_thumb_xs.url }}" srcset="{{ item.slide_picture_4_thumb_2xs.url }} 2x" width="144" height="144"
+                                                                                                 alt="">
+                                                                                        </picture>
+                                                                                    </div>
+                                                                                </div>
+                                                                            {% endif %}
+                                                                        </div>
+
+                                                                        <div class="g-slider-thumbs__wrapper swiper-wrapper">
+                                                                            {% if item.slide_picture_5_original %}
+                                                                                <div class="g-slider-thumbs__item swiper-slide">
+                                                                                    <div class="g-slider-thumbs__img-wrap">
+                                                                                        <picture>
+                                                                                            <img class="g-slider-thumbs__img" src="{{ item.slide_picture_5_thumb_xs.url }}" srcset="{{ item.slide_picture_5_thumb_2xs.url }} 2x" width="144" height="144"
+                                                                                                 alt="">
+                                                                                        </picture>
+                                                                                    </div>
+                                                                                </div>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                        <div class="g-slider-thumbs__wrapper swiper-wrapper">
+                                                                            {% if item.slide_picture_6_original %}
+                                                                                <div class="g-slider-thumbs__item swiper-slide">
+                                                                                    <div class="g-slider-thumbs__img-wrap">
+                                                                                        <picture>
+                                                                                            <img class="g-slider-thumbs__img" src="{{ item.slide_picture_6_thumb_xs.url }}" srcset="{{ item.slide_picture_6_thumb_2xs.url }} 2x" width="144" height="144"
+                                                                                                 alt="">
+                                                                                        </picture>
+                                                                                    </div>
+                                                                                </div>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                        <div class="g-slider-thumbs__wrapper swiper-wrapper">
+                                                                            {% if item.slide_picture_7_original %}
+                                                                                <div class="g-slider-thumbs__item swiper-slide">
+                                                                                    <div class="g-slider-thumbs__img-wrap">
+                                                                                        <picture>
+                                                                                            <img class="g-slider-thumbs__img" src="{{ item.slide_picture_7_thumb_xs.url }}" srcset="{{ item.slide_picture_7_thumb_2xs.url }} 2x" width="144" height="144"
+                                                                                                 alt="">
+                                                                                        </picture>
+                                                                                    </div>
+                                                                                </div>
+                                                                            {% endif %}
+                                                                        </div>
+                                                                        <div class="g-slider-thumbs__wrapper swiper-wrapper">
+                                                                            {% if item.slide_picture_8_original %}
+                                                                                <div class="g-slider-thumbs__item swiper-slide">
+                                                                                    <div class="g-slider-thumbs__img-wrap">
+                                                                                        <picture>
+                                                                                            <img class="g-slider-thumbs__img" src="{{ item.slide_picture_8_thumb_xs.url }}" srcset="{{ item.slide_picture_8_thumb_2xs.url }} 2x" width="144" height="144"
+                                                                                                 alt="">
+                                                                                        </picture>
+                                                                                    </div>
+                                                                                </div>
                                                                             {% endif %}
                                                                         </div>
                                                                     </div>
-                                                                    <div class="g-slider__btn-prev swiper-button-prev js-g-slider-btn-prev"></div>
-                                                                    <div class="g-slider__btn-next swiper-button-next js-g-slider-btn-next"></div>
-                                                                    <div class="g-slider__pagination swiper-pagination js-g-slider-pagination"></div>
-                                                                </div>
-                                                                <div class="g-slider-thumbs swiper-container js-g-slider-thumbs">
-                                                                    <div class="g-slider-thumbs__wrapper swiper-wrapper">
-                                                                        {% if item.slide_picture_1_original %}
-                                                                        <div class="g-slider-thumbs__item swiper-slide">
-                                                                            <div class="g-slider-thumbs__img-wrap">
-                                                                                <picture>
-                                                                                    <img class="g-slider-thumbs__img" src="{{ item.slide_picture_1_thumb_xs.url }}" srcset="{{ item.slide_picture_1_thumb_2xs.url }} 2x" width="144" height="144" alt="">
-                                                                                </picture>
-                                                                            </div>
-                                                                        </div>
-                                                                        {% endif %}
-                                                                    </div>
+
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                {% endif %}
+                                                {% if item.bottom_text %}
+                                                    <div class="article__content style-content style-content--small">
+                                                        {% autoescape off %} {{ item.bottom_text }} {% endautoescape %}
+                                                    </div>
                                                 {% endif %}
                                             </div>
                                         {% endfor %}

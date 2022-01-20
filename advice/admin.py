@@ -9,12 +9,21 @@ class advice_blocks_admin(SortableInlineAdminMixin, TranslationStackedInline):
     ordering = ('order',)
     readonly_fields = ('display_block_image',)
     exclude = ('slide_picture_1_original', 'slide_picture_1_xxl', 'slide_picture_1_xs2x', 'slide_picture_1_xs',
+               'slide_picture_1_thumb_xs2x', 'slide_picture_1_thumb_xs',
                'slide_picture_2_original', 'slide_picture_2_xxl', 'slide_picture_2_xs2x', 'slide_picture_2_xs',
+               'slide_picture_2_thumb_xs2x', 'slide_picture_2_thumb_xs',
                'slide_picture_3_original', 'slide_picture_3_xxl', 'slide_picture_3_xs2x', 'slide_picture_3_xs',
+               'slide_picture_3_thumb_xs2x', 'slide_picture_3_thumb_xs',
                'slide_picture_4_original', 'slide_picture_4_xxl', 'slide_picture_4_xs2x', 'slide_picture_4_xs',
+               'slide_picture_4_thumb_xs2x', 'slide_picture_4_thumb_xs',
                'slide_picture_5_original', 'slide_picture_5_xxl', 'slide_picture_5_xs2x', 'slide_picture_5_xs',
+               'slide_picture_5_thumb_xs2x', 'slide_picture_5_thumb_xs',
                'slide_picture_6_original', 'slide_picture_6_xxl', 'slide_picture_6_xs2x', 'slide_picture_6_xs',
-               'slide_picture_7_original', 'slide_picture_7_xxl', 'slide_picture_7_xs2x', 'slide_picture_7_xs')
+               'slide_picture_6_thumb_xs2x', 'slide_picture_6_thumb_xs',
+               'slide_picture_7_original', 'slide_picture_7_xxl', 'slide_picture_7_xs2x', 'slide_picture_7_xs',
+               'slide_picture_7_thumb_xs2x', 'slide_picture_7_thumb_xs',
+               'slide_picture_8_original', 'slide_picture_8_xxl', 'slide_picture_8_xs2x', 'slide_picture_8_xs',
+               'slide_picture_8_thumb_xs2x', 'slide_picture_8_thumb_xs',)
 
 
 class advice_page_admin(SortableAdminMixin, TranslationAdmin):
