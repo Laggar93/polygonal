@@ -8,8 +8,6 @@ def advice_view(request):
     link_ru = '/ru/advice/'
     link_en = '/en/advice/'
     link_fr = '/fr/advice/'
-    # print(advice_page.main_photo_xxl)
-    # advice_pages = advice_page.objects.all().first()
 
     context = {
         'show_language': True,
@@ -27,11 +25,16 @@ def advice_view(request):
 
 def advice_item_view(request, advice_page_slug):
 
+    # нет проверки 404
+
+    # сделать проверку на наличие совета в других языках и вывести верную ссылку
+
     link_ru = '/ru/advice/'
     link_en = '/en/advice/'
     link_fr = '/fr/advice/'
+    
     advice_pages = advice_page.objects.filter(slug=advice_page_slug, is_active=True).first()
-    blocks = advice_blocks.objects.get(advice_page__slug=advice_page_slug)
+    blocks = advice_blocks.objects.filter(advice_page=advice_pages)
 
     context = {
         'show_language': True,

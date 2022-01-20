@@ -56,7 +56,7 @@ class advice_main(models.Model):
     description = models.CharField('Описание', max_length=1000, blank=True)
     title = models.CharField('Заголовок', max_length=500)
     name = models.CharField('Название заголовка', max_length=500)
-    advice = models.CharField('Стат. перевод - Советы по сборке', max_length=255, blank=True)
+    advice = models.CharField('Советы по сборке', max_length=255, blank=True)
 
     def __str__(self):
         return str(self.name)
@@ -67,13 +67,14 @@ class advice_main(models.Model):
 
 
 class advice_page(models.Model):
+
     is_active = models.BooleanField('Показывать на сайте', default=True)
     keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)
     description = models.CharField('Описание', max_length=1000, blank=True)
     title = models.CharField('Заголовок', max_length=500)
     order = models.IntegerField('Порядок показа', null=True)
     name = models.CharField('Название элемента', max_length=500)
-    main_photo_xxl2x = ResizedImageField('Основное изображение', size=[2048, 1536], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
+    main_photo_xxl2x = ResizedImageField('Основное изображение', size=[1600, 1200], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                    help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.')
     main_photo_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     main_photo_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
@@ -81,11 +82,12 @@ class advice_page(models.Model):
     slug = models.SlugField('URL', max_length=50, allow_unicode=True, blank=True,
                             help_text='URL генерируется автоматически из названия раздела, но может быть задан вручную', unique=True)
     intro_text = RichTextField('Вступительный текст', blank=True)
-    # __original_main_photo_xxl2 = None
-    #
-    # def __init__(self, *args, **kwargs):
-    #     super(advice_page, self).__init__(*args, **kwargs)
-    #     self.__original_main_photo_xxl2 = self.main_photo_xxl2x
+
+    __original_main_photo_xxl2 = None
+    
+    def __init__(self, *args, **kwargs):
+        super(advice_page, self).__init__(*args, **kwargs)
+        self.__original_main_photo_xxl2 = self.main_photo_xxl2x
 
 
     def __str__(self):
@@ -99,13 +101,12 @@ class advice_page(models.Model):
     def get_absolute_url(self):
         return reverse('advice_item_view', kwargs={'advice_page_slug': self.slug})
 
-
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        if self.main_photo_xxl2x != self.main_photo_xxl2x:
+        if self.__original_main_photo_xxl2 != self.main_photo_xxl2x:
             self.main_photo_xxl = resize_img(self.main_photo_xxl, self.main_photo_xxl2x, [800, 600])
             self.main_photo_xs = resize_img(self.main_photo_xs, self.main_photo_xxl2x, [728, 546])
-            self.main_photo_xs2x = resize_img(self.main_photo_xs2x, self.main_photo_xxl2x, [728, 546])
+            self.main_photo_xs2x = resize_img(self.main_photo_xs2x, self.main_photo_xxl2x, [1456, 1092])
         if not self.slug:
             self.slug = slugify(self.name)[:50]
         else:
@@ -121,9 +122,6 @@ class advice_page(models.Model):
 
 class advice_blocks(models.Model):
     advice_page = models.ForeignKey(advice_page, on_delete=models.CASCADE, verbose_name='Страница советов по сборке')
-    keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)
-    description = models.CharField('Описание', max_length=1000, blank=True)
-    title = models.CharField('Заголовок', max_length=500)
     order = models.IntegerField('Порядок показа', null=True)
     name = models.CharField('Заголовок блока', max_length=500)
     video_link = models.CharField('Ссылка на видео Vimeo или YouTube', max_length=500, blank=True)
@@ -139,19 +137,24 @@ class advice_blocks(models.Model):
     text_paragraph3 = RichTextField('Текст третьего пункта', null=True, blank=True)
     text_paragraph4 = RichTextField('Текст четвертого пункта', null=True, blank=True)
     text_paragraph5 = RichTextField('Текст пятого пункта', null=True, blank=True)
-    image = models.ImageField(verbose_name='Изображение', upload_to=get_file_path, blank=True, null=True)
-    image_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    image_xxl2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    image_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    image_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
-    slide_picture_1 = models.ImageField(verbose_name='Первое изображение слайдера', upload_to=get_file_path, blank=True, null=True)
-    slide_picture_2 = models.ImageField(verbose_name='Второе изображение слайдера', upload_to=get_file_path, blank=True, null=True)
-    slide_picture_3 = models.ImageField(verbose_name='Третье изображение слайдера', upload_to=get_file_path, blank=True, null=True)
-    slide_picture_4 = models.ImageField(verbose_name='Четвертое изображение слайдера', upload_to=get_file_path, blank=True, null=True)
-    slide_picture_5 = models.ImageField(verbose_name='Пятое изображение слайдера', upload_to=get_file_path, blank=True, null=True)
-    slide_picture_6 = models.ImageField(verbose_name='Шестое изображение слайдера', upload_to=get_file_path, blank=True, null=True)
-    slide_picture_7 = models.ImageField(verbose_name='Седьмое изображение слайдера', upload_to=get_file_path, blank=True, null=True)
-    slide_picture_8 = models.ImageField(verbose_name='Восьмое изображение слайдера', upload_to=get_file_path, blank=True, null=True)
+    image = ResizedImageField('Одно изображение', size=[1600, 1200], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
+                                   help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
+    
+    # скопировать отсюда для оставшихся 7 изображений
+    slide_picture_1_xxl2x = ResizedImageField('Изображение 1 для слайдера', size=[2400, 1800], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
+                                   help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
+    slide_picture_1_original = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_1_xxl = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_1_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    slide_picture_1_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    __original_slide_picture_1_xxl2x = None
+    # до сюда
+
+    def __init__(self, *args, **kwargs):
+        super(advice_blocks, self).__init__(*args, **kwargs)
+        # скопировать отсюда для оставшихся 7 изображений
+        self.__original_slide_picture_1_xxl2x = self.slide_picture_1_xxl2x
+        # до сюда
 
     def __str__(self):
         return str(self.name)
@@ -160,6 +163,17 @@ class advice_blocks(models.Model):
         ordering = ['order']
         verbose_name = 'Блоки страницы советов'
         verbose_name_plural = 'Блоки страницы советов'
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        # скопировать отсюда для оставшихся 7 изображений
+        if self.slide_picture_1_xxl2x != self.__original_slide_picture_1_xxl2x:
+            self.slide_picture_1_original = resize_img(self.slide_picture_1_original, self.slide_picture_1_xxl2x, [800, 600])
+            self.slide_picture_1_xxl = resize_img(self.slide_picture_1_xxl, self.slide_picture_1_xxl2x, [728, 546])
+            self.slide_picture_1_xs2x = resize_img(self.slide_picture_1_xs2x, self.slide_picture_1_xxl2x, [1456, 1092])
+            self.slide_picture_1_xs = resize_img(self.slide_picture_1_xs, self.slide_picture_1_xxl2x, [1456, 1092])
+        # до сюда
+        super().save(*args, **kwargs)
 
     @cached_property
     def display_block_image(self):

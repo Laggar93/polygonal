@@ -54,8 +54,8 @@ class project_page(models.Model):
     keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)
     description = models.CharField('Описание', max_length=1000, blank=True)
     title = models.CharField('Заголовок', max_length=500)
-    projects = models.CharField('Стат. перевод - Проекты на заказ', max_length=255, blank=True)
-    another_projects = models.CharField('Стат. перевод - Другие проекты', max_length=255, blank=True)
+    projects = models.CharField('Проекты на заказ', max_length=255, blank=True)
+    another_projects = models.CharField('Другие проекты', max_length=255, blank=True)
     name = models.CharField('Название раздела', max_length=500)
     text = RichTextField('Текст после названия', blank=True)
 

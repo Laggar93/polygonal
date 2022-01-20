@@ -21,7 +21,7 @@
                                         <div class="c-card c-card--model c-card--article">
                                             <a class="c-card__img-wrap" href="{{ item.get_absolute_url }}">
                                                 <div class="c-card__img-ratio">
-                                                    {% if item.main_photo_xs2x %}
+                                                    {% if item.main_photo_xxl2x %}
                                                         <picture>
                                                             <source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2x.url }}  2x">
                                                             <img class="c-card__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2x.url }} 2x" width="728"

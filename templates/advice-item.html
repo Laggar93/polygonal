@@ -4,15 +4,7 @@
 {% get_available_languages as LANGUAGES %}
 {% block content %}
 			<main class="page__main">
-				<div class="breadcrumbs">
-					<div class="breadcrumbs__container">
-						<div class="breadcrumbs__row">
-							<div class="breadcrumbs__col">
-							</div>
-						</div>
-					</div>
-				</div>
-				<section class="section section--fluid section--no-padding">
+				<section class="section section--fluid section--top">
 					<div class="section__container">
 						<div class="section__row">
 							<div class="section__col">
@@ -26,78 +18,57 @@
 												</div>
 											</div>
 											<div class="article__content-wrap">
+												{% for item in blocks %}
 												<div class="article__block">
-                                                {% if blocks.name %}
 													<div class="article__content style-content style-content--small">
-														<h2>{{ blocks.name }}</h2>
+														<h2>{{ item.name }}</h2>
 													</div>
-                                                    {% endif %}
+													<!-- проверка верхнего текста -->
+													<div class="article__content style-content style-content--small">
+														<p>Результат напрямую зависит от&nbsp;качества используемых материалов. Пожалуйста, не&nbsp;пытайтесь собрать модель из&nbsp;обычной офисной бумаги. В&nbsp;наших наборах используется качественная бумага с&nbsp;оптимальным соотношением хлопка и&nbsp;целюллозы в&nbsp;составе, благодаря чему она не&nbsp;сильно крошится и&nbsp;расслаивается на&nbsp;сгибах.</p>
+													</div>
+													{% if item.video_link %}
 													<div class="article__video">
 														<div class="article__video-row">
 															<div class="article__video-col">
-                                                                {% if blocks.video_link %}
 																<div class='embed-container'>
-																	<iframe src="{{ i.video_link }}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+																	<iframe src="{{ item.video_link }}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 																</div>
-                                                                    {% endif %}
 															</div>
 														</div>
 													</div>
-                                                {% if blocks.bottom_text %}
+													{% endif %}
+													<!-- проверка списка, видимо проверить 5 заголовков -->
 													<div class="article__content style-content style-content--small">
-														{% autoescape off %} {{ blocks.bottom_text }} {% endautoescape %}
-													</div>
-                                                {% endif %}
-												</div>
-												<div class="article__block">
-													<div class="article__content style-content style-content--small">
-{#														{% if blocks.name %}<h2>{{ blocks.name }}</h2>{% endif %}#}
 														<ol>
-															<li>
-                                                                {% if blocks.title_paragraph1 %}
-                                                                    <h4>{{ blocks.title_paragraph1 }}</h4>
-                                                                {% endif %}
-                                                            {% if blocks.text_paragraph1 %}
-                                                                {% autoescape off %} {{ blocks.text_paragraph1 }} {% endautoescape %}
-                                                            {% endif %}
+															<li><h4>Не&nbsp;спешите</h4>
+																<p>Мы&nbsp;постарались сделать всё возможное, чтобы процесс сборки был простым и&nbsp;понятным,
+																	тем не&nbsp;менее вам потребуется от&nbsp;4&nbsp;до&nbsp;10&nbsp;часов чтобы собрать одну
+																	модель. Не&nbsp;пытайтесь успеть сделать всё сразу. Мы&nbsp;советуем растянуть процесс
+																	сборки на&nbsp;два-три вечера, тогда результат получится аккуратнее, а&nbsp;вы&nbsp;получите
+																	удовольствие от&nbsp;сборки.</p>
 															</li>
-															<li>
-                                                            {% if blocks.title_paragraph2 %}
-                                                                <h4>{{ blocks.title_paragraph2 }}</h4>
-                                                            {% endif %}
-                                                            {% if blocks.text_paragraph2 %}
-																{% autoescape off %} {{ blocks.text_paragraph2 }} {% endautoescape %}
-                                                            {% endif %}
+															<li><h4>Внимательность и&nbsp;аккуратность</h4>
+																<p>Для сборки модели не&nbsp;обязательно обладать специфическими навыками работы с&nbsp;бумагой,
+																	главное&nbsp;&mdash; ваши внимательность и&nbsp;аккуратность. Детям до&nbsp;12&nbsp;лет
+																	потребуется помощь взрослых для сборки модели.</p>
 															</li>
-															<li>
-                                                            {% if blocks.title_paragraph3 %}
-                                                                <h4>{{ blocks.title_paragraph3 }}</h4>
-                                                            {% endif %}
-                                                            {% if blocks.text_paragraph3 %}
-																{% autoescape off %} {{ blocks.text_paragraph3 }} {% endautoescape %}
-                                                            {% endif %}
+															<li><h4>Выбор бумаги</h4>
+																<p>Результат напрямую зависит от&nbsp;качества используемых материалов. Пожалуйста, не&nbsp;пытайтесь
+																	собрать модель из&nbsp;обычной офисной бумаги. В&nbsp;наших наборах используется
+																	качественная бумага с&nbsp;оптимальным соотношением хлопка и&nbsp;целюллозы в&nbsp;составе,
+																	благодаря чему она не&nbsp;сильно крошится и&nbsp;расслаивается на&nbsp;сгибах. У&nbsp;этой
+																	бумаги есть лёгкая фактура, поэтому места склейки меньше бросаются в&nbsp;глаза на&nbsp;завершённой
+																	работе. Если вы&nbsp;покупаете бумагу самостоятельно, советуем вам выбрать фактурную
+																	бумагу плотностью 180-250 гр./м&sup2;.</p>
 															</li>
 														</ol>
 													</div>
-												</div>
-												<div class="article__block">
+													<!-- проверка одной картинки -->
 													<div class="article__content style-content style-content--small">
-{#														{% if blocks.name %}<h2>{{ blocks.name }}</h2>{% endif %}#}
-                                                    {% if blocks.top_text %}
-                                                        {% autoescape off %} {{ blocks.top_text }} {% endautoescape %}
-                                                    {% endif %}
-
-														<img src="{% if blocks.image %}{{ blocks.image.url }}{% endif %}" alt="">
-                                                    {% if blocks.bottom_text %}
-                                                    {% autoescape off %} {{ blocks.bottom_text }} {% endautoescape %}
-                                                    {% endif %}
-
+														<img src="{% static 'img/product-original-img.jpg' %}" alt="">
 													</div>
-												</div>
-												<div class="article__block">
-													<div class="article__content style-content style-content--small">
-{#														<h2>Порядок сборки</h2>#}
-													</div>
+													<!-- проверка слайдера -->
 													<div class="article__slider">
 														<div class="article__slider-row">
 															<div class="article__slider-col">
@@ -105,16 +76,75 @@
 																	<div class="g-slider swiper-container js-g-slider">
 																		<div class="g-slider__wrapper swiper-wrapper">
 																			<div class="g-slider__item swiper-slide">
-																				<a class="g-slider__img-wrap" href="{% if blocks.image %}{{ blocks.image.url }}{% endif %}" data-fancybox="gallery">
+																				<a class="g-slider__img-wrap" href="img/product-original-img.jpg" data-fancybox="gallery">
 																					<div class="g-slider__img-ratio">
 																						<picture>
-																							<source media="(min-width: 1700px)" srcset="{% if blocks.image_xxl.url %}{{ blocks.image_xxl.url }}{% endif %} 1x, {% if blocks.image_xxl2x %}{{ blocks.image_xxl2x.url }}{% endif %} 2x">
-																							<img class="g-slider__img" src="{% if blocks.image_xs.url %}{{ blocks.image_xs.url }}{% endif %}" srcset="{% if blocks.image_xs2x %}{{ blocks.image_xs2x.url }}{% endif %} 2x" width="768" height="576" alt="">
+																							<source media="(min-width: 1700px)" srcset="img/product-card-img--big-01--xxl.jpg 1x, img/product-card-img--big-01--xxl@2x.jpg 2x">
+																							<img class="g-slider__img" src="img/product-card-img--big-01--xs.jpg" srcset="img/product-card-img--big-01--xs@2x.jpg 2x" width="768" height="576" alt="">
 																						</picture>
 																					</div>
 																				</a>
 																			</div>
-
+																			<div class="g-slider__item swiper-slide">
+																				<a class="g-slider__img-wrap" href="img/product-original-img.jpg" data-fancybox="gallery">
+																					<div class="g-slider__img-ratio">
+																						<picture>
+																							<source media="(min-width: 1700px)" srcset="img/product-card-img--big-01--xxl.jpg 1x, img/product-card-img--big-01--xxl@2x.jpg 2x">
+																							<img class="g-slider__img" src="img/product-card-img--big-01--xs.jpg" srcset="img/product-card-img--big-01--xs@2x.jpg 2x" width="768" height="576" alt="">
+																						</picture>
+																					</div>
+																				</a>
+																			</div>
+																			<div class="g-slider__item swiper-slide">
+																				<a class="g-slider__img-wrap" href="img/product-original-img.jpg" data-fancybox="gallery">
+																					<div class="g-slider__img-ratio">
+																						<picture>
+																							<source media="(min-width: 1700px)" srcset="img/product-card-img--big-01--xxl.jpg 1x, img/product-card-img--big-01--xxl@2x.jpg 2x">
+																							<img class="g-slider__img" src="img/product-card-img--big-01--xs.jpg" srcset="img/product-card-img--big-01--xs@2x.jpg 2x" width="768" height="576" alt="">
+																						</picture>
+																					</div>
+																				</a>
+																			</div>
+																			<div class="g-slider__item swiper-slide">
+																				<a class="g-slider__img-wrap" href="img/product-original-img.jpg" data-fancybox="gallery">
+																					<div class="g-slider__img-ratio">
+																						<picture>
+																							<source media="(min-width: 1700px)" srcset="img/product-card-img--big-01--xxl.jpg 1x, img/product-card-img--big-01--xxl@2x.jpg 2x">
+																							<img class="g-slider__img" src="img/product-card-img--big-01--xs.jpg" srcset="img/product-card-img--big-01--xs@2x.jpg 2x" width="768" height="576" alt="">
+																						</picture>
+																					</div>
+																				</a>
+																			</div>
+																			<div class="g-slider__item swiper-slide">
+																				<a class="g-slider__img-wrap" href="img/product-original-img.jpg" data-fancybox="gallery">
+																					<div class="g-slider__img-ratio">
+																						<picture>
+																							<source media="(min-width: 1700px)" srcset="img/product-card-img--big-01--xxl.jpg 1x, img/product-card-img--big-01--xxl@2x.jpg 2x">
+																							<img class="g-slider__img" src="img/product-card-img--big-01--xs.jpg" srcset="img/product-card-img--big-01--xs@2x.jpg 2x" width="768" height="576" alt="">
+																						</picture>
+																					</div>
+																				</a>
+																			</div>
+																			<div class="g-slider__item swiper-slide">
+																				<a class="g-slider__img-wrap" href="img/product-original-img.jpg" data-fancybox="gallery">
+																					<div class="g-slider__img-ratio">
+																						<picture>
+																							<source media="(min-width: 1700px)" srcset="img/product-card-img--big-01--xxl.jpg 1x, img/product-card-img--big-01--xxl@2x.jpg 2x">
+																							<img class="g-slider__img" src="img/product-card-img--big-01--xs.jpg" srcset="img/product-card-img--big-01--xs@2x.jpg 2x" width="768" height="576" alt="">
+																						</picture>
+																					</div>
+																				</a>
+																			</div>
+																			<div class="g-slider__item swiper-slide">
+																				<a class="g-slider__img-wrap" href="img/product-original-img.jpg" data-fancybox="gallery">
+																					<div class="g-slider__img-ratio">
+																						<picture>
+																							<source media="(min-width: 1700px)" srcset="img/product-card-img--big-01--xxl.jpg 1x, img/product-card-img--big-01--xxl@2x.jpg 2x">
+																							<img class="g-slider__img" src="img/product-card-img--big-01--xs.jpg" srcset="img/product-card-img--big-01--xs@2x.jpg 2x" width="768" height="576" alt="">
+																						</picture>
+																					</div>
+																				</a>
+																			</div>
 																		</div>
 																		<div class="g-slider__btn-prev swiper-button-prev js-g-slider-btn-prev"></div>
 																		<div class="g-slider__btn-next swiper-button-next js-g-slider-btn-next"></div>
@@ -125,49 +155,49 @@
 																			<div class="g-slider-thumbs__item swiper-slide">
 																				<div class="g-slider-thumbs__img-wrap">
 																					<picture>
-																						<img class="g-slider-thumbs__img" src="{% if blocks.slide_picture_1 %}{{ blocks.slide_picture_1.url }}{% endif %}" srcset="{% if blocks.slide_picture_1 %}{{ blocks.slide_picture_1.url }} {% endif %}2x" width="144" height="144" alt="">
+																						<img class="g-slider-thumbs__img" src="img/product-card-thumbs-img-01--xs.jpg" srcset="img/product-card-thumbs-img-01--xs@2x.jpg 2x" width="144" height="144" alt="">
 																					</picture>
 																				</div>
 																			</div>
 																			<div class="g-slider-thumbs__item swiper-slide">
 																				<div class="g-slider-thumbs__img-wrap">
 																					<picture>
-																						<img class="g-slider-thumbs__img" src="{% if blocks.slide_picture_2 %}{{ blocks.slide_picture_2.url }}{% endif %}" srcset="{% if blocks.slide_picture_2 %}{{ blocks.slide_picture_2.url }} {% endif %} 2x" width="144" height="144" alt="">
+																						<img class="g-slider-thumbs__img" src="img/product-card-thumbs-img-01--xs.jpg" srcset="img/product-card-thumbs-img-01--xs@2x.jpg 2x" width="144" height="144" alt="">
 																					</picture>
 																				</div>
 																			</div>
 																			<div class="g-slider-thumbs__item swiper-slide">
 																				<div class="g-slider-thumbs__img-wrap">
 																					<picture>
-                                                                                        <img class="g-slider-thumbs__img" src="{% if blocks.slide_picture_3 %}{{ j.slide_picture_3.url }}{% endif %}" srcset="{% if blocks.slide_picture_3 %}{{ blocks.slide_picture_3.url }} {% endif %} 2x" width="144" height="144" alt="">
+																						<img class="g-slider-thumbs__img" src="img/product-card-thumbs-img-01--xs.jpg" srcset="img/product-card-thumbs-img-01--xs@2x.jpg 2x" width="144" height="144" alt="">
 																					</picture>
 																				</div>
 																			</div>
 																			<div class="g-slider-thumbs__item swiper-slide">
 																				<div class="g-slider-thumbs__img-wrap">
 																					<picture>
-                                                                                        <img class="g-slider-thumbs__img" src="{% if blocks.slide_picture_4 %}{{ blocks.slide_picture_4.url }}{% endif %}" srcset="{% if blocks.slide_picture_4 %}{{ blocks.slide_picture_4.url }} {% endif %} 2x" width="144" height="144" alt="">
+																						<img class="g-slider-thumbs__img" src="img/product-card-thumbs-img-01--xs.jpg" srcset="img/product-card-thumbs-img-01--xs@2x.jpg 2x" width="144" height="144" alt="">
 																					</picture>
 																				</div>
 																			</div>
 																			<div class="g-slider-thumbs__item swiper-slide">
 																				<div class="g-slider-thumbs__img-wrap">
 																					<picture>
-                                                                                        <img class="g-slider-thumbs__img" src="{% if blocks.slide_picture_5 %}{{ blocks.slide_picture_5.url }}{% endif %}" srcset="{% if blocks.slide_picture_5 %}{{ blocks.slide_picture_5.url }} {% endif %} 2x" width="144" height="144" alt="">
+																						<img class="g-slider-thumbs__img" src="img/product-card-thumbs-img-01--xs.jpg" srcset="img/product-card-thumbs-img-01--xs@2x.jpg 2x" width="144" height="144" alt="">
 																					</picture>
 																				</div>
 																			</div>
 																			<div class="g-slider-thumbs__item swiper-slide">
 																				<div class="g-slider-thumbs__img-wrap">
 																					<picture>
-                                                                                        <img class="g-slider-thumbs__img" src="{% if blocks.slide_picture_6 %}{{ blocks.slide_picture_6.url }}{% endif %}" srcset="{% if blocks.slide_picture_6 %}{{ blocks.slide_picture_6.url }} {% endif %} 2x" width="144" height="144" alt="">
+																						<img class="g-slider-thumbs__img" src="img/product-card-thumbs-img-01--xs.jpg" srcset="img/product-card-thumbs-img-01--xs@2x.jpg 2x" width="144" height="144" alt="">
 																					</picture>
 																				</div>
 																			</div>
 																			<div class="g-slider-thumbs__item swiper-slide">
 																				<div class="g-slider-thumbs__img-wrap">
 																					<picture>
-                                                                                        <img class="g-slider-thumbs__img" src="{% if blocks.slide_picture_7 %}{{ blocks.slide_picture_7.url }}{% endif %}" srcset="{% if blocks.slide_picture_7 %}{{ blocks.slide_picture_7.url }} {% endif %} 2x" width="144" height="144" alt="">
+																						<img class="g-slider-thumbs__img" src="img/product-card-thumbs-img-01--xs.jpg" srcset="img/product-card-thumbs-img-01--xs@2x.jpg 2x" width="144" height="144" alt="">
 																					</picture>
 																				</div>
 																			</div>
@@ -177,48 +207,8 @@
 															</div>
 														</div>
 													</div>
-
-													<div class="article__content style-content style-content--small">
-														<ol>
-															<li>
-                                                                {% if blocks.title_paragraph1 %}<h4>{{ blocks.title_paragraph1 }}</h4>{% endif %}
-                                                                {% if blocks.text_paragraph1 %}{% autoescape off %} {{ blocks.text_paragraph1 }} {% endautoescape %}{% endif %}
-															</li>
-															<li>
-                                                               {% if blocks.title_paragraph2 %} <h4>{{ blocks.title_paragraph2 }}</h4>{% endif %}
-																{% if blocks.text_paragraph2 %}{% autoescape off %} {{ blocks.text_paragraph2 }} {% endautoescape %}{% endif %}
-															</li>
-															<li>
-                                                                {% if blocks.title_paragraph3 %}<h4>{{ blocks.title_paragraph3 }}</h4>{% endif %}
-                                                               {% if blocks.text_paragraph3 %} {% autoescape off %} {{ blocks.text_paragraph3 }} {% endautoescape %}{% endif %}
-
-															</li>
-														</ol>
-													</div>
-
 												</div>
-
-												<div class="article__block">
-													<div class="article__content style-content style-content--small">
-														<h2>Итог</h2>
-														<p>В&nbsp;наши наборы для склейки входит клей, произведённый специально по&nbsp;нашему заказу. Он&nbsp;схватывает менее чем за&nbsp;10&nbsp;секунд, но&nbsp;этого времени достаточно для корректировки стыка. Время схватывания играет большую роль, потому что на&nbsp;одной модели около 120 мест склейки. Наш клей легко смывается водой с&nbsp;рук. Прозрачный после высыхания. Обратите внимание, что большинство клеев ПВА не&nbsp;подходят для этой деятельности, они долго сохнут и&nbsp;деформируют бумагу. При покупке файлов рекомендуем использовать для сборки резиновый клей, универсальный суперклей Момент, клей для обойных стыков, UHU Twist &amp;&nbsp;Glue или клей Момент Кристалл.</p>
-													</div>
-													<div class="article__video">
-														<div class="article__video-row">
-															<div class="article__video-col">
-																<a class="video-preview" href="https://player.vimeo.com/video/290165112" data-fancybox>
-																	<div class="video-preview__img-wrap">
-																		<div class="video-preview__img-ratio">
-																			<picture>
-																				<img class="video-preview__img" src="{% static 'img/video-preview-img-01--xs.jpg' %}" srcset="{% static 'img/video-preview-img-01--xs@2x.jpg' %} 2x" alt="">
-																			</picture>
-																		</div>
-																	</div>
-																</a>
-															</div>
-														</div>
-													</div>
-												</div>
+												{% endfor %}
 											</div>
 										</div>
 									</div>
@@ -229,4 +219,4 @@
 				</section>
 			</main>
 		</div>
-	{% endblock %}
+{% endblock %}
