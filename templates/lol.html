@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<main class="page__main">
+				<section class="section section--fluid section--top">
+					<div class="section__container">
+						<div class="section__row">
+							<div class="section__header">
+								<h1 class="main-title">Советы по сборке</h1>
+								<div class="section__text">
+									<!-- Здесь можно размещать текстовый контент -->
+								</div>
+							</div>
+							<div class="section__col">
+								<div class="catalog-list">
+									<div class="catalog-list__row">
+										<div class="catalog-list__col">
+											<div class="c-card c-card--model c-card--article">
+												<a class="c-card__img-wrap" href="article-item.html">
+													<div class="c-card__img-ratio">
+														<picture>
+															<source media="(min-width: 1700px)" srcset="{% static 'img/product-card-img-01--xxl.jpg' %} 1x, {% static 'img/product-card-img-01--xxl@2x.jpg' %} 2x">
+															<img class="c-card__img" src="{% static 'img/product-card-img-01--xs.jpg' %}" srcset="{% static 'img/product-card-img-01--xs@2x.jpg' %} 2x" width="728" height="546" alt="">
+														</picture>
+													</div>
+												</a>
+												<div class="c-card__content">
+													<h3 class="c-card__title">
+														<a class="c-card__title-link" href="article-item.html">Советы по&nbsp;сборке головы лисы из&nbsp;бумаги</a>
+													</h3>
+												</div>
+											</div>
+										</div>
+
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</main>
+{% endblock %}

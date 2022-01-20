@@ -8,7 +8,7 @@ class AdvicePageTranslationOptions(TranslationOptions):
     fields = ('is_active', 'keywords', 'description', 'title', 'name', 'intro_text')
 
 class AdviceBlocksTranslationOptions(TranslationOptions):
-    fields = ('keywords', 'description', 'title', 'name', 'text', 'title_paragraph1', 'title_paragraph2', 'title_paragraph3',
+    fields = ('keywords', 'description', 'title', 'name', 'top_text', 'bottom_text', 'title_paragraph1', 'title_paragraph2', 'title_paragraph3',
               'title_paragraph4','title_paragraph5', 'text_paragraph1', 'text_paragraph2', 'text_paragraph3',
               'text_paragraph4','text_paragraph5')
 

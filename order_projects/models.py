@@ -94,7 +94,7 @@ class project_list(models.Model):
             self.main_photo_sm = resize_img(self.main_photo_sm, self.main_photo, [1024, 768])
             self.main_photo_original = resize_img(self.main_photo_original, self.main_photo, [1600, 1200])
             self.main_photo_xs = resize_img(self.main_photo_xs, self.main_photo, [768, 576])
-            self.main_photo_xs2 = resize_img(self.main_photo_xs2x, self.main_photo, [1536, 1152])
+            self.main_photo_xs2x = resize_img(self.main_photo_xs2x, self.main_photo, [1536, 1152])
 
     @cached_property
     def display_image(self):

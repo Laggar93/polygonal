@@ -150,6 +150,7 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
     active_subcategory = subcategory.objects.filter(slug=subcategory_slug, category=active_category, is_active=True).first()
     get_object_or_404(item, slug=item_slug, category=active_subcategory, is_active=True)
     items = item.objects.filter(slug=item_slug, category=active_subcategory, is_active=True).first()
+    print(items.name)
     item.objects.filter(slug=item_slug, category=active_subcategory, is_active=True).update(views=F("views") + 1)
 
     if item.objects.filter(slug=item_slug, category=active_subcategory, is_active_ru=True):

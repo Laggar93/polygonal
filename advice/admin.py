@@ -14,7 +14,7 @@ class advice_page_admin(SortableAdminMixin, TranslationAdmin):
     extra = 0
     inlines = [advice_blocks_admin]
     ordering = ('order',)
-    exclude = ('main_photo_xxl', 'main_photo_xxl2x', 'main_photo_xs', 'main_photo_xs2x')
+    # exclude = ('main_photo_xxl', 'main_photo_xs', 'main_photo_xs2x')
     readonly_fields = ('display_page_image',)
 
 
