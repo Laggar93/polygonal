@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import *
 from shop.models import shop_page
 
@@ -24,17 +24,25 @@ def advice_view(request):
 
 
 def advice_item_view(request, advice_page_slug):
-
-    # нет проверки 404
-
-    # сделать проверку на наличие совета в других языках и вывести верную ссылку
-
-    link_ru = '/ru/advice/'
-    link_en = '/en/advice/'
-    link_fr = '/fr/advice/'
-    
+    get_object_or_404(advice_page, slug=advice_page_slug, is_active=True)
     advice_pages = advice_page.objects.filter(slug=advice_page_slug, is_active=True).first()
     blocks = advice_blocks.objects.filter(advice_page=advice_pages)
+    language = request.LANGUAGE_CODE
+
+    if advice_page.objects.filter(slug=advice_page_slug, is_active_ru=True):
+        link_ru = request.path.replace('/' + language + '/', '/ru/')
+    else:
+        link_ru = '/ru/advice/'
+
+    if advice_page.objects.filter(slug=advice_page_slug, is_active_en=True):
+        link_en = request.path.replace('/' + language + '/', '/en/')
+    else:
+        link_en = '/en/advice/'
+
+    if advice_page.objects.filter(slug=advice_page_slug, is_active_fr=True):
+        link_fr = request.path.replace('/' + language + '/', '/fr/')
+    else:
+        link_fr = '/fr/advice/'
 
     context = {
         'show_language': True,
