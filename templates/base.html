@@ -254,7 +254,7 @@
                                         <li class="page-header__nav-item">
                                             <a class="page-header__nav-link" href="map.html">Где купить</a></li>
                                         <li class="page-header__nav-item">
-                                            <a class="page-header__nav-link {% if '/contacts/' in request.path %} page-header__nav-link--active{% endif %}" href="{% url 'contacts' %}">Контакты</a></li>
+                                            <a class="page-header__nav-link {% if '/contacts/' in request.path %} page-header__nav-link--active{% endif %}" href="{% url 'contacts' %}">{{ contact_mains.name }}</a></li>
                                     </ul>
                                 </nav>
                                 <div class="page-header__bottom-cart">
