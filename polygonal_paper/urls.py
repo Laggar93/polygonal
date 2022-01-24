@@ -20,6 +20,7 @@ urlpatterns += i18n_patterns(
     path('', include('advice.urls')),
     path('', include('delivery.urls')),
     path('', include('contact.urls')),
+    path('', include('map.urls')),
 )
 
 handler404 = handler404

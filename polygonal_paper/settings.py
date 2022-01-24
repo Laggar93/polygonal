@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     'order_projects.apps.OrderProjectsConfig',
     'advice.apps.AdviceConfig',
     'delivery.apps.DeliveryConfig',
-    'contact.apps.ContactConfig'
+    'contact.apps.ContactConfig',
+    'map.apps.MapConfig'
 ]
 
 MIDDLEWARE = [
