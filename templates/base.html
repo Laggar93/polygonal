@@ -250,11 +250,11 @@
                                         <li class="page-header__nav-item">
                                             <a class="page-header__nav-link" href="about.html">О нас</a></li>
                                         <li class="page-header__nav-item">
-                                            <a class="page-header__nav-link" href="delivery.html">Доставка и оплата</a></li>
+                                            <a class="page-header__nav-link {% if '/delivery/' in request.path %} page-header__nav-link--active{% endif %}" href="{% url 'delivery' %}">{{ delivery_mains.delivery }}</a></li>
                                         <li class="page-header__nav-item">
                                             <a class="page-header__nav-link" href="map.html">Где купить</a></li>
                                         <li class="page-header__nav-item">
-                                            <a class="page-header__nav-link" href="contacts.html">Контакты</a></li>
+                                            <a class="page-header__nav-link {% if '/contacts/' in request.path %} page-header__nav-link--active{% endif %}" href="{% url 'contacts' %}">Контакты</a></li>
                                     </ul>
                                 </nav>
                                 <div class="page-header__bottom-cart">

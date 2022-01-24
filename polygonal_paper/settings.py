@@ -1,5 +1,7 @@
 import os
 from pathlib import Path
+
+import delivery.apps
 from . import config
 
 """
@@ -43,7 +45,9 @@ INSTALLED_APPS = [
     'django_unused_media',
     'shop.apps.ShopConfig',
     'order_projects.apps.OrderProjectsConfig',
-    'advice.apps.AdviceConfig'
+    'advice.apps.AdviceConfig',
+    'delivery.apps.DeliveryConfig',
+    'contact.apps.ContactConfig'
 ]
 
 MIDDLEWARE = [

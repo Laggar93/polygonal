@@ -9,6 +9,7 @@ def projects_view(request):
     link_en = '/en/projects/'
     link_fr = '/fr/projects/'
 
+
     context = {
         'show_language': True,
         'shop_page': shop_page.objects.first(),

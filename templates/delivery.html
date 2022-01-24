@@ -1,0 +1,104 @@
+{% extends 'base.html' %}
+{% load static i18n l10n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% block content %}
+    <main class="page__main">
+        <section class="section section--fluid section--top">
+            <div class="section__container">
+                <div class="section__row">
+                    <div class="section__col">
+                        <div class="delivery">
+                            <div class="delivery__row">
+                                <div class="delivery__col">
+                                    <h1 class="delivery__title main-title">{{ delivery_mains.name }}</h1>
+                                    {% for i in delivery_articles %}
+                                        <ul class="delivery-list">
+                                            <li class="delivery-list__item">
+                                                {% if i.title %}
+                                                    <h3 class="delivery-list__title">{{ i.title }}</h3>
+                                                {% endif %}
+                                                {% if i.intro_text %}
+                                                    <div class="delivery-list__content text-content text-content--small">
+                                                        {% autoescape off %} {{ i.intro_text }} {% endautoescape %}
+                                                    </div>
+                                                {% endif %}
+                                                {% if i.country %}
+                                                    <div class="delivery-list__location">{{ i.country }}</div>
+                                                {% endif %}
+                                                <div class="delivery-list__price">
+                                                    <ul class="d-list">
+                                                        {% for item in i.article_columns.all %}
+                                                            <li class="d-list__item">
+                                                                {% if item.first_column %}
+                                                                    <div class="d-list__prop">{{ item.first_column }}</div>
+                                                                {% endif %}
+                                                                {% if item.second_column %}
+                                                                    <div class="d-list__prop">{{ item.second_column }}</div>
+                                                                {% endif %}
+                                                                {% if item.third_column %}
+                                                                    <div class="d-list__prop">{{ item.third_column }}</div>
+                                                                {% endif %}
+                                                            </li>
+                                                        {% endfor %}
+                                                    </ul>
+                                                </div>
+                                            {% if i.bold_text %}
+                                                <div class="delivery-list__location-tip"> {% autoescape off %}{{ i.bold_text }}{% endautoescape %}</div>
+                                            {% endif %}
+                                            {% if i.grey_text %}
+                                                <div class="delivery-list__disclaimer text-content text-content--small">
+                                                    {% autoescape off %} {{ i.grey_text }} {% endautoescape %}
+                                                </div>
+                                            {% endif %}
+                                            </li>
+                                        </ul>
+                                    {% endfor %}
+                                    <div class="delivery__payment">
+                                        <h2 class="delivery__payment-title">{{ delivery_mains.payment }}</h2>
+                                        <div class="delivery__payment-text">
+                                            {% autoescape off %} {{ delivery_mains.top_text }} {% endautoescape %}
+                                        </div>
+                                        <div class="delivery__payment-methods">
+                                            <ul class="p-list">
+                                                {% if delivery_mains.paypal_logo %}
+                                                <li class="p-list__item">
+                                                    <img class="p-list__img" src="{% static 'img/p-list-img-01.svg' %}" alt="">
+                                                </li>
+                                                {% endif %}
+                                            {% if delivery_mains.visa_logo %}
+                                                <li class="p-list__item">
+                                                    <img class="p-list__img" src="{% static 'img/p-list-img-02.svg' %}" alt="">
+                                                </li>
+                                            {% endif %}
+                                            {% if delivery_mains.master_logo %}
+                                                <li class="p-list__item">
+                                                    <img class="p-list__img" src="{% static 'img/p-list-img-03.svg' %}" alt="">
+                                                </li>
+                                            {% endif %}
+                                            {% if delivery_mains.mir_logo %}
+                                                <li class="p-list__item">
+                                                    <img class="p-list__img" src="{% static 'img/p-list-img-04.svg' %}" alt="">
+                                                </li>
+                                            {% endif %}
+                                            {% if delivery_mains.terminal_logo %}
+                                                <li class="p-list__item">
+                                                    <img class="p-list__img" src="{% static 'img/p-list-img-05.svg' %}" alt="">
+                                                </li>
+                                            {% endif %}
+                                            </ul>
+                                        </div>
+                                        <div class="delivery__payment-disclaimer text-content text-content--small">
+                                            {% autoescape off %} {{ delivery_mains.bottom_text }}{% endautoescape %}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    </div>
+{% endblock %}
