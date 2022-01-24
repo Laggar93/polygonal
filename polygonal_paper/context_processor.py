@@ -1,3 +1,4 @@
+from about.models import about_main
 from advice.models import advice_main
 from contact.models import contact_main
 from delivery.models import delivery_main
@@ -15,5 +16,6 @@ def globals(request):
         'delivery_mains': delivery_main.objects.first(),
         'contact_mains': contact_main.objects.first(),
         'map_mains': map_main.objects.all(),
+        'about_mains': about_main.objects.first(),
     }
     return context

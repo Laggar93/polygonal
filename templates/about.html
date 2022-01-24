@@ -1,4 +1,8 @@
-
+{% extends 'base.html' %}
+{% load static i18n l10n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% block content %}
 			<main class="page__main">
 				<section class="section section--fluid section--top">
 					<div class="section__container">
@@ -18,11 +22,11 @@
 									<div class="photo-banner__img-wrap">
 										<div class="photo-banner__img-ratio">
 											<picture>
-												<source media="(min-width: 1440px)" srcset="img/photo-banner-img-01--xl.jpg 1x, img/photo-banner-img-01--xl@2x.jpg 2x">
-												<source media="(min-width: 1024px)" srcset="img/photo-banner-img-01--md.jpg 1x, img/photo-banner-img-01--md@2x.jpg 2x">
-												<source media="(min-width: 768px)" srcset="img/photo-banner-img-01--sm.jpg 1x, img/photo-banner-img-01--sm@2x.jpg 2x">
-												<source media="(min-width: 0)" srcset="img/photo-banner-img-01--xs.jpg 1x, img/photo-banner-img-01--xs@2x.jpg 2x">
-												<img class="photo-banner__img" src="img/photo-banner-img-01--xl.jpg" srcset="img/photo-banner-img-01--xl@2x.jpg 2x" alt="">
+												<source media="(min-width: 1440px)" srcset="{% static 'img/photo-banner-img-01--xl.jpg' %} 1x, {% static 'img/photo-banner-img-01--xl@2x.jpg' %} 2x">
+												<source media="(min-width: 1024px)" srcset="{% static 'img/photo-banner-img-01--md.jpg' %} 1x, {% static 'img/photo-banner-img-01--md@2x.jpg' %} 2x">
+												<source media="(min-width: 768px)" srcset="{% static 'img/photo-banner-img-01--sm.jpg' %} 1x, {% static 'img/photo-banner-img-01--sm@2x.jpg' %} 2x">
+												<source media="(min-width: 0)" srcset="{% static 'img/photo-banner-img-01--xs.jpg' %} 1x, {% static 'img/photo-banner-img-01--xs@2x.jpg' %} 2x">
+												<img class="photo-banner__img" src="{% static 'img/photo-banner-img-01--xl.jpg' %}" srcset="{% static 'img/photo-banner-img-01--xl@2x.jpg' %} 2x" alt="">
 											</picture>
 										</div>
 									</div>
@@ -125,9 +129,9 @@
 																<div class="press-card">
 																	<div class="press-card__img-wrap">
 																		<picture>
-																			<source media="(min-width: 1280px)" srcset="img/press-card-img-01--lg.jpg 1x, img/press-card-img-01--lg@2x.jpg 2x">
-																			<source media="(min-width: 0)" srcset="img/press-card-img-01--xs.jpg 1x, img/press-card-img-01--xs@2x.jpg 2x">
-																			<img class="press-card__img" src="img/press-card-img-01--lg.jpg" srcset="img/press-card-img-01--lg@2x.jpg 2x" alt="">
+																			<source media="(min-width: 1280px)" srcset="{% static 'img/press-card-img-01--lg.jpg' %} 1x, {% static 'img/press-card-img-01--lg@2x.jpg' %} 2x">
+																			<source media="(min-width: 0)" srcset="{% static 'img/press-card-img-01--xs.jpg' %} 1x, {% static 'img/press-card-img-01--xs@2x.jpg' %} 2x">
+																			<img class="press-card__img" src="{% static 'img/press-card-img-01--lg.jpg' %}" srcset="{% static 'img/press-card-img-01--lg@2x.jpg' %} 2x" alt="">
 																		</picture>
 																	</div>
 																	<a class="press-card__info" href="javascript:void(0);" target="_blank">
@@ -142,9 +146,9 @@
 																<div class="press-card">
 																	<div class="press-card__img-wrap">
 																		<picture>
-																			<source media="(min-width: 1280px)" srcset="img/press-card-img-02--lg.jpg 1x, img/press-card-img-02--lg@2x.jpg 2x">
-																			<source media="(min-width: 0)" srcset="img/press-card-img-02--xs.jpg 1x, img/press-card-img-02--xs@2x.jpg 2x">
-																			<img class="press-card__img" src="img/press-card-img-02--lg.jpg" srcset="img/press-card-img-02--lg@2x.jpg 2x" alt="">
+																			<source media="(min-width: 1280px)" srcset="{% static 'img/press-card-img-02--lg.jpg' %} 1x, {% static 'img/press-card-img-02--lg@2x.jpg' %} 2x">
+																			<source media="(min-width: 0)" srcset="{% static 'img/press-card-img-02--xs.jpg' %} 1x, {% static 'img/press-card-img-02--xs@2x.jpg 2x' %}">
+																			<img class="press-card__img" src="{% static 'img/press-card-img-02--lg.jpg' %}" srcset="{% static 'img/press-card-img-02--lg@2x.jpg' %} 2x" alt="">
 																		</picture>
 																	</div>
 																	<a class="press-card__info" href="javascript:void(0);" target="_blank">
@@ -159,9 +163,9 @@
 																<div class="press-card">
 																	<div class="press-card__img-wrap">
 																		<picture>
-																			<source media="(min-width: 1280px)" srcset="img/press-card-img-03--lg.jpg 1x, img/press-card-img-03--lg@2x.jpg 2x">
-																			<source media="(min-width: 0)" srcset="img/press-card-img-03--xs.jpg 1x, img/press-card-img-03--xs@2x.jpg 2x">
-																			<img class="press-card__img" src="img/press-card-img-03--lg.jpg" srcset="img/press-card-img-03--lg@2x.jpg 2x" alt="">
+																			<source media="(min-width: 1280px)" srcset="{% static 'img/press-card-img-03--lg.jpg' %} 1x, {% static 'img/press-card-img-03--lg@2x.jpg' %} 2x">
+																			<source media="(min-width: 0)" srcset="{% static 'img/press-card-img-03--xs.jpg' %} 1x, {% static 'img/press-card-img-03--xs@2x.jpg' %} 2x">
+																			<img class="press-card__img" src="{% static 'img/press-card-img-03--lg.jpg' %}" srcset="{% static 'img/press-card-img-03--lg@2x.jpg' %} 2x" alt="">
 																		</picture>
 																	</div>
 																	<a class="press-card__info" href="javascript:void(0);" target="_blank">
@@ -271,3 +275,4 @@
 			</main>
 		</div>
 
+{% endblock %}

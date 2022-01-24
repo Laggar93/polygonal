@@ -1,6 +1,4 @@
 from django.shortcuts import render
-
-from map.models import map_main
 from shop.models import shop_page
 
 
