@@ -1,6 +1,5 @@
 from django.shortcuts import render
-from .models import contact_main
-from shop.models import shop_page
+from .models import contact_main, contact_form
 
 
 def contact_view(request):
@@ -10,11 +9,11 @@ def contact_view(request):
 
     context = {
         'show_language': True,
-        'shop_page': shop_page.objects.first(),
         'link_en': link_en,
         'link_fr': link_fr,
         'link_ru': link_ru,
-        'contacts': contact_main.objects.all()
+        'contact_main': contact_main.objects.first(),
+        'contact_form': contact_form.objects.first()
 
     }
 

@@ -2,16 +2,21 @@
 {% load static i18n l10n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
+{% load number_space %}
 {% block content %}
 			<main class="page__main">
 				<section class="section section--fluid section--top">
 					<div class="section__container">
 						<div class="section__row">
 							<div class="section__header">
-								<h1 class="main-title">Мы&nbsp;создаём полигональные фигуры в&nbsp;стиле papercraft</h1>
+                                {% if about_main.title_page %}
+								<h1 class="main-title">{{ about_main.title_page }}</h1>
+                                {% endif %}
+                            {% if about_main.bottom_text %}
 								<div class="section__text">
-									<p>С&nbsp;помощью нашего простого и&nbsp;понятного конструктора любой человек может украсить свой интерьер уникальным элементом дизайна</p>
+									<p>{{ about_main.bottom_text }}</p>
 								</div>
+                            {% endif %}
 							</div>
 						</div>
 					</div>
@@ -19,25 +24,29 @@
 						<div class="photo-banner__container">
 							<div class="photo-banner__row">
 								<div class="photo-banner__col">
+                                    {% if about_main.main_photo_xl2x %}
 									<div class="photo-banner__img-wrap">
 										<div class="photo-banner__img-ratio">
 											<picture>
-												<source media="(min-width: 1440px)" srcset="{% static 'img/photo-banner-img-01--xl.jpg' %} 1x, {% static 'img/photo-banner-img-01--xl@2x.jpg' %} 2x">
-												<source media="(min-width: 1024px)" srcset="{% static 'img/photo-banner-img-01--md.jpg' %} 1x, {% static 'img/photo-banner-img-01--md@2x.jpg' %} 2x">
-												<source media="(min-width: 768px)" srcset="{% static 'img/photo-banner-img-01--sm.jpg' %} 1x, {% static 'img/photo-banner-img-01--sm@2x.jpg' %} 2x">
-												<source media="(min-width: 0)" srcset="{% static 'img/photo-banner-img-01--xs.jpg' %} 1x, {% static 'img/photo-banner-img-01--xs@2x.jpg' %} 2x">
-												<img class="photo-banner__img" src="{% static 'img/photo-banner-img-01--xl.jpg' %}" srcset="{% static 'img/photo-banner-img-01--xl@2x.jpg' %} 2x" alt="">
+												<source media="(min-width: 1440px)" srcset="{{ about_main.main_photo_xl.url }} 1x, {{ about_main.main_photo_xl2x.url }} 2x">
+												<source media="(min-width: 1024px)" srcset="{{ about_main.main_photo_md.url }} 1x, {{ about_main.main_photo_md2x.url }} 2x">
+												<source media="(min-width: 768px)" srcset="{{ about_main.main_photo_sm.url }} 1x, {{ about_main.main_photo_sm2x.url }} 2x">
+												<source media="(min-width: 0)" srcset="{{ about_main.main_photo_xs.url }} 1x, {{ about_main.main_photo_xs2x.url }} 2x">
+												<img class="photo-banner__img" src="{{ about_main.main_photo_xl.url }}" srcset="{{ about_main.main_photo_xl2x.url }} 2x" alt="">
 											</picture>
 										</div>
 									</div>
+                                    {% endif %}
 								</div>
 							</div>
 						</div>
 						<div class="photo-banner__container">
 							<div class="photo-banner__row">
+                                {% if about_main.grey_text_photo %}
 								<div class="photo-banner__col">
-									<div class="photo-banner__caption">Наша команда&nbsp;&mdash; Рим, Анна, Наталья и&nbsp;Татьяна</div>
+									<div class="photo-banner__caption">{{ about_main.grey_text_photo }}</div>
 								</div>
+                                {% endif %}
 							</div>
 						</div>
 					</div>
@@ -49,42 +58,42 @@
 								<div class="about-info">
 									<div class="about-info__row">
 										<div class="about-info__content">
+                                        {% if about_main.bottom_text_photo %}
 											<div class="about-info__text text-content">
-												<p>Наша мечта&nbsp;&mdash; создавать шедевры. Мы&nbsp;стремимся сделать наши модели полноценными скульптурами, которые остаются во&nbsp;времени,&nbsp;&mdash; это не&nbsp;просто поделки, которые надоедают и&nbsp;выходят из&nbsp;моды. Поэтому мы&nbsp;посвящаем проектированию много времени и&nbsp;не&nbsp;берёмся за&nbsp;&laquo;быстрый декор&raquo;.</p>
-												<p>Мы&nbsp;первыми в&nbsp;России превратили полигональные модели в&nbsp;конструктор, доступный каждому человеку, независимо от&nbsp;опыта владения им&nbsp;специализированными программами и&nbsp;наличия навыков работы с&nbsp;бумагой. И&nbsp;случайно нашли признание по&nbsp;всему миру.</p>
+                                             {% autoescape off %} {{ about_main.bottom_text_photo }} {% endautoescape %}
 											</div>
+                                        {% endif %}
 											<div class="about-info__stats">
 												<ul class="s-list">
 													<li class="s-list__item">
-														<div class="s-list__title">&gt; 9&nbsp;000</div>
+                                                    {% if about_main.number %}
+														<div class="s-list__title">{{ about_main.number|number_space }}</div>
+                                                    {% endif %}
+                                                        {% if about_main.number_text %}
 														<div class="s-list__text text-content text-content--small">
-															<p>проданных проектов по&nbsp;всему миру</p>
+															<p>{{ about_main.number_text }}</p>
 														</div>
+                                                        {% endif %}
 													</li>
 												</ul>
 											</div>
 										</div>
 										<div class="about-info__list">
-											<h2 class="about-info__title section-title">Награды</h2>
+                                            {% if about_main.title_reward %}
+											<h2 class="about-info__title section-title">{{ about_main.title_reward }}</h2>
+                                            {% endif %}
 											<ul class="a-list">
+                                                {% for item in about_main.about_rewards.all %}
 												<li class="a-list__item">
-													<a class="a-list__link" href="javascript:void(0);" target="_blank">СКБ-Контур</a>
+													<a class="a-list__link" href="{% if item.link %}{{ item.link }}{% endif %}" target="_blank">{% if item.title %}{{ item.title }}{% endif %}</a>
+                                                    {% if item.text %}
 													<div class="a-list__text text-content text-content--small">
-														<p>победа в&nbsp;номинации &laquo;Бизнес-идея&raquo;</p>
+														<p>{{ item.text }}</p>
 													</div>
+                                                {% endif %}
 												</li>
-												<li class="a-list__item">
-													<a class="a-list__link" href="javascript:void(0);" target="_blank">Design StartUp Week, Екатеринбург</a>
-													<div class="a-list__text text-content text-content--small">
-														<p>победа в&nbsp;номинации &laquo;Лучший дизайн-стартап года&raquo;</p>
-													</div>
-												</li>
-												<li class="a-list__item">
-													<a class="a-list__link" href="javascript:void(0);" target="_blank">ООО &laquo;Иннопорт&raquo;</a>
-													<div class="a-list__text text-content text-content--small">
-														<p>лучший бизнес проект на&nbsp;мероприятии &laquo;Боевые учения для предпринимателей&raquo;</p>
-													</div>
-												</li>
+                                                {% endfor %}
+
 											</ul>
 										</div>
 									</div>
@@ -100,12 +109,14 @@
 								<div class="video-info">
 									<div class="video-info__row">
 										<div class="video-info__col">
-											<h2 class="video-info__title section-title section-title--theme_blue">Как мы&nbsp;создаем модели</h2>
+											<h2 class="video-info__title section-title section-title--theme_blue">{{ about_main.title_create_model }}</h2>
+                                            {% if about_main.video_link %}
 											<div class="video-info__content">
 												<div class='embed-container'>
-													<iframe src="https://player.vimeo.com/video/290165112" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+													<iframe src="{{ about_main.video_link }}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
 												</div>
 											</div>
+                                            {% endif %}
 										</div>
 									</div>
 								</div>
@@ -121,61 +132,32 @@
 									<div class="press-info__row">
 										<div class="press-info__col">
 											<div class="press-info__content">
-												<h2 class="press-info__title section-title">Мы в прессе</h2>
+												<h2 class="press-info__title section-title">{{ about_main.title_press }}</h2>
 												<div class="slider-wrapper">
 													<div class="mobile-slider mobile-slider--press swiper-container js-mobile-slider">
 														<div class="mobile-slider__wrapper swiper-wrapper">
+                                                            {% for value in about_main.about_press.all %}
 															<div class="mobile-slider__item swiper-slide">
 																<div class="press-card">
+                                                                    {% if value.main_logo_lg2x %}
 																	<div class="press-card__img-wrap">
 																		<picture>
-																			<source media="(min-width: 1280px)" srcset="{% static 'img/press-card-img-01--lg.jpg' %} 1x, {% static 'img/press-card-img-01--lg@2x.jpg' %} 2x">
-																			<source media="(min-width: 0)" srcset="{% static 'img/press-card-img-01--xs.jpg' %} 1x, {% static 'img/press-card-img-01--xs@2x.jpg' %} 2x">
-																			<img class="press-card__img" src="{% static 'img/press-card-img-01--lg.jpg' %}" srcset="{% static 'img/press-card-img-01--lg@2x.jpg' %} 2x" alt="">
+																			<source media="(min-width: 1280px)" srcset="{{ value.main_logo_lg.url }} 1x, {{ value.main_logo_lg2x.url }} 2x">
+																			<source media="(min-width: 0)" srcset="{{ value.main_logo_xs.url }} 1x, {{ value.main_logo_xs2x.url }} 2x">
+																			<img class="press-card__img" src="{{ value.main_logo_lg.url }}" srcset="{{ value.main_logo_lg2x.url }} 2x" alt="">
 																		</picture>
 																	</div>
-																	<a class="press-card__info" href="javascript:void(0);" target="_blank">
-																		<time class="press-card__date" datetime="2019-01-15">15 января 2018</time>
+                                                                    {% endif %}
+																	<a class="press-card__info" href="{{ value.link }}" target="_blank">
+																		<time class="press-card__date" datetime="2019-01-15">{{ value.published }}</time>
 																		<div class="press-card__text text-content">
-																			<p>Екатеринбуржцы сделали картонных оленей, которые украсили торговые центры в&nbsp;Швейцарии</p>
+																			<p>{{ value.title }}</p>
 																		</div>
 																	</a>
 																</div>
 															</div>
-															<div class="mobile-slider__item swiper-slide">
-																<div class="press-card">
-																	<div class="press-card__img-wrap">
-																		<picture>
-																			<source media="(min-width: 1280px)" srcset="{% static 'img/press-card-img-02--lg.jpg' %} 1x, {% static 'img/press-card-img-02--lg@2x.jpg' %} 2x">
-																			<source media="(min-width: 0)" srcset="{% static 'img/press-card-img-02--xs.jpg' %} 1x, {% static 'img/press-card-img-02--xs@2x.jpg 2x' %}">
-																			<img class="press-card__img" src="{% static 'img/press-card-img-02--lg.jpg' %}" srcset="{% static 'img/press-card-img-02--lg@2x.jpg' %} 2x" alt="">
-																		</picture>
-																	</div>
-																	<a class="press-card__info" href="javascript:void(0);" target="_blank">
-																		<time class="press-card__date" datetime="2018-05-11">15 января 2018</time>
-																		<div class="press-card__text text-content">
-																			<p>Дизайнер из&nbsp;Екатеринбурга зарабатывает на&nbsp;сборке голов оленя и&nbsp;единорога</p>
-																		</div>
-																	</a>
-																</div>
-															</div>
-															<div class="mobile-slider__item swiper-slide">
-																<div class="press-card">
-																	<div class="press-card__img-wrap">
-																		<picture>
-																			<source media="(min-width: 1280px)" srcset="{% static 'img/press-card-img-03--lg.jpg' %} 1x, {% static 'img/press-card-img-03--lg@2x.jpg' %} 2x">
-																			<source media="(min-width: 0)" srcset="{% static 'img/press-card-img-03--xs.jpg' %} 1x, {% static 'img/press-card-img-03--xs@2x.jpg' %} 2x">
-																			<img class="press-card__img" src="{% static 'img/press-card-img-03--lg.jpg' %}" srcset="{% static 'img/press-card-img-03--lg@2x.jpg' %} 2x" alt="">
-																		</picture>
-																	</div>
-																	<a class="press-card__info" href="javascript:void(0);" target="_blank">
-																		<time class="press-card__date" datetime="2017-07-24">15 января 2018</time>
-																		<div class="press-card__text text-content">
-																			<p>Бизнес-идея: скульптуры Polygonal Paper</p>
-																		</div>
-																	</a>
-																</div>
-															</div>
+                                                            {% endfor %}
+
 														</div>
 														<div class="mobile-slider__pagination swiper-pagination js-mobile-slider-pagination"></div>
 													</div>
@@ -192,52 +174,35 @@
 					<div class="section__container">
 						<div class="section__row">
 							<div class="section__col">
-								<h2 class="section-title">Наши авторы</h2>
+								<h2 class="section-title">{{ about_main.title_author }}</h2>
 								<div class="slider-wrapper slider-wrapper--dual">
 									<div class="d-slider">
 										<div class="d-slider__btn-prev swiper-button-prev"></div>
 										<div class="d-slider__btn-next swiper-button-next"></div>
 										<div class="d-slider-text d-slider__d-slider-text swiper-container js-d-slider-text">
 											<div class="d-slider-text__wrapper swiper-wrapper">
+                                                {% for i in about_main.about_authors.all %}
 												<div class="d-slider-text__item swiper-slide">
 													<div class="d-slider-text__row">
 														<div class="d-slider-text__col">
 															<div class="d-slider-text__content">
-																<h3 class="d-slider-text__title">Наталья Погудина</h3>
-																<div class="d-slider-text__desc">Основатель компании</div>
+                                                                {% if i.full_name %}
+																<h3 class="d-slider-text__title">{{ i.full_name }}</h3>
+                                                                {% endif %}
+                                                            {% if i.position %}
+																<div class="d-slider-text__desc">{{ i.position }}</div>
+                                                            {% endif %}
+                                                            {% if i.text %}
 																<div class="d-slider-text__text text-content text-content--small">
-																	<p>Первую трофейную голову я&nbsp;спроектировала в&nbsp;2013&nbsp;году. Опубликовала её&nbsp;фотографию в&nbsp;своём портфолио, и&nbsp;мне неожиданно начали писать люди из&nbsp;разных стран с&nbsp;просьбой показать как это делается. Тогда я&nbsp;решила превратить свою разработку в&nbsp;конструктор, с&nbsp;помощью которого любой желающий сможет воспроизвести модель.</p>
+																	{% autoescape off %} {{ i.text }} {% endautoescape %}
 																</div>
+                                                            {% endif %}
 															</div>
 														</div>
 													</div>
 												</div>
-												<div class="d-slider-text__item swiper-slide">
-													<div class="d-slider-text__row">
-														<div class="d-slider-text__col">
-															<div class="d-slider-text__content">
-																<h3 class="d-slider-text__title">Наталья Погудина</h3>
-																<div class="d-slider-text__desc">Основатель компании</div>
-																<div class="d-slider-text__text text-content text-content--small">
-																	<p>Первую трофейную голову я&nbsp;спроектировала в&nbsp;2013&nbsp;году. Опубликовала её&nbsp;фотографию в&nbsp;своём портфолио, и&nbsp;мне неожиданно начали писать люди из&nbsp;разных стран с&nbsp;просьбой показать как это делается. Тогда я&nbsp;решила превратить свою разработку в&nbsp;конструктор, с&nbsp;помощью которого любой желающий сможет воспроизвести модель.</p>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
-												<div class="d-slider-text__item swiper-slide">
-													<div class="d-slider-text__row">
-														<div class="d-slider-text__col">
-															<div class="d-slider-text__content">
-																<h3 class="d-slider-text__title">Наталья Погудина</h3>
-																<div class="d-slider-text__desc">Основатель компании</div>
-																<div class="d-slider-text__text text-content text-content--small">
-																	<p>Первую трофейную голову я&nbsp;спроектировала в&nbsp;2013&nbsp;году. Опубликовала её&nbsp;фотографию в&nbsp;своём портфолио, и&nbsp;мне неожиданно начали писать люди из&nbsp;разных стран с&nbsp;просьбой показать как это делается. Тогда я&nbsp;решила превратить свою разработку в&nbsp;конструктор, с&nbsp;помощью которого любой желающий сможет воспроизвести модель.</p>
-																</div>
-															</div>
-														</div>
-													</div>
-												</div>
+                                                {% endfor %}
+
 											</div>
 										</div>
 										<div class="d-slider-img d-slider__d-slider-img swiper-container js-d-slider-img">

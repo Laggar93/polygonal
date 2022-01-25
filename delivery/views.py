@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .models import *
-from shop.models import shop_page
 
 
 def delivery_main_view(request):
@@ -10,7 +9,6 @@ def delivery_main_view(request):
 
     context = {
         'show_language': True,
-        'shop_page': shop_page.objects.first(),
         'link_en': link_en,
         'link_fr': link_fr,
         'link_ru': link_ru,

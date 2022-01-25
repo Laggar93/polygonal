@@ -1,6 +1,5 @@
 from django.shortcuts import render, get_object_or_404
 from .models import *
-from shop.models import shop_page
 
 
 def advice_view(request):
@@ -11,7 +10,6 @@ def advice_view(request):
 
     context = {
         'show_language': True,
-        'shop_page': shop_page.objects.first(),
         'advice_main': advice_main.objects.first(),
         'advice_pages': advice_page.objects.all().order_by('order'),
         'link_en': link_en,
@@ -46,7 +44,6 @@ def advice_item_view(request, advice_page_slug):
 
     context = {
         'show_language': True,
-        'shop_page': shop_page.objects.first(),
         'advice_main': advice_main.objects.first(),
         'advice_pages': advice_pages,
         'link_en': link_en,

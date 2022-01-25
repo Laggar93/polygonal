@@ -47,7 +47,7 @@ class item_terms_admin(SortableInlineAdminMixin, TranslationStackedInline):
     extra = 1
 
 
-class item_photos_admin(SortableInlineAdminMixin, admin.StackedInline):
+class item_photos_admin(SortableInlineAdminMixin, TranslationStackedInline):
     model = item_photos
     extra = 1
     exclude = ('image_800',)

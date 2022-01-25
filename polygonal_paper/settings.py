@@ -85,6 +85,7 @@ TEMPLATES = [
                 'shop.templatetags.extension',
                 'shop.templatetags.dollar_tag',
                 'shop.templatetags.euro_tag',
+                'about.templatetags.number_space'
             ]
         },
     },

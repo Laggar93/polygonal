@@ -24,7 +24,7 @@ class contact_main_admin(TranslationAdmin):
 
 class contact_form_admin(TranslationAdmin):
     model = contact_form
-    exclude = ('heading', 'send', 'success', 'error',)
+    # exclude = ('heading', 'send', 'success', 'error',)
     def has_add_permission(self, request, obj=None):
         return False
 

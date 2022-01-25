@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from shop.models import shop_page
+
+from map.models import map_main, map_town
 
 
 def map_view(request):
@@ -10,10 +11,11 @@ def map_view(request):
 
     context = {
         'show_language': True,
-        'shop_page': shop_page.objects.first(),
         'link_en': link_en,
         'link_fr': link_fr,
         'link_ru': link_ru,
+        'map_main': map_main.objects.first(),
+        'map_town': map_town.objects.all()
 
     }
 

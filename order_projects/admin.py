@@ -3,7 +3,7 @@ from order_projects.models import project_page, project_list, project_images
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from modeltranslation.admin import TranslationAdmin, TranslationStackedInline
 
-class project_images_admin(SortableInlineAdminMixin, admin.StackedInline):
+class project_images_admin(SortableInlineAdminMixin, TranslationStackedInline):
     model = project_images
     extra = 0
     ordering = ('order',)

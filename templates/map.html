@@ -3,170 +3,53 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
 {% block content %}
-			<main class="page__main">
-				<section class="section section--fluid section--top">
-					<div class="section__container">
-						<div class="section__row">
-							<div class="section__header">
-								<h1 class="main-title">Где купить</h1>
-								<div class="section__text">
-									<p>Перед покупкой рекомендуем уточнить наличие товаров у продавцов</p>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="location js-location" data-lat="56.837046" data-long="60.607428">
-						<div class="location__info js-scrollbar">
-							<div class="location__item location__item--active">
-								<h2 class="location__title">Екатеринбург</h2>
-								<ul class="location-list">
-									<li class="location-list__item location-list__item--active" data-lat="55.831903" data-long="37.411961" data-marker-id="marker-1">
-										<h3 class="location-list__title js-location-toggle">
-											<svg class="location-list__title-icon" viewBox="0 0 19 24" width="19" height="24">
-												<use xlink:href="img/sprite.svg#icon-balloon"></use>
-											</svg>
-											<span>Handy Market</span>
-										</h3>
-										<div class="location-list__content">
-											<p>ул. Вайнера, д.&nbsp;10<br>
-												<a href="tel:+73432909007">(+7&nbsp;343) 290-90-07</a><br>
-												пн.-вс.: с&nbsp;10:00 до&nbsp;20:00
-											</p>
-										</div>
-									</li>
-									<li class="location-list__item" data-lat="55.763338" data-long="37.565466" data-marker-id="marker-2">
-										<h3 class="location-list__title js-location-toggle">
-											<svg class="location-list__title-icon" viewBox="0 0 19 24" width="19" height="24">
-												<use xlink:href="img/sprite.svg#icon-balloon"></use>
-											</svg>
-											<span>ЦУМ</span>
-										</h3>
-										<div class="location-list__content">
-											<p>пер. Банковский, д.&nbsp;3<br>
-												<a href="tel:+73432877333">(+7&nbsp;343) 287-73-33</a><br>
-												пн.-вс.: с&nbsp;10:00 до&nbsp;21:00
-											</p>
-										</div>
-									</li>
-									<li class="location-list__item" data-lat="55.744522" data-long="37.616378" data-marker-id="marker-3">
-										<h3 class="location-list__title js-location-toggle">
-											<svg class="location-list__title-icon" viewBox="0 0 19 24" width="19" height="24">
-												<use xlink:href="img/sprite.svg#icon-balloon"></use>
-											</svg>
-											<span>Door&Floor</span>
-										</h3>
-										<div class="location-list__content">
-											<p>ул. Радищева, д.&nbsp;33<br>
-												<a href="tel:+73433055003">(+7&nbsp;343) 305-50-03</a><br>
-												пн.-пт.: с&nbsp;9:00 до&nbsp;19:00
-												сб.-вс.: с&nbsp;10:00 до&nbsp;18:00
-											</p>
-										</div>
-									</li>
-								</ul>
-							</div>
-							<div class="location__item">
-								<h2 class="location__title">Москва</h2>
-								<ul class="location-list">
-									<li class="location-list__item" data-lat="55.780898" data-long="37.642889" data-marker-id="marker-4">
-										<h3 class="location-list__title js-location-toggle">
-											<svg class="location-list__title-icon" viewBox="0 0 19 24" width="19" height="24">
-												<use xlink:href="img/sprite.svg#icon-balloon"></use>
-											</svg>
-											<span>ГУМ Россия</span>
-										</h3>
-										<div class="location-list__content">
-											<p>ул. Вайнера, д.&nbsp;10<br>
-												<a href="tel:+73432909007">(+7&nbsp;343) 290-90-07</a><br>
-												пн.-вс.: с&nbsp;10:00 до&nbsp;20:00
-											</p>
-										</div>
-									</li>
-									<li class="location-list__item" data-lat="55.793559" data-long="37.435983" data-marker-id="marker-5">
-										<h3 class="location-list__title js-location-toggle">
-											<svg class="location-list__title-icon" viewBox="0 0 19 24" width="19" height="24">
-												<use xlink:href="img/sprite.svg#icon-balloon"></use>
-											</svg>
-											<span>ТЦ Аркада</span>
-										</h3>
-										<div class="location-list__content">
-											<p>пер. Банковский, д.&nbsp;3<br>
-												<a href="tel:+73432877333">(+7&nbsp;343) 287-73-33</a><br>
-												пн.-вс.: с&nbsp;10:00 до&nbsp;21:00
-											</p>
-										</div>
-									</li>
-									<li class="location-list__item" data-lat="55.800584" data-long="37.675638" data-marker-id="marker-6">
-										<h3 class="location-list__title js-location-toggle">
-											<svg class="location-list__title-icon" viewBox="0 0 19 24" width="19" height="24">
-												<use xlink:href="img/sprite.svg#icon-balloon"></use>
-											</svg>
-											<span>Фестиваль</span>
-										</h3>
-										<div class="location-list__content">
-											<p>ул. Радищева, д.&nbsp;33<br>
-												<a href="tel:+73433055003">(+7&nbsp;343) 305-50-03</a><br>
-												пн.-пт.: с&nbsp;9:00 до&nbsp;19:00
-												сб.-вс.: с&nbsp;10:00 до&nbsp;18:00
-											</p>
-										</div>
-									</li>
-								</ul>
-							</div>
-							<div class="location__item">
-								<h2 class="location__title">Петропавловск-камчатский</h2>
-								<ul class="location-list">
-									<li class="location-list__item" data-lat="55.716733" data-long="37.589988" data-marker-id="marker-7">
-										<h3 class="location-list__title js-location-toggle">
-											<svg class="location-list__title-icon" viewBox="0 0 19 24" width="19" height="24">
-												<use xlink:href="img/sprite.svg#icon-balloon"></use>
-											</svg>
-											<span>Handy Market</span>
-										</h3>
-										<div class="location-list__content">
-											<p>ул. Вайнера, д.&nbsp;10<br>
-												<a href="tel:+73432909007">(+7&nbsp;343) 290-90-07</a><br>
-												пн.-вс.: с&nbsp;10:00 до&nbsp;20:00
-											</p>
-										</div>
-									</li>
-									<li class="location-list__item" data-lat="55.775724" data-long="37.560840" data-marker-id="marker-8">
-										<h3 class="location-list__title js-location-toggle">
-											<svg class="location-list__title-icon" viewBox="0 0 19 24" width="19" height="24">
-												<use xlink:href="img/sprite.svg#icon-balloon"></use>
-											</svg>
-											<span>ЦУМ</span>
-										</h3>
-										<div class="location-list__content">
-											<p>пер. Банковский, д.&nbsp;3<br>
-												<a href="tel:+73432877333">(+7&nbsp;343) 287-73-33</a><br>
-												пн.-вс.: с&nbsp;10:00 до&nbsp;21:00
-											</p>
-										</div>
-									</li>
-									<li class="location-list__item" data-lat="55.822144" data-long="37.433781" data-marker-id="marker-9">
-										<h3 class="location-list__title js-location-toggle">
-											<svg class="location-list__title-icon" viewBox="0 0 19 24" width="19" height="24">
-												<use xlink:href="img/sprite.svg#icon-balloon"></use>
-											</svg>
-											<span>Door&Floor</span>
-										</h3>
-										<div class="location-list__content">
-											<p>ул. Радищева, д.&nbsp;33<br>
-												<a href="tel:+73433055003">(+7&nbsp;343) 305-50-03</a><br>
-												пн.-пт.: с&nbsp;9:00 до&nbsp;19:00
-												сб.-вс.: с&nbsp;10:00 до&nbsp;18:00
-											</p>
-										</div>
-									</li>
-								</ul>
-							</div>
-						</div>
-						<div class="location__map">
-							<div class="map" style="width: 100%; height: 100%" id="map"></div>
-						</div>
-					</div>
-				</section>
-			</main>
-		</div>
-	{% endblock %}
+    <main class="page__main">
+        <section class="section section--fluid section--top">
+            <div class="section__container">
+                <div class="section__row">
+                    <div class="section__header">
+                        <h1 class="main-title">{{ map_main.title_page }}</h1>
+                        {% if map_main.bottom_text %}
+                            <div class="section__text">
+                                <p>{{ map_main.bottom_text }}</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="location js-location" data-lat="56.837046" data-long="60.607428">
+                <div class="location__info js-scrollbar">
+                    {% for i in map_town %}
+                        <div class="location__item location__item--active">
+                            <h2 class="location__title">{{ i.town }}</h2>
+                            <ul class="location-list">
+                                {% for item in i.map_towns.all %}
+                                    <li class="location-list__item location-list__item--active" data-lat="55.831903" data-long="37.411961" data-marker-id="marker-1">
+                                        <h3 class="location-list__title js-location-toggle">
+                                            <svg class="location-list__title-icon" viewBox="0 0 19 24" width="19" height="24">
+                                                <use xlink:href="img/sprite.svg#icon-balloon"></use>
+                                            </svg>
+                                            {% if item.name %}
+                                            <span>{{ item.name }}</span>
+                                            {% endif %}
+                                        </h3>
+                                    {% if item.info %}
+                                        <div class="location-list__content">
+                                            {% autoescape off %} {{ item.info }} {% endautoescape %}
+                                        </div>
+                                    {% endif %}
+                                    </li>
+
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    {% endfor %}
+                </div>
+                <div class="location__map">
+                    <div class="map" style="width: 100%; height: 100%" id="map"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+    </div>
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from shop.models import shop_page
+
+from about.models import about_main
 
 
 def about_view(request):
@@ -9,10 +10,10 @@ def about_view(request):
 
     context = {
         'show_language': True,
-        'shop_page': shop_page.objects.first(),
         'link_en': link_en,
         'link_fr': link_fr,
         'link_ru': link_ru,
+        'about_main': about_main.objects.first()
     }
 
     return render(request, 'about.html', context=context)

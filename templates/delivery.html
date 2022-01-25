@@ -59,7 +59,7 @@
                                         <div class="delivery__payment-text">
                                             {% autoescape off %} {{ delivery_main.top_text }} {% endautoescape %}
                                         </div>
-                                        <!-- добавить проверку наличия любого из лого -->
+                                    {% if delivery_main.paypal_logo or delivery_main.visa_logo or delivery_main.master_logo or delivery_main.mir_logo or delivery_main.terminal_logo %}
                                         <div class="delivery__payment-methods">
                                             <ul class="p-list">
                                                 {% if delivery_main.paypal_logo %}
@@ -89,6 +89,7 @@
                                             {% endif %}
                                             </ul>
                                         </div>
+                                    {% endif %}
                                         <div class="delivery__payment-disclaimer text-content text-content--small">
                                             {% autoescape off %} {{ delivery_main.bottom_text }}{% endautoescape %}
                                         </div>
