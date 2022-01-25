@@ -14,7 +14,7 @@ def delivery_main_view(request):
         'link_en': link_en,
         'link_fr': link_fr,
         'link_ru': link_ru,
-        'delivery_mains': delivery_main.objects.first(),
+        'delivery_main': delivery_main.objects.first(),
         'delivery_articles': delivery_article.objects.all().order_by('order')
 
     }

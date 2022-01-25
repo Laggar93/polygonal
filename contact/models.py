@@ -53,7 +53,7 @@ class contact_main(models.Model):
     description = models.CharField('Описание', max_length=1000, blank=True)
     title = models.CharField('Заголовок', max_length=500, blank=True)
     name = models.CharField('Название раздела в меню', max_length=500, blank=True)
-    intro_title = models.CharField('Приходите в гости!', max_length=500, blank=True)
+    intro_title = models.CharField('Приходите в гости', max_length=500, blank=True)
     address = models.CharField('Адрес', max_length=500, blank=True, null=True)
     map_link = models.CharField('Ссылка на карту', max_length=500, blank=True, null=True)
     work_mode = models.CharField('Режим работы', max_length=500, blank=True, null=True)
@@ -106,8 +106,8 @@ class contact_social_networks(models.Model):
     contact = models.ForeignKey(contact_main, on_delete=models.CASCADE, verbose_name='Контакты', related_name='contact_networks')
     order = models.IntegerField('Порядок показа', null=True)
     social_network_url = models.URLField('Ссылка на социальную сеть')
-    social_network_type = models.CharField('Тип социальной сети', choices=[('1', 'WhatsApp'), ('2', 'Telegram'), ('3', 'Be'),
-                                                                           ('4', 'Facebook'), ('5', 'Vk'),
+    social_network_type = models.CharField('Тип социальной сети', choices=[('1', 'WhatsApp'), ('2', 'Telegram'), ('3', 'Behance'),
+                                                                           ('4', 'Facebook'), ('5', 'В Контакте'),
                                                                            ('6', 'Instagram'), ('7', 'YouTube')], max_length=100, unique=True, blank=True)
 
     def __str__(self):

@@ -3,7 +3,7 @@ from delivery.models import delivery_main, delivery_article, delivery_columns
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from modeltranslation.admin import TranslationAdmin, TranslationStackedInline
 
-class delivery_columns_admin(SortableInlineAdminMixin, admin.StackedInline):
+class delivery_columns_admin(SortableInlineAdminMixin, TranslationStackedInline):
     model = delivery_columns
     extra = 0
     ordering = ('order',)

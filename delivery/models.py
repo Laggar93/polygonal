@@ -11,11 +11,11 @@ class delivery_main(models.Model):
     payment = models.CharField('Оплата', max_length=500)
     top_text = RichTextField('Вступительный текст', blank=True, null=True)
     bottom_text = RichTextField('Нижний текст', blank=True, null=True)
-    paypal_logo = models.BooleanField('логотип PayPal', default=True)
-    visa_logo = models.BooleanField('логотип Visa', default=True)
-    master_logo = models.BooleanField('логотип Master Card', default=True)
-    mir_logo = models.BooleanField('логотип МИР', default=True)
-    terminal_logo = models.BooleanField('логотип Terminal', default=True)
+    paypal_logo = models.BooleanField('PayPal', default=True)
+    visa_logo = models.BooleanField('Visa', default=True)
+    master_logo = models.BooleanField('Master Card', default=True)
+    mir_logo = models.BooleanField('МИР', default=True)
+    terminal_logo = models.BooleanField('Terminal', default=True)
 
     def __str__(self):
         return str(self.name)

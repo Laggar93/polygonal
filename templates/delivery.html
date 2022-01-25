@@ -11,7 +11,7 @@
                         <div class="delivery">
                             <div class="delivery__row">
                                 <div class="delivery__col">
-                                    <h1 class="delivery__title main-title">{{ delivery_mains.name }}</h1>
+                                    <h1 class="delivery__title main-title">{{ delivery_main.name }}</h1>
                                     {% for i in delivery_articles %}
                                         <ul class="delivery-list">
                                             <li class="delivery-list__item">
@@ -55,33 +55,34 @@
                                         </ul>
                                     {% endfor %}
                                     <div class="delivery__payment">
-                                        <h2 class="delivery__payment-title">{{ delivery_mains.payment }}</h2>
+                                        <h2 class="delivery__payment-title">{{ delivery_main.payment }}</h2>
                                         <div class="delivery__payment-text">
-                                            {% autoescape off %} {{ delivery_mains.top_text }} {% endautoescape %}
+                                            {% autoescape off %} {{ delivery_main.top_text }} {% endautoescape %}
                                         </div>
+                                        <!-- добавить проверку наличия любого из лого -->
                                         <div class="delivery__payment-methods">
                                             <ul class="p-list">
-                                                {% if delivery_mains.paypal_logo %}
+                                                {% if delivery_main.paypal_logo %}
                                                 <li class="p-list__item">
                                                     <img class="p-list__img" src="{% static 'img/p-list-img-01.svg' %}" alt="">
                                                 </li>
                                                 {% endif %}
-                                            {% if delivery_mains.visa_logo %}
+                                            {% if delivery_main.visa_logo %}
                                                 <li class="p-list__item">
                                                     <img class="p-list__img" src="{% static 'img/p-list-img-02.svg' %}" alt="">
                                                 </li>
                                             {% endif %}
-                                            {% if delivery_mains.master_logo %}
+                                            {% if delivery_main.master_logo %}
                                                 <li class="p-list__item">
                                                     <img class="p-list__img" src="{% static 'img/p-list-img-03.svg' %}" alt="">
                                                 </li>
                                             {% endif %}
-                                            {% if delivery_mains.mir_logo %}
+                                            {% if delivery_main.mir_logo %}
                                                 <li class="p-list__item">
                                                     <img class="p-list__img" src="{% static 'img/p-list-img-04.svg' %}" alt="">
                                                 </li>
                                             {% endif %}
-                                            {% if delivery_mains.terminal_logo %}
+                                            {% if delivery_main.terminal_logo %}
                                                 <li class="p-list__item">
                                                     <img class="p-list__img" src="{% static 'img/p-list-img-05.svg' %}" alt="">
                                                 </li>
@@ -89,7 +90,7 @@
                                             </ul>
                                         </div>
                                         <div class="delivery__payment-disclaimer text-content text-content--small">
-                                            {% autoescape off %} {{ delivery_mains.bottom_text }}{% endautoescape %}
+                                            {% autoescape off %} {{ delivery_main.bottom_text }}{% endautoescape %}
                                         </div>
                                     </div>
                                 </div>
