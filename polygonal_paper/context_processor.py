@@ -15,7 +15,7 @@ def globals(request):
         'advice_main': advice_main.objects.first(),
         'delivery_mains': delivery_main.objects.first(),
         'contact_mains': contact_main.objects.first(),
-        'map_mains': map_main.objects.all(),
+        'map_mains': map_main.objects.first(),
         'about_mains': about_main.objects.first(),
     }
     return context

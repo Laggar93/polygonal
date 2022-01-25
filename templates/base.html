@@ -251,12 +251,10 @@
                                             <a class="page-header__nav-link {% if '/about/' in request.path %} page-header__nav-link--active {% endif %}" href="{% url 'about' %}">{{ about_mains.name }}</a></li>
                                         <li class="page-header__nav-item">
                                             <a class="page-header__nav-link {% if '/delivery/' in request.path %} page-header__nav-link--active{% endif %}" href="{% url 'delivery' %}">{{ delivery_mains.delivery }}</a></li>
-                                        {% for i in map_mains %}
-                                            {% if i.is_active %}
+                                        {% if map_mains.is_active %}
                                         <li class="page-header__nav-item">
                                             <a class="page-header__nav-link {% if '/map/' in request.path %} page-header__nav-link--active {% endif %}" href="{% url 'map' %} ">Где купить</a></li>
                                             {% endif %}
-                                         {% endfor %}
                                         <li class="page-header__nav-item">
                                             <a class="page-header__nav-link {% if '/contacts/' in request.path %} page-header__nav-link--active{% endif %}" href="{% url 'contacts' %}">{{ contact_mains.name }}</a></li>
                                     </ul>
