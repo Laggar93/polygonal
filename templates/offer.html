@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block SEO %}
+    <title>{{ offer.title }}</title>
+    <meta name="keywords" content="{{ offer.keywords }}">
+    <meta name="description" content="{{ offer.description }}">
+{% endblock %}
+{% load static i18n l10n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% block content %}
+			<main class="page__main">
+				<section class="section section--fluid section--top">
+					<div class="section__container">
+						<div class="section__row">
+							<div class="section__col">
+								<div class="policy">
+									<div class="policy__row">
+										<div class="policy__col">
+											<h1 class="policy__title main-title">{{ offer.name }}</h1>
+											<div class="policy__intro text-content text-content--small">
+												<p>{{ offer.text }}</p>
+											</div>
+											<div class="policy__content text-content text-content--small">
+												{% autoescape off %} {{ offer.info }} {% endautoescape %}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</main>
+		</div>
+	{% endblock %}

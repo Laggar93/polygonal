@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% block SEO %}
+    <title>{{ map_main.title }}</title>
+    <meta name="keywords" content="{{ map_main.keywords }}">
+    <meta name="description" content="{{ map_main.description }}">
+{% endblock %}
 {% load static i18n l10n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
@@ -24,10 +29,10 @@
                             <h2 class="location__title">{{ i.town }}</h2>
                             <ul class="location-list">
                                 {% for item in i.map_towns.all %}
-                                    <li class="location-list__item location-list__item--active" data-lat="55.831903" data-long="37.411961" data-marker-id="marker-1">
+                                    <li class="location-list__item location-list__item--active" data-lat="{{ item.latitude }}" data-long="{{ item.longitude }}" data-marker-id="{{ forloop.counter }}">
                                         <h3 class="location-list__title js-location-toggle">
                                             <svg class="location-list__title-icon" viewBox="0 0 19 24" width="19" height="24">
-                                                <use xlink:href="img/sprite.svg#icon-balloon"></use>
+                                                <use xlink:href="{% static 'img/sprite.svg' %}#icon-balloon"></use>
                                             </svg>
                                             {% if item.name %}
                                             <span>{{ item.name }}</span>

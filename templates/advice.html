@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% block SEO %}
+<title>{{ advice_main.title }}</title>
+<meta name="keywords" content="{{ advice_main.keywords }}">
+<meta name="description" content="{{ advice_main.description }}">
+{% endblock %}
 {% load static i18n l10n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
@@ -25,7 +30,7 @@
                                                         <picture>
                                                             <source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2x.url }}  2x">
                                                             <img class="c-card__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2x.url }} 2x" width="728"
-                                                                 height="546" alt="">
+                                                                 height="546" alt="{{ item.name }}">
                                                         </picture>
                                                     {% endif %}
                                                 </div>

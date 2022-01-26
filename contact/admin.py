@@ -8,6 +8,7 @@ from modeltranslation.admin import TranslationAdmin, TranslationStackedInline
 class contact_social_networks_admin(SortableInlineAdminMixin, TranslationStackedInline):
     model = contact_social_networks
     ordering = ('order',)
+    extra = 0
 
 
 class contact_main_admin(TranslationAdmin):

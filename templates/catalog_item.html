@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+
 {% load static i18n l10n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
@@ -41,7 +42,7 @@
                                                     <div class="g-slider__img-ratio">
                                                         <picture>
                                                             <source media="(min-width: 1700px)" srcset="{{ items.main_photo_xxl.url }} 1x, {{ items.main_photo_xxl2.url }} 2x">
-                                                            <img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
+                                                            <img class="g-slider__img" src="{{ items.main_photo_xs.url }}" srcset="{{ items.main_photo_xs2.url }} 2x" width="768" height="576" alt="{{ items.name }}">
                                                         </picture>
                                                     </div>
                                                 </a>
@@ -228,7 +229,7 @@
                                                 {% if items.bottom_photo_xxl2 %}
                                                     <picture>
                                                         <source media="(min-width: 1700px)" srcset="{{ items.bottom_photo_xxl.url }} 1x, {{ items.bottom_photo_xxl2.url }} 2x">
-                                                        <img class="guide__img" src="{{ items.bottom_photo_xs.url }}" srcset="{{ items.bottom_photo_xs2.url }} 2x" width="768" height="576" loading="lazy" alt="">
+                                                        <img class="guide__img" src="{{ items.bottom_photo_xs.url }}" srcset="{{ items.bottom_photo_xs2.url }} 2x" width="768" height="576" loading="lazy" alt="{{ items.name }}">
                                                     </picture>
                                                 {% endif %}
                                             </div>
@@ -314,7 +315,7 @@
                                                         <div class="c-card__img-ratio">
                                                             <picture>
                                                                 <source media="(min-width: 1700px)" srcset="{{ i.main_photo_xxl.url }} 1x, {{ i.main_photo_xxl2 }} 2x">
-                                                                <img class="c-card__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2.url }} 2x" width="728" height="546" alt="">
+                                                                <img class="c-card__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2.url }} 2x" width="728" height="546" alt="{{ i.name }}">
                                                             </picture>
                                                         </div>
                                                     {% endif %}

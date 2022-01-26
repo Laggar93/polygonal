@@ -1,6 +1,4 @@
 from django.contrib import admin
-# Register your models here.
-from modeltranslation.admin import TranslationAdmin
 from map.models import map_main, map_town, map_shop
 
 
@@ -10,7 +8,7 @@ class map_shop_admin(admin.ModelAdmin):
     list_display = ('name', 'town',)
 
 
-class map_main_admin(TranslationAdmin):
+class map_main_admin(admin.ModelAdmin):
     model = map_main
 
     def has_add_permission(self, request, obj=None):

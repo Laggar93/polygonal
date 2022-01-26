@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% block SEO %}
+    <title>{{ project_pages.title }}</title>
+    <meta name="keywords" content="{{ project_pages.keywords }}">
+    <meta name="description" content="{{ project_pages.description }}">
+{% endblock %}
 {% load static i18n l10n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
@@ -27,7 +32,7 @@
                                                                 <picture>
                                                                     <source media="(min-width: 768px)" srcset="{{ i.main_photo_sm.url }} 1x, {{ i.main_photo_sm2x.url }} 2x">
                                                                     <source media="(min-width: 0)" srcset="{{ i.main_photo_sm.url }} 1x, {{ i.main_photo_sm2x.url }}">
-                                                                    <img class="photo-card__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2.url }} 2x" alt="">
+                                                                    <img class="photo-card__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2.url }} 2x" alt="{{ i.name }}">
                                                                 </picture>
                                                             </div>
                                                         </div>
@@ -71,7 +76,7 @@
                                                         <div class="photo-card__img-wrap">
                                                             <div class="photo-card__img-ratio">
                                                                 <picture>
-                                                                    <img class="photo-card__img" src="{{ j.main_photo_xs.url }}" srcset="{{ j.main_photo_xs2x.url }} 2x" alt="">
+                                                                    <img class="photo-card__img" src="{{ j.main_photo_xs.url }}" srcset="{{ j.main_photo_xs2x.url }} 2x" alt="{{ j.name }}">
                                                                 </picture>
                                                             </div>
                                                         </div>

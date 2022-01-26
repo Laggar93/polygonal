@@ -49,7 +49,8 @@ INSTALLED_APPS = [
     'delivery.apps.DeliveryConfig',
     'contact.apps.ContactConfig',
     'map.apps.MapConfig',
-    'about.apps.AboutConfig'
+    'about.apps.AboutConfig',
+    'base.apps.BaseConfig'
 ]
 
 MIDDLEWARE = [
@@ -163,13 +164,20 @@ MODELTRANSLATION_LANGUAGES = ('ru', 'en', 'fr')
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
 
+# CKEDITOR_CONFIGS = {
+#     'default': {
+#         'toolbar': 'Custom',
+#         'toolbar_Custom': [
+#             ['Bold'],
+#             ['NumberedList', 'BulletedList'],
+#             ['Link', 'Unlink']
+#         ]
+#     },
+# }
+
 CKEDITOR_CONFIGS = {
     'default': {
-        'toolbar': 'Custom',
-        'toolbar_Custom': [
-            ['Bold'],
-            ['NumberedList', 'BulletedList'],
-            ['Link', 'Unlink']
-        ]
-    },
+        'language': 'ru',
+        'toolbar': 'full'
+    }
 }

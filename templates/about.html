@@ -1,243 +1,238 @@
 {% extends 'base.html' %}
+{% block SEO %}
+    <title>{{ about_main.title }}</title>
+    <meta name="keywords" content="{{ about_main.keywords }}">
+    <meta name="description" content="{{ about_main.description }}">
+{% endblock %}
 {% load static i18n l10n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
 {% load number_space %}
 {% block content %}
-			<main class="page__main">
-				<section class="section section--fluid section--top">
-					<div class="section__container">
-						<div class="section__row">
-							<div class="section__header">
-                                {% if about_main.title_page %}
-								<h1 class="main-title">{{ about_main.title_page }}</h1>
-                                {% endif %}
-                            {% if about_main.bottom_text %}
-								<div class="section__text">
-									<p>{{ about_main.bottom_text }}</p>
-								</div>
+    <main class="page__main">
+        <section class="section section--fluid section--top">
+            <div class="section__container">
+                <div class="section__row">
+                    <div class="section__header">
+                        {% if about_main.title_page %}
+                            <h1 class="main-title">{{ about_main.title_page }}</h1>
+                        {% endif %}
+                        {% if about_main.bottom_text %}
+                            <div class="section__text">
+                                <p>{{ about_main.bottom_text }}</p>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            <div class="photo-banner">
+                <div class="photo-banner__container">
+                    <div class="photo-banner__row">
+                        <div class="photo-banner__col">
+                            {% if about_main.main_photo_xl2x %}
+                                <div class="photo-banner__img-wrap">
+                                    <div class="photo-banner__img-ratio">
+                                        <picture>
+                                            <source media="(min-width: 1440px)" srcset="{{ about_main.main_photo_xl.url }} 1x, {{ about_main.main_photo_xl2x.url }} 2x">
+                                            <source media="(min-width: 1024px)" srcset="{{ about_main.main_photo_md.url }} 1x, {{ about_main.main_photo_md2x.url }} 2x">
+                                            <source media="(min-width: 768px)" srcset="{{ about_main.main_photo_sm.url }} 1x, {{ about_main.main_photo_sm2x.url }} 2x">
+                                            <source media="(min-width: 0)" srcset="{{ about_main.main_photo_xs.url }} 1x, {{ about_main.main_photo_xs2x.url }} 2x">
+                                            <img class="photo-banner__img" src="{{ about_main.main_photo_xl.url }}" srcset="{{ about_main.main_photo_xl2x.url }} 2x" alt="{{ about_main.title }}">
+                                        </picture>
+                                    </div>
+                                </div>
                             {% endif %}
-							</div>
-						</div>
-					</div>
-					<div class="photo-banner">
-						<div class="photo-banner__container">
-							<div class="photo-banner__row">
-								<div class="photo-banner__col">
-                                    {% if about_main.main_photo_xl2x %}
-									<div class="photo-banner__img-wrap">
-										<div class="photo-banner__img-ratio">
-											<picture>
-												<source media="(min-width: 1440px)" srcset="{{ about_main.main_photo_xl.url }} 1x, {{ about_main.main_photo_xl2x.url }} 2x">
-												<source media="(min-width: 1024px)" srcset="{{ about_main.main_photo_md.url }} 1x, {{ about_main.main_photo_md2x.url }} 2x">
-												<source media="(min-width: 768px)" srcset="{{ about_main.main_photo_sm.url }} 1x, {{ about_main.main_photo_sm2x.url }} 2x">
-												<source media="(min-width: 0)" srcset="{{ about_main.main_photo_xs.url }} 1x, {{ about_main.main_photo_xs2x.url }} 2x">
-												<img class="photo-banner__img" src="{{ about_main.main_photo_xl.url }}" srcset="{{ about_main.main_photo_xl2x.url }} 2x" alt="">
-											</picture>
-										</div>
-									</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-banner__container">
+                    <div class="photo-banner__row">
+                        {% if about_main.grey_text_photo %}
+                            <div class="photo-banner__col">
+                                <div class="photo-banner__caption">{{ about_main.grey_text_photo }}</div>
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section section--top">
+            <div class="section__container">
+                <div class="section__row">
+                    <div class="section__col">
+                        <div class="about-info">
+                            <div class="about-info__row">
+                                <div class="about-info__content">
+                                    {% if about_main.bottom_text_photo %}
+                                        <div class="about-info__text text-content">
+                                            {% autoescape off %} {{ about_main.bottom_text_photo }} {% endautoescape %}
+                                        </div>
                                     {% endif %}
-								</div>
-							</div>
-						</div>
-						<div class="photo-banner__container">
-							<div class="photo-banner__row">
-                                {% if about_main.grey_text_photo %}
-								<div class="photo-banner__col">
-									<div class="photo-banner__caption">{{ about_main.grey_text_photo }}</div>
-								</div>
-                                {% endif %}
-							</div>
-						</div>
-					</div>
-				</section>
-				<section class="section section--top">
-					<div class="section__container">
-						<div class="section__row">
-							<div class="section__col">
-								<div class="about-info">
-									<div class="about-info__row">
-										<div class="about-info__content">
-                                        {% if about_main.bottom_text_photo %}
-											<div class="about-info__text text-content">
-                                             {% autoescape off %} {{ about_main.bottom_text_photo }} {% endautoescape %}
-											</div>
-                                        {% endif %}
-											<div class="about-info__stats">
-												<ul class="s-list">
-													<li class="s-list__item">
-                                                    {% if about_main.number %}
-														<div class="s-list__title">{{ about_main.number|number_space }}</div>
-                                                    {% endif %}
-                                                        {% if about_main.number_text %}
-														<div class="s-list__text text-content text-content--small">
-															<p>{{ about_main.number_text }}</p>
-														</div>
-                                                        {% endif %}
-													</li>
-												</ul>
-											</div>
-										</div>
-										<div class="about-info__list">
-                                            {% if about_main.title_reward %}
-											<h2 class="about-info__title section-title">{{ about_main.title_reward }}</h2>
-                                            {% endif %}
-											<ul class="a-list">
-                                                {% for item in about_main.about_rewards.all %}
-												<li class="a-list__item">
-													<a class="a-list__link" href="{% if item.link %}{{ item.link }}{% endif %}" target="_blank">{% if item.title %}{{ item.title }}{% endif %}</a>
-                                                    {% if item.text %}
-													<div class="a-list__text text-content text-content--small">
-														<p>{{ item.text }}</p>
-													</div>
+                                    <div class="about-info__stats">
+                                        <ul class="s-list">
+                                            <li class="s-list__item">
+                                                {% if about_main.number %}
+                                                    <div class="s-list__title">{{ about_main.number|number_space }}</div>
                                                 {% endif %}
-												</li>
-                                                {% endfor %}
+                                                {% if about_main.number_text %}
+                                                    <div class="s-list__text text-content text-content--small">
+                                                        <p>{{ about_main.number_text }}</p>
+                                                    </div>
+                                                {% endif %}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="about-info__list">
+                                    {% if about_main.title_reward %}
+                                        <h2 class="about-info__title section-title">{{ about_main.title_reward }}</h2>
+                                    {% endif %}
+                                    <ul class="a-list">
+                                        {% for item in about_main.about_rewards.all %}
+                                            <li class="a-list__item">
+                                                <a class="a-list__link" href="{% if item.link %}{{ item.link }}{% endif %}" target="_blank">{% if item.title %}{{ item.title }}{% endif %}</a>
+                                                {% if item.text %}
+                                                    <div class="a-list__text text-content text-content--small">
+                                                        <p>{{ item.text }}</p>
+                                                    </div>
+                                                {% endif %}
+                                            </li>
+                                        {% endfor %}
 
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-				<section class="section">
-					<div class="section__container">
-						<div class="section__row">
-							<div class="section__col">
-								<div class="video-info">
-									<div class="video-info__row">
-										<div class="video-info__col">
-											<h2 class="video-info__title section-title section-title--theme_blue">{{ about_main.title_create_model }}</h2>
-                                            {% if about_main.video_link %}
-											<div class="video-info__content">
-												<div class='embed-container'>
-													<iframe src="{{ about_main.video_link }}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
-												</div>
-											</div>
-                                            {% endif %}
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-				<section class="section">
-					<div class="section__container">
-						<div class="section__row">
-							<div class="section__col">
-								<div class="press-info">
-									<div class="press-info__row">
-										<div class="press-info__col">
-											<div class="press-info__content">
-												<h2 class="press-info__title section-title">{{ about_main.title_press }}</h2>
-												<div class="slider-wrapper">
-													<div class="mobile-slider mobile-slider--press swiper-container js-mobile-slider">
-														<div class="mobile-slider__wrapper swiper-wrapper">
-                                                            {% for value in about_main.about_press.all %}
-															<div class="mobile-slider__item swiper-slide">
-																<div class="press-card">
-                                                                    {% if value.main_logo_lg2x %}
-																	<div class="press-card__img-wrap">
-																		<picture>
-																			<source media="(min-width: 1280px)" srcset="{{ value.main_logo_lg.url }} 1x, {{ value.main_logo_lg2x.url }} 2x">
-																			<source media="(min-width: 0)" srcset="{{ value.main_logo_xs.url }} 1x, {{ value.main_logo_xs2x.url }} 2x">
-																			<img class="press-card__img" src="{{ value.main_logo_lg.url }}" srcset="{{ value.main_logo_lg2x.url }} 2x" alt="">
-																		</picture>
-																	</div>
-                                                                    {% endif %}
-																	<a class="press-card__info" href="{{ value.link }}" target="_blank">
-																		<time class="press-card__date" datetime="2019-01-15">{{ value.published }}</time>
-																		<div class="press-card__text text-content">
-																			<p>{{ value.title }}</p>
-																		</div>
-																	</a>
-																</div>
-															</div>
-                                                            {% endfor %}
-
-														</div>
-														<div class="mobile-slider__pagination swiper-pagination js-mobile-slider-pagination"></div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-				<section class="section">
-					<div class="section__container">
-						<div class="section__row">
-							<div class="section__col">
-								<h2 class="section-title">{{ about_main.title_author }}</h2>
-								<div class="slider-wrapper slider-wrapper--dual">
-									<div class="d-slider">
-										<div class="d-slider__btn-prev swiper-button-prev"></div>
-										<div class="d-slider__btn-next swiper-button-next"></div>
-										<div class="d-slider-text d-slider__d-slider-text swiper-container js-d-slider-text">
-											<div class="d-slider-text__wrapper swiper-wrapper">
-                                                {% for i in about_main.about_authors.all %}
-												<div class="d-slider-text__item swiper-slide">
-													<div class="d-slider-text__row">
-														<div class="d-slider-text__col">
-															<div class="d-slider-text__content">
-                                                                {% if i.full_name %}
-																<h3 class="d-slider-text__title">{{ i.full_name }}</h3>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="section__container">
+                <div class="section__row">
+                    <div class="section__col">
+                        <div class="video-info">
+                            <div class="video-info__row">
+                                <div class="video-info__col">
+                                    <h2 class="video-info__title section-title section-title--theme_blue">{{ about_main.title_create_model }}</h2>
+                                    {% if about_main.video_link %}
+                                        <div class="video-info__content">
+                                            <div class='embed-container'>
+                                                <iframe src="{{ about_main.video_link }}" width="640" height="360" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+                                            </div>
+                                        </div>
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="section__container">
+                <div class="section__row">
+                    <div class="section__col">
+                        <div class="press-info">
+                            <div class="press-info__row">
+                                <div class="press-info__col">
+                                    <div class="press-info__content">
+                                        <h2 class="press-info__title section-title">{{ about_main.title_press }}</h2>
+                                        <div class="slider-wrapper">
+                                            <div class="mobile-slider mobile-slider--press swiper-container js-mobile-slider">
+                                                <div class="mobile-slider__wrapper swiper-wrapper">
+                                                    {% for value in about_main.about_press.all %}
+                                                        <div class="mobile-slider__item swiper-slide">
+                                                            <div class="press-card">
+                                                                {% if value.main_logo_lg2x %}
+                                                                    <div class="press-card__img-wrap">
+                                                                        <picture>
+                                                                            <source media="(min-width: 1280px)" srcset="{{ value.main_logo_lg.url }} 1x, {{ value.main_logo_lg2x.url }} 2x">
+                                                                            <source media="(min-width: 0)" srcset="{{ value.main_logo_xs.url }} 1x, {{ value.main_logo_xs2x.url }} 2x">
+                                                                            <img class="press-card__img" src="{{ value.main_logo_lg.url }}" srcset="{{ value.main_logo_lg2x.url }} 2x" alt="{{ value.title }}">
+                                                                        </picture>
+                                                                    </div>
                                                                 {% endif %}
+                                                                <a class="press-card__info" href="{{ value.link }}" target="_blank">
+                                                                    <time class="press-card__date" datetime="2019-01-15">{{ value.published }}</time>
+                                                                    <div class="press-card__text text-content">
+                                                                        <p>{{ value.title }}</p>
+                                                                    </div>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    {% endfor %}
+
+                                                </div>
+                                                <div class="mobile-slider__pagination swiper-pagination js-mobile-slider-pagination"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="section">
+            <div class="section__container">
+                <div class="section__row">
+                    <div class="section__col">
+                        <h2 class="section-title">{{ about_main.title_author }}</h2>
+                        <div class="slider-wrapper slider-wrapper--dual">
+                            <div class="d-slider">
+                                <div class="d-slider__btn-prev swiper-button-prev"></div>
+                                <div class="d-slider__btn-next swiper-button-next"></div>
+                                <div class="d-slider-text d-slider__d-slider-text swiper-container js-d-slider-text">
+                                    <div class="d-slider-text__wrapper swiper-wrapper">
+                                        {% for i in about_main.about_authors.all %}
+                                            <div class="d-slider-text__item swiper-slide">
+                                                <div class="d-slider-text__row">
+                                                    <div class="d-slider-text__col">
+                                                        <div class="d-slider-text__content">
+                                                            {% if i.full_name %}
+                                                                <h3 class="d-slider-text__title">{{ i.full_name }}</h3>
+                                                            {% endif %}
                                                             {% if i.position %}
-																<div class="d-slider-text__desc">{{ i.position }}</div>
+                                                                <div class="d-slider-text__desc">{{ i.position }}</div>
                                                             {% endif %}
                                                             {% if i.text %}
-																<div class="d-slider-text__text text-content text-content--small">
-																	{% autoescape off %} {{ i.text }} {% endautoescape %}
-																</div>
+                                                                <div class="d-slider-text__text text-content text-content--small">
+                                                                    {% autoescape off %} {{ i.text }} {% endautoescape %}
+                                                                </div>
                                                             {% endif %}
-															</div>
-														</div>
-													</div>
-												</div>
-                                                {% endfor %}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
 
-											</div>
-										</div>
-										<div class="d-slider-img d-slider__d-slider-img swiper-container js-d-slider-img">
-											<div class="d-slider-img__wrapper swiper-wrapper">
-												<div class="d-slider-img__item swiper-slide">
-													<div class="d-slider-img__img-wrap">
-														<div class="d-slider-img__img-ratio">
-															<img class="d-slider-img__img" src="https://picsum.photos/1280/680" alt="">
-														</div>
-													</div>
-												</div>
-												<div class="d-slider-img__item swiper-slide">
-													<div class="d-slider-img__img-wrap">
-														<div class="d-slider-img__img-ratio">
-															<img class="d-slider-img__img" src="https://picsum.photos/1280/780" alt="">
-														</div>
-													</div>
-												</div>
-												<div class="d-slider-img__item swiper-slide">
-													<div class="d-slider-img__img-wrap">
-														<div class="d-slider-img__img-ratio">
-															<img class="d-slider-img__img" src="https://picsum.photos/1280/880" alt="">
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-										<div class="d-slider__pagination swiper-pagination"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-			</main>
-		</div>
+                                    </div>
+                                </div>
+                                <div class="d-slider-img d-slider__d-slider-img swiper-container js-d-slider-img">
+                                    <div class="d-slider-img__wrapper swiper-wrapper">
+                                        {% for i in about_main.about_authors.all %}
+
+                                            <div class="d-slider-img__item swiper-slide">
+                                                <div class="d-slider-img__img-wrap">
+                                                    <div class="d-slider-img__img-ratio">
+                                                        <img class="d-slider-img__img" src="{{ i.author_photo.url }}" alt="{{ i.full_name }}">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+                                <div class="d-slider__pagination swiper-pagination"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    </div>
 
 {% endblock %}

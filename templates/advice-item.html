@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% block SEO %}
+<title>{{ advice_pages.title }}</title>
+<meta name="keywords" content="{{ advice_pages.keywords }}">
+<meta name="description" content="{{ advice_pages.description }}">
+{% endblock %}
 {% load static i18n l10n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
@@ -103,7 +108,7 @@
                                                                                         <div class="g-slider__img-ratio">
                                                                                             <picture>
                                                                                                 <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_1_xxl.url }} 1x,  {{ item.slide_picture_1_xxl2x.url }} 2x">
-                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_1_xs.url }}" srcset="{{ item.slide_picture_1_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_1_xs.url }}" srcset="{{ item.slide_picture_1_xs2x.url }} 2x" width="768" height="576" alt="{{ item.name }}">
                                                                                             </picture>
                                                                                         </div>
                                                                                     </a>
@@ -115,7 +120,7 @@
                                                                                         <div class="g-slider__img-ratio">
                                                                                             <picture>
                                                                                                 <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_2_xxl.url }} 1x,  {{ item.slide_picture_2_xxl2x.url }} 2x">
-                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_2_xs.url }}" srcset="{{ item.slide_picture_2_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_2_xs.url }}" srcset="{{ item.slide_picture_2_xs2x.url }} 2x" width="768" height="576" alt="{{ item.name }}">
                                                                                             </picture>
                                                                                         </div>
                                                                                     </a>
@@ -127,7 +132,7 @@
                                                                                         <div class="g-slider__img-ratio">
                                                                                             <picture>
                                                                                                 <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_3_xxl.url }} 1x,  {{ item.slide_picture_3_xxl2x.url }} 2x">
-                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_3_xs.url }}" srcset="{{ item.slide_picture_3_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_3_xs.url }}" srcset="{{ item.slide_picture_3_xs2x.url }} 2x" width="768" height="576" alt="{{ item.name }}">
                                                                                             </picture>
                                                                                         </div>
                                                                                     </a>
@@ -139,7 +144,7 @@
                                                                                         <div class="g-slider__img-ratio">
                                                                                             <picture>
                                                                                                 <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_4_xxl.url }} 1x,  {{ item.slide_picture_4_xxl2x.url }} 2x">
-                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_4_xs.url }}" srcset="{{ item.slide_picture_4_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_4_xs.url }}" srcset="{{ item.slide_picture_4_xs2x.url }} 2x" width="768" height="576" alt="{{ item.name }}">
                                                                                             </picture>
                                                                                         </div>
                                                                                     </a>
@@ -151,7 +156,7 @@
                                                                                         <div class="g-slider__img-ratio">
                                                                                             <picture>
                                                                                                 <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_5_xxl.url }} 1x,  {{ item.slide_picture_5_xxl2x.url }} 2x">
-                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_5_xs.url }}" srcset="{{ item.slide_picture_5_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_5_xs.url }}" srcset="{{ item.slide_picture_5_xs2x.url }} 2x" width="768" height="576" alt="{{ item.name }}">
                                                                                             </picture>
                                                                                         </div>
                                                                                     </a>
@@ -163,7 +168,7 @@
                                                                                         <div class="g-slider__img-ratio">
                                                                                             <picture>
                                                                                                 <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_6_xxl.url }} 1x,  {{ item.slide_picture_6_xxl2x.url }} 2x">
-                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_6_xs.url }}" srcset="{{ item.slide_picture_6_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_6_xs.url }}" srcset="{{ item.slide_picture_6_xs2x.url }} 2x" width="768" height="576" alt="{{ item.name }}">
                                                                                             </picture>
                                                                                         </div>
                                                                                     </a>
@@ -175,7 +180,7 @@
                                                                                         <div class="g-slider__img-ratio">
                                                                                             <picture>
                                                                                                 <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_7_xxl.url }} 1x,  {{ item.slide_picture_7_xxl2x.url }} 2x">
-                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_7_xs.url }}" srcset="{{ item.slide_picture_7_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_7_xs.url }}" srcset="{{ item.slide_picture_7_xs2x.url }} 2x" width="768" height="576" alt="{{ item.name }}">
                                                                                             </picture>
                                                                                         </div>
                                                                                     </a>
@@ -187,7 +192,7 @@
                                                                                         <div class="g-slider__img-ratio">
                                                                                             <picture>
                                                                                                 <source media="(min-width: 1700px)" srcset="{{ item.slide_picture_8_xxl.url }} 1x,  {{ item.slide_picture_8_xxl2x.url }} 2x">
-                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_8_xs.url }}" srcset="{{ item.slide_picture_8_xs2x.url }} 2x" width="768" height="576" alt="">
+                                                                                                <img class="g-slider__img" src="{{ item.slide_picture_8_xs.url }}" srcset="{{ item.slide_picture_8_xs2x.url }} 2x" width="768" height="576" alt="{{ item.name }}">
                                                                                             </picture>
                                                                                         </div>
                                                                                     </a>
@@ -205,7 +210,7 @@
                                                                                     <div class="g-slider-thumbs__img-wrap">
                                                                                         <picture>
                                                                                             <img class="g-slider-thumbs__img" src="{{ item.slide_picture_1_thumb_xs.url }}" srcset="{{ item.slide_picture_1_thumb_xs2x.url }} 2x" width="144" height="144"
-                                                                                                 alt="">
+                                                                                                 alt="{{ item.name }}">
                                                                                         </picture>
                                                                                     </div>
                                                                                 </div>
@@ -215,7 +220,7 @@
                                                                                     <div class="g-slider-thumbs__img-wrap">
                                                                                         <picture>
                                                                                             <img class="g-slider-thumbs__img" src="{{ item.slide_picture_2_thumb_xs.url }}" srcset="{{ item.slide_picture_2_thumb_xs2x.url }} 2x" width="144" height="144"
-                                                                                                 alt="">
+                                                                                                 alt="{{ item.name }}">
                                                                                         </picture>
                                                                                     </div>
                                                                                 </div>
@@ -225,7 +230,7 @@
                                                                                     <div class="g-slider-thumbs__img-wrap">
                                                                                         <picture>
                                                                                             <img class="g-slider-thumbs__img" src="{{ item.slide_picture_3_thumb_xs.url }}" srcset="{{ item.slide_picture_3_thumb_xs2x.url }} 2x" width="144" height="144"
-                                                                                                 alt="">
+                                                                                                 alt="{{ item.name }}">
                                                                                         </picture>
                                                                                     </div>
                                                                                 </div>
@@ -235,7 +240,7 @@
                                                                                     <div class="g-slider-thumbs__img-wrap">
                                                                                         <picture>
                                                                                             <img class="g-slider-thumbs__img" src="{{ item.slide_picture_4_thumb_xs.url }}" srcset="{{ item.slide_picture_4_thumb_xs2x.url }} 2x" width="144" height="144"
-                                                                                                 alt="">
+                                                                                                 alt="{{ item.name }}">
                                                                                         </picture>
                                                                                     </div>
                                                                                 </div>
@@ -245,7 +250,7 @@
                                                                                     <div class="g-slider-thumbs__img-wrap">
                                                                                         <picture>
                                                                                             <img class="g-slider-thumbs__img" src="{{ item.slide_picture_5_thumb_xs.url }}" srcset="{{ item.slide_picture_5_thumb_xs2x.url }} 2x" width="144" height="144"
-                                                                                                 alt="">
+                                                                                                 alt="{{ item.name }}">
                                                                                         </picture>
                                                                                     </div>
                                                                                 </div>
@@ -255,7 +260,7 @@
                                                                                     <div class="g-slider-thumbs__img-wrap">
                                                                                         <picture>
                                                                                             <img class="g-slider-thumbs__img" src="{{ item.slide_picture_6_thumb_xs.url }}" srcset="{{ item.slide_picture_6_thumb_xs2x.url }} 2x" width="144" height="144"
-                                                                                                 alt="">
+                                                                                                 alt="{{ item.name }}">
                                                                                         </picture>
                                                                                     </div>
                                                                                 </div>
@@ -265,7 +270,7 @@
                                                                                     <div class="g-slider-thumbs__img-wrap">
                                                                                         <picture>
                                                                                             <img class="g-slider-thumbs__img" src="{{ item.slide_picture_7_thumb_xs.url }}" srcset="{{ item.slide_picture_7_thumb_xs2x.url }} 2x" width="144" height="144"
-                                                                                                 alt="">
+                                                                                                 alt="{{ item.name }}">
                                                                                         </picture>
                                                                                     </div>
                                                                                 </div>
@@ -275,7 +280,7 @@
                                                                                     <div class="g-slider-thumbs__img-wrap">
                                                                                         <picture>
                                                                                             <img class="g-slider-thumbs__img" src="{{ item.slide_picture_8_thumb_xs.url }}" srcset="{{ item.slide_picture_8_thumb_xs2x.url }} 2x" width="144" height="144"
-                                                                                                 alt="">
+                                                                                                 alt="{{ item.name }}">
                                                                                         </picture>
                                                                                     </div>
                                                                                 </div>

@@ -1,5 +1,6 @@
 from about.models import about_main
 from advice.models import advice_main
+from base.models import footer_elements, rules, offer, policy
 from contact.models import contact_main
 from delivery.models import delivery_main
 from map.models import map_main
@@ -17,5 +18,9 @@ def globals(request):
         'contact_main': contact_main.objects.first(),
         'map_main': map_main.objects.first(),
         'about_main': about_main.objects.first(),
+        'footer_elements': footer_elements.objects.first(),
+        'rules': rules.objects.first(),
+        'offer': offer.objects.first(),
+        'policy': policy.objects.first(),
     }
     return context

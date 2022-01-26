@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% block SEO %}
+    <title>{{ contact_main.title }}</title>
+    <meta name="keywords" content="{{ contact_main.keywords }}">
+    <meta name="description" content="{{ contact_main.description }}">
+{% endblock %}
 {% load static i18n l10n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
@@ -26,7 +31,7 @@
                                             <source media="(min-width: 1024px)" srcset="{{ contact_main.main_photo_md.url }} 1x, {{ contact_main.main_photo_md2x.url }} 2x">
                                             <source media="(min-width: 768px)" srcset="{{ contact_main.main_photo_sm.url }} 1x, {{ contact_main.main_photo_sm2x.url }}">
                                             <source media="(min-width: 0)" srcset="{{ contact_main.main_photo_xs.url }} 1x, {{ contact_main.main_photo_xs2x.url }} 2x">
-                                            <img class="photo-banner__img" src="{{ contact_main.main_photo_xl1.url }}" srcset="{{ contact_main.main_photo_xl12x.url }} 2x" alt="">
+                                            <img class="photo-banner__img" src="{{ contact_main.main_photo_xl1.url }}" srcset="{{ contact_main.main_photo_xl12x.url }} 2x" alt="{{ contact_main.name }}">
                                         </picture>
                                     </div>
                                 </div>

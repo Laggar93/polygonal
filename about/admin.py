@@ -7,17 +7,20 @@ from about.models import about_main, about_reward, about_author, about_press
 class about_reward_admin(SortableInlineAdminMixin, TranslationStackedInline):
     model = about_reward
     ordering = ('order',)
+    extra = 0
 
 
 class about_press_admin(SortableInlineAdminMixin, TranslationStackedInline):
     model = about_press
     exclude = ('main_logo_lg', 'main_logo_xs', 'main_logo_xs2x')
     ordering = ('order',)
+    extra = 0
 
 
 class about_author_admin(SortableInlineAdminMixin, TranslationStackedInline):
     model = about_author
     ordering = ('order',)
+    extra = 0
 
 
 class about_main_admin(TranslationAdmin):

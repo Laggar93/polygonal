@@ -1,4 +1,17 @@
 {% extends 'base.html' %}
+{% block SEO %}
+    {% if active_subcategory %}
+        <title>{{ active_subcategory.title }}</title>
+        <meta name="keywords" content="{{ active_subcategory.keywords }}">
+        <meta name="description" content="{{ active_subcategory.description }}">
+    {% endif %}
+    {% if active_category %}
+        <title>{{ active_category.title }}</title>
+        <meta name="keywords" content="{{ active_category.keywords }}">
+        <meta name="description" content="{{ active_category.description }}">
+    {% endif %}
+{% endblock %}
+
 {% load static i18n l10n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
@@ -41,12 +54,14 @@
                                 <div class="c-filter__types">
                                     <ul class="filter-list">
                                         <li class="filter-list__item">
-                                            <a class="filter-list__item-link {% if request.path == active_category.get_absolute_url %}filter-list__item-link--active {% endif %}" href="{{ active_category.get_absolute_url }}">{% if items %} {{ shop_page.all }} {% endif %} {% if not items %}{{ shop_page.all }} {% endif %}</a>
+                                            <a class="filter-list__item-link {% if request.path == active_category.get_absolute_url %}filter-list__item-link--active {% endif %}" href="{{ active_category.get_absolute_url }}">{% if items %}
+                                                {{ shop_page.all }} {% endif %} {% if not items %}{{ shop_page.all }} {% endif %}</a>
                                         </li>
                                         {% if items or not items %}
                                             {% for i in subcategories %}
                                                 <li class="filter-list__item">
-                                                    <a class="filter-list__item-link {% if request.path == i.get_absolute_url %}filter-list__item-link--active {% endif %}" data-url="{{ request.path }}" href="{{ i.get_absolute_url }}">{{ i.name }}</a></li>
+                                                    <a class="filter-list__item-link {% if request.path == i.get_absolute_url %}filter-list__item-link--active {% endif %}" data-url="{{ request.path }}" href="{{ i.get_absolute_url }}">{{ i.name }}</a>
+                                                </li>
                                             {% endfor %}
                                         {% endif %}
                                     </ul>
@@ -54,7 +69,7 @@
                                 {% if items %}
                                     <div class="c-filter__price">
                                         <select class="tabs-select form-select form-select--size_small js-form-select" onchange="if (this.value) window.location.href=this.value">
-                                            
+
                                             <option value="?sort=alphabet" {% if query_param == 'alphabet' %}selected{% endif %}>{{ shop_page.alphabet }}</option>
                                             <option value="?sort=asc" {% if query_param == 'asc' %}selected{% endif %}>{{ shop_page.increase }}</option>
                                             <option value="?sort=desc" {% if query_param == 'desc' %}selected{% endif %}>{{ shop_page.decrease }}</option>
@@ -80,7 +95,7 @@
                                                                 {% if item.main_photo_xxl2.url %}
                                                                     <picture>
                                                                         <source media="(min-width: 1700px)" srcset="{{ item.main_photo_xxl.url }} 1x, {{ item.main_photo_xxl2.url }}2x">
-                                                                        <img class="c-card__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }}  2x" width="728" height="546" alt="">
+                                                                        <img class="c-card__img" src="{{ item.main_photo_xs.url }}" srcset="{{ item.main_photo_xs2.url }}  2x" width="728" height="546" alt="{{ item.name }}">
                                                                     </picture>
                                                                 {% endif %}
                                                             </div>

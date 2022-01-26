@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block SEO %}
+    <title>{{ policy.title }}</title>
+    <meta name="keywords" content="{{ policy.keywords }}">
+    <meta name="description" content="{{ policy.description }}">
+{% endblock %}
+{% load static i18n l10n %}
+{% get_current_language as LANGUAGE_CODE %}
+{% get_available_languages as LANGUAGES %}
+{% block content %}
+			<main class="page__main">
+				<section class="section section--fluid section--top">
+					<div class="section__container">
+						<div class="section__row">
+							<div class="section__col">
+								<div class="policy">
+									<div class="policy__row">
+										<div class="policy__col">
+											<h1 class="policy__title main-title">{{ policy.name }}</h1>
+											<div class="policy__content text-content text-content--small">
+												{% autoescape off %} {{ policy.info }} {% endautoescape %}
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+			</main>
+		</div>
+	{% endblock %}

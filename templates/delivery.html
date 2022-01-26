@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{% block SEO %}
+    <title>{{ delivery_main.title }}</title>
+    <meta name="keywords" content="{{ delivery_main.keywords }}">
+    <meta name="description" content="{{ delivery_main.description }}">
+{% endblock %}
 {% load static i18n l10n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
@@ -64,27 +69,27 @@
                                             <ul class="p-list">
                                                 {% if delivery_main.paypal_logo %}
                                                 <li class="p-list__item">
-                                                    <img class="p-list__img" src="{% static 'img/p-list-img-01.svg' %}" alt="">
+                                                    <img class="p-list__img" src="{% static 'img/p-list-img-01.svg' %}" alt="{{ delivery_main.name }}">
                                                 </li>
                                                 {% endif %}
                                             {% if delivery_main.visa_logo %}
                                                 <li class="p-list__item">
-                                                    <img class="p-list__img" src="{% static 'img/p-list-img-02.svg' %}" alt="">
+                                                    <img class="p-list__img" src="{% static 'img/p-list-img-02.svg' %}" alt="{{ delivery_main.name }}">
                                                 </li>
                                             {% endif %}
                                             {% if delivery_main.master_logo %}
                                                 <li class="p-list__item">
-                                                    <img class="p-list__img" src="{% static 'img/p-list-img-03.svg' %}" alt="">
+                                                    <img class="p-list__img" src="{% static 'img/p-list-img-03.svg' %}" alt="{{ delivery_main.name }}">
                                                 </li>
                                             {% endif %}
                                             {% if delivery_main.mir_logo %}
                                                 <li class="p-list__item">
-                                                    <img class="p-list__img" src="{% static 'img/p-list-img-04.svg' %}" alt="">
+                                                    <img class="p-list__img" src="{% static 'img/p-list-img-04.svg' %}" alt="{{ delivery_main.name }}">
                                                 </li>
                                             {% endif %}
                                             {% if delivery_main.terminal_logo %}
                                                 <li class="p-list__item">
-                                                    <img class="p-list__img" src="{% static 'img/p-list-img-05.svg' %}" alt="">
+                                                    <img class="p-list__img" src="{% static 'img/p-list-img-05.svg' %}" alt="{{ delivery_main.name }}">
                                                 </li>
                                             {% endif %}
                                             </ul>

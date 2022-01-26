@@ -157,6 +157,8 @@ class about_author(models.Model):
     about = models.ForeignKey(about_main, on_delete=models.CASCADE, related_name='about_authors', verbose_name='Наши авторы')
     order = models.IntegerField('Порядок показа', null=True)
     full_name = models.CharField('Ф.И.О.', max_length=500, null=True)
+    author_photo = ResizedImageField('Фото', size=[768, 720], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
+                                       help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
     position = models.CharField('Должность', max_length=255, null=True)
     text = RichTextField('Текст', null=True)
 
