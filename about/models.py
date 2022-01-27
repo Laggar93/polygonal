@@ -162,6 +162,28 @@ class about_author(models.Model):
     position = models.CharField('Должность', max_length=255, null=True)
     text = RichTextField('Текст', null=True)
 
+    index_photo_lg2x = ResizedImageField('Картинка на главной странице', size=[2048, 1202], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
+                                         help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
+    index_photo_lg = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    index_photo_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    index_photo_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+
+    __original_index_photo_lg2x = None
+
+    def __init__(self, *args, **kwargs):
+        super(about_author, self).__init__(*args, **kwargs)
+        self.__original_index_photo_lg2x = self.index_photo_lg2x
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if self.index_photo_lg2x != self.__original_index_photo_lg2x:
+            self.index_photo_xs2x = resize_img(self.index_photo_xs2x, self.index_photo_lg2x, [2048, 1127])
+            self.index_photo_lg = resize_img(self.index_photo_lg, self.index_photo_lg2x, [1280, 704])
+            self.index_photo_xs = resize_img(self.index_photo_xs, self.index_photo_lg2x, [1024, 563])
+
+        super().save(*args, **kwargs)
+
     def __str__(self):
         return str(self.full_name)
 

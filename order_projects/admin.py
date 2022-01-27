@@ -21,6 +21,8 @@ class project_list_admin(SortableAdminMixin, TranslationAdmin):
 
 class project_page_admin(TranslationAdmin):
     list_display = ('name', )
+    exclude = ('promo_photo_md', 'promo_photo_xs', 'promo_photo_xs2x')
+
     def has_add_permission(self, request, obj=None):
         return False
 

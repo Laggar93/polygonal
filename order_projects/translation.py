@@ -2,7 +2,7 @@ from modeltranslation.translator import translator, TranslationOptions
 from .models import project_list, project_page, project_images
 
 class ProjectPageTranslationOptions(TranslationOptions):
-    fields = ('keywords', 'description', 'title', 'projects', 'another_projects', 'name', 'text')
+    fields = ('keywords', 'description', 'title', 'projects', 'another_projects', 'name', 'text', 'last_projects')
 
 class ProjectListTranslationOptions(TranslationOptions):
     fields = ('is_active', 'name',)

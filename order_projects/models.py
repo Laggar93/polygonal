@@ -20,6 +20,7 @@ def get_file_path(instance, filename):
     filename = "%s.%s" % (uuid.uuid4(), ext)
     return os.path.join(dir, filename)
 
+
 def resize_img(f1, f2, fs):
     f1 = f2
     image1 = f1
@@ -30,15 +31,14 @@ def resize_img(f1, f2, fs):
     if ratio_current <= ratio_new:
         new_width = (fs[1] * new_img1.size[0]) / new_img1.size[1]
         new_height = fs[1]
-        resized_new_img1 = new_img1.resize((int(new_width), int(new_height)),Image.ANTIALIAS)
-        box = ((resized_new_img1.size[0] - fs[0]) / 2, 0, resized_new_img1.size[0] - (resized_new_img1.size[0] - fs[0]) / 2,
-               resized_new_img1.size[1])
+        resized_new_img1 = new_img1.resize((int(new_width), int(new_height)), Image.ANTIALIAS)
+        box = ((resized_new_img1.size[0] - fs[0]) / 2, 0, resized_new_img1.size[0] - (resized_new_img1.size[0] - fs[0]) / 2, resized_new_img1.size[1])
         resized_new_img1 = resized_new_img1.crop(box)
     else:
         new_width = fs[0]
         new_height = (new_img1.size[1] * fs[0]) / new_img1.size[0]
         resized_new_img1 = new_img1.resize((int(new_width), int(new_height)), Image.ANTIALIAS)
-        box = (0, (resized_new_img1.size[1] - fs[1]) / 2, 0, resized_new_img1.size[1] - (resized_new_img1.size[1] - fs[1]) / 2)
+        box = (0, (resized_new_img1.size[1] - fs[1]) / 2, resized_new_img1.size[0], resized_new_img1.size[1] - (resized_new_img1.size[1] - fs[1]) / 2)
         resized_new_img1 = resized_new_img1.crop(box)
     filestream1 = BytesIO()
     resized_new_img1.save(filestream1, 'JPEG', quality=80)
@@ -50,6 +50,7 @@ def resize_img(f1, f2, fs):
     )
 
 
+
 class project_page(models.Model):
     keywords = models.CharField('Ключевые слова', max_length=1000, blank=True)
     description = models.CharField('Описание', max_length=1000, blank=True)
@@ -58,6 +59,28 @@ class project_page(models.Model):
     another_projects = models.CharField('Другие проекты', max_length=255, blank=True)
     name = models.CharField('Название раздела', max_length=500)
     text = RichTextField('Текст после названия', blank=True)
+    last_projects = models.CharField('Последние работы (на главной странице)', max_length=255, blank=True)
+    promo_photo_md2x = ResizedImageField('Картинка на главной странице', size=[2048, 1202], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
+                                         help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
+    promo_photo_md = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    promo_photo_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    promo_photo_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+
+    __original_promo_photo_md2x = None
+
+    def __init__(self, *args, **kwargs):
+        super(project_page, self).__init__(*args, **kwargs)
+        self.__original_promo_photo_md2x = self.promo_photo_md2x
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if self.promo_photo_md2x != self.__original_promo_photo_md2x:
+            self.promo_photo_xs2x = resize_img(self.promo_photo_xs2x, self.promo_photo_md2x, [1536, 901])
+            self.promo_photo_md = resize_img(self.promo_photo_md, self.promo_photo_md2x, [1024, 601])
+            self.promo_photo_xs = resize_img(self.promo_photo_xs, self.promo_photo_md2x, [768, 451])
+
+        super().save(*args, **kwargs)
 
     def __str__(self):
         return str(self.name)

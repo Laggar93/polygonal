@@ -21,6 +21,7 @@ class about_author_admin(SortableInlineAdminMixin, TranslationStackedInline):
     model = about_author
     ordering = ('order',)
     extra = 0
+    exclude = ('index_photo_lg', 'index_photo_xs', 'index_photo_xs2x')
 
 
 class about_main_admin(TranslationAdmin):

@@ -1,5 +1,9 @@
 from django.shortcuts import render
-from .models import index_main
+
+from about.models import about_main
+from order_projects.models import project_page
+from shop.models import category, shop_page
+from .models import index_main, order_point
 
 
 def index_view(request):
@@ -13,6 +17,11 @@ def index_view(request):
         'link_fr': link_fr,
         'link_ru': link_ru,
         'index_main': index_main.objects.first(),
+        'categories': category.objects.all(),
+        'project_page': project_page.objects.first(),
+        'points': order_point.objects.all(),
+        'about_main': about_main.objects.first(),
+        'shop_page': shop_page.objects.first(),
 
     }
 
