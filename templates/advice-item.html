@@ -92,10 +92,10 @@
                                                 {% endif %}
                                                 {% if item.image %}
                                                     <div class="article__content style-content style-content--small">
-                                                        <img src="{{ item.image.url }}" alt="">
+                                                        <img src="{{ item.image.url }}" alt="{{ item.name }}">
                                                     </div>
                                                 {% endif %}
-                                                {% if item.slide_picture_1_xxl2x or item.slide_picture_2_xxl2x or item.slide_picture_3_xxl2x or item.slide_picture_4_xxl2x or item.slide_picture_5_xxl2x or item.slide_picture_6_xxl2x or item.slide_picture_7_xxl2x %}
+                                                {% if item.slide_picture_1_xxl2x or item.slide_picture_2_xxl2x or item.slide_picture_3_xxl2x or item.slide_picture_4_xxl2x or item.slide_picture_5_xxl2x or item.slide_picture_6_xxl2x or item.slide_picture_7_xxl2x or item.slide_picture_8_xxl2x %}
                                                     <div class="article__slider">
                                                         <div class="article__slider-row">
                                                             <div class="article__slider-col">

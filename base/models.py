@@ -1,7 +1,7 @@
 from ckeditor.fields import RichTextField
 from django.db import models
 
-# Create your models here.
+
 class footer_elements(models.Model):
     with_love = models.CharField('Сделано с любовью в', max_length=255, null=True)
     year = models.PositiveIntegerField('Текущий год', default=1, null=True)

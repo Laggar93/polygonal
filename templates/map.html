@@ -29,7 +29,7 @@
                             <h2 class="location__title">{{ i.town }}</h2>
                             <ul class="location-list">
                                 {% for item in i.map_towns.all %}
-                                    <li class="location-list__item location-list__item--active" data-lat="{{ item.latitude }}" data-long="{{ item.longitude }}" data-marker-id="{{ forloop.counter }}">
+                                    <li class="location-list__item location-list__item--active" data-lat="{{ item.latitude }}" data-long="{{ item.longitude }}" data-marker-id="marker-{{ forloop.counter }}">
                                         <h3 class="location-list__title js-location-toggle">
                                             <svg class="location-list__title-icon" viewBox="0 0 19 24" width="19" height="24">
                                                 <use xlink:href="{% static 'img/sprite.svg' %}#icon-balloon"></use>

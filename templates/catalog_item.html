@@ -54,7 +54,7 @@
                                                     <div class="g-slider__img-ratio">
                                                         <picture>
                                                             <source media="(min-width: 1700px)" srcset="{{ i.main_photo_xxl.url }} 1x, {{ i.main_photo_xxl2.url }} 2x">
-                                                            <img class="g-slider__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2.url }} 2x" width="768" height="576" alt="">
+                                                            <img class="g-slider__img" src="{{ i.main_photo_xs.url }}" srcset="{{ i.main_photo_xs2.url }} 2x" width="768" height="576" alt="{{ i.item.name }}">
                                                         </picture>
                                                     </div>
                                                 </a>
@@ -69,7 +69,7 @@
                                                 <div class="g-slider-thumbs__img-wrap">
                                                     <picture>
                                                         <img class="g-slider-thumbs__img" src="{% if items.main_photo_thumb_xs %}{{ items.main_photo_thumb_xs.url }}{% endif %}"
-                                                             srcset="{% if items.main_photo_thumb_xs2 %}{{ items.main_photo_thumb_xs2.url }}{% endif %} 2x" width="144" height="144" alt="">
+                                                             srcset="{% if items.main_photo_thumb_xs2 %}{{ items.main_photo_thumb_xs2.url }}{% endif %} 2x" width="144" height="144" alt="{{ items.name }}">
                                                     </picture>
                                                 </div>
                                             </div>
@@ -79,7 +79,7 @@
                                                 <div class="g-slider-thumbs__img-wrap">
                                                     <picture>
                                                         <img class="g-slider-thumbs__img" src="{% if i.main_photo_thumb_xs %}{{ i.main_photo_thumb_xs.url }}{% endif %}"
-                                                             srcset="{% if i.main_photo_thumb_xs2 %}{{ i.main_photo_thumb_xs2.url }} {% endif %} 2x" width="144" height="144" alt="">
+                                                             srcset="{% if i.main_photo_thumb_xs2 %}{{ i.main_photo_thumb_xs2.url }} {% endif %} 2x" width="144" height="144" alt="{{ i.item.name }}">
                                                     </picture>
                                                 </div>
                                             </div>

@@ -154,7 +154,7 @@
                                                                     </div>
                                                                 {% endif %}
                                                                 <a class="press-card__info" href="{{ value.link }}" target="_blank">
-                                                                    <time class="press-card__date" datetime="2019-01-15">{{ value.published }}</time>
+                                                                    <time class="press-card__date" datetime="{{ value.published.year }}-{{ value.published.month }}-{{ value.published.day }}">{{ value.published }}</time>
                                                                     <div class="press-card__text text-content">
                                                                         <p>{{ value.title }}</p>
                                                                     </div>
