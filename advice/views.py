@@ -54,4 +54,4 @@ def advice_item_view(request, advice_page_slug):
     }
 
 
-    return render(request, 'advice-item.html', context=context)
+    return render(request, 'advice_item.html', context=context)

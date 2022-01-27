@@ -62,8 +62,10 @@ class subcategory_admin(SortableAdminMixin, TranslationAdmin):
 
 
 class category_admin(SortableAdminMixin, TranslationAdmin):
+    exclude = ('index_photo_xs', 'index_photo_lg', 'index_photo_lg2x', 'index_photo_sm', 'index_photo_sm2x')
     save_as = True
     save_on_top = True
+
 
 
 class item_admin(SortableAdminMixin, TranslationAdmin):

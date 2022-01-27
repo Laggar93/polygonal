@@ -4,14 +4,13 @@ from django.db import models
 
 class footer_elements(models.Model):
     with_love = models.CharField('Сделано с любовью в', max_length=255, null=True)
-    year = models.PositiveIntegerField('Текущий год', default=1, null=True)
 
     def __str__(self):
         return str(self.with_love)
 
     class Meta:
-        verbose_name = 'Текущий год и копирайт'
-        verbose_name_plural = 'Текущий год и копирайт'
+        verbose_name = 'Копирайт'
+        verbose_name_plural = 'Копирайт'
 
 
 class rules(models.Model):

@@ -124,6 +124,20 @@ class category(models.Model):
     bottom_heading = models.CharField('Заголовок нижнего блока', default='Что с этим делать', max_length=300)
     delivery_heading = models.CharField('Заголовок доставки и оплаты', default='Доставка и оплата', max_length=300)
     other_models_heading = models.CharField('Заголовок других моделей', default='Другие модели', max_length=300)
+    index_photo_xs2x = ResizedImageField('Картинка на главной странице', size=[2048, 1410], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
+                                        help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
+    index_photo_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    index_photo_lg = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    index_photo_lg2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    index_photo_sm = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    index_photo_sm2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    index_text = models.TextField('Текст на главной странице', blank=True, null=True)
+
+    __original_index_photo_xs2x = None
+
+    def __init__(self, *args, **kwargs):
+        super(category, self).__init__(*args, **kwargs)
+        self.__original_index_photo_xs2x = self.index_photo_xs2x
 
     def __str__(self):
         return self.name
@@ -134,6 +148,14 @@ class category(models.Model):
         verbose_name_plural = 'Категории'
 
     def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.index_photo_xs2x != self.__original_index_photo_xs2x:
+            self.index_photo_xs = resize_img(self.index_photo_xs, self.index_photo_xs2x, [1600, 1200])
+            self.index_photo_lg = resize_img(self.index_photo_lg, self.index_photo_xs2x, [1600, 1200])
+            self.index_photo_lg2x = resize_img(self.index_photo_lg2x, self.index_photo_xs2x, [1600, 1200])
+            self.index_photo_sm = resize_img(self.index_photo_sm, self.index_photo_xs2x, [1600, 1200])
+            self.index_photo_sm2x = resize_img(self.index_photo_sm2x, self.index_photo_xs2x, [1600, 1200])
+
         if not self.slug:
             self.slug = slugify(self.name)[:50]
         else:

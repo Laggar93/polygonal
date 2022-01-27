@@ -15,6 +15,7 @@ if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 urlpatterns += i18n_patterns(
+    path('', include('index.urls')),
     path('', include('shop.urls')),
     path('', include('order_projects.urls')),
     path('', include('advice.urls')),

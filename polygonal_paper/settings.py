@@ -50,7 +50,8 @@ INSTALLED_APPS = [
     'contact.apps.ContactConfig',
     'map.apps.MapConfig',
     'about.apps.AboutConfig',
-    'base.apps.BaseConfig'
+    'base.apps.BaseConfig',
+    'index.apps.IndexConfig'
 ]
 
 MIDDLEWARE = [

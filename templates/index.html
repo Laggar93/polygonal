@@ -1,4 +1,9 @@
 {% extends 'base.html' %}
+{#{% block SEO %}#}
+{#    <title>{{ contact_main.title }}</title>#}
+{#    <meta name="keywords" content="{{ contact_main.keywords }}">#}
+{#    <meta name="description" content="{{ contact_main.description }}">#}
+{#{% endblock %}#}
 {% load static i18n l10n %}
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
@@ -8,11 +13,11 @@
 					<div class="main-banner__img-wrap">
 						<div class="main-banner__img-ratio">
 							<picture>
-								<source media="(min-width: 1440px)" srcset="img/main-banner-img-01--xl.jpg 1x, img/main-banner-img-01--xl@2x.jpg 2x">
-								<source media="(min-width: 1024px)" srcset="img/main-banner-img-01--md.jpg 1x, img/main-banner-img-01--md@2x.jpg 2x">
-								<source media="(min-width: 768px)" srcset="img/main-banner-img-01--sm.jpg 1x, img/main-banner-img-01--sm@2x.jpg 2x">
-								<source media="(min-width: 0)" srcset="img/main-banner-img-01--xs.jpg 1x, img/main-banner-img-01--xs@2x.jpg 2x">
-								<img class="main-banner__img" src="img/main-banner-img-01--xl.jpg" srcset="img/main-banner-img-01--xl@2x.jpg 2x" alt="">
+								<source media="(min-width: 1440px)" srcset="{% static 'img/main-banner-img-01--xl.jpg' %} 1x, {% static 'img/main-banner-img-01--xl@2x.jpg' %} 2x">
+								<source media="(min-width: 1024px)" srcset="{% static 'img/main-banner-img-01--md.jpg' %} 1x, {% static 'img/main-banner-img-01--md@2x.jpg' %} 2x">
+								<source media="(min-width: 768px)" srcset="{% static 'img/main-banner-img-01--sm.jpg' %} 1x, {% static 'img/main-banner-img-01--sm@2x.jpg' %} 2x">
+								<source media="(min-width: 0)" srcset="{% static 'img/main-banner-img-01--xs.jpg' %} 1x, {% static 'img/main-banner-img-01--xs@2x.jpg' %} 2x">
+								<img class="main-banner__img" src="{% static 'img/main-banner-img-01--xl.jpg' %}" srcset="{% static 'img/main-banner-img-01--xl@2x.jpg' %} 2x" alt="">
 							</picture>
 						</div>
 					</div>
@@ -35,7 +40,7 @@
 							<div class="intro__col">
 								<div class="intro__content">
 									<div class="intro__img-wrap">
-										<img class="intro__img" src="img/logo--full.svg" alt="Polygonal Paper">
+										<img class="intro__img" src="{% static 'img/logo--full.svg' %}" alt="Polygonal Paper">
 									</div>
 									<h2 class="intro__title section-title">Скульптуры из бумаги своими руками</h2>
 									<div class="intro__text">
@@ -50,7 +55,7 @@
 						<div class="float-sticker float-sticker--deer">
 							<div class="float-sticker__img-wrap">
 								<picture>
-									<img class="float-sticker__img" src="img/float-sticker-01--xs.png" srcset="img/float-sticker-01--xs@2x.png 2x" alt="">
+									<img class="float-sticker__img" src="{% static 'img/float-sticker-01--xs.png' %}" srcset="{% static 'img/float-sticker-01--xs@2x.png' %} 2x" alt="">
 								</picture>
 								<a class="float-sticker__btn btn-orb" href="javascript:void(0);">Посмотреть модель</a>
 							</div>
@@ -58,7 +63,7 @@
 						<div class="float-sticker float-sticker--horse">
 							<div class="float-sticker__img-wrap">
 								<picture>
-									<img class="float-sticker__img" src="img/float-sticker-02--xs.png" srcset="img/float-sticker-02--xs@2x.png 2x" alt="">
+									<img class="float-sticker__img" src="{% static 'img/float-sticker-02--xs.png' %}" srcset="{% static 'img/float-sticker-02--xs@2x.png' %} 2x" alt="">
 								</picture>
 								<a class="float-sticker__btn btn-orb" href="javascript:void(0);">Посмотреть модель</a>
 							</div>
@@ -80,10 +85,10 @@
 													<a class="c-card__img-wrap" href="javascript:void(0);">
 														<div class="c-card__img-ratio">
 															<picture>
-																<source media="(min-width: 1280px)" srcset="img/c-card-img-01--lg.jpg 1x, img/c-card-img-01--lg@2x.jpg 2x">
-																<source media="(min-width: 768px)" srcset="img/c-card-img-01--sm.jpg 1x, img/c-card-img-01--sm@2x.jpg 2x">
-																<source media="(min-width: 0)" srcset="img/c-card-img-01--xs.jpg 1x, img/c-card-img-01--xs@2x.jpg 2x">
-																<img class="c-card__img" src="img/c-card-img-01--xs.jpg" srcset="img/c-card-img-01--xs@2x.jpg 2x" alt="">
+																<source media="(min-width: 1280px)" srcset="{% static 'img/c-card-img-01--lg.jpg' %} 1x, {% static 'img/c-card-img-01--lg@2x.jpg' %} 2x">
+																<source media="(min-width: 768px)" srcset="{% static 'img/c-card-img-01--sm.jpg 1x' %}, {% static 'img/c-card-img-01--sm@2x.jpg' %} 2x">
+																<source media="(min-width: 0)" srcset="{% static 'img/c-card-img-01--xs.jpg' %} 1x, {% static 'img/c-card-img-01--xs@2x.jpg' %} 2x">
+																<img class="c-card__img" src="{% static 'img/c-card-img-01--xs.jpg' %}" srcset="{% static 'img/c-card-img-01--xs@2x.jpg' %} 2x" alt="">
 															</picture>
 														</div>
 													</a>
@@ -207,15 +212,15 @@
 										<div class="promo-lite__col">
 											<div class="promo-lite__img-wrap">
 												<picture>
-													<source media="(min-width: 0)" srcset="img/promo-lite-img-01--xs.jpg 1x, img/promo-lite-img-01--xs@2x.jpg 2x">
-													<img class="promo-lite__img" src="img/promo-lite-img-01--xs.jpg" srcset="img/promo-lite-img-01--xs@2x.jpg 2x" alt="">
+													<source media="(min-width: 0)" srcset="{% static 'img/promo-lite-img-01--xs.jpg' %} 1x, {% static 'img/promo-lite-img-01--xs@2x.jpg' %} 2x">
+													<img class="promo-lite__img" src="{% static 'img/promo-lite-img-01--xs.jpg' %}" srcset="{% static 'img/promo-lite-img-01--xs@2x.jpg' %} 2x" alt="">
 												</picture>
 											</div>
 											<h2 class="promo-lite__title">Мы&nbsp;годимся своей работой</h2>
 											<div class="promo-lite__text text-content">
 												<p>С&nbsp;каждой новой моделью мы&nbsp;стараемся быть лучше. Предлагаем вам собрать промо-модель по&nbsp;нашему чертежу совершенно бесплатно, чтобы оценить уровень работы.</p>
 											</div>
-											<a class="download-link" href="img/docs/document-01.pdf" download="Модель головы волка">
+											<a class="download-link" href="{% static 'img/docs/document-01.pdf' %}" download="Модель головы волка">
 												<span class="download-link__title">Модель головы волка</span>
 												<span class="download-link__tip">
 													<span class="download-link__tip-unit">pdf</span>,&nbsp;<span>15 Мб</span>
@@ -229,7 +234,7 @@
 						<div class="float-sticker float-sticker--unicorn">
 							<div class="float-sticker__img-wrap">
 								<picture>
-									<img class="float-sticker__img" src="img/float-sticker-03--xs.png" srcset="img/float-sticker-03--xs@2x.png 2x" alt="">
+									<img class="float-sticker__img" src="{% static 'img/float-sticker-03--xs.png' %}" srcset="{% static 'img/float-sticker-03--xs@2x.png' %} 2x" alt="">
 								</picture>
 								<a class="float-sticker__btn btn-orb" href="javascript:void(0);">Посмотреть модель</a>
 							</div>
@@ -237,7 +242,7 @@
 						<div class="float-sticker float-sticker--elephant">
 							<div class="float-sticker__img-wrap">
 								<picture>
-									<img class="float-sticker__img" src="img/float-sticker-04--xs.png" srcset="img/float-sticker-04--xs@2x.png 2x" alt="">
+									<img class="float-sticker__img" src="{% static 'img/float-sticker-04--xs.png' %}" srcset="{% static 'img/float-sticker-04--xs@2x.png' %} 2x" alt="">
 								</picture>
 								<a class="float-sticker__btn btn-orb" href="javascript:void(0);">Посмотреть модель</a>
 							</div>
@@ -250,7 +255,7 @@
 							<div class="section__col">
 								<div class="promo">
 									<div class="promo__bg-wrap">
-										<img class="promo__bg-img" src="img/bg-logo.svg" alt="">
+										<img class="promo__bg-img" src="{% static 'img/bg-logo.svg' %}" alt="">
 									</div>
 									<div class="promo__row">
 										<div class="promo__col">
@@ -258,9 +263,9 @@
 											<div class="promo__img-wrap">
 												<div class="promo__img-ratio">
 													<picture>
-														<source media="(min-width: 1024px)" srcset="img/promo-img-01--md.jpg 1x, img/promo-img-01--md@2x.jpg 2x">
-														<source media="(min-width: 0)" srcset="img/promo-img-01--xs.jpg 1x, img/promo-img-01--xs@2x.jpg 2x">
-														<img class="promo__img" src="img/promo-img-01--md.jpg" srcset="img/promo-img-01--md@2x.jpg 2x" alt="">
+														<source media="(min-width: 1024px)" srcset="{% static 'img/promo-img-01--md.jpg' %} 1x, {% static 'img/promo-img-01--md@2x.jpg' %} 2x">
+														<source media="(min-width: 0)" srcset="{% static 'img/promo-img-01--xs.jpg' %} 1x, {% static 'img/promo-img-01--xs@2x.jpg' %} 2x">
+														<img class="promo__img" src="{% static 'img/promo-img-01--md.jpg' %}" srcset="{% static 'img/promo-img-01--md@2x.jpg' %} 2x" alt="">
 													</picture>
 												</div>
 											</div>
