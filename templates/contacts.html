@@ -144,6 +144,46 @@
                                     </div>
                                 </div>
                                 <div class="contacts__callback">
+                                    <div class="form-wrap contacts__form-wrap">
+                                        <div class="callback-form">
+                                            <div class="callback-form__body">
+                                                <h2 class="callback-form__title section-title">Письмо нам</h2>
+                                                <form class="callback-form__form js-form" action="/form/" method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="callback-form__form-inner">
+                                                        <div class="input-wrap callback-form__input-wrap">
+                                                            <input class="callback-form__input form-input" type="text" name="name" id="callback-name" placeholder="Имя" required>
+                                                            <div class="input-error"></div>
+                                                        </div>
+                                                        <div class="input-wrap callback-form__input-wrap">
+                                                            <input class="callback-form__input form-input" type="email" name="email" id="callback-email" placeholder="Электронная почта" required>
+                                                            <div class="input-error"></div>
+                                                        </div>
+                                                        <div class="input-wrap callback-form__input-wrap">
+                                                            <input class="callback-form__input form-input" type="tel" name="phone" id="callback-phone" placeholder="Телефон" required>
+                                                            <div class="input-error"></div>
+                                                        </div>
+                                                        <div class="input-wrap callback-form__input-wrap">
+                                                            <textarea class="callback-form__textarea form-textarea" name="comment" id="callback-comment" placeholder="Сообщение" required></textarea>
+                                                            <div class="input-error"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="callback-form__btn-wrap">
+                                                        <button class="callback-form__submit btn" type="submit">Отправить</button>
+                                                    </div>
+                                                </form>
+                                                <div class="form-error callback-form__form-error">
+                                                    <p>Что-то пошло не так, попробуйте зарегистрироваться позднее</p>
+                                                </div>
+                                                <div class="form-success callback-form__form-success">
+                                                    <p>Спасибо, сообщение отправлено. Мы&nbsp;свяжемся с&nbsp;вами в&nbsp;ближайшее время.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--
+                                <div class="contacts__callback">
                                     <div class="callback-form contacts__callback-form">
                                         <div class="callback-form__body">
                                             <h2 class="callback-form__title section-title">{{ contact_form.heading }}</h2>
@@ -153,8 +193,7 @@
                                                         <input class="callback-form__input form-input" type="text" name="callback-name" id="callback-name" placeholder="{{ contact_form.name }}" required>
                                                     </div>
                                                     <div class="input-wrap callback-form__input-wrap">
-                                                        <!--todo: ошибка валидации, - добавить класс invalid (пример): -->
-                                                        <input class="callback-form__input invalid form-input" type="email" name="callback-email" id="callback-email" placeholder="{{ contact_form.email }}" required>
+                                                        <input class="callback-form__input form-input" type="email" name="callback-email" id="callback-email" placeholder="{{ contact_form.email }}" required>
                                                     </div>
                                                     <div class="input-wrap callback-form__input-wrap">
                                                         <input class="callback-form__input form-input" type="tel" name="callback-phone" id="callback-phone" placeholder="{{ contact_form.number }}" required>
@@ -164,19 +203,18 @@
                                                     </div>
                                                 </div>
                                                 <div class="callback-form__captcha">
-                                                    <!--todo: блок под google captcha -->
                                                 </div>
                                                 <div class="callback-form__btn-wrap">
                                                     <button class="callback-form__submit btn" type="submit">{{ contact_form.send }}</button>
                                                 </div>
                                             </form>
                                         </div>
-                                        <!--todo: при успешной отправке показать: callback-form__success, скрыть: callback-form__body -->
                                         <div class="callback-form__success">
                                             <p>{{ contact_form.success }}</p>
                                         </div>
                                     </div>
                                 </div>
+                                -->
                             </div>
                         </div>
                     </div>

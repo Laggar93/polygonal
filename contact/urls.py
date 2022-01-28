@@ -4,7 +4,6 @@ from . import views
 
 urlpatterns = [
     path('contacts/', views.contact_view, name='contacts'),
-
 ]
 
 handler404 = handler404

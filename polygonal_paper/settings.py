@@ -165,20 +165,19 @@ MODELTRANSLATION_LANGUAGES = ('ru', 'en', 'fr')
 
 MODELTRANSLATION_DEFAULT_LANGUAGE = 'ru'
 
-# CKEDITOR_CONFIGS = {
-#     'default': {
-#         'toolbar': 'Custom',
-#         'toolbar_Custom': [
-#             ['Bold'],
-#             ['NumberedList', 'BulletedList'],
-#             ['Link', 'Unlink']
-#         ]
-#     },
-# }
-
 CKEDITOR_CONFIGS = {
     'default': {
-        'language': 'ru',
-        'toolbar': 'full'
-    }
+        'toolbar': 'Custom',
+        'toolbar_Custom': [
+            ['Bold'],
+            ['NumberedList', 'BulletedList'],
+            ['Link', 'Unlink']
+        ]
+    },
 }
+
+EMAIL_HOST = 'smtp.mail.ru'
+EMAIL_PORT = 2525
+EMAIL_HOST_USER = 'agrosputnik.noreply@mail.ru'
+EMAIL_HOST_PASSWORD = 'uRwLgHz0PAVrQ0ZSMTjB'
+EMAIL_USE_TLS = True
