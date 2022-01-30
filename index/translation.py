@@ -1,5 +1,5 @@
 from modeltranslation.translator import translator, TranslationOptions
-from .models import index_main, order_point
+from .models import index_main, order_point, index_translate
 
 
 class IndexTranslationOptions(TranslationOptions):
@@ -10,5 +10,10 @@ class IndexTranslationOptions(TranslationOptions):
 class PointTranslationOptions(TranslationOptions):
     fields = ('point',)
 
+class IndexStatTranslationOptions(TranslationOptions):
+    fields = ('catalog', 'shop',)
+
+
 translator.register(index_main, IndexTranslationOptions)
 translator.register(order_point, PointTranslationOptions)
+translator.register(index_translate, IndexStatTranslationOptions)

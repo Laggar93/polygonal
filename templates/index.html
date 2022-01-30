@@ -51,7 +51,7 @@
                                 <p>{{ index_main.figure_text }}</p>
                             </div>
                             <div class="intro__btn-wrap">
-                                <a class="intro__btn btn-orb" href="{% url 'first_category_for_url' %}">Смотреть каталог</a>
+                                <a class="intro__btn btn-orb" href="{% url 'first_category_for_url' %}">{{ index_translate.catalog }}</a>
                             </div>
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                                                         <div class="c-card__text text-content text-content--small">
                                                             <p>{{ i.index_text }}</p>
                                                         </div>
-                                                        <a class="c-card__link" href="{{ i.get_absolute_url }}">{{ shop_page.shop }}</a>
+                                                        <a class="c-card__link" href="{{ i.get_absolute_url }}">{{ index_translate.shop }}</a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -258,21 +258,17 @@
                                 <div class="d-slider-img d-slider__d-slider-img swiper-container js-d-slider-img">
                                     <div class="d-slider-img__wrapper swiper-wrapper">
                                         {% for j in about_main.about_authors.all %}
-
-                                        <div class="d-slider-img__item swiper-slide">
-                                        {% if j.index_photo_lg2x %}
-                                            <div class="d-slider-img__img-wrap">
-                                                <div class="d-slider-img__img-ratio">
-                                                    <picture>
-                                                        <source media="(min-width: 1280px)" srcset="{{ j.index_photo_lg.url }} 1x, {{ j.index_photo_lg2x.url }}">
-                                                        <source media="(min-width: 0)" srcset="{{ j.index_photo_xs.url }} 1x, {{ j.index_photo_xs2x.url }} 2x">
-                                                        <img class="d-slider-img__img" src="{{ j.index_photo_lg.url }}" srcset="{{ j.index_photo_lg2x.url }} 2x" alt="">
-                                                    </picture>
+                                            <div class="d-slider-img__item swiper-slide">
+                                            {% if j.author_photo %}
+                                                <div class="d-slider-img__img-wrap">
+                                                    <div class="d-slider-img__img-ratio">
+                                                        <img class="d-slider-img__img" src="{{ j.author_photo.url }}" alt="{{ j.full_name }}">
+                                                    </div>
                                                 </div>
+                                            {% endif %}
                                             </div>
-                                        {% endif %}
-                                        </div>
                                         {% endfor %}
+
                                     </div>
                                 </div>
                                 <div class="d-slider__pagination swiper-pagination"></div>
@@ -289,7 +285,7 @@
                         <div class="insta-gallery">
                             <div class="insta-gallery__row">
                                 <div class="insta-gallery__col">
-                                    <a class="insta-gallery__link" href="javascript:void(0);" target="_blank">
+                                    <a class="insta-gallery__link" href="https://www.instagram.com/polygonalpaper/" target="_blank">
                                         <div class="insta-gallery__link-avatar">
                                             <picture>
                                                 <source media="(min-width: 0)" srcset="{% static 'img/insta-gallery-avatar-img-01--xs.jpg' %} 1x, {% static 'img/insta-gallery-avatar-img-01--xs@2x.jpg 2x' %}">

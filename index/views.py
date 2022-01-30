@@ -3,7 +3,7 @@ from django.shortcuts import render
 from about.models import about_main
 from order_projects.models import project_page
 from shop.models import category, shop_page
-from .models import index_main, order_point
+from .models import index_main, order_point, index_translate
 
 
 def index_view(request):
@@ -22,6 +22,7 @@ def index_view(request):
         'points': order_point.objects.all(),
         'about_main': about_main.objects.first(),
         'shop_page': shop_page.objects.first(),
+        'index_translate': index_translate.objects.first(),
 
     }
 

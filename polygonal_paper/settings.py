@@ -178,6 +178,13 @@ CKEDITOR_CONFIGS = {
 
 EMAIL_HOST = 'smtp.mail.ru'
 EMAIL_PORT = 2525
-EMAIL_HOST_USER = 'agrosputnik.noreply@mail.ru'
-EMAIL_HOST_PASSWORD = 'uRwLgHz0PAVrQ0ZSMTjB'
+EMAIL_HOST_USER = 'polygon_app@mail.ru'
+EMAIL_HOST_PASSWORD = 'PXWDri0DGV2sSZNRwhuB'
 EMAIL_USE_TLS = True
+
+
+# EMAIL_HOST = 'smtp.mail.ru'
+# EMAIL_PORT = 2525
+# EMAIL_HOST_USER = 'security.hub@mail.ru'
+# EMAIL_HOST_PASSWORD = '2LXtwgw3wedUn3ZiMfz1'
+# EMAIL_USE_TLS = True

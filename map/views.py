@@ -5,8 +5,8 @@ from map.models import map_main, map_town
 
 def map_view(request):
     link_ru = '/ru/map/'
-    link_en = '/en/shop/'
-    link_fr = '/fr/shop/'
+    link_en = '/en/'
+    link_fr = '/fr/'
 
 
     context = {

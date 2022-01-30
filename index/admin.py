@@ -1,10 +1,18 @@
 from django.contrib import admin
-from .models import index_main, order_point
+from .models import index_main, order_point, index_translate
 from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from modeltranslation.admin import TranslationAdmin, TranslationStackedInline
 
 
+class index_translate_admin(TranslationAdmin):
+    model = index_translate
+    extra = 0
 
+    def has_add_permission(self, request, obj=None):
+        return False
+
+    def has_delete_permission(self, request, obj=None):
+        return False
 
 class order_point_admin(SortableInlineAdminMixin, TranslationStackedInline):
     model = order_point
@@ -28,3 +36,4 @@ class index_main_admin(TranslationAdmin):
 
 admin.site.register(index_main, index_main_admin)
 # admin.site.register(order_point, order_point_admin)
+admin.site.register(index_translate, index_translate_admin)
