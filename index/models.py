@@ -78,8 +78,8 @@ class index_main(models.Model):
     figure_text = models.TextField('Текст между фигурами', blank=True, null=True)
     proud_title = models.CharField('Заголовок "Мы гордимся"', max_length=500, blank=True, null=True)
     proud_text = models.TextField('Текст под заголовком "Мы гордимся"', blank=True, null=True)
-    model_file = models.FileField('Файл модели', upload_to=get_file_path, validators=[FileExtensionValidator(['pdf', 'zip', 'gz'])],
-                                  help_text='Формат файла: pdf. Ограничение размера: 1 Мбайт.', blank=True)
+    model_file = models.FileField('Файл модели', upload_to=get_file_path, validators=[FileExtensionValidator(['zip'])],
+                                  help_text='Формат файла: zip. Ограничение размера: 1 Мбайт.', blank=True)
     title_link = models.CharField('Заголовок ссылки скачивания', max_length=500, blank=True, null=True)
     proud_picture_xs2 = ResizedImageField('Картинка "Мы гордимся"', size=[992, 658], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                                  help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.', blank=True)
