@@ -57,24 +57,20 @@
                     </div>
                 </div>
                 <div class="float-sticker float-sticker--deer">
-                    {% if index_main.first_figure_sticker_xs2 %}
                         <div class="float-sticker__img-wrap">
                             <picture>
-                                <img class="float-sticker__img" src="{{ index_main.first_figure_sticker_xs.url }}" srcset="{{ index_main.first_figure_sticker_xs2.url }} 2x" alt="{{ first_figure_button_name }}">
+                                <img class="float-sticker__img" src="{% static 'img/float-sticker-01--xs.png' %}" srcset="{% static 'img/float-sticker-01--xs@2x.png' %} 2x" alt="{{ index_main.first_figure_button_name }}">
                             </picture>
-                            <a class="float-sticker__btn btn-orb" href="{{ first_figure_button_link }}">{{ first_figure_button_name }}</a>
+                            <a class="float-sticker__btn btn-orb" href="{{ index_main.first_figure_button_link }}">{{ index_main.first_figure_button_name }}</a>
                         </div>
-                    {% endif %}
                 </div>
                 <div class="float-sticker float-sticker--horse">
-                    {% if index_main.second_figure_sticker_xs2 %}
                         <div class="float-sticker__img-wrap">
                             <picture>
-                                <img class="float-sticker__img" src="{{ index_main.second_figure_sticker_xs.url }}" srcset="{{ index_main.second_figure_sticker_xs2.url }} 2x" alt="{{ second_figure_button_name }}">
+                                <img class="float-sticker__img" src="{% static 'img/float-sticker-02--xs.png' %}" srcset="{% static 'img/float-sticker-02--xs@2x.png' %} 2x" alt="{{ index_main.second_figure_button_name }}">
                             </picture>
-                            <a class="float-sticker__btn btn-orb" href="{{ second_figure_button_link }}">{{ second_figure_button_name }}</a>
+                            <a class="float-sticker__btn btn-orb" href="{{ index_main.second_figure_button_link }}">{{ index_main.second_figure_button_name }}</a>
                         </div>
-                    {% endif %}
                 </div>
             </div>
         </section>
@@ -156,24 +152,20 @@
                     </div>
                 </div>
                 <div class="float-sticker float-sticker--unicorn">
-                    {% if index_main.third_figure_sticker_xs2 %}
                         <div class="float-sticker__img-wrap">
                             <picture>
-                                <img class="float-sticker__img" src="{{ index_main.third_figure_sticker_xs2.url }}" srcset="{{ index_main.third_figure_sticker_xs2.url }} 2x" alt="{{ third_figure_button_name }}">
+                                <img class="float-sticker__img" src="{% static 'img/float-sticker-03--xs.png' %}" srcset="{% static 'img/float-sticker-03--xs@2x.png' %} 2x" alt="{{ index_main.third_figure_button_name }}">
                             </picture>
-                            <a class="float-sticker__btn btn-orb" href="{{ index_main.third_figure_button_link }}">{{ third_figure_button_name }}</a>
+                            <a class="float-sticker__btn btn-orb" href="{{ index_main.third_figure_button_link }}">{{ index_main.third_figure_button_name }}</a>
                         </div>
-                    {% endif %}
                 </div>
                 <div class="float-sticker float-sticker--elephant">
-                    {% if index_main.fourth_figure_sticker_xs2 %}
                         <div class="float-sticker__img-wrap">
                             <picture>
-                                <img class="float-sticker__img" src="{{ index_main.fourth_figure_sticker_xs.url }}" srcset="{{ index_main.fourth_figure_sticker_xs2.url }} 2x" alt="">
+                                <img class="float-sticker__img" src="{% static 'img/float-sticker-04--xs.png' %}" srcset="{% static 'img/float-sticker-04--xs@2x.png' %} 2x" alt="{{ index_main.fourth_figure_button_name }}">
                             </picture>
                             <a class="float-sticker__btn btn-orb" href="{{ index_main.fourth_figure_button_link }}">{{ index_main.fourth_figure_button_name }}</a>
                         </div>
-                    {% endif %}
                 </div>
             </div>
         </section>
