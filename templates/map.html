@@ -35,14 +35,14 @@
                                                 <use xlink:href="{% static 'img/sprite.svg' %}#icon-balloon"></use>
                                             </svg>
                                             {% if item.name %}
-                                            <span>{{ item.name }}</span>
+                                                <span>{{ item.name }}</span>
                                             {% endif %}
                                         </h3>
-                                    {% if item.info %}
-                                        <div class="location-list__content">
-                                            {% autoescape off %} {{ item.info }} {% endautoescape %}
-                                        </div>
-                                    {% endif %}
+                                        {% if item.info %}
+                                            <div class="location-list__content">
+                                                {% autoescape off %} {{ item.info }} {% endautoescape %}
+                                            </div>
+                                        {% endif %}
                                     </li>
 
                                 {% endfor %}
@@ -58,3 +58,8 @@
     </main>
     </div>
 {% endblock %}
+
+<script>
+    var mapBalloon = "{% static 'img/icons/icon-balloon.svg' %}"
+    var mapBalloonHover = "{% static 'img/icons/icon-balloon--hover.svg' %}"
+</script>

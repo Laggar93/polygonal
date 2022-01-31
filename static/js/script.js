@@ -24,8 +24,9 @@ function initYandexMap() {
 		var location = $('.js-location');
 		var mainLocationLat = 56.837046;
 		var mainLocationLong = 60.607428;
-		var balloon = 'img/icons/icon-balloon.svg';
-		var balloonHover = 'img/icons/icon-balloon--hover.svg';
+		var balloon = mapBalloon;
+		var balloonHover = mapBalloonHover;
+
 
 		if (location.attr('data-lat') !== '') {
 			mainLocationLat = JSON.parse(location.attr('data-lat'));
