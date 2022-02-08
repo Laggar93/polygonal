@@ -150,7 +150,6 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
     active_subcategory = subcategory.objects.filter(slug=subcategory_slug, category=active_category, is_active=True).first()
     get_object_or_404(item, slug=item_slug, category=active_subcategory, is_active=True)
     items = item.objects.filter(slug=item_slug, category=active_subcategory, is_active=True).first()
-    print(items.name)
     item.objects.filter(slug=item_slug, category=active_subcategory, is_active=True).update(views=F("views") + 1)
 
     if item.objects.filter(slug=item_slug, category=active_subcategory, is_active_ru=True):
@@ -169,7 +168,7 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
         link_fr = '/fr/shop/'
 
     delivery_info = item_terms.objects.filter(item=items)
-    related_items = item.objects.filter(category__slug=subcategory_slug).exclude(slug=item_slug)[:6]
+    related_items = item.objects.filter(category=active_subcategory).exclude(slug=item_slug)[:6]
     related_categories = items.connected_items.all()
     items_photos = item_photos.objects.filter(item=items)
     item_discounts = discount.objects.filter(item=items, subcategory=active_subcategory).first()

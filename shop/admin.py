@@ -1,11 +1,13 @@
+import random
+import string
+
+from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
 from django.contrib import admin
+from django.contrib.auth.models import User, Group
+from modeltranslation.admin import TranslationAdmin, TranslationStackedInline
+
 from .models import category, subcategory, item, item_photos, item_terms, \
     item_files, discount, coupon, shop_page
-from adminsortable2.admin import SortableAdminMixin, SortableInlineAdminMixin
-from django.contrib.auth.models import User, Group
-import string
-import random
-from modeltranslation.admin import TranslationAdmin, TranslationStackedInline
 
 
 @admin.action(description='Скопировать выбранные Купоны')
@@ -18,13 +20,27 @@ def dublicate(modeladmin, request, queryset):
         object.save()
 
 
+def dublicate_ad(modeladmin, request, queryset):
+    for ad in queryset:
+        ad.pk = None
+        ad.slug = ''.join(
+            random.choice(string.ascii_uppercase + string.digits) for _ in
+            range(30))
+        ad.save()
+
+
+dublicate_ad.short_description = "Дублировать выбранный товар "
+
+
 class discount_admin(TranslationAdmin):
     list_display = ('name', 'items')
+
     def items(self, request, obj=None):
         output = []
         for item in request.item.all():
             output.append(item)
         return output
+
     items.short_description = 'Товары'
     save_as = True
     save_on_top = True
@@ -53,7 +69,7 @@ class item_photos_admin(SortableInlineAdminMixin, TranslationStackedInline):
     exclude = ('image_800',)
     readonly_fields = ('display_image',)
     exclude = (
-    'main_photo_popup', 'main_photo_xs2', 'main_photo_xxl', 'main_photo_xs', 'main_photo_thumb_xs2', 'main_photo_thumb_xs')
+        'main_photo_popup', 'main_photo_xs2', 'main_photo_xxl', 'main_photo_xs', 'main_photo_thumb_xs2', 'main_photo_thumb_xs')
 
 
 class subcategory_admin(SortableAdminMixin, TranslationAdmin):
@@ -67,18 +83,23 @@ class category_admin(SortableAdminMixin, TranslationAdmin):
     save_on_top = True
 
 
-
 class item_admin(SortableAdminMixin, TranslationAdmin):
-    search_fields = ['name']
+    search_fields = ['name_lower']
+
+    def get_search_results(self, request, queryset, search_term):
+        return super(item_admin, self).get_search_results(request, queryset, search_term.lower())
+
+
     list_display = ('name', 'category', 'is_active', 'difficulty', 'views')
     inlines = [item_photos_admin, item_terms_admin, item_files_admin]
     readonly_fields = ('display_main_image', 'display_bottom_image')
     exclude = (
-    'main_photo_popup', 'main_photo_xs2', 'main_photo_xxl', 'main_photo_xs',
-    'bottom_photo_xs2', 'bottom_photo_xxl', 'bottom_photo_xs', 'main_photo_thumb_xs2', 'main_photo_thumb_xs')
+        'main_photo_popup', 'main_photo_xs2', 'main_photo_xxl', 'main_photo_xs',
+        'bottom_photo_xs2', 'bottom_photo_xxl', 'bottom_photo_xs', 'main_photo_thumb_xs2', 'main_photo_thumb_xs', 'name_lower')
     save_on_top = True
     save_as = True
     ordering = ('order',)
+    actions = [dublicate_ad]
 
     def get_fields(self, request, obj=None):
         fields = super().get_fields(request, obj)
@@ -92,6 +113,7 @@ class shop_page_admin(TranslationAdmin):
 
     def has_delete_permission(self, request, obj=None):
         return False
+
 
 admin.site.register(shop_page, shop_page_admin)
 admin.site.register(item, item_admin)

@@ -93,7 +93,7 @@ class project_page(models.Model):
 class project_list(models.Model):
     order = models.IntegerField('Порядок показа')
     is_active = models.BooleanField('Показывать на сайте', default=True)
-    first_display = models.BooleanField('Первый проект', default=False, unique=True)
+    # first_display = models.BooleanField('Первый проект', default=False, unique=True)
     name = models.CharField('Название проекта', max_length=500)
     main_photo = ResizedImageField('Основное изображение', size=[2048, 1536], crop=['middle', 'center'], null=True, upload_to=get_file_path, quality=80,
                                         help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.')

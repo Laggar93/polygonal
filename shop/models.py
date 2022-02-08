@@ -200,6 +200,7 @@ class item(models.Model):
     slug = models.SlugField('URL', max_length=50, allow_unicode=True, blank=True,
                             help_text='URL генерируется автоматически из названия раздела, но может быть задан вручную', unique=True)
     name = models.CharField('Название', max_length=500)
+    name_lower = models.CharField('Название в нижнем регистре', max_length=500, null=True)
     category = models.ForeignKey(subcategory, on_delete=models.CASCADE, verbose_name='Категория')
     main_photo_xxl2 = ResizedImageField('Основное изображение', size=[2400, 1800], crop=['middle', 'center'], upload_to=get_file_path, quality=80,
                                         help_text='Формат файла: jpg, jpeg или png. Ограничение размера: 3 Мбайт.')
@@ -276,6 +277,8 @@ class item(models.Model):
             self.slug = slugify(self.name)[:50]
         else:
             self.slug = slugify(self.slug)[:50]
+
+        self.name_lower = self.name.lower()
         super().save(*args, **kwargs)
 
     @cached_property
