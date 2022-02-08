@@ -1,4 +1,6 @@
 venv/
+virtualenv-16.6.0/
+virtualenv-16.6.0.tar.gz
 .nova/
 .idea
 __pycache__/
@@ -6,3 +8,4 @@ config.py
 .DS_Store
 *.htaccess
 *.wsgi
+
