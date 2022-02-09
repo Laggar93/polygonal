@@ -105,21 +105,37 @@
                                                                 <a class="c-card__title-link" href="{{ item.get_absolute_url }}">{{ item.name }}</a>
                                                             </h3>
                                                             <div class="c-card__footer">
-                                                                {% if currency == 'rub' %}
-                                                                    <div class="price price--c-card">
-                                                                        {#																	<div class="price__value price__value--old">2&nbsp;700<span class="price__unit">&nbsp;₽</span></div>#}
-                                                                        <div class="price__value">{{ item.price_rub|price_space|unlocalize }}<span class="price__unit">&nbsp;₽</span></div>
-                                                                    </div>
-                                                                {% elif currency == 'usd' %}
-                                                                    <div class="price price--c-card">
-                                                                        {#																	<div class="price__value price__value--old">2&nbsp;700<span class="price__unit">&nbsp;₽</span></div>#}
-                                                                        <div class="price__value">{{ item.price_usd|dollar_tag|unlocalize }}<span class="price__unit">&nbsp;$</span></div>
-                                                                    </div>
-                                                                {% elif currency == 'eur' %}
-                                                                    <div class="price price--c-card">
-                                                                        {#																	<div class="price__value price__value--old">2&nbsp;700<span class="price__unit">&nbsp;₽</span></div>#}
-                                                                        <div class="price__value">{{ item.price_rub|euro_tag|unlocalize }}<span class="price__unit">&nbsp;€</span></div>
-                                                                    </div>
+                                                                {% if discount %}
+                                                                    {% if currency == 'rub' %}
+                                                                        <div class="price price--c-card">
+                                                                            <div class="price__value price__value--old">{{ item.price_rub|price_space|unlocalize }}<span class="price__unit">&nbsp;₽</span></div>
+                                                                            <div class="price__value">{{ discount.0|unlocalize }}<span class="price__unit">&nbsp;₽</span></div>
+                                                                        </div>
+                                                                    {% elif currency == 'usd' %}
+                                                                        <div class="price price--c-card">
+                                                                            <div class="price__value price__value--old">{{ item.price_usd|dollar_tag|unlocalize }}<span class="price__unit">&nbsp;$</span></div>
+                                                                            <div class="price__value">{{ discount.1|dollar_tag|unlocalize }}<span class="price__unit">&nbsp;$</span></div>
+                                                                        </div>
+                                                                    {% elif currency == 'eur' %}
+                                                                        <div class="price price--c-card">
+                                                                            <div class="price__value price__value--old">{{ item.price_rub|euro_tag|unlocalize }}<span class="price__unit">&nbsp;€</span></div>
+                                                                            <div class="price__value">{{ discount.2|unlocalize }}<span class="price__unit">&nbsp;€</span></div>
+                                                                        </div>
+                                                                    {% endif %}
+                                                                {% else %}
+                                                                    {% if currency == 'rub' %}
+                                                                        <div class="price price--c-card">
+                                                                            <div class="price__value">{{ item.price_rub|price_space|unlocalize }}<span class="price__unit">&nbsp;₽</span></div>
+                                                                        </div>
+                                                                    {% elif currency == 'usd' %}
+                                                                        <div class="price price--c-card">
+                                                                            <div class="price__value">{{ item.price_usd|dollar_tag|unlocalize }}<span class="price__unit">&nbsp;$</span></div>
+                                                                        </div>
+                                                                    {% elif currency == 'eur' %}
+                                                                        <div class="price price--c-card">
+                                                                            <div class="price__value">{{ item.price_rub|euro_tag|unlocalize }}<span class="price__unit">&nbsp;€</span></div>
+                                                                        </div>
+                                                                    {% endif %}
                                                                 {% endif %}
                                                                 <div class="c-card__buttons">
                                                                     <!--todo: Если товар в сравнении, добавляем класс-модификатор btn-count--active у кнопки -->

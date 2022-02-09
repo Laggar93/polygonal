@@ -145,17 +145,17 @@
                                             {% if currency == 'rub' %}
                                                 <div class="price__value price__value--old">{{ items.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span>
                                                 </div>
-                                                <div class="price__value">{{ discount.0|unlocalize }}<span class="price__unit">&nbsp;₽</span>
+                                                <div class="price__value">{{ discount.0|price_space|unlocalize }}<span class="price__unit">&nbsp;₽</span>
                                                 </div>
                                             {% elif currency == 'usd' %}
                                                 <div class="price__value price__value--old">{{ items.price_usd|dollar_tag|unlocalize }}<span class="price__unit">&nbsp;$</span>
                                                 </div>
-                                                <div class="price__value">{{ discount.1|unlocalize }}<span class="price__unit">&nbsp;$</span>
+                                                <div class="price__value">{{ discount.1|dollar_tag|unlocalize }}<span class="price__unit">&nbsp;$</span>
                                                 </div>
                                             {% elif currency == 'eur' %}
                                                 <div class="price__value price__value--old">{{ items.price_eur|euro_tag|unlocalize }}<span class="price__unit">&nbsp;€</span>
                                                 </div>
-                                                <div class="price__value">{{ discount.2|unlocalize }}<span class="price__unit">&nbsp;€</span>
+                                                <div class="price__value">{{ discount.2|euro_tag|unlocalize }}<span class="price__unit">&nbsp;€</span>
                                                 </div>
                                             {% endif %}
 

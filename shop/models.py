@@ -399,7 +399,18 @@ class discount(models.Model):
                 if item.price_eur:
                     euro_price = item.price_eur - self.amount_eur
                     results[2] = euro_price
+                return results
 
+            if self.type == '1':
+                if item.price_rub:
+                    item.price_rub = item.price_rub - ((item.price_rub / 100) * self.amount_ru)
+                    results[0] = item.price_rub
+                if item.price_usd:
+                    item.price_usd = item.price_usd - ((item.price_usd / 100) * self.amount_usd)
+                    results[1] = item.price_usd
+                if item.price_eur:
+                    item.price_eur = item.price_eur - ((item.price_eur / 100) * self.amount_eur)
+                    results[2] = item.price_eur
                 return results
         else:
             if item.price_rub:

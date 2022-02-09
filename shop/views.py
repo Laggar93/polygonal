@@ -114,11 +114,18 @@ def subcategory_view(request, category_slug, subcategory_slug):
 
     categories = category.objects.filter(is_active=True)
     subcategories = subcategory.objects.filter(category=active_category, is_active=True)
+    # item_discounts = discount.objects.filter(item=items, subcategory=active_subcategory).first()
+    # if item_discounts:
+    #     output_discount = item_discounts.get_currency_price()
+    # else:
+    #     output_discount = None
 
     context = {
         'categories': categories,
         'subcategories': subcategories,
         'items': items,
+        # 'discount': output_discount,
+        # 'item_discounts': item_discounts,
         'active_category': active_category,
         'active_subcategory': active_subcategory,
         'shop_page': shop_page.objects.first(),
