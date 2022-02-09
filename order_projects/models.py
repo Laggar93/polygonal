@@ -101,7 +101,28 @@ class project_list(models.Model):
     main_photo_original = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     main_photo_xs = models.ImageField(upload_to=get_file_path, blank=True, null=True)
     main_photo_xs2x = models.ImageField(upload_to=get_file_path, blank=True, null=True)
+    __original_main_photo = None
 
+    def __init__(self, *args, **kwargs):
+        super(project_list, self).__init__(*args, **kwargs)
+        self.__original_main_photo = self.main_photo
+
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+
+        if self.main_photo != self.__original_main_photo:
+            self.main_photo_sm = resize_img(self.main_photo_sm, self.main_photo, [1024, 768])
+            self.main_photo_original = resize_img(self.main_photo_original, self.main_photo, [1600, 1200])
+            self.main_photo_xs = resize_img(self.main_photo_xs, self.main_photo, [768, 576])
+            self.main_photo_xs2x = resize_img(self.main_photo_xs2x, self.main_photo, [1536, 1152])
+        super().save(*args, **kwargs)
+
+    @cached_property
+    def display_image(self):
+        return format_html('<img src="{img}" width="300">', img=self.main_photo.url)
+
+    display_image.short_description = 'Предпросмотр'
 
     def __str__(self):
         return str(self.name)
@@ -110,20 +131,6 @@ class project_list(models.Model):
         ordering = ['order']
         verbose_name = 'Список проектов'
         verbose_name_plural = 'Списки проектов'
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        if self.main_photo != self.main_photo:
-            self.main_photo_sm = resize_img(self.main_photo_sm, self.main_photo, [1024, 768])
-            self.main_photo_original = resize_img(self.main_photo_original, self.main_photo, [1600, 1200])
-            self.main_photo_xs = resize_img(self.main_photo_xs, self.main_photo, [768, 576])
-            self.main_photo_xs2x = resize_img(self.main_photo_xs2x, self.main_photo, [1536, 1152])
-
-    @cached_property
-    def display_image(self):
-        return format_html('<img src="{img}" width="300">', img=self.main_photo.url)
-
-    display_image.short_description = 'Предпросмотр'
 
 
 class project_images(models.Model):
