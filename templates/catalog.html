@@ -105,11 +105,18 @@
                                                                 <a class="c-card__title-link" href="{{ item.get_absolute_url }}">{{ item.name }}</a>
                                                             </h3>
                                                             <div class="c-card__footer">
+
+                                                                {% for discount in discounts %}
+
+                                                                {% for value in discount.item.all %}
+
+                                                                {% if value == item %}
+                                                                
                                                                 {% if discount %}
                                                                     {% if currency == 'rub' %}
                                                                         <div class="price price--c-card">
                                                                             <div class="price__value price__value--old">{{ item.price_rub|price_space|unlocalize }}<span class="price__unit">&nbsp;₽</span></div>
-                                                                            <div class="price__value">{{ discount.0|unlocalize }}<span class="price__unit">&nbsp;₽</span></div>
+                                                                            <div class="price__value">{{ item.price_rub|price_space|unlocalize }}{{ discount.amount_ru }}<span class="price__unit">&nbsp;₽</span></div>
                                                                         </div>
                                                                     {% elif currency == 'usd' %}
                                                                         <div class="price price--c-card">
@@ -137,6 +144,13 @@
                                                                         </div>
                                                                     {% endif %}
                                                                 {% endif %}
+
+                                                                {% endif %}
+
+                                                                {% endfor %}
+
+                                                                {% endfor %}
+
                                                                 <div class="c-card__buttons">
                                                                     <!--todo: Если товар в сравнении, добавляем класс-модификатор btn-count--active у кнопки -->
                                                                     <button class="btn-count btn-count--short btn-count--card" type="button">

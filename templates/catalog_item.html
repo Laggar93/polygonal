@@ -112,7 +112,7 @@
                                     {% if items.difficulty %}
                                         <li class="prop-list__item">
                                             <div class="prop-list__prop">{{ shop_page.complexity }}</div>
-                                            <div class="prop-list__value">{{ items.difficulty }} {{ shop_page.of }} 3 </div>
+                                            <div class="prop-list__value">{% if items.difficulty == '1' %}&#9733;&#9734;&#9734;{% endif %}{% if items.difficulty == '2' %}&#9733;&#9733;&#9734;{% endif %}{% if items.difficulty == '3' %}&#9733;&#9733;&#9733;{% endif %}</div>
                                         </li>
                                     {% endif %}
                                     {% if items.time %}
