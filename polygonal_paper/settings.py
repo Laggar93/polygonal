@@ -87,7 +87,9 @@ TEMPLATES = [
                 'shop.templatetags.extension',
                 'shop.templatetags.dollar_tag',
                 'shop.templatetags.euro_tag',
-                'about.templatetags.number_space'
+                'about.templatetags.number_space',
+                'shop.templatetags.get_currency_price',
+                'shop.templatetags.filter_discount',
             ]
         },
     },

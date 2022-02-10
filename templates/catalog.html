@@ -16,6 +16,8 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
 {% load price_space %}
+{% load get_currency_price %}
+{% load filter_discount %}
 {% block content %}
     <main class="page__main">
         <h1 class="visuallyhidden">Каталог</h1>
@@ -105,48 +107,38 @@
                                                                 <a class="c-card__title-link" href="{{ item.get_absolute_url }}">{{ item.name }}</a>
                                                             </h3>
                                                             <div class="c-card__footer">
-
-                                                                {% for discount in discounts %}
-                                                                {% for value in discount.item.all %}
-                                                                {% if value == item %}
-                                                                {% if discount %}
+                                                                {% if discounts|filter_discount:item %}
+                                                                {% with discount=discounts|filter_discount:item %}
                                                                     {% if currency == 'rub' %}
-                                                                        <div class="price price--c-card">
-                                                                            <div class="price__value price__value--old">{{ item.price_rub|price_space|unlocalize }}<span class="price__unit">&nbsp;₽</span></div>
-                                                                            <div class="price__value">{{ discount.0 }}<span class="price__unit">&nbsp;₽</span></div>
+                                                                        <div class="price__value price__value--old">{{ item.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span>
+                                                                        </div>
+                                                                        <div class="price__value">{{ discount.0|price_space|unlocalize }}<span class="price__unit">&nbsp;₽</span>
                                                                         </div>
                                                                     {% elif currency == 'usd' %}
-                                                                        <div class="price price--c-card">
-                                                                            <div class="price__value price__value--old">{{ item.price_usd|dollar_tag|unlocalize }}<span class="price__unit">&nbsp;$</span></div>
-                                                                            <div class="price__value">{{ discount.1|dollar_tag|unlocalize }}<span class="price__unit">&nbsp;$</span></div>
+                                                                        <div class="price__value price__value--old">{{ item.price_usd|dollar_tag|unlocalize }}<span class="price__unit">&nbsp;$</span>
+                                                                        </div>
+                                                                        <div class="price__value">{{ discount.1|dollar_tag|unlocalize }}<span class="price__unit">&nbsp;$</span>
                                                                         </div>
                                                                     {% elif currency == 'eur' %}
-                                                                        <div class="price price--c-card">
-                                                                            <div class="price__value price__value--old">{{ item.price_rub|euro_tag|unlocalize }}<span class="price__unit">&nbsp;€</span></div>
-                                                                            <div class="price__value">{{ discount.2|unlocalize }}<span class="price__unit">&nbsp;€</span></div>
+                                                                        <div class="price__value price__value--old">{{ item.price_eur|euro_tag|unlocalize }}<span class="price__unit">&nbsp;€</span>
+                                                                        </div>
+                                                                        <div class="price__value">{{ discount.2|euro_tag|unlocalize }}<span class="price__unit">&nbsp;€</span>
                                                                         </div>
                                                                     {% endif %}
+                                                                {% endwith %}
+
                                                                 {% else %}
                                                                     {% if currency == 'rub' %}
-                                                                        <div class="price price--c-card">
-                                                                            <div class="price__value">{{ item.price_rub|price_space|unlocalize }}<span class="price__unit">&nbsp;₽</span></div>
+                                                                        <div class="price__value">{{ item.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span>
                                                                         </div>
                                                                     {% elif currency == 'usd' %}
-                                                                        <div class="price price--c-card">
-                                                                            <div class="price__value">{{ item.price_usd|dollar_tag|unlocalize }}<span class="price__unit">&nbsp;$</span></div>
+                                                                        <div class="price__value">{{ item.price_usd|dollar_tag|unlocalize }}<span class="price__unit">&nbsp;$</span>
                                                                         </div>
                                                                     {% elif currency == 'eur' %}
-                                                                        <div class="price price--c-card">
-                                                                            <div class="price__value">{{ item.price_rub|euro_tag|unlocalize }}<span class="price__unit">&nbsp;€</span></div>
+                                                                        <div class="price__value">{{ item.price_eur|euro_tag|unlocalize }}<span class="price__unit">&nbsp;€</span>
                                                                         </div>
                                                                     {% endif %}
                                                                 {% endif %}
-
-                                                                {% endif %}
-
-                                                                {% endfor %}
-
-                                                                {% endfor %}
 
                                                                 <div class="c-card__buttons">
                                                                     <!--todo: Если товар в сравнении, добавляем класс-модификатор btn-count--active у кнопки -->

@@ -47,6 +47,8 @@ def category_view(request, category_slug):
     categories = category.objects.all()
     subcategories = subcategory.objects.filter(category=active_category, is_active=True)
 
+    discounts = discount.objects.all()
+
     context = {
         'categories': categories,
         'subcategories': subcategories,
@@ -60,6 +62,7 @@ def category_view(request, category_slug):
         'link_ru': link_ru,
         'show_currency': True,
         'show_language': True,
+        'discounts': discounts,
     }
 
     return render(request, 'catalog.html', context=context)
