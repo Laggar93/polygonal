@@ -366,7 +366,6 @@ class item_files(models.Model):
 
 
 class discount(models.Model):
-    subcategory = models.ManyToManyField(subcategory, blank=True, verbose_name="Категории")
     item = models.ManyToManyField(item, blank=True, verbose_name="Товары")
     is_active = models.BooleanField('Активная', default=True)
     name = models.CharField('Название скидки', max_length=500)
@@ -422,7 +421,6 @@ class discount(models.Model):
 
 
 class coupon(models.Model):
-    subcategory = models.ManyToManyField(subcategory, blank=True, verbose_name="Категории")
     item = models.ManyToManyField(item, blank=True, verbose_name="Товары")
     is_active = models.BooleanField('Активная', default=True)
     name = models.CharField('Название купона', max_length=500)

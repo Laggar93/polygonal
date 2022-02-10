@@ -177,7 +177,7 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
     related_items = item.objects.filter(category__category=active_category).exclude(slug=item_slug)[:6]
     related_categories = items.connected_items.all()
     items_photos = item_photos.objects.filter(item=items)
-    item_discounts = discount.objects.filter(item=items, subcategory=active_subcategory).first()
+    item_discounts = discount.objects.filter(item=items).first()
     if item_discounts:
         output_discount = item_discounts.get_currency_price()
     else:
