@@ -391,14 +391,14 @@ class discount(models.Model):
             results = [None, None, None]
             if self.type == '2':
                 if item.price_rub:
-                    ruble_price = item.price_rub - self.amount_ru
-                    results[0] = ruble_price
+                    item.price_rub = item.price_rub - self.amount_ru
+                    results[0] = item.price_rub
                 if item.price_usd:
-                    dollar_price = item.price_usd - self.amount_usd
-                    results[1] = dollar_price
+                    item.price_usd = item.price_usd - self.amount_usd
+                    results[1] = item.price_usd
                 if item.price_eur:
-                    euro_price = item.price_eur - self.amount_eur
-                    results[2] = euro_price
+                    item.price_eur = item.price_eur - self.amount_eur
+                    results[2] = item.price_eur
                 return results
 
             if self.type == '1':

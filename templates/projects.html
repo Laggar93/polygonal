@@ -20,7 +20,7 @@
                     </div>
                     <div class="section__col">
                         {% for i in project_lists %}
-                            {% if i.first_display %}
+                            {% if i.order == 1 %}
                                 <div class="project-intro js-gallery">
                                     <div class="project-intro__row">
                                         <div class="project-intro__col">
@@ -67,7 +67,7 @@
                         <ul class="project-list">
                             {% for j in project_lists %}
                             {% with gallery_num=forloop.counter %}
-                                {% if not j.first_display %}
+                                {% if not j.order == 1 %}
                                     <li class="project-list__item">
                                         <div class="project-list__card">
                                             {% if j.main_photo %}

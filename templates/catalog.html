@@ -107,16 +107,13 @@
                                                             <div class="c-card__footer">
 
                                                                 {% for discount in discounts %}
-
                                                                 {% for value in discount.item.all %}
-
                                                                 {% if value == item %}
-                                                                
                                                                 {% if discount %}
                                                                     {% if currency == 'rub' %}
                                                                         <div class="price price--c-card">
                                                                             <div class="price__value price__value--old">{{ item.price_rub|price_space|unlocalize }}<span class="price__unit">&nbsp;₽</span></div>
-                                                                            <div class="price__value">{{ item.price_rub|price_space|unlocalize }}{{ discount.amount_ru }}<span class="price__unit">&nbsp;₽</span></div>
+                                                                            <div class="price__value">{{ discount.0 }}<span class="price__unit">&nbsp;₽</span></div>
                                                                         </div>
                                                                     {% elif currency == 'usd' %}
                                                                         <div class="price price--c-card">
