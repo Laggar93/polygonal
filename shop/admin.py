@@ -26,6 +26,8 @@ def dublicate_ad(modeladmin, request, queryset):
         ad.slug = ''.join(
             random.choice(string.ascii_uppercase + string.digits) for _ in
             range(30))
+        last_order = item.objects.latest('order').order
+        ad.order = last_order + 1
         ad.save()
 
 
