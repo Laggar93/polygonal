@@ -1,8 +1,9 @@
 from django.db.models import F
 from django.shortcuts import get_object_or_404, redirect
 from django.shortcuts import render
+
 from .models import category, subcategory, item, shop_page, item_terms, \
-    item_photos, discount
+    item_photos, discount, item_basket
 from .service import get_order_params
 
 
@@ -117,7 +118,7 @@ def subcategory_view(request, category_slug, subcategory_slug):
 
     categories = category.objects.filter(is_active=True)
     subcategories = subcategory.objects.filter(category=active_category, is_active=True)
-    
+
     discounts = discount.objects.all()
 
     context = {
@@ -202,6 +203,26 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
         'show_language': True,
     }
     return render(request, 'catalog_item.html', context=context)
+
+
+def order_view(request):
+    # get_object_or_404(item, slug=slug)
+    # session_key = request.session.session_key
+    # if not session_key:
+    #     request.session.cycle_key()
+    # if request.is_ajax() and request.GET:
+    #     id = request.GET.get('id', None)
+    #     objects = item_basket.objects.filter(session_key=session_key, item=item.objects.get(id=id))
+    #     if objects:
+    #         objects_amount = objects.amount + 1
+    #         new_item_in_order = item_basket.item.objects.get_or_create(session_key=session_key, item=item.objects.get(id=id), amount=objects_amount)
+    #     else:
+    #         new_item_in_order = item_basket.item.objects.get_or_create(session_key=session_key, item=item.objects.get(id=id), amount=1)
+    # item_basket_amount = 0
+    # for item in item_basket.item.objects.filter(session_key=session_key):
+    #     item_basket_amount = item_basket_amount + item.amount
+
+    return render(request, 'cart.html')
 
 
 def handler404(request, exception):
