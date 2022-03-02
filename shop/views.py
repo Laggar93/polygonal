@@ -1,13 +1,41 @@
 from django.db.models import F
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, HttpResponse
 from django.shortcuts import render
 
-from .models import category, subcategory, item, shop_page, item_terms, \
-    item_photos, discount, item_basket
+from .models import category, subcategory, item, shop_page, item_terms, item_photos, discount, item_basket
 from .service import get_order_params
 
 
+def update_basket(request):
+
+    session_key = request.session.session_key
+    
+    if not session_key:
+        request.session.cycle_key()
+    
+    amount = 0
+    for item_basket_object in item_basket.objects.filter(session_key=session_key):
+        amount = amount + item_basket_object.amount
+    
+    if request.is_ajax() and request.GET:
+        id = request.GET.get('id', None)
+        test = item_basket.objects.filter(session_key=session_key, item=item.objects.get(id=id)).first()
+        if test:
+            item_basket.objects.filter(session_key=session_key, item=item.objects.get(id=id)).delete()
+        else:
+            item_basket.objects.get_or_create(session_key=session_key, item=item.objects.get(id=id), amount=1)
+    
+    return amount, session_key
+
+
+def update_basket_view(request):
+
+    update_basket(request)
+    return HttpResponse('')
+
+
 def category_view(request, category_slug):
+
     language = request.LANGUAGE_CODE
     if language == 'en' or language == 'fr':
         if request.GET:
@@ -64,6 +92,8 @@ def category_view(request, category_slug):
         'show_currency': True,
         'show_language': True,
         'discounts': discounts,
+        'amount': update_basket(request)[0],
+        'item_basket': item_basket.objects.filter(session_key=update_basket(request)[1]),
     }
 
     return render(request, 'catalog.html', context=context)

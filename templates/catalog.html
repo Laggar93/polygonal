@@ -156,7 +156,7 @@
                                                                             </div>
                                                                             <span class="btn-count__title">{{ shop_page.compare }}</span>
                                                                         </button>
-                                                                        <button class="btn-count btn-count--buy btn-count--card js-add-to-cart" type="button">
+                                                                        <button class="btn-count btn-count--buy btn-count--card js-add-to-cart {% for test in item_basket %}{% if test.item == item %}btn-count--active{% endif %}{% endfor %}" onclick="update_card({{ item.id }});" type="button">
 																		<span class="btn-count__icon-wrap">
 																			<svg class="btn-count__icon" viewBox="0 0 22 19" width="22" height="19">
 																				<use xlink:href="{% static 'img/sprite.svg' %}#icon-btn-cart"></use>
@@ -188,4 +188,19 @@
         </section>
     </main>
     </div>
+{% endblock %}
+{% block scripts %}
+<script>
+    function update_card(item) {
+        $.ajax({
+            url: '/{{ request.LANGUAGE_CODE }}/update_card/',
+            method: 'GET',
+            data: {
+                'id': item
+            },
+            success: function() {
+            }
+        })
+    };
+</script>
 {% endblock %}

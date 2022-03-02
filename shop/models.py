@@ -450,7 +450,7 @@ class coupon(models.Model):
 
 class item_basket(models.Model):
     session_key = models.CharField('Ключ сессии', max_length=500, blank=True)
-    item = models.ForeignKey(item, on_delete=models.CASCADE)
+    item = models.ForeignKey(item, on_delete=models.CASCADE, verbose_name='Товар')
     amount = models.IntegerField('Количество', null=True)
 
     def __str__(self):

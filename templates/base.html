@@ -236,13 +236,13 @@
                                 </div>
                                 <div class="page-header__cart">
                                     <!--todo: Если корзина пуста, удаляем класс-модификатор btn-count--active у кнопки -->
-                                    <a class="btn-count btn-count--short js-cart-btn"
+                                    <a class="btn-count btn-count--short js-cart-btn {% if amount %}btn-count--active{% endif %}"
                                        href="cart.html">
                                         <div class="btn-count__icon-wrap">
                                             <svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
                                                 <use xlink:href="{% static 'img/sprite.svg' %}#icon-cart"></use>
                                             </svg>
-                                            <div class="btn-count__counter"></div>
+                                            <div class="btn-count__counter">{% if amount %}{{ amount }}{% endif %}</div>
                                         </div>
                                         <span class="btn-count__title">{{ shop_page.cart }}</span>
                                     </a>
@@ -298,12 +298,12 @@
                                 </nav>
                                 <div class="page-header__bottom-cart">
                                     <!--todo: Если корзина пуста, удаляем класс-модификатор btn-count--active у кнопки -->
-                                    <a class="btn-count btn-count--active js-cart-btn" href="cart.html">
+                                    <a class="btn-count btn-count--active js-cart-btn {% if amount %}btn-count--active{% endif %}" href="cart.html">
                                         <div class="btn-count__icon-wrap">
                                             <svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
                                                 <use xlink:href="{% static 'img/sprite.svg' %}#icon-cart"></use>
                                             </svg>
-                                            <div class="btn-count__counter"></div>
+                                            <div class="btn-count__counter">{% if amount %}{{ amount }}{% endif %}</div>
                                         </div>
                                         <span class="btn-count__title">{{ shop_page.cart }}</span>
                                     </a>
@@ -534,6 +534,9 @@
         </footer>
     </div>
 </div>
+<script>
+    var cartCounter = {{ amount }};
+</script>
 <script src="{% static 'libs/jquery/jquery-3.4.1.min.js' %}"></script>
 <script src="{% static 'libs/object-fit/ofi.min.js' %}"></script>
 <script src="{% static 'libs/svg4everybody/svg4everybody.min.js' %}"></script>

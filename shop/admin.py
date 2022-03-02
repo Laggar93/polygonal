@@ -6,8 +6,7 @@ from django.contrib import admin
 from django.contrib.auth.models import User, Group
 from modeltranslation.admin import TranslationAdmin, TranslationStackedInline
 
-from .models import category, subcategory, item, item_photos, item_terms, \
-    item_files, discount, coupon, shop_page
+from .models import category, subcategory, item, item_photos, item_terms, item_files, discount, coupon, shop_page, item_basket
 
 
 @admin.action(description='Скопировать выбранные Купоны')
@@ -117,6 +116,10 @@ class shop_page_admin(TranslationAdmin):
         return False
 
 
+class item_basket_admin(admin.ModelAdmin):
+    list_display = ('session_key', 'item', 'amount')
+
+
 admin.site.register(shop_page, shop_page_admin)
 admin.site.register(item, item_admin)
 admin.site.register(category, category_admin)
@@ -126,3 +129,4 @@ admin.site.register(discount, discount_admin)
 admin.site.register(coupon, coupon_admin)
 admin.site.unregister([User, Group])
 admin.site.register(item_terms)
+admin.site.register(item_basket, item_basket_admin)

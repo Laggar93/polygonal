@@ -1,5 +1,3 @@
-var cartCounter = 0;
-
 function addToCart() {
 	var btn = $('.js-cart-btn');
 	cartCounter += 1;
