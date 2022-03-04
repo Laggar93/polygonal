@@ -26,10 +26,13 @@
                                                 </div>
                                                 <div class="cart__col-desc">
                                                     <h2 class="cart__title">
-                                                        <a class="cart__title-link" href="{{ i.item.get_absolute_url }}">{{ i.item.title }}</a>
+                                                        <a class="cart__title-link" href="{{ i.item.get_absolute_url }}">{{ i.item.name }}</a>
                                                     </h2>
                                                 </div>
                                                 <div class="cart__col-price">
+                                                    <!-- 
+                                                    проверить, что выдается стоимость со скидкой (процент и число)
+                                                    -->
                                                     {% if currency == 'rub' %}
                                                         <div class="price price--theme_black price--cart">
                                                             <div class="price__value">{{ i.item.price_rub|price_space }}<span class="price__unit">&nbsp;₽</span></div>
@@ -49,8 +52,13 @@
                                                         <button class="counter__btn counter__btn--plus js-counter-plus" type="button">
                                                             <span class="visuallyhidden">{{ shop_page.more }}</span>
                                                         </button>
+                                                        <!-- 
+                                                        data-price = целое значение стоимости товара (в рублях, евро или долларах)
+                                                        проверить, что выдается стоимость со скидкой (процент и число)
+                                                        value = количество конкретно этого товара в корзине пользователя
+                                                        -->
                                                         <div class="counter__input-wrap">
-                                                            <input class="counter__input" type="number" value="1" data-price="2200">
+                                                            <input class="counter__input" type="number" value="3" data-price="900.5">
                                                         </div>
                                                         <button class="counter__btn counter__btn--minus js-counter-minus" type="button" disabled>
                                                             <span class="visuallyhidden">{{ shop_page.less }}</span>

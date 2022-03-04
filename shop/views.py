@@ -18,6 +18,7 @@ def update_basket(request):
 
     if request.is_ajax() and request.GET:
         id = request.GET.get('id', None)
+        # проверить, что id является числом и есть товар с таким айдишником, иначе ничего не делаем
         test = item_basket.objects.filter(session_key=session_key, item=item.objects.get(id=id)).first()
         if test:
             item_basket.objects.filter(session_key=session_key, item=item.objects.get(id=id)).delete()
@@ -233,8 +234,9 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
 
 
 def order_view(request):
+    
     language = request.LANGUAGE_CODE
-
+    
     if language == 'en' or language == 'fr':
         if request.GET:
             currency = request.GET['currency']
@@ -247,28 +249,40 @@ def order_view(request):
     link_en = '/en/cart/'
     link_fr = '/fr/cart'
     link_ru = '/ru/cart/'
+    
     session_key = request.session.session_key
+    
     if not session_key:
         request.session.cycle_key()
-    if request.is_ajax() and request.GET:
+    
+    if request.GET:
+    #if request.is_ajax() and request.GET:
         id = request.GET.get('id', None)
+        # проверить, что id является числом и есть товар с таким айдишником, иначе ничего не делаем
         action = request.GET.get('action', None)
-        if id:
-            if action:
-                if action == 'minus':
-                    new_amount = item_basket.objects.get(session_key=session_key, item=item_basket.item.objects.get(id=id)).amount - 1
-                    if new_amount != 0:
-                        minus_product_from_order = item_basket.objects.filter(session_key=session_key, item=item_basket.item.objects.get(id=id)).update(amount=new_amount)
-                    else:
-                        delete_product_from_order = item_basket.objects.get(session_key=session_key, item=item_basket.item.objects.get(id=id)).delete()
-                else:
-                    new_amount = item_basket.objects.get(session_key=session_key, item=item_basket.item.objects.get(id=id)).amount + 1
-                    plus_product_from_order = item_basket.objects.filter(session_key=session_key, item=item_basket.item.objects.get(id=id)).update(amount=new_amount)
-            else:
-                delete_product_from_order = item_basket.objects.get(session_key=session_key, item=item_basket.item.objects.get(id=id)).delete()
+        # проверить, что action принял значение add или minus или remove
+        test = item_basket.objects.filter(session_key=session_key, item=item.objects.filter(id=id).first())
+        if test:
+            if action == 'add':
+                # берем текущий amount
+                # увеличить amount на 1
+                # делаем апдейт
+                print('plus')
+            if action == 'minus':
+                # берем текущий amount
+                # если amount = 1, то товар удаляется
+                # если больше 1, то уменьшить amount на 1
+                # делаем апдейт
+                print('minus')
+            if action == 'remove':
+                # удаляем текущий товар
+                print('remove')
+    
     item_basket_amount = 0
+    
     for i in item_basket.objects.filter(session_key=session_key):
         item_basket_amount = item_basket_amount + i.amount
+
     context = {
         'show_language': True,
         'link_en': link_en,
@@ -279,7 +293,6 @@ def order_view(request):
         'shop_page': shop_page.objects.first(),
         'currency': currency,
         'show_currency': True,
-
     }
     return render(request, 'cart.html', context=context)
 
