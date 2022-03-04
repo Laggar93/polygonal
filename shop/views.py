@@ -7,16 +7,15 @@ from .service import get_order_params
 
 
 def update_basket(request):
-
     session_key = request.session.session_key
-    
+
     if not session_key:
         request.session.cycle_key()
-    
+
     amount = 0
     for item_basket_object in item_basket.objects.filter(session_key=session_key):
         amount = amount + item_basket_object.amount
-    
+
     if request.is_ajax() and request.GET:
         id = request.GET.get('id', None)
         test = item_basket.objects.filter(session_key=session_key, item=item.objects.get(id=id)).first()
@@ -24,18 +23,16 @@ def update_basket(request):
             item_basket.objects.filter(session_key=session_key, item=item.objects.get(id=id)).delete()
         else:
             item_basket.objects.get_or_create(session_key=session_key, item=item.objects.get(id=id), amount=1)
-    
+
     return amount, session_key
 
 
 def update_basket_view(request):
-
     update_basket(request)
     return HttpResponse('')
 
 
 def category_view(request, category_slug):
-
     language = request.LANGUAGE_CODE
     if language == 'en' or language == 'fr':
         if request.GET:
@@ -236,23 +233,55 @@ def catalog_item(request, category_slug, subcategory_slug, item_slug):
 
 
 def order_view(request):
-    # get_object_or_404(item, slug=slug)
-    # session_key = request.session.session_key
-    # if not session_key:
-    #     request.session.cycle_key()
-    # if request.is_ajax() and request.GET:
-    #     id = request.GET.get('id', None)
-    #     objects = item_basket.objects.filter(session_key=session_key, item=item.objects.get(id=id))
-    #     if objects:
-    #         objects_amount = objects.amount + 1
-    #         new_item_in_order = item_basket.item.objects.get_or_create(session_key=session_key, item=item.objects.get(id=id), amount=objects_amount)
-    #     else:
-    #         new_item_in_order = item_basket.item.objects.get_or_create(session_key=session_key, item=item.objects.get(id=id), amount=1)
-    # item_basket_amount = 0
-    # for item in item_basket.item.objects.filter(session_key=session_key):
-    #     item_basket_amount = item_basket_amount + item.amount
+    language = request.LANGUAGE_CODE
 
-    return render(request, 'cart.html')
+    if language == 'en' or language == 'fr':
+        if request.GET:
+            currency = request.GET['currency']
+            if currency != 'eur':
+                currency = 'usd'
+        else:
+            currency = 'usd'
+    else:
+        currency = 'rub'
+    link_en = '/en/cart/'
+    link_fr = '/fr/cart'
+    link_ru = '/ru/cart/'
+    session_key = request.session.session_key
+    if not session_key:
+        request.session.cycle_key()
+    if request.is_ajax() and request.GET:
+        id = request.GET.get('id', None)
+        action = request.GET.get('action', None)
+        if id:
+            if action:
+                if action == 'minus':
+                    new_amount = item_basket.objects.get(session_key=session_key, item=item_basket.item.objects.get(id=id)).amount - 1
+                    if new_amount != 0:
+                        minus_product_from_order = item_basket.objects.filter(session_key=session_key, item=item_basket.item.objects.get(id=id)).update(amount=new_amount)
+                    else:
+                        delete_product_from_order = item_basket.objects.get(session_key=session_key, item=item_basket.item.objects.get(id=id)).delete()
+                else:
+                    new_amount = item_basket.objects.get(session_key=session_key, item=item_basket.item.objects.get(id=id)).amount + 1
+                    plus_product_from_order = item_basket.objects.filter(session_key=session_key, item=item_basket.item.objects.get(id=id)).update(amount=new_amount)
+            else:
+                delete_product_from_order = item_basket.objects.get(session_key=session_key, item=item_basket.item.objects.get(id=id)).delete()
+    item_basket_amount = 0
+    for i in item_basket.objects.filter(session_key=session_key):
+        item_basket_amount = item_basket_amount + i.amount
+    context = {
+        'show_language': True,
+        'link_en': link_en,
+        'link_fr': link_fr,
+        'link_ru': link_ru,
+        'item_basket': item_basket.objects.filter(session_key=session_key),
+        'item_basket_amount': item_basket_amount,
+        'shop_page': shop_page.objects.first(),
+        'currency': currency,
+        'show_currency': True,
+
+    }
+    return render(request, 'cart.html', context=context)
 
 
 def handler404(request, exception):

@@ -4,7 +4,8 @@ from base.models import footer_elements, rules, offer, policy
 from contact.models import contact_main
 from delivery.models import delivery_main
 from map.models import map_main
-from shop.models import item, shop_page
+from shop.models import item, shop_page, item_basket
+from shop.views import update_basket
 from order_projects.models import project_page
 
 
@@ -22,5 +23,7 @@ def globals(request):
         'rules': rules.objects.first(),
         'offer': offer.objects.first(),
         'policy': policy.objects.first(),
+        'amount': update_basket(request)[0],
+        'item_basket': item_basket.objects.filter(session_key=update_basket(request)[1]),
     }
     return context

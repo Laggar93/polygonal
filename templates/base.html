@@ -237,7 +237,7 @@
                                 <div class="page-header__cart">
                                     <!--todo: Если корзина пуста, удаляем класс-модификатор btn-count--active у кнопки -->
                                     <a class="btn-count btn-count--short js-cart-btn {% if amount %}btn-count--active{% endif %}"
-                                       href="cart.html">
+                                       href="{% url 'cart' %}">
                                         <div class="btn-count__icon-wrap">
                                             <svg class="btn-count__icon" viewBox="0 0 32 25" width="32" height="25">
                                                 <use xlink:href="{% static 'img/sprite.svg' %}#icon-cart"></use>

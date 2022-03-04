@@ -89,6 +89,11 @@ class shop_page(models.Model):
     new_start = models.CharField('Начать сначала', max_length=255, blank=True)
     of = models.CharField('Из (сложность)', max_length=255, blank=True)
     shop = models.CharField('Магазин', max_length=255, blank=True)
+    check_order = models.CharField('Оформить заказ', max_length=255, blank=True)
+    more = models.CharField('Больше', max_length=255, blank=True)
+    less = models.CharField('Меньше', max_length=255, blank=True)
+    total = models.CharField('Итого', max_length=255, blank=True)
+    promo_code = models.CharField('Промо-код', max_length=255, blank=True)
 
     class Meta:
         verbose_name = 'Статический перевод'
